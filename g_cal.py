@@ -75,7 +75,8 @@ def main():
     events = eventsResult.get('items', [])
     total_meeting_cost = 0
     yearly_salary = 100000
-    work_seconds_per_year = 2000 * 3600
+    work_hours_per_year = 2000
+    work_seconds_per_year = work_hours_per_year  * 3600
     cost_per_second = float(yearly_salary) / work_seconds_per_year 
 
     #print json.dumps(events, indent=4, sort_keys=True)
@@ -110,6 +111,7 @@ def main():
         total_time_cost += meeting_cost_in_time
         total_financial_cost += (seconds_in_meeting * cost_per_second) 
 
+    # total_work_hours_per_year =  
     total_time_cost = round(float(total_time_cost / 60),2)
     total_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
     print("""
@@ -118,7 +120,8 @@ def main():
     """.format(total_time_cost, total_financial_cost)) 
 
 # TODO: 
-#-Create 'total meetings cost that prints at the end of everything'
-#-Estimate their salaries
+#-Estimate salaries
+#-Get percentage of time spent in meetings
+#-Estimate percentage of salary budget spent on meeting
 if __name__ == '__main__':
     main()
