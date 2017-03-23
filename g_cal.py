@@ -70,7 +70,7 @@ def main():
     start_date = '2017-01-17T09:00:00Z'
     print('Getting the upcoming 50 events')
     eventsResult = service.events().list(
-        calendarId='primary', timeMin=start_date, timeMax=now, maxResults=5, singleEvents=True,
+        calendarId='primary', timeMin=start_date, timeMax=now, maxResults=500, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
     total_meeting_cost = 0
@@ -78,34 +78,47 @@ def main():
     work_seconds_per_year = 2000 * 3600
     cost_per_second = float(yearly_salary) / work_seconds_per_year 
 
+    #print json.dumps(events, indent=4, sort_keys=True)
+    total_financial_cost = 0
+    total_time_cost = 0
     if not events:
         print('No upcoming events found.')
     for event_number, event in enumerate(events, 1):
-       # event = json.dumps(event)
-       # loaded_r = json.loads(event)
-       #  print loaded_r
         start_raw = event['start'].get('dateTime', event['start'].get('date'))
         end_raw = event['end'].get('dateTime', event['end'].get('date'))
-        
         summary = event['summary'] 
         start = parse(start_raw)
         end = parse(end_raw)
         meeting_duration = end - start
-
+        if event.get('attendees') == None:
+            num_attendees = 1
+        else:
+            num_attendees = len(event.get('attendees'))
         seconds_in_meeting = meeting_duration.total_seconds()
-
-        meeting_cost = Money(seconds_in_meeting * cost_per_second, 'USD').format('en_US')
-
+        meeting_cost = Money(seconds_in_meeting * cost_per_second * num_attendees, 'USD').format('en_US')
+        meeting_cost_in_time = float(num_attendees * (seconds_in_meeting / 60))
         print("""
         Event {0}: {1}
         Meeting Start: {2}
         Meeting End: {3}
         Meeting Duration: {4}
         Meeting Cost: {5}
-        """.format(event_number, summary, start, end, meeting_duration, meeting_cost)),
+        Number of Attendees: {6}
+        Meeting Cost in Time: {7} minutes
+        """.format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time)),
+
+        total_time_cost += meeting_cost_in_time
+        total_financial_cost += (seconds_in_meeting * cost_per_second) 
+
+    total_time_cost = round(float(total_time_cost / 60),2)
+    total_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
+    print("""
+    Total cost in time: {0} hours 
+    Total cost in money: {1}
+    """.format(total_time_cost, total_financial_cost)) 
+
 # TODO: 
 #-Create 'total meetings cost that prints at the end of everything'
-#-Count number of users
 #-Estimate their salaries
 if __name__ == '__main__':
     main()
