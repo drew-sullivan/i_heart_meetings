@@ -82,6 +82,7 @@ def main():
     #print json.dumps(events, indent=4, sort_keys=True)
     total_financial_cost = 0
     total_time_cost = 0
+ 
     if not events:
         print('No upcoming events found.')
     for event_number, event in enumerate(events, 1):
@@ -98,6 +99,7 @@ def main():
         seconds_in_meeting = meeting_duration.total_seconds()
         meeting_cost = Money(seconds_in_meeting * cost_per_second * num_attendees, 'USD').format('en_US')
         meeting_cost_in_time = float(num_attendees * (seconds_in_meeting / 60))
+	percent_time_spent_in_meetings = round(((float(seconds_in_meeting) / 3600) / (num_attendees * 8)) * 100, 2)
         print("""
         Event {0}: {1}
         Meeting Start: {2}
@@ -106,13 +108,14 @@ def main():
         Meeting Cost: {5}
         Number of Attendees: {6}
         Meeting Cost in Time: {7} minutes
-        """.format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time)),
+	Percentage of Time Spent in Meetings: {8}%
+        """.format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time, percent_time_spent_in_meetings)),
 
         total_time_cost += meeting_cost_in_time
         total_financial_cost += (seconds_in_meeting * cost_per_second) 
 
     # total_work_hours_per_year =  
-    total_time_cost = round(float(total_time_cost / 60),2)
+    total_time_cost = round(float(total_time_cost / 60), 2)
     total_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
     print("""
     Total cost in time: {0} hours 
@@ -121,7 +124,6 @@ def main():
 
 # TODO: 
 #-Estimate salaries
-#-Get percentage of time spent in meetings
-#-Estimate percentage of salary budget spent on meeting
+#-Estimate percentage of salary budget spent on meetings
 if __name__ == '__main__':
     main()
