@@ -1,8 +1,9 @@
-from datetime import datetime
+#!/usr/bin/env python
+
+from datetime import datetime, timedelta
 from dateutil.parser import parse
 from apiclient import discovery
-from oauth2client import client
-from oauth2client import tools
+from oauth2client import client, tools
 from oauth2client.file import Storage
 from money import Money
 
@@ -28,6 +29,7 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
+
 
 
 def get_credentials():
@@ -67,11 +69,13 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     start_date = '2017-01-17T09:00:00Z'
-
-    print('Getting the upcoming 50 events')
+    past_week = str(datetime.datetime.now() - datetime.timedelta(days=7))
+    past_week = past_week.replace(' ', 'T')
+    past_week = past_week + 'Z'
+    print('\nGetting past week\'s events\n')
 
     eventsResult = service.events().list(
-        calendarId='primary', timeMin=start_date, timeMax=now, maxResults=500, singleEvents=True,
+        calendarId='primary', timeMin=past_week, timeMax=now, maxResults=100, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
     total_meeting_cost = 0
@@ -79,19 +83,22 @@ def main():
     work_hours_per_year = 2000
     work_seconds_per_year = work_hours_per_year  * 3600
     cost_per_second = float(yearly_salary) / work_seconds_per_year 
+    
 
-    # print json.dumps(events, indent=4, sort_keys=True)
     total_financial_cost = 0
     total_time_cost = 0
+    ###
+    # json for all requested events
+    ###
+    # print json.dumps(events, indent=4, sort_keys=True)
+
  
     if not events:
         print('No upcoming events found.')
     for event_number, event in enumerate(events, 1):
-        start_raw = event['start'].get('dateTime', event['start'].get('date'))
-        end_raw = event['end'].get('dateTime', event['end'].get('date'))
+        start = parse(event['start'].get('dateTime', event['start'].get('date')))
+        end = parse(event['end'].get('dateTime', event['end'].get('date')))
         summary = event['summary'] 
-        start = parse(start_raw)
-        end = parse(end_raw)
         meeting_duration = end - start
         if event.get('attendees') == None:
             num_attendees = 1
@@ -116,7 +123,7 @@ def main():
     ###
     # Posting to Slack
     ###
-    data = str({'text': 'Total cost in time: {0} hours\nTotal cost in money: {1}\n'.format(total_time_cost, total_financial_cost)}) 
+    data = str({'text': 'Here how much meetings cost you in the past week:\nTime: {0} hours\nMoney: {1}'.format(total_time_cost, total_financial_cost)}) 
     url = 'https://hooks.slack.com/services/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'
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
