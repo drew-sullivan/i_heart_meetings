@@ -123,7 +123,7 @@ def main():
     ###
     # Posting to Slack
     ###
-    data = str({'text': 'Here how much meetings cost you in the past week:\nTime: {0} hours\nMoney: {1}'.format(total_time_cost, total_financial_cost)}) 
+    data = str({'text': 'In the past week, meetings cost you {0} hours and {1}'.format(total_time_cost, total_financial_cost)}) 
     url = 'https://hooks.slack.com/services/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'
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
