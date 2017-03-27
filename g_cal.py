@@ -59,10 +59,7 @@ def get_credentials():
     return credentials
 
 def main():
-    """Shows basic usage of the Google Calendar API.
-
-    Creates a Google Calendar API service object and outputs a list of the next
-    50 events on the user's calendar.
+    """Insert description here
     """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
@@ -70,7 +67,9 @@ def main():
 
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     start_date = '2017-01-17T09:00:00Z'
+
     print('Getting the upcoming 50 events')
+
     eventsResult = service.events().list(
         calendarId='primary', timeMin=start_date, timeMax=now, maxResults=500, singleEvents=True,
         orderBy='startTime').execute()
@@ -81,7 +80,7 @@ def main():
     work_seconds_per_year = work_hours_per_year  * 3600
     cost_per_second = float(yearly_salary) / work_seconds_per_year 
 
-    #print json.dumps(events, indent=4, sort_keys=True)
+    # print json.dumps(events, indent=4, sort_keys=True)
     total_financial_cost = 0
     total_time_cost = 0
  
@@ -101,7 +100,7 @@ def main():
         seconds_in_meeting = meeting_duration.total_seconds()
         meeting_cost = Money(seconds_in_meeting * cost_per_second * num_attendees, 'USD').format('en_US')
         meeting_cost_in_time = float(num_attendees * (seconds_in_meeting / 60))
-	percent_time_spent_in_meetings = round(((float(seconds_in_meeting) / 3600) / (num_attendees * 8)) * 100, 2)
+        percent_time_spent_in_meetings = round(((float(seconds_in_meeting) / 3600) / (num_attendees * 8)) * 100, 2)
         print("Event {0}: {1}\nMeeting Start: {2}\nMeeting End: {3}\nMeeting Duration: {4}\nMeeting Cost: {5}\nNumber of Attendees: {6}\nMeeting Cost in Time: {7} minutes\nPercentage of Time Spent in Meetings: {8}%\n\n".format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time, percent_time_spent_in_meetings)),
 
         total_time_cost += meeting_cost_in_time
@@ -117,7 +116,7 @@ def main():
     ###
     # Posting to Slack
     ###
-    data = str({'text': 'Total cost in time: {0} hours\nTotal cost in money: {1}\n\n\n'.format(total_time_cost, total_financial_cost)}) 
+    data = str({'text': 'Total cost in time: {0} hours\nTotal cost in money: {1}\n'.format(total_time_cost, total_financial_cost)}) 
     url = 'https://hooks.slack.com/services/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'
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
