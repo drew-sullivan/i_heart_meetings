@@ -87,9 +87,11 @@ def main():
 
     total_financial_cost = 0
     total_time_cost = 0
+
     ###
     # json for all requested events
     ###
+
     # print json.dumps(events, indent=4, sort_keys=True)
 
  
@@ -106,15 +108,25 @@ def main():
             num_attendees = len(event.get('attendees'))
         seconds_in_meeting = meeting_duration.total_seconds()
         meeting_cost = Money(seconds_in_meeting * cost_per_second * num_attendees, 'USD').format('en_US')
-        meeting_cost_in_time = float(num_attendees * (seconds_in_meeting / 60))
-        percent_time_spent_in_meetings = round(((float(seconds_in_meeting) / 3600) / (num_attendees * 8)) * 100, 2)
-        print("Event {0}: {1}\nMeeting Start: {2}\nMeeting End: {3}\nMeeting Duration: {4}\nMeeting Cost: {5}\nNumber of Attendees: {6}\nMeeting Cost in Time: {7} minutes\nPercentage of Time Spent in Meetings: {8}%\n\n".format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time, percent_time_spent_in_meetings)),
+        meeting_cost_in_time = round(float(num_attendees) * (seconds_in_meeting / 3600), 2)
 
+        print("""
+        Event {0}: {1}
+        ======================================================================
+        Start: {2}
+        End: {3}
+        Duration: {4}
+        Number of Attendees: {6}
+        Cost: {5}
+        Cost in Time: {7} hours 
+        """.format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time)),
+        
         total_time_cost += meeting_cost_in_time
-        total_financial_cost += (seconds_in_meeting * cost_per_second) 
-
-    total_time_cost = round(float(total_time_cost / 60), 2)
+        total_financial_cost += (seconds_in_meeting * cost_per_second * num_attendees) 
+    
+    total_time_cost = round(float(total_time_cost), 2)
     total_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
+
     print("""
     Total cost in time: {0} hours 
     Total cost in money: {1}
@@ -123,6 +135,7 @@ def main():
     ###
     # Posting to Slack
     ###
+
     data = str({'text': 'In the past week, meetings cost you {0} hours and {1}'.format(total_time_cost, total_financial_cost)}) 
     url = 'https://hooks.slack.com/services/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'
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
