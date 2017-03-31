@@ -140,7 +140,16 @@ def main():
     # Posting to Slack
     ###
 
-    data = str({'text': 'In the past week, meetings cost you {0} minutes and {1}'.format(total_time_cost, total_financial_cost)}) 
+    data = str(
+        {'text': 'In the past week, meetings cost you {0} and {1}'.format(total_time_cost, total_financial_cost), 
+            'attachments': [
+                {
+                    'title': 'Please click here to take a 3-question poll about this meetings report', 
+                    'title_link': 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
+                }
+            ]
+        } 
+    ) 
     url = 'https://hooks.slack.com/services/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'
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
