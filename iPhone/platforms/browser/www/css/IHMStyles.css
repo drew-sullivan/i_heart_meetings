@@ -1,0 +1,73 @@
+.container {
+    background-color: #aaa;
+    color: white;
+    margin: 5% auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.btn {
+    font-size: 70px;
+}
+
+#start, #pause, #stop {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.time {
+    padding: 40px;
+    background: #5cb85c;
+    border-radius: 5px;
+    font-size: 80px;
+}
+
+#newSalaryButton {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#newSalary {
+    border-radius: 5px;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: white;
+    font-size: 70px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+#totalSalaries {
+    width: 100%;
+    font-size: 50px;
+    background-color: #f0ad4e;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+        
+    }
+
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (max-width : 480px) {
+        
+    }
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (max-width : 320px) {
+        
+    }
