@@ -17,11 +17,11 @@
     <div data-role="content" class="">
 	    <p id="counter" hidden>0</p>
 	    <p class="time">
-	        <span id="hours">0</span> hours, 
-	        <span id="mins">0</span> mins, 
+	        <span id="hours">0</span> hours
+	        <span id="mins">0</span> mins
 	        <span id="secs">0</span> secs
 	    </p>
-		&#36;
+		<div class="dollar-sign">&#36;</div>
 		<h1 id="cost" style="text-align: center;">0</h1>
         <p style="text-align: center;">
             <button id="start" class="btn btn-info controlPress" data-role="button">Start</button>
@@ -32,6 +32,10 @@
         <p style="text-align: center;">
 			<button id="stop" class="btn btn-info controlRelease" data-role="button">Reset</button>
         </p>
+		<button class="btn btn-block">Block button</button>
+		<button class="btn btn-primary btn-block">Block button</button>
+		<button class="btn btn-positive btn-block">Block button</button>
+		<button class="btn btn-negative btn-block">Block button</button>
         <form id="salaryInputForm">
 	        <div class="input-group text-center">
 				<input type="password" id="newSalary"/>
