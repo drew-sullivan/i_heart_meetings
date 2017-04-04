@@ -13,6 +13,7 @@
 <div data-role="page" class="" id="mainPage">
     <div data-role="header" class="">
         <h1>I Heart Meetings</h1>
+		<a href="#settingsPage" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Add A Salary</a>
     </div>
     <div data-role="content" class="">
 	    <p id="counter" hidden>0</p>
@@ -32,17 +33,27 @@
         <p style="text-align: center;">
 			<button id="stop" class="btn btn-info controlRelease" data-role="button">Reset</button>
         </p>
-		<button class="btn btn-block">Block button</button>
-		<button class="btn btn-primary btn-block">Block button</button>
-		<button class="btn btn-positive btn-block">Block button</button>
-		<button class="btn btn-negative btn-block">Block button</button>
-        <form id="salaryInputForm">
-	        <div class="input-group text-center">
-				<input type="password" id="newSalary"/>
-	            <button id="newSalaryButton" class="btn btn-info" type="button">Add Salary</button>
-	        </div>
-        </form>
+    </div>
+</div>
+<div data-role="page" class="" id="settingsPage" data-add-back-btn="true" >
+    <div data-role="header" class="">
+        <a href="#mainPage" class="ui-btn ui-icon-delete ui-btn-icon-left" data-rel="back">Save</a>
+        <h1>Add A Salary</h1>
+    </div>
+    <div data-role="content" class="">
+		<form id="salaryInputForm">
+			 <div class="input-group text-center">
+					<input type="password" id="newSalary" placeholder="Put Annual Salary Here (It's Hidden)"/>
+			        <button id="newSalaryButton" class="btn btn-info" type="button">Add Salary</button>
+			 </div>
+		</form>
 		<h3 id="totalSalaries"></h3>
+        <!-- <form>
+            <input type="number" name="tipPercentage" id="tipPercentage" value="" placeholder="Tip Percentage">
+            <p style="text-align: center;">
+                <a href="#" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
+            </p>
+        </form> -->
     </div>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
