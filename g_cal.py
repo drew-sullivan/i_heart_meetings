@@ -62,7 +62,7 @@ def get_credentials():
     return credentials
 
 def main():
-    """Insert description here
+    """Get all requested events, do calculations, print results
     """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
@@ -95,9 +95,8 @@ def main():
 
     # print json.dumps(events, indent=4, sort_keys=True)
 
- 
     if not events:
-        print('No upcoming events found.')
+        print('No events found.')
     for event_number, event in enumerate(events, 1):
         start = parse(event['start'].get('dateTime', event['start'].get('date')))
         end = parse(event['end'].get('dateTime', event['end'].get('date')))
@@ -122,10 +121,20 @@ def main():
         Start: {2}
         End: {3}
         Duration: {4}
-        Number of Attendees: {6}
-        Cost: {5}
+        Number of Attendees: {5}
+        Cost: {6}
         Cost in Time: {7} 
-        """.format(event_number, summary, start, end, meeting_duration, meeting_cost, num_attendees, meeting_cost_in_time)),
+        """.format(
+		event_number, 
+		summary, 
+		start, 
+		end, 
+		meeting_duration, 
+		num_attendees, 
+		meeting_cost, 
+		meeting_cost_in_time
+		)
+	),
     
     total_time_cost = round(float(total_time_cost), 2)
     total_time_cost = time.strftime("%H:%M:%S", time.gmtime(total_time_cost))

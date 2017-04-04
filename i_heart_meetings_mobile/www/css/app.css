@@ -1,0 +1,19 @@
+.amounts {
+    text-align: center;
+}
+.amounts label {
+    display: inline-block;
+    min-width: 150px;
+}
+
+.totals {
+    color: #080;
+}
+
+h1 {
+	font-size: 140px;
+}
+
+span {
+	font-size: 80px;
+}
