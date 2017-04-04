@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# above finds the python interpreter, so that the file is executable
 
 from datetime import datetime, timedelta
 from dateutil.parser import parse
@@ -31,8 +32,6 @@ SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
-
-
 def get_credentials():
     """Gets valid user credentials from storage.
 
@@ -42,7 +41,8 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    home_dir = os.path.expanduser('~')
+
+    home_dir = os.path.expanduser('~') 
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
@@ -166,6 +166,5 @@ def main():
 
 # TODO: 
 #-Estimate salaries
-#-Estimate percentage of salary budget spent on meetings
 if __name__ == '__main__':
     main()
