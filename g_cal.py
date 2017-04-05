@@ -136,21 +136,27 @@ def main():
 		)
 	),
     
-    total_time_cost = round(float(total_time_cost), 2)
-    total_time_cost = time.strftime("%H:%M:%S", time.gmtime(total_time_cost))
-    total_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
+    weekly_time_cost = round(float(total_time_cost), 2)
+    yearly_time_cost = time.strftime("%H:%M:%S", time.gmtime(total_time_cost * 52))
+    weekly_time_cost = time.strftime("%H:%M:%S", time.gmtime(total_time_cost))
+    yearly_financial_cost = Money(total_financial_cost * 52, 'USD').format('en_US')
+    weekly_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
 
     print("""
-    Total cost in time: {0}
-    Total cost in money: {1}
-    """.format(total_time_cost, total_financial_cost)) 
+    Weekly cost in time: {0}
+    Weekly cost in money: {1}
+
+    At this time next year: 
+    Yearly cost in time: {2}
+    Yearly cost in money: {3}
+    """.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)) 
 
     ###
     # Posting to Slack
     ###
 
     data = str(
-        {'text': 'In the past week, meetings cost you {0} and {1}'.format(total_time_cost, total_financial_cost), 
+        {'text': 'In the past week, meetings cost you {0} and {1}. After a year, the costs will be {2} and {3}.'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost), 
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report', 
