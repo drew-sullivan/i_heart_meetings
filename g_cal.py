@@ -86,8 +86,8 @@ def main():
     cost_per_second = float(yearly_salary) / work_seconds_per_year 
     
 
-    total_financial_cost = 0
-    total_time_cost = 0
+    weekly_financial_cost = 0
+    weekly_time_cost = 0
 
     ###
     # json for all requested events
@@ -110,8 +110,8 @@ def main():
         meeting_cost = Money(seconds_in_meeting * cost_per_second * num_attendees, 'USD').format('en_US')
         meeting_cost_in_time = round(float(num_attendees) * seconds_in_meeting, 2)
 
-        total_time_cost += meeting_cost_in_time
-        total_financial_cost += (seconds_in_meeting * cost_per_second * num_attendees) 
+        weekly_time_cost += meeting_cost_in_time
+        weekly_financial_cost += (seconds_in_meeting * cost_per_second * num_attendees) 
         
         meeting_cost_in_time = time.strftime("%H:%M:%S", time.gmtime(meeting_cost_in_time)) 
 
@@ -136,11 +136,11 @@ def main():
 		)
 	),
     
-    weekly_time_cost = round(float(total_time_cost), 2)
-    yearly_time_cost = time.strftime("%H:%M:%S", time.gmtime(total_time_cost * 52))
-    weekly_time_cost = time.strftime("%H:%M:%S", time.gmtime(total_time_cost))
-    yearly_financial_cost = Money(total_financial_cost * 52, 'USD').format('en_US')
-    weekly_financial_cost = Money(total_financial_cost, 'USD').format('en_US')
+    weekly_time_cost = round(float(weekly_time_cost), 2)
+    yearly_time_cost = time.strftime("%j days, %H hours, %M minutes, %S seconds,", time.gmtime(weekly_time_cost * 52))
+    weekly_time_cost = time.strftime("%H hours, %M minutes, %S seconds,", time.gmtime(weekly_time_cost))
+    yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
+    weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
 
     print("""
     Weekly cost in time: {0}
@@ -156,7 +156,7 @@ def main():
     ###
 
     data = str(
-        {'text': 'In the past week, meetings cost you {0} and {1}. After a year, the costs will be {2} and {3}.'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost), 
+        {'text': 'In the past week, meetings cost you {0} and {1}.\nAfter a year, the costs will be {2} and {3}.'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost), 
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report', 
