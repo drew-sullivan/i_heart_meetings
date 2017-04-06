@@ -84,8 +84,8 @@ def main():
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
 
     weekly_time_cost = round(float(weekly_time_cost), 2)
-    yearly_time_cost = ('{} days, {} hours, {} minutes, {} seconds,').format(*secs_to_days(weekly_time_cost * 52))
-    weekly_time_cost = ('{} days, {} hours, {} minutes, {} seconds,').format(*secs_to_days(weekly_time_cost))
+    yearly_time_cost = ('{} day(s), {} hour(s), {} minute(s), {} second(s),').format(*secs_to_days(weekly_time_cost * 52))
+    weekly_time_cost = ('{} day(s), {} hour(s), {} minute(s), {} second(s),').format(*secs_to_days(weekly_time_cost))
     yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
     weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
 
