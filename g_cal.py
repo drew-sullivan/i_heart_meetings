@@ -7,7 +7,7 @@ import json
 import logging
 import os
 import requests
-import time 
+import time
 import urllib2
 
 from apiclient import discovery
@@ -33,7 +33,7 @@ APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR= 2000
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR  * 3600
-COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR 
+COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 START_DATE = '2017-01-17T09:00:00Z'
 
 
@@ -58,7 +58,6 @@ def main():
 
     weekly_financial_cost = 0
     weekly_time_cost = 0
-    
     # print_entire_cal_json_blob(events)
 
     if not events:
@@ -66,7 +65,7 @@ def main():
     for event_number, event in enumerate(events, 1):
         start = parse(event['start'].get('dateTime', event['start'].get('date')))
         end = parse(event['end'].get('dateTime', event['end'].get('date')))
-        summary = event['summary'] 
+        summary = event['summary']
         meeting_duration = end - start
         if event.get('attendees') == None:
             num_attendees = 1
@@ -77,10 +76,8 @@ def main():
         meeting_cost_in_time = round(float(num_attendees) * seconds_in_meeting, 2)
 
         weekly_time_cost += meeting_cost_in_time
-        weekly_financial_cost += (seconds_in_meeting * COST_PER_SECOND * num_attendees) 
-        
+        weekly_financial_cost += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         meeting_cost_in_time = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(meeting_cost_in_time))
-    
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
 
     weekly_time_cost = round(float(weekly_time_cost), 2)
@@ -90,7 +87,6 @@ def main():
     weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
 
     print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)
-    
     post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)
 
 def secs_to_days(seconds):
@@ -101,15 +97,15 @@ def secs_to_days(seconds):
 
 def post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost):
     data = str(
-        {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost), 
+        {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost),
             'attachments': [
                 {
-                    'title': 'Please click here to take a 3-question poll about this meetings report', 
+                    'title': 'Please click here to take a 3-question poll about this meetings report',
                     'title_link': 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
                 }
             ]
-        } 
-    ) 
+        }
+    )
     url = 'https://hooks.slack.com/services/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'
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
@@ -127,19 +123,17 @@ def print_meeting_info(event_number, summary, start, end, meeting_duration, num_
         Duration: {4}
         Number of Attendees: {5}
         Cost: {6}
-        Cost in Time: {7} 
-        """.format(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
-	    )
-        
-def print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost):        
+        Cost in Time: {7}
+        """.format(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time))
+def print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost):
     print("""
     Weekly cost in time: {0}
     Weekly cost in money: {1}
 
-    At this time next year: 
+    At this time next year:
     Yearly cost in time: {2}
     Yearly cost in money: {3}
-    """.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)) 
+    """.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost))
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -151,7 +145,7 @@ def get_credentials():
         Credentials, the obtained credential.
     """
 
-    home_dir = os.path.expanduser('~') 
+    home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
