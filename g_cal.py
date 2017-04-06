@@ -79,13 +79,13 @@ def main():
         weekly_time_cost += meeting_cost_in_time
         weekly_financial_cost += (seconds_in_meeting * COST_PER_SECOND * num_attendees) 
         
-        meeting_cost_in_time = time.strftime('%H:%M:%S', time.gmtime(meeting_cost_in_time)) 
+        meeting_cost_in_time = time.strftime('%-H:%-M:%-S', time.gmtime(meeting_cost_in_time)) 
     
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
 
     weekly_time_cost = round(float(weekly_time_cost), 2)
-    yearly_time_cost = time.strftime("%j days, %H hours, %M minutes, %S seconds,", time.gmtime(weekly_time_cost * 52))
-    weekly_time_cost = time.strftime("%H hours, %M minutes, %S seconds,", time.gmtime(weekly_time_cost))
+    yearly_time_cost = time.strftime("%-j days, %-H hours, %-M minutes, %-S seconds,", time.gmtime(weekly_time_cost * 52))
+    weekly_time_cost = time.strftime("%-j days, %-H hours, %-M minutes, %-S seconds,", time.gmtime(weekly_time_cost))
     yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
     weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
 
