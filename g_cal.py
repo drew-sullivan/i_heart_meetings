@@ -91,8 +91,8 @@ def main():
     #financial_cost_yearly = Money(financial_cost_weekly * 52, 'USD').format('en_US')
     #financial_cost_weekly = Money(financial_cost_weekly, 'USD').format('en_US')
 
-    print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
-    post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    print_summary(time_cost_week, financial_cost_week, time_cost_yearly, financial_cost_yearly)
+    post_to_slack(time_cost_week, financial_cost_week, time_cost_yearly, financial_cost_yearly)
 
 def get_financial_cost_weekly(integer):
     financial_cost_weekly = Money(integer, 'USD').format('en_US')
