@@ -56,10 +56,8 @@ def main():
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
 
-    weekly_financial_cost = 0
-    weekly_time_cost = 0
-    yearly_financial_cost = 0
-    yearly_time_cost = 0
+    financial_cost_weekly = 0
+    time_cost_weekly = 0
 
     # print_entire_cal_json_blob(events)
 
@@ -75,52 +73,53 @@ def main():
         else:
             num_attendees = len(event.get('attendees'))
         seconds_in_meeting = meeting_duration.total_seconds()
-        meeting_cost = Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US')
-        meeting_cost_in_time = round(float(num_attendees) * seconds_in_meeting, 2)
+        financial_cost_single_meeting = Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US')
+        time_cost_single_meeting = round(float(num_attendees) * seconds_in_meeting, 2)
 
-        weekly_time_cost += meeting_cost_in_time
-        weekly_financial_cost += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        meeting_cost_in_time = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(meeting_cost_in_time))
-        print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
+        time_cost_weekly += time_cost_single_meeting
+        financial_cost_weekly += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
+        time_cost_single_meeting = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_single_meeting))
+        print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
 
-    get_weekly_time_cost(weekly_time_cost)
-    get_yearly_time_cost(weekly_time_cost)
-    get_weekly_financial_cost(weekly_financial_cost)
-    get_yearly_financial_cost(weekly_financial_cost)
-    #weekly_time_cost = round(float(weekly_time_cost), 2)
-    #yearly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost * 52))
-    #weekly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost))
-    #yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
-    #weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
+    time_cost_week = get_time_cost_weekly(time_cost_weekly)
+    time_cost_yearly = get_time_cost_yearly(time_cost_weekly * 52)
+    financial_cost_week = get_financial_cost_weekly(financial_cost_weekly)
+    financial_cost_yearly = get_financial_cost_yearly(financial_cost_weekly * 52)
+    #time_cost_weekly = round(float(time_cost_weekly), 2)
+    #time_cost_yearly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_weekly * 52))
+    #time_cost_weekly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_weekly))
+    #financial_cost_yearly = Money(financial_cost_weekly * 52, 'USD').format('en_US')
+    #financial_cost_weekly = Money(financial_cost_weekly, 'USD').format('en_US')
 
-    print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)
-    post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)
-def get_weekly_financial_cost(integer):
-    weekly_financial_cost = Money(integer, 'USD').format('en_US')
-    return weekly_financial_cost
+    print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
 
-def get_yearly_financial_cost(integer):
-    yearly_financial_cost = Money(integer * 52, 'USD').format('en_US')
-    return yearly_financial_cost
+def get_financial_cost_weekly(integer):
+    financial_cost_weekly = Money(integer, 'USD').format('en_US')
+    return financial_cost_weekly
 
-def get_weekly_time_cost(seconds):
-    weekly_time_cost = round(float(seconds), 2)
-    weekly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost))
-    return weekly_time_cost
+def get_financial_cost_yearly(integer):
+    financial_cost_yearly = Money(integer, 'USD').format('en_US')
+    return financial_cost_yearly
 
-def get_yearly_time_cost(seconds):
-    yearly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(seconds * 52))
-    return yearly_time_cost
+def get_time_cost_weekly(seconds):
+    time_cost_weekly = round(float(seconds), 2)
+    time_cost_weekly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_weekly))
+    return time_cost_weekly
 
-def secs_to_days(seconds):
-    minutes, seconds = divmod(seconds, 60)
+def get_time_cost_yearly(seconds):
+    time_cost_yearly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(seconds))
+    return time_cost_yearly
+
+def secs_to_days(total_seconds):
+    minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     return (int(days), int(hours), int(minutes), int(seconds))
 
-def post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost):
+def post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     data = str(
-        {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost),
+        {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
@@ -137,7 +136,7 @@ def post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yea
 def print_entire_cal_json_blob(events):
     print json.dumps(events, indent=4, sort_keys=True)
 
-def print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time):
+def print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
         print("""
         Event {0}: {1}
         ======================================================================
@@ -147,8 +146,8 @@ def print_meeting_info(event_number, summary, start, end, meeting_duration, num_
         Number of Attendees: {5}
         Cost: {6}
         Cost in Time: {7}
-        """.format(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time))
-def print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost):
+        """.format(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
+def print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     print("""
     Weekly cost in time: {0}
     Weekly cost in money: {1}
@@ -156,7 +155,7 @@ def print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yea
     At this time next year:
     Yearly cost in time: {2}
     Yearly cost in money: {3}
-    """.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost))
+    """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly))
 
 def get_credentials():
     """Gets valid user credentials from storage.
