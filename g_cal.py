@@ -32,7 +32,7 @@ CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR= 2000
-WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR  * 3600
+WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 START_DATE = '2017-01-17T09:00:00Z'
 
@@ -58,6 +58,9 @@ def main():
 
     weekly_financial_cost = 0
     weekly_time_cost = 0
+    yearly_financial_cost = 0
+    yearly_time_cost = 0
+
     # print_entire_cal_json_blob(events)
 
     if not events:
@@ -80,14 +83,34 @@ def main():
         meeting_cost_in_time = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(meeting_cost_in_time))
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
 
-    weekly_time_cost = round(float(weekly_time_cost), 2)
-    yearly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost * 52))
-    weekly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost))
-    yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
-    weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
+    get_weekly_time_cost(weekly_time_cost)
+    get_yearly_time_cost(weekly_time_cost)
+    get_weekly_financial_cost(weekly_financial_cost)
+    get_yearly_financial_cost(weekly_financial_cost)
+    #weekly_time_cost = round(float(weekly_time_cost), 2)
+    #yearly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost * 52))
+    #weekly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost))
+    #yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
+    #weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
 
     print_summary(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)
     post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost)
+def get_weekly_financial_cost(integer):
+    weekly_financial_cost = Money(integer, 'USD').format('en_US')
+    return weekly_financial_cost
+
+def get_yearly_financial_cost(integer):
+    yearly_financial_cost = Money(integer * 52, 'USD').format('en_US')
+    return yearly_financial_cost
+
+def get_weekly_time_cost(seconds):
+    weekly_time_cost = round(float(seconds), 2)
+    weekly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost))
+    return weekly_time_cost
+
+def get_yearly_time_cost(seconds):
+    yearly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(seconds * 52))
+    return yearly_time_cost
 
 def secs_to_days(seconds):
     minutes, seconds = divmod(seconds, 60)
