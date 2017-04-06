@@ -43,7 +43,7 @@ ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
 
 def main():
-    """Get all requested events, do calculations, print results
+    """Get all requested meetings, do calculations, print results
     """
 
     credentials = get_credentials()
@@ -74,15 +74,15 @@ def calculate_cost_totals(meetings):
     financial_cost_total = 0
     if not meetings:
         print('No meetings found.')
-    for event_number, event in enumerate(meetings, 1):
-        start = parse(event['start'].get('dateTime', event['start'].get('date')))
-        end = parse(event['end'].get('dateTime', event['end'].get('date')))
-        summary = event['summary']
+    for meeting_number, meeting in enumerate(meetings, 1):
+        start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
+        end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
+        summary = meeting['summary']
         meeting_duration = end - start
-        if event.get('attendees') == None:
+        if meeting.get('attendees') == None:
             num_attendees = 1
         else:
-            num_attendees = len(event.get('attendees'))
+            num_attendees = len(meeting.get('attendees'))
         seconds_in_meeting = meeting_duration.total_seconds()
         financial_cost_single_meeting = Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US')
         time_cost_single_meeting = round(float(num_attendees) * seconds_in_meeting, 2)
@@ -90,7 +90,7 @@ def calculate_cost_totals(meetings):
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*translate_seconds(time_cost_single_meeting))
-        print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
+        print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
     return time_cost_total, financial_cost_total
 
 def get_financial_cost_weekly(integer):
@@ -140,9 +140,9 @@ def post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fin
 def print_as_json(meetings):
     print json.dumps(meetings, indent=4, sort_keys=True)
 
-def print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
+def print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
         print("""
-        Event {0}: {1}
+        Meeting {0}: {1}
         ======================================================================
         Start: {2}
         End: {3}
@@ -150,7 +150,7 @@ def print_meeting_info(event_number, summary, start, end, meeting_duration, num_
         Number of Attendees: {5}
         Cost: {6}
         Cost in Time: {7}
-        """.format(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
+        """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
 def print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     print("""
     Weekly cost in time: {0}
