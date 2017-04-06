@@ -50,16 +50,16 @@ def main():
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
 
-    print('\nGetting past week\'s events\n')
+    print('\nGetting past week\'s meetings\n')
 
     google_calendar_data = service.events().list(
         calendarId='primary', timeMin=TIMEFRAME_START, timeMax=TIMEFRAME_END, maxResults=MAX_NUM_RESULTS, singleEvents=True,
         orderBy=ORDER_BY_JSON_KEY).execute()
 
-    events = google_calendar_data.get('items', [])
+    meetings = google_calendar_data.get('items', [])
 
-    # print_as_json(events)
-    time_cost_total, financial_cost_total = parse_json_blob(events)
+    # print_as_json(meetings)
+    time_cost_total, financial_cost_total = calculate_cost_totals(meetings)
 
     time_cost_weekly = get_time_cost_weekly(time_cost_total)
     time_cost_yearly = get_time_cost_yearly(time_cost_total * WEEKS_PER_YEAR)
@@ -69,12 +69,12 @@ def main():
     print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
 
-def parse_json_blob(events):
+def calculate_cost_totals(meetings):
     time_cost_total = 0
     financial_cost_total = 0
-    if not events:
-        print('No events found.')
-    for event_number, event in enumerate(events, 1):
+    if not meetings:
+        print('No meetings found.')
+    for event_number, event in enumerate(meetings, 1):
         start = parse(event['start'].get('dateTime', event['start'].get('date')))
         end = parse(event['end'].get('dateTime', event['end'].get('date')))
         summary = event['summary']
@@ -89,7 +89,7 @@ def parse_json_blob(events):
 
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*secs_to_days(time_cost_single_meeting))
+        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*translate_seconds(time_cost_single_meeting))
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
     return time_cost_total, financial_cost_total
 
@@ -103,14 +103,14 @@ def get_financial_cost_yearly(integer):
 
 def get_time_cost_weekly(seconds):
     time_cost_weekly = round(float(seconds), 2)
-    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*secs_to_days(time_cost_weekly))
+    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*translate_seconds(time_cost_weekly))
     return time_cost_weekly
 
 def get_time_cost_yearly(seconds):
-    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*secs_to_days(seconds))
+    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*translate_seconds(seconds))
     return time_cost_yearly
 
-def secs_to_days(total_seconds):
+def translate_seconds(total_seconds):
     minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
@@ -137,8 +137,8 @@ def post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fin
     f = urllib2.urlopen(req)
     f.close()
 
-def print_as_json(events):
-    print json.dumps(events, indent=4, sort_keys=True)
+def print_as_json(meetings):
+    print json.dumps(meetings, indent=4, sort_keys=True)
 
 def print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
         print("""
