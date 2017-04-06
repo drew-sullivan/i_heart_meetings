@@ -85,11 +85,6 @@ def main():
     time_cost_yearly = get_time_cost_yearly(time_cost_weekly * 52)
     financial_cost_week = get_financial_cost_weekly(financial_cost_weekly)
     financial_cost_yearly = get_financial_cost_yearly(financial_cost_weekly * 52)
-    #time_cost_weekly = round(float(time_cost_weekly), 2)
-    #time_cost_yearly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_weekly * 52))
-    #time_cost_weekly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_weekly))
-    #financial_cost_yearly = Money(financial_cost_weekly * 52, 'USD').format('en_US')
-    #financial_cost_weekly = Money(financial_cost_weekly, 'USD').format('en_US')
 
     print_summary(time_cost_week, financial_cost_week, time_cost_yearly, financial_cost_yearly)
     post_to_slack(time_cost_week, financial_cost_week, time_cost_yearly, financial_cost_yearly)
