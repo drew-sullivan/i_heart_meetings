@@ -17,7 +17,6 @@ from money import Money
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
-
 log = logging.getLogger(__name__)
 
 try:
@@ -36,6 +35,7 @@ WORK_HOURS_PER_YEAR= 2000
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR  * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR 
 START_DATE = '2017-01-17T09:00:00Z'
+
 
 def main():
     """Get all requested events, do calculations, print results
@@ -79,7 +79,7 @@ def main():
         weekly_time_cost += meeting_cost_in_time
         weekly_financial_cost += (seconds_in_meeting * COST_PER_SECOND * num_attendees) 
         
-        meeting_cost_in_time = time.strftime('%-H:%-M:%-S', time.gmtime(meeting_cost_in_time)) 
+        meeting_cost_in_time = ('{} day(s), {} hour(s), {} minute(s), {} second(s),').format(*secs_to_days(meeting_cost_in_time))
     
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
 
