@@ -79,13 +79,13 @@ def main():
         weekly_time_cost += meeting_cost_in_time
         weekly_financial_cost += (seconds_in_meeting * COST_PER_SECOND * num_attendees) 
         
-        meeting_cost_in_time = ('{} day(s), {} hour(s), {} minute(s), {} second(s),').format(*secs_to_days(meeting_cost_in_time))
+        meeting_cost_in_time = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(meeting_cost_in_time))
     
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, meeting_cost, meeting_cost_in_time)
 
     weekly_time_cost = round(float(weekly_time_cost), 2)
-    yearly_time_cost = ('{} day(s), {} hour(s), {} minute(s), {} second(s),').format(*secs_to_days(weekly_time_cost * 52))
-    weekly_time_cost = ('{} day(s), {} hour(s), {} minute(s), {} second(s),').format(*secs_to_days(weekly_time_cost))
+    yearly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost * 52))
+    weekly_time_cost = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(weekly_time_cost))
     yearly_financial_cost = Money(weekly_financial_cost * 52, 'USD').format('en_US')
     weekly_financial_cost = Money(weekly_financial_cost, 'USD').format('en_US')
 
@@ -101,7 +101,7 @@ def secs_to_days(seconds):
 
 def post_to_slack(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost):
     data = str(
-        {'text': 'In the past week, meetings cost you {0} and {1}.\nAfter a year, the costs will be {2} and {3}.'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost), 
+        {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(weekly_time_cost, weekly_financial_cost, yearly_time_cost, yearly_financial_cost), 
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report', 
