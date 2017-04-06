@@ -36,7 +36,6 @@ WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 START_DATE = '2017-01-17T09:00:00Z'
 
-
 def main():
     """Get all requested events, do calculations, print results
     """
@@ -56,11 +55,23 @@ def main():
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
 
-    financial_cost_weekly = 0
-    time_cost_weekly = 0
+    #financial_cost_total = 0
+    #time_cost_total = 0
 
     # print_entire_cal_json_blob(events)
+    time_cost_total, financial_cost_total = parse_json_blob(events)
 
+    time_cost_weekly = get_time_cost_weekly(time_cost_total)
+    time_cost_yearly = get_time_cost_yearly(time_cost_total * 52)
+    financial_cost_weekly = get_financial_cost_weekly(financial_cost_total)
+    financial_cost_yearly = get_financial_cost_yearly(financial_cost_total * 52)
+
+    print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+
+def parse_json_blob(events):
+    time_cost_total = 0
+    financial_cost_total = 0
     if not events:
         print('No events found.')
     for event_number, event in enumerate(events, 1):
@@ -76,18 +87,11 @@ def main():
         financial_cost_single_meeting = Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US')
         time_cost_single_meeting = round(float(num_attendees) * seconds_in_meeting, 2)
 
-        time_cost_weekly += time_cost_single_meeting
-        financial_cost_weekly += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        time_cost_single_meeting = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_single_meeting))
+        time_cost_total += time_cost_single_meeting
+        financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
+        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*secs_to_days(time_cost_single_meeting))
         print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
-
-    time_cost_week = get_time_cost_weekly(time_cost_weekly)
-    time_cost_yearly = get_time_cost_yearly(time_cost_weekly * 52)
-    financial_cost_week = get_financial_cost_weekly(financial_cost_weekly)
-    financial_cost_yearly = get_financial_cost_yearly(financial_cost_weekly * 52)
-
-    print_summary(time_cost_week, financial_cost_week, time_cost_yearly, financial_cost_yearly)
-    post_to_slack(time_cost_week, financial_cost_week, time_cost_yearly, financial_cost_yearly)
+    return time_cost_total, financial_cost_total
 
 def get_financial_cost_weekly(integer):
     financial_cost_weekly = Money(integer, 'USD').format('en_US')
@@ -99,18 +103,23 @@ def get_financial_cost_yearly(integer):
 
 def get_time_cost_weekly(seconds):
     time_cost_weekly = round(float(seconds), 2)
-    time_cost_weekly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(time_cost_weekly))
+    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*secs_to_days(time_cost_weekly))
     return time_cost_weekly
 
 def get_time_cost_yearly(seconds):
-    time_cost_yearly = ('{} day(s), {:02}:{:02}:{:02}').format(*secs_to_days(seconds))
+    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*secs_to_days(seconds))
     return time_cost_yearly
 
 def secs_to_days(total_seconds):
     minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    return (int(days), int(hours), int(minutes), int(seconds))
+
+    seconds = "{} second{}".format(int(seconds), "" if seconds == 1 else "s")
+    minutes = "{} minute{}".format(int(minutes), "" if minutes == 1 else "s")
+    hours = "{} hour{}".format(int(hours), "" if hours == 1 else "s")
+    days = "{} day{}".format(int(days), "" if days == 1 else "s")
+    return (days, hours, minutes, seconds)
 
 def post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     data = str(
