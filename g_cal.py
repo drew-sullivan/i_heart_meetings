@@ -34,8 +34,9 @@ YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR= 2000
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
-MY_START_DATE = '2017-01-17T09:00:00Z'
-NOW = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
+TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
 
 def main():
     """Get all requested events, do calculations, print results
@@ -47,14 +48,13 @@ def main():
 
     print('\nGetting past week\'s events\n')
 
-    past_week = get_date_of_one_week_ago()
-
-    eventsResult = service.events().list(
-        calendarId='primary', timeMin=past_week, timeMax=NOW, maxResults=100, singleEvents=True,
+    google_calendar_data = service.events().list(
+        calendarId='primary', timeMin=TIMEFRAME_START, timeMax=TIMEFRAME_END, maxResults=100, singleEvents=True,
         orderBy='startTime').execute()
-    events = eventsResult.get('items', [])
 
-    # print_entire_cal_json_blob(events)
+    events = google_calendar_data.get('items', [])
+
+    # print_as_json(events)
     time_cost_total, financial_cost_total = parse_json_blob(events)
 
     time_cost_weekly = get_time_cost_weekly(time_cost_total)
@@ -64,12 +64,6 @@ def main():
 
     print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
-
-def get_date_of_one_week_ago():
-    past_week = str(datetime.datetime.now() - datetime.timedelta(days=7))
-    past_week = past_week.replace(' ', 'T')
-    past_week = past_week + 'Z'
-    return past_week
 
 def parse_json_blob(events):
     time_cost_total = 0
@@ -139,7 +133,7 @@ def post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fin
     f = urllib2.urlopen(req)
     f.close()
 
-def print_entire_cal_json_blob(events):
+def print_as_json(events):
     print json.dumps(events, indent=4, sort_keys=True)
 
 def print_meeting_info(event_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
