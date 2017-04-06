@@ -31,12 +31,16 @@ SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 YEARLY_SALARY_USD = 100000
-WORK_HOURS_PER_YEAR= 2000
+WORK_HOURS_PER_YEAR = 2000
+WEEKS_PER_YEAR = 52
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
 TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
+MAX_NUM_RESULTS = 100
+ORDER_BY_JSON_KEY = 'startTime'
+CALENDAR_ID = 'primary'
 
 def main():
     """Get all requested events, do calculations, print results
@@ -49,8 +53,8 @@ def main():
     print('\nGetting past week\'s events\n')
 
     google_calendar_data = service.events().list(
-        calendarId='primary', timeMin=TIMEFRAME_START, timeMax=TIMEFRAME_END, maxResults=100, singleEvents=True,
-        orderBy='startTime').execute()
+        calendarId='primary', timeMin=TIMEFRAME_START, timeMax=TIMEFRAME_END, maxResults=MAX_NUM_RESULTS, singleEvents=True,
+        orderBy=ORDER_BY_JSON_KEY).execute()
 
     events = google_calendar_data.get('items', [])
 
@@ -58,9 +62,9 @@ def main():
     time_cost_total, financial_cost_total = parse_json_blob(events)
 
     time_cost_weekly = get_time_cost_weekly(time_cost_total)
-    time_cost_yearly = get_time_cost_yearly(time_cost_total * 52)
+    time_cost_yearly = get_time_cost_yearly(time_cost_total * WEEKS_PER_YEAR)
     financial_cost_weekly = get_financial_cost_weekly(financial_cost_total)
-    financial_cost_yearly = get_financial_cost_yearly(financial_cost_total * 52)
+    financial_cost_yearly = get_financial_cost_yearly(financial_cost_total * WEEKS_PER_YEAR)
 
     print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
