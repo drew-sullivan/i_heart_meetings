@@ -190,7 +190,6 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-# TODO: 
-#-Estimate salaries
 if __name__ == '__main__':
     main()
+
