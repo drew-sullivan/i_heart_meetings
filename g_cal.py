@@ -49,7 +49,7 @@ def main():
     """Get all requested meetings, do calculations, print results
     """
 
-    credentials = get_credentials()
+    credentials = _get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
 
@@ -61,7 +61,7 @@ def main():
 
     meetings = google_calendar_data.get('items', [])
 
-    # print_as_json(meetings)
+    # _print_as_json(meetings)
     time_cost_total, financial_cost_total = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_total)
@@ -69,7 +69,7 @@ def main():
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total * WEEKS_PER_YEAR)
 
-    print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
 
 def _calculate_cost_totals(meetings):
@@ -93,7 +93,7 @@ def _calculate_cost_totals(meetings):
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_single_meeting))
-        print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
+        _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
     return time_cost_total, financial_cost_total
 
 def _get_financial_cost_weekly(integer):
@@ -140,10 +140,10 @@ def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
     f = urllib2.urlopen(req)
     f.close()
 
-def print_as_json(meetings):
+def _print_as_json(meetings):
     print json.dumps(meetings, indent=4, sort_keys=True)
 
-def print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
+def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
         print("""
         Meeting {0}: {1}
         ======================================================================
@@ -154,7 +154,7 @@ def print_meeting_info(meeting_number, summary, start, end, meeting_duration, nu
         Cost: {6}
         Cost in Time: {7}
         """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
-def print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
+def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     print("""
     Weekly cost in time: {0}
     Weekly cost in money: {1}
@@ -164,7 +164,7 @@ def print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fin
     Yearly cost in money: {3}
     """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly))
 
-def get_credentials():
+def _get_credentials():
     """Gets valid user credentials from storage.
 
     If nothing has been stored, or if the stored credentials are invalid,
