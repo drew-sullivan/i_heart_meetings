@@ -81,31 +81,32 @@ def _calculate_cost_totals(meetings):
     for meeting_number, meeting in enumerate(meetings, 1):
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
-        summary = meeting['summary']
+        summary = str(meeting['summary'])
         meeting_duration = end - start
         if meeting.get('attendees') == None:
             num_attendees = 1
         else:
             num_attendees = len(meeting.get('attendees'))
         seconds_in_meeting = meeting_duration.total_seconds()
-        financial_cost_single_meeting = Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US')
+        meeting_duration = str(meeting_duration)
+        financial_cost_single_meeting = str(Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US'))
         time_cost_single_meeting = round(float(num_attendees) * seconds_in_meeting, 2)
 
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_single_meeting))
+        days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
+        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
         _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
-        _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
+        _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
     return time_cost_total, financial_cost_total
 
-def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
+def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
         meeting_id = "{0}-{1}".format(start, meeting_number)
         sqlite_file = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db.sqlite'
         conn = sqlite3.connect(sqlite_file)
         conn.isolation_level = None
         c = conn.cursor()
-        c.execute('INSERT INTO meetings VALUES(Null, Null, Null, Null, Null, Null, Null, Null, Null)')
-        # c.execute('INSERT INTO meetings VALUES({id},{mn},{s},{st},{e},{md},{na},{fc},{tc})'.format(id=meeting_id, mn=meeting_number, s=summary, st=start, e=end, md=meeting_duration, na=num_attendees, fc=financial_cost_single_meeting, tc=time_cost_single_meeting))
+        c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(meeting_id, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds))
         conn.commit()
         conn.close()
 
