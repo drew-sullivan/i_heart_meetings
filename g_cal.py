@@ -41,6 +41,9 @@ TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).repl
 MAX_NUM_RESULTS = 100
 ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
+QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
+SLACK_HOOK = 'https://hooks.slack.com/services/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'
+
 
 def main():
     """Get all requested meetings, do calculations, print results
@@ -127,12 +130,12 @@ def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
-                    'title_link': 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
+                    'title_link': QUESTIONNAIRE_LINK
                 }
             ]
         }
     )
-    url = 'https://hooks.slack.com/services/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'
+    url = SLACK_HOOK
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
     f.close()
