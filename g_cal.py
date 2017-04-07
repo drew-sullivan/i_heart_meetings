@@ -59,17 +59,17 @@ def main():
     meetings = google_calendar_data.get('items', [])
 
     # print_as_json(meetings)
-    time_cost_total, financial_cost_total = calculate_cost_totals(meetings)
+    time_cost_total, financial_cost_total = _calculate_cost_totals(meetings)
 
-    time_cost_weekly = get_time_cost_weekly(time_cost_total)
-    time_cost_yearly = get_time_cost_yearly(time_cost_total * WEEKS_PER_YEAR)
-    financial_cost_weekly = get_financial_cost_weekly(financial_cost_total)
-    financial_cost_yearly = get_financial_cost_yearly(financial_cost_total * WEEKS_PER_YEAR)
+    time_cost_weekly = _get_time_cost_weekly(time_cost_total)
+    time_cost_yearly = _get_time_cost_yearly(time_cost_total * WEEKS_PER_YEAR)
+    financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
+    financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total * WEEKS_PER_YEAR)
 
     print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
-    post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
 
-def calculate_cost_totals(meetings):
+def _calculate_cost_totals(meetings):
     time_cost_total = 0
     financial_cost_total = 0
     if not meetings:
@@ -89,28 +89,28 @@ def calculate_cost_totals(meetings):
 
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*translate_seconds(time_cost_single_meeting))
+        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_single_meeting))
         print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
     return time_cost_total, financial_cost_total
 
-def get_financial_cost_weekly(integer):
+def _get_financial_cost_weekly(integer):
     financial_cost_weekly = Money(integer, 'USD').format('en_US')
     return financial_cost_weekly
 
-def get_financial_cost_yearly(integer):
+def _get_financial_cost_yearly(integer):
     financial_cost_yearly = Money(integer, 'USD').format('en_US')
     return financial_cost_yearly
 
-def get_time_cost_weekly(seconds):
+def _get_time_cost_weekly(seconds):
     time_cost_weekly = round(float(seconds), 2)
-    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*translate_seconds(time_cost_weekly))
+    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_weekly))
     return time_cost_weekly
 
-def get_time_cost_yearly(seconds):
-    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*translate_seconds(seconds))
+def _get_time_cost_yearly(seconds):
+    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(seconds))
     return time_cost_yearly
 
-def translate_seconds(total_seconds):
+def _translate_seconds(total_seconds):
     minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
@@ -121,7 +121,7 @@ def translate_seconds(total_seconds):
     days = "{} day{}".format(int(days), "" if days == 1 else "s")
     return (days, hours, minutes, seconds)
 
-def post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
+def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     data = str(
         {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly),
             'attachments': [
