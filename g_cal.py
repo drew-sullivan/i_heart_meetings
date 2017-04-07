@@ -9,6 +9,7 @@ import os
 import requests
 import time
 import urllib2
+import sqlite3
 
 from apiclient import discovery
 from datetime import timedelta
@@ -94,7 +95,19 @@ def _calculate_cost_totals(meetings):
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_single_meeting))
         _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
+        _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
     return time_cost_total, financial_cost_total
+
+def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
+        meeting_id = "{0}-{1}".format(start, meeting_number)
+        sqlite_file = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db.sqlite'
+        conn = sqlite3.connect(sqlite_file)
+        conn.isolation_level = None
+        c = conn.cursor()
+        c.execute('INSERT INTO meetings VALUES(Null, Null, Null, Null, Null, Null, Null, Null, Null)')
+        # c.execute('INSERT INTO meetings VALUES({id},{mn},{s},{st},{e},{md},{na},{fc},{tc})'.format(id=meeting_id, mn=meeting_number, s=summary, st=start, e=end, md=meeting_duration, na=num_attendees, fc=financial_cost_single_meeting, tc=time_cost_single_meeting))
+        conn.commit()
+        conn.close()
 
 def _get_financial_cost_weekly(integer):
     financial_cost_weekly = Money(integer, 'USD').format('en_US')
