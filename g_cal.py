@@ -7,9 +7,9 @@ import json
 import logging
 import os
 import requests
+import sqlite3
 import time
 import urllib2
-import sqlite3
 
 from apiclient import discovery
 from datetime import timedelta
