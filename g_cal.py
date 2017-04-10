@@ -97,7 +97,7 @@ def _calculate_cost_totals(meetings):
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
         _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
-        _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
+        # _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
     return time_cost_total, financial_cost_total
 
 def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
