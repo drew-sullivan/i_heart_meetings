@@ -56,7 +56,7 @@ QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIp
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
 
-def main():
+def perform_i_heart_meetings_calculations ():
     """Get all requested meetings, do calculations, print results
     """
 
@@ -231,5 +231,5 @@ def _get_credentials():
     return credentials
 
 if __name__ == '__main__':
-    main()
+    perform_i_heart_meetings_calculations()
 
