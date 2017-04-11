@@ -4,10 +4,10 @@ import datetime
 import dateutil
 import httplib2
 import json
-import logging
 import os
 import requests
 import sqlite3
+import textwrap
 import time
 import urllib2
 
@@ -18,7 +18,13 @@ from money import Money
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
-log = logging.getLogger(__name__)
+help = textwrap.dedent("""
+    -Gathers all events in the given time frame from Google Calendar.
+    -Parses event duration, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting.
+    -Adds a row to SQLite database for each event. Each of the above are columns in the table.
+    -Calculates time and financial costs of individual events, the past week's events, and estimates the costs of meetings given the current pattern
+    -Posts the results to Slack
+    """ )
 
 try:
     import argparse
@@ -28,20 +34,24 @@ except ImportError:
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/calendar-python-quickstart.json
+
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
+
 YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR = 2000
 WEEKS_PER_YEAR = 52
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
+
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
 TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
 MAX_NUM_RESULTS = 100
 ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
+
 QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
@@ -73,6 +83,7 @@ def main():
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
 
+
 def _calculate_cost_totals(meetings):
     time_cost_total = 0
     financial_cost_total = 0
@@ -100,6 +111,7 @@ def _calculate_cost_totals(meetings):
         # _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
     return time_cost_total, financial_cost_total
 
+
 def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
         meeting_id = "{0}-{1}".format(start, meeting_number)
         sqlite_file = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db.sqlite'
@@ -110,22 +122,27 @@ def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_at
         conn.commit()
         conn.close()
 
+
 def _get_financial_cost_weekly(integer):
     financial_cost_weekly = Money(integer, 'USD').format('en_US')
     return financial_cost_weekly
 
+
 def _get_financial_cost_yearly(integer):
     financial_cost_yearly = Money(integer, 'USD').format('en_US')
     return financial_cost_yearly
+
 
 def _get_time_cost_weekly(seconds):
     time_cost_weekly = round(float(seconds), 2)
     time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_weekly))
     return time_cost_weekly
 
+
 def _get_time_cost_yearly(seconds):
     time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(seconds))
     return time_cost_yearly
+
 
 def _translate_seconds(total_seconds):
     minutes, seconds = divmod(total_seconds, 60)
@@ -137,6 +154,7 @@ def _translate_seconds(total_seconds):
     hours = "{} hour{}".format(int(hours), "" if hours == 1 else "s")
     days = "{} day{}".format(int(days), "" if days == 1 else "s")
     return (days, hours, minutes, seconds)
+
 
 def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     data = str(
@@ -154,20 +172,24 @@ def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
     f = urllib2.urlopen(req)
     f.close()
 
+
 def _print_as_json(meetings):
-    print json.dumps(meetings, indent=4, sort_keys=True)
+    print(json.dumps(meetings, indent=4, sort_keys=True))
+
 
 def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
-        print("""
-        Meeting {0}: {1}
-        ======================================================================
-        Start: {2}
-        End: {3}
-        Duration: {4}
-        Number of Attendees: {5}
-        Cost: {6}
-        Cost in Time: {7}
-        """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
+    print("""
+    Meeting {0}: {1}
+    ======================================================================
+    Start: {2}
+    End: {3}
+    Duration: {4}
+    Number of Attendees: {5}
+    Cost: {6}
+    Cost in Time: {7}
+    """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
+
+
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
     print("""
     Weekly cost in time: {0}
@@ -177,6 +199,7 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
     Yearly cost in time: {2}
     Yearly cost in money: {3}
     """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly))
+
 
 def _get_credentials():
     """Gets valid user credentials from storage.
