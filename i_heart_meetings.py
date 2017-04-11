@@ -14,7 +14,7 @@ import urllib2
 from apiclient import discovery
 from datetime import timedelta
 from dateutil.parser import parse
-from money import Money
+from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
@@ -106,9 +106,8 @@ def _calculate_cost_totals(meetings):
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
-        time_cost_single_meeting = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
 
-        _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting)
+        _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
         # _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
@@ -184,7 +183,7 @@ def _print_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
 
 
-def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting):
+def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds):
     print("""
     Meeting {0}: {1}
     ======================================================================
@@ -193,8 +192,8 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, n
     Duration: {4}
     Number of Attendees: {5}
     Cost: {6}
-    Cost in Time: {7}
-    """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting))
+    Cost in Time: {7}, {8}, {9}, {10}
+    """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds))
 
 
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
