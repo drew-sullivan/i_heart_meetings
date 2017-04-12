@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import csv
 import datetime
 import dateutil # used to get meeting_duration by subtracting datetime objects
 import httplib2 # used to perform the get request to the Google API
@@ -56,7 +57,7 @@ CALENDAR_ID = 'primary'
 QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
-SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db.sqlite'
+SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db_ihm.sqlite'
 
 
 def perform_i_heart_meetings_calculations ():
@@ -114,16 +115,29 @@ def _calculate_cost_totals(meetings):
 
         # _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
+        _write_sqlite_to_csv()
+    
     return time_cost_total, financial_cost_total
 
 
+def _write_sqlite_to_csv():
+    conn = sqlite3.connect(SQLITE)
+    c = conn.cursor()
+    c.execute('SELECT * from meetings')
+    for row in c.fetchall():
+        print('{},{}'.format(row[0], row[1]))
+    c.close()
+
+    conn.close()
+
+
 def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
-        meeting_id = "{0}-{1}".format(start, meeting_number)
-        conn = sqlite3.connect(SQLITE)
-        c = conn.cursor()
-        c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(meeting_id, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds))
-        conn.commit()
-        conn.close()
+    meeting_id = "{0}-{1}".format(start, meeting_number)
+    conn = sqlite3.connect(SQLITE)
+    c = conn.cursor()
+    c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(meeting_id, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds))
+    conn.commit()
+    conn.close()
 
 
 def _get_financial_cost_weekly(financial_cost_total):
