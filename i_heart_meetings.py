@@ -86,8 +86,8 @@ def perform_i_heart_meetings_calculations ():
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
-    _write_db_to_csv()
-
+    # _write_db_to_csv()
+    # _write_csv_to_json()
 
 def _calculate_cost_totals(meetings):
     time_cost_total = 0
@@ -119,6 +119,17 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
     return time_cost_total, financial_cost_total
+
+
+def _write_csv_to_json():
+    csv_file = open('test_ihm.csv', 'r')
+    json_file = open('test_ihm.json', 'w')
+
+    field_names = ('meeting_id', 'meeting_number', 'summary', 'start', 'end', 'meeting_duration', 'num_attendees', 'financial_cost_single_meeting', 'time_cost_single_meeting_days', 'time_cost_single_meeting_hours', 'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds')
+    reader = csv.DictReader(csv_file, field_names)
+    for row in reader:
+        json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
+        json_file.write('\n')
 
 
 def _write_db_to_csv():
