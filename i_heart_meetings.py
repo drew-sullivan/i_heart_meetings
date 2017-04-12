@@ -61,15 +61,12 @@ SLACK_HOOK = 'https://hooks.slack.com/services/T4NP75JL9/B4PF28AMS/hfsrPpu1Zm9eF
 
 DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db_ihm.sqlite'
 
-
-CSV_FILE = 'test_ihm.csv'
-JSON_FILE = 'test_ihm.json'
+JSON_FIELDS = 'meeting_id', 'meeting_number', 'summary', 'start', 'end', 'meeting_duration', 'num_attendees', 'financial_cost_single_meeting', 'time_cost_single_meeting_days', 'time_cost_single_meeting_hours', 'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds'
+CSV_FILE = 'meetings_ihm.csv'
+JSON_FILE = 'meetings_ihm.json'
 
 
 def perform_i_heart_meetings_calculations ():
-    """Get all requested meetings, do calculations, print results
-    """
-
     credentials = _get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
@@ -91,9 +88,10 @@ def perform_i_heart_meetings_calculations ():
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    _write_db_to_csv()
+    _write_csv_to_json()
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
-    # _write_db_to_csv()
-    # _write_csv_to_json()
+
 
 def _calculate_cost_totals(meetings):
     time_cost_total = 0
@@ -131,7 +129,7 @@ def _write_csv_to_json():
     csv_file = open(CSV_FILE, 'r')
     json_file = open(JSON_FILE, 'w')
 
-    field_names = ('meeting_id', 'meeting_number', 'summary', 'start', 'end', 'meeting_duration', 'num_attendees', 'financial_cost_single_meeting', 'time_cost_single_meeting_days', 'time_cost_single_meeting_hours', 'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds')
+    field_names = (JSON_FIELDS)
     reader = csv.DictReader(csv_file, field_names)
     for row in reader:
         json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
@@ -140,7 +138,7 @@ def _write_csv_to_json():
 
 def _write_db_to_csv():
     with sqlite3.connect(DB_IHM_SQLITE) as conn:
-        csvWriter = csv.writer(open('test_ihm.csv', 'w'))
+        csvWriter = csv.writer(open(CSV_FILE, 'w'))
         c = conn.cursor()
         c.execute('SELECT * from meetings')
 
