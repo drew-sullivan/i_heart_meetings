@@ -79,7 +79,7 @@ def perform_i_heart_meetings_calculations ():
 
     meetings = google_calendar_data.get('items', [])
 
-    # _print_as_json(meetings)
+    # _print_entire_google_calendar_results_as_json(meetings)
     time_cost_total, financial_cost_total = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_total)
@@ -88,8 +88,8 @@ def perform_i_heart_meetings_calculations ():
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
-    _write_db_to_csv()
-    _write_csv_to_json()
+#    _write_db_to_csv()
+#    _write_csv_to_json()
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
 
 
@@ -214,7 +214,7 @@ def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
     f.close()
 
 
-def _print_as_json(meetings):
+def _print_entire_google_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
 
 
