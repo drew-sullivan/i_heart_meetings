@@ -111,11 +111,14 @@ def _calculate_cost_totals(meetings):
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
 
-        _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
-
-        # _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
+        _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
         _write_sqlite_to_csv()
+
+        days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
+
+        _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
+
     return time_cost_total, financial_cost_total
 
 
@@ -165,7 +168,6 @@ def _translate_seconds(total_seconds):
     minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
     return (days, hours, minutes, seconds)
 
 
