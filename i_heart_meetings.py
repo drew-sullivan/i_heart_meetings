@@ -80,7 +80,7 @@ def perform_i_heart_meetings_calculations ():
     time_cost_total, financial_cost_total = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_total)
-    time_cost_yearly = _get_time_cost_yearly(time_cost_total * WEEKS_PER_YEAR)
+    time_cost_yearly = _get_time_cost_yearly(time_cost_total)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
 
@@ -111,9 +111,9 @@ def _calculate_cost_totals(meetings):
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
 
-        _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
+        # _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
-        _write_sqlite_to_csv()
+        # _write_sqlite_to_csv()
 
         days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
 
@@ -152,14 +152,19 @@ def _get_financial_cost_yearly(financial_cost_total):
     return financial_cost_yearly
 
 
-def _get_time_cost_weekly(seconds):
-    time_cost_weekly = round(float(seconds), 2)
-    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(time_cost_weekly))
+def _get_time_cost_weekly(total_seconds):
+    time_cost_weekly = round(float(total_seconds), 2)
+    days, hours, minutes, seconds = _translate_seconds(time_cost_weekly)
+    days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
+    time_cost_weekly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
     return time_cost_weekly
 
 
-def _get_time_cost_yearly(seconds):
-    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(*_translate_seconds(seconds))
+def _get_time_cost_yearly(total_seconds):
+    time_cost_yearly= round(float(total_seconds * WEEKS_PER_YEAR), 2)
+    days, hours, minutes, seconds = _translate_seconds(time_cost_yearly)
+    days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
+    time_cost_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
     return time_cost_yearly
 
 
