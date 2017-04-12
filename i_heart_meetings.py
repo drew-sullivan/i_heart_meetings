@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import datetime
-import dateutil
-import httplib2
+import dateutil # used to get meeting_duration by subtracting datetime objects
+import httplib2 # used to perform the get request to the Google API
 import json
 import os
 import requests
@@ -13,9 +13,10 @@ import urllib2
 
 from apiclient import discovery
 from datetime import timedelta
-from dateutil.parser import parse
+from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 from money import Money # Currently only supporting USD, but others coming soon!
-from oauth2client import client, tools
+from oauth2client import client
+from oauth2client import tools
 from oauth2client.file import Storage
 
 help = textwrap.dedent("""
@@ -41,7 +42,7 @@ APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
 YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR = 2000
-WEEKS_PER_YEAR = 52
+WEEKS_PER_YEAR = 52 # law of large numbers
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 
@@ -54,6 +55,8 @@ CALENDAR_ID = 'primary'
 
 QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
+
+SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db.sqlite'
 
 
 def perform_i_heart_meetings_calculations ():
@@ -78,7 +81,7 @@ def perform_i_heart_meetings_calculations ():
     time_cost_weekly = _get_time_cost_weekly(time_cost_total)
     time_cost_yearly = _get_time_cost_yearly(time_cost_total * WEEKS_PER_YEAR)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
-    financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total * WEEKS_PER_YEAR)
+    financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
@@ -116,22 +119,20 @@ def _calculate_cost_totals(meetings):
 
 def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
         meeting_id = "{0}-{1}".format(start, meeting_number)
-        sqlite_file = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db.sqlite'
-        conn = sqlite3.connect(sqlite_file)
-        conn.isolation_level = None
+        conn = sqlite3.connect(SQLITE)
         c = conn.cursor()
         c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(meeting_id, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds))
         conn.commit()
         conn.close()
 
 
-def _get_financial_cost_weekly(integer):
-    financial_cost_weekly = Money(integer, 'USD').format('en_US')
+def _get_financial_cost_weekly(financial_cost_total):
+    financial_cost_weekly = Money(financial_cost_total, 'USD').format('en_US')
     return financial_cost_weekly
 
 
-def _get_financial_cost_yearly(integer):
-    financial_cost_yearly = Money(integer, 'USD').format('en_US')
+def _get_financial_cost_yearly(financial_cost_total):
+    financial_cost_yearly = Money(financial_cost_total * WEEKS_PER_YEAR, 'USD').format('en_US')
     return financial_cost_yearly
 
 
@@ -147,6 +148,7 @@ def _get_time_cost_yearly(seconds):
 
 
 def _translate_seconds(total_seconds):
+    # divmod returns quotient and remainder
     minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
