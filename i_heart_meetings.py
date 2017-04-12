@@ -24,6 +24,8 @@ help = textwrap.dedent("""
     -Gathers all events in the given time frame from Google Calendar.
     -Parses event duration, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting.
     -Adds a row to SQLite database for each event. Each of the above are columns in the table.
+    -Reads from db and prints to csv
+    -Reads from csv and pretty prints to json
     -Calculates time and financial costs of individual events, the past week's events, and estimates the costs of meetings given the current pattern
     -Posts the results to Slack
     """ )
@@ -58,6 +60,10 @@ QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIp
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
 DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db_ihm.sqlite'
+
+
+CSV_FILE = 'test_ihm.csv'
+JSON_FILE = 'test_ihm.json'
 
 
 def perform_i_heart_meetings_calculations ():
@@ -122,8 +128,8 @@ def _calculate_cost_totals(meetings):
 
 
 def _write_csv_to_json():
-    csv_file = open('test_ihm.csv', 'r')
-    json_file = open('test_ihm.json', 'w')
+    csv_file = open(CSV_FILE, 'r')
+    json_file = open(JSON_FILE, 'w')
 
     field_names = ('meeting_id', 'meeting_number', 'summary', 'start', 'end', 'meeting_duration', 'num_attendees', 'financial_cost_single_meeting', 'time_cost_single_meeting_days', 'time_cost_single_meeting_hours', 'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds')
     reader = csv.DictReader(csv_file, field_names)
@@ -139,7 +145,6 @@ def _write_db_to_csv():
         c.execute('SELECT * from meetings')
 
         rows = c.fetchall()
-
         csvWriter.writerows(rows)
 
 
