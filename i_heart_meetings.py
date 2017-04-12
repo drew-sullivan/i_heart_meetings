@@ -86,6 +86,7 @@ def perform_i_heart_meetings_calculations ():
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
     _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    _write_db_to_csv()
 
 
 def _calculate_cost_totals(meetings):
@@ -113,8 +114,6 @@ def _calculate_cost_totals(meetings):
 
         #_add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
-        #_write_sqlite_to_csv()
-
         days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
 
         _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
@@ -122,7 +121,7 @@ def _calculate_cost_totals(meetings):
     return time_cost_total, financial_cost_total
 
 
-def _write_sqlite_to_csv():
+def _write_db_to_csv():
     with sqlite3.connect(DB_IHM_SQLITE) as conn:
         csvWriter = csv.writer(open('test_ihm.csv', 'w'))
         c = conn.cursor()
