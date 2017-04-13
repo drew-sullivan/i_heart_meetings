@@ -46,7 +46,9 @@ APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR = 2000
 WORK_HOURS_PER_DAY = 8
-WEEKS_PER_YEAR = 52 # Most companies don't meet 52 weeks/year, but law of large numbers
+WORK_DAYS_PER_WEEK = 5
+WORK_WEEKS_PER_YEAR = WORK_HOURS_PER_YEAR / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK)
+WORK_DAYS_PER_YEAR = WORK_HOURS_PER_YEAR / WORK_WEEKS_PER_YEAR
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 
@@ -129,7 +131,7 @@ def _calculate_cost_totals(meetings):
     return time_cost_total, financial_cost_total
 
 
-def _calculate_percentage_of_time_spent_in_meetings(meeting_duration, WORK_HOURS_PER_DAY):
+def _calculate_percentage_of_time_spent_in_meeting(meeting_duration, WORK_HOURS_PER_DAY):
     return meeting_duration / WORK_HOURS_PER_DAY
 
 
@@ -169,7 +171,7 @@ def _get_financial_cost_weekly(financial_cost_total):
 
 
 def _get_financial_cost_yearly(financial_cost_total):
-    financial_cost_yearly = Money(financial_cost_total * WEEKS_PER_YEAR, 'USD').format('en_US')
+    financial_cost_yearly = Money(financial_cost_total * WORK_WEEKS_PER_YEAR, 'USD').format('en_US')
     return financial_cost_yearly
 
 
@@ -182,7 +184,7 @@ def _get_time_cost_weekly(total_seconds):
 
 
 def _get_time_cost_yearly(total_seconds):
-    time_cost_yearly= round(float(total_seconds * WEEKS_PER_YEAR), 2)
+    time_cost_yearly= round(float(total_seconds * WORK_WEEKS_PER_YEAR), 2)
     days, hours, minutes, seconds = _translate_seconds(time_cost_yearly)
     days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
     time_cost_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
