@@ -43,13 +43,14 @@ SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
-YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR = 2000
 WORK_HOURS_PER_DAY = 8
 WORK_DAYS_PER_WEEK = 5
 WORK_WEEKS_PER_YEAR = WORK_HOURS_PER_YEAR / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK)
-WORK_DAYS_PER_YEAR = WORK_HOURS_PER_YEAR / WORK_WEEKS_PER_YEAR
+WORK_DAYS_PER_YEAR = WORK_WEEKS_PER_YEAR * WORK_DAYS_PER_WEEK
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
+
+YEARLY_SALARY_USD = 100000
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
@@ -131,8 +132,12 @@ def _calculate_cost_totals(meetings):
     return time_cost_total, financial_cost_total
 
 
-def _calculate_percentage_of_time_spent_in_meeting(meeting_duration, WORK_HOURS_PER_DAY):
+def _calculate_percent_time_in_meeting(meeting_duration, WORK_HOURS_PER_DAY):
     return meeting_duration / WORK_HOURS_PER_DAY
+
+
+def _calculate_percent_time_in_meetings_each_year(time_cost_yearly):
+    return time_cost_yearly / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_YEAR)
 
 
 def _write_csv_to_json():
