@@ -45,7 +45,8 @@ APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
 YEARLY_SALARY_USD = 100000
 WORK_HOURS_PER_YEAR = 2000
-WEEKS_PER_YEAR = 52 # law of large numbers
+WORK_HOURS_PER_DAY = 8
+WEEKS_PER_YEAR = 52 # Most companies don't meet 52 weeks/year, but law of large numbers
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 
@@ -126,6 +127,10 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
     return time_cost_total, financial_cost_total
+
+
+def _calculate_percentage_of_time_spent_in_meetings(meeting_duration, WORK_HOURS_PER_DAY):
+    return meeting_duration / WORK_HOURS_PER_DAY
 
 
 def _write_csv_to_json():
