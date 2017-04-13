@@ -46,6 +46,7 @@ APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 WORK_HOURS_PER_YEAR = 2000
 WORK_HOURS_PER_DAY = 8
 WORK_DAYS_PER_WEEK = 5
+WORK_HOURS_PER_WEEK = WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK
 WORK_WEEKS_PER_YEAR = WORK_HOURS_PER_YEAR / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK)
 WORK_DAYS_PER_YEAR = WORK_WEEKS_PER_YEAR * WORK_DAYS_PER_WEEK
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
@@ -71,6 +72,8 @@ JSON_FIELDS = ('meeting_id', 'meeting_number', 'summary', 'start', 'end',
 'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds')
 CSV_FILE = 'meetings_ihm.csv'
 JSON_FILE = 'meetings_ihm.json'
+
+ROUND_TO_THIS_MANY_PLACES = 2
 
 
 def perform_i_heart_meetings_calculations ():
@@ -131,20 +134,22 @@ def _calculate_cost_totals(meetings):
 
         days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
 
-        _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds, percent_time_meeting_single)
+        _print_meeting_info(meeting_number, summary, start, end,
+                meeting_duration, num_attendees, financial_cost_single_meeting,
+                days, hours, minutes, seconds, percent_time_meeting_single)
         _calculate_percent_time_in_meetings_weekly(time_cost_total, total_num_meetings)
     return time_cost_total, financial_cost_total, total_num_meetings
 
 
 def _calculate_percent_time_in_meeting_single(seconds_in_meeting):
     hours_in_meeting = seconds_in_meeting / 3600
-    percent_time_in_meeting = round((float(hours_in_meeting) / WORK_HOURS_PER_DAY) * 100, 2)
+    percent_time_in_meeting = round((float(hours_in_meeting) / WORK_HOURS_PER_DAY) * 100, ROUND_TO_THIS_MANY_PLACES)
     return percent_time_in_meeting
 
 
 def _calculate_percent_time_in_meetings_weekly(time_cost_total, total_num_meetings):
     hours_in_meetings = time_cost_total / 3600
-    percent_time_in_meetings_weekly = round(float(hours_in_meetings * total_num_meetings) / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK) * 100, 2)
+    percent_time_in_meetings_weekly = round(float(hours_in_meetings) / (WORK_HOURS_PER_WEEK) * 100, ROUND_TO_THIS_MANY_PLACES)
     return percent_time_in_meetings_weekly
 
 def _calculate_percent_time_in_meetings_yearly(time_cost_total):
@@ -254,7 +259,7 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, n
     Number of Attendees: {5}
     Cost: {6}
     Cost in Time: {7}, {8}, {9}, {10}
-    % Time: {11}%
+    Percentage of time spent in meetings: {11}%
     """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds, percent_time_meeting_single))
 
 
@@ -262,7 +267,8 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
     print("""
     Weekly cost in time: {0}
     Weekly cost in money: {1}
-    percent_time_in_meetings_weekly: {4}
+    Percentage of time spent in meetings: {4}%
+
     At this time next year:
     Yearly cost in time: {2}
     Yearly cost in money: {3}
