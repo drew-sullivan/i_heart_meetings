@@ -61,7 +61,10 @@ SLACK_HOOK = 'https://hooks.slack.com/services/T4NP75JL9/B4PF28AMS/hfsrPpu1Zm9eF
 
 DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db_ihm.sqlite'
 
-JSON_FIELDS = 'meeting_id', 'meeting_number', 'summary', 'start', 'end', 'meeting_duration', 'num_attendees', 'financial_cost_single_meeting', 'time_cost_single_meeting_days', 'time_cost_single_meeting_hours', 'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds'
+JSON_FIELDS = ('meeting_id', 'meeting_number', 'summary', 'start', 'end',
+'meeting_duration', 'num_attendees', 'financial_cost_single_meeting',
+'time_cost_single_meeting_days', 'time_cost_single_meeting_hours',
+'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds')
 CSV_FILE = 'meetings_ihm.csv'
 JSON_FILE = 'meetings_ihm.json'
 
@@ -129,7 +132,7 @@ def _write_csv_to_json():
     csv_file = open(CSV_FILE, 'r')
     json_file = open(JSON_FILE, 'w')
 
-    field_names = (JSON_FIELDS)
+    field_names = JSON_FIELDS
     reader = csv.DictReader(csv_file, field_names)
     for row in reader:
         json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
