@@ -96,12 +96,12 @@ def perform_i_heart_meetings_calculations ():
     time_cost_yearly = _get_time_cost_yearly(time_cost_total)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
-    percent_time_meetings_weekly = _calculate_percent_time_in_meetings_weekly(time_cost_total, total_num_meetings)
+    percentage_time_in_meetings = _calculate_percentage_time_in_meetings(time_cost_total, total_num_meetings)
 
-    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_meetings_weekly)
+    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly)
+    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
 
 
 def _calculate_cost_totals(meetings):
@@ -128,7 +128,7 @@ def _calculate_cost_totals(meetings):
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         total_num_meetings = meeting_number
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
-        percent_time_meeting_single =_calculate_percent_time_in_meeting_single(seconds_in_meeting)
+        percent_time_meeting_single =_calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
         #_add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
 
@@ -137,23 +137,19 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
-        _calculate_percent_time_in_meetings_weekly(time_cost_total, total_num_meetings)
     return time_cost_total, financial_cost_total, total_num_meetings
 
 
-def _calculate_percent_time_in_meeting_single(seconds_in_meeting):
+def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
     hours_in_meeting = seconds_in_meeting / 3600
     percent_time_in_meeting = round((float(hours_in_meeting) / WORK_HOURS_PER_DAY) * 100, ROUND_TO_THIS_MANY_PLACES)
     return percent_time_in_meeting
 
 
-def _calculate_percent_time_in_meetings_weekly(time_cost_total, total_num_meetings):
+def _calculate_percentage_time_in_meetings(time_cost_total, total_num_meetings):
     hours_in_meetings = time_cost_total / 3600
-    percent_time_in_meetings_weekly = round(float(hours_in_meetings) / (WORK_HOURS_PER_WEEK) * 100, ROUND_TO_THIS_MANY_PLACES)
-    return percent_time_in_meetings_weekly
-
-def _calculate_percent_time_in_meetings_yearly(time_cost_total):
-    time_cost_yearly * total / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_YEAR)
+    percentage_time_in_meetings = round(float(hours_in_meetings) / (WORK_HOURS_PER_WEEK) * 100, ROUND_TO_THIS_MANY_PLACES)
+    return percentage_time_in_meetings
 
 
 def _write_csv_to_json():
@@ -228,9 +224,9 @@ def _format_time_output(days, hours, minutes, seconds):
     return (days, hours, minutes, seconds)
 
 
-def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly):
+def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings):
     data = str(
-        {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}'.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly),
+            {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}\n\n{4}% of Your Time is Spent in Meetings'.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
@@ -259,20 +255,25 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, n
     Number of Attendees: {5}
     Cost: {6}
     Cost in Time: {7}, {8}, {9}, {10}
-    Percentage of time spent in meetings: {11}%
+    Percentage of time spent in meeting: {11}%
     """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds, percent_time_meeting_single))
 
 
-def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings_weekly):
+def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings):
     print("""
+    +++++++++++
+    + SUMMARY +
+    +++++++++++
+
     Weekly cost in time: {0}
     Weekly cost in money: {1}
-    Percentage of time spent in meetings: {4}%
 
     At this time next year:
     Yearly cost in time: {2}
     Yearly cost in money: {3}
-    """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings_weekly))
+   
+    {4}% of Your Time is Spent in Meetings
+    """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings))
 
 
 def _get_credentials():
