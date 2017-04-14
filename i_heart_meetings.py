@@ -55,6 +55,7 @@ WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 YEARLY_SALARY_USD = 100000
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 CURRENCY = 'USD'
+CURRENCY_FORMAT = 'en_US'
 
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
@@ -151,7 +152,7 @@ def _get_time_cost_single_meeting(seconds_in_meeting, num_attendees):
 
 def _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees):
     financial_cost_single_meeting = seconds_in_meeting * COST_PER_SECOND * num_attendees
-    financial_cost_single_meeting = Money(financial_cost_single_meeting, CURRENCY).format('en_US')
+    financial_cost_single_meeting = Money(financial_cost_single_meeting, CURRENCY).format(CURRENCY_FORMAT)
     financial_cost_single_meeting = str(financial_cost_single_meeting)
     return financial_cost_single_meeting
 
@@ -211,12 +212,12 @@ def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_at
 
 
 def _get_financial_cost_weekly(financial_cost_total):
-    financial_cost_weekly = Money(financial_cost_total, CURRENCY).format('en_US')
+    financial_cost_weekly = Money(financial_cost_total, CURRENCY).format(CURRENCY_FORMAT)
     return financial_cost_weekly
 
 
 def _get_financial_cost_yearly(financial_cost_total):
-    financial_cost_yearly = Money(financial_cost_total * WORK_WEEKS_PER_YEAR, CURRENCY).format('en_US')
+    financial_cost_yearly = Money(financial_cost_total * WORK_WEEKS_PER_YEAR, CURRENCY).format(CURRENCY_FORMAT)
     return financial_cost_yearly
 
 
