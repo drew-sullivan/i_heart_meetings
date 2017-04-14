@@ -90,14 +90,13 @@ def perform_i_heart_meetings_calculations ():
     meetings = google_calendar_data.get('items', [])
 
     # _print_entire_google_calendar_results_as_json(meetings)
-    time_cost_total, financial_cost_total = _calculate_cost_totals(meetings)
+    time_cost_total, financial_cost_total, time_cost_total_hours = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_total)
     time_cost_yearly = _get_time_cost_yearly(time_cost_total)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
-    percentage_time_in_meetings = _calculate_percentage_time_in_meetings(time_cost_total)
-
+    percentage_time_in_meetings = _calculate_percentage_time_in_meetings(time_cost_total_hours)
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
@@ -105,6 +104,7 @@ def perform_i_heart_meetings_calculations ():
 
 
 def _calculate_cost_totals(meetings):
+    time_cost_total_hours = 0
     time_cost_total = 0
     financial_cost_total = 0
     if not meetings:
@@ -118,13 +118,15 @@ def _calculate_cost_totals(meetings):
             num_attendees = 1
         else:
             num_attendees = len(meeting.get('attendees'))
-        seconds, hours = _convert_duration_to_time(meeting_duration)
+        seconds_in_meeting, hours_in_meeting = _convert_duration_to_time(meeting_duration)
         meeting_duration = str(meeting_duration)
-        financial_cost_single_meeting = str(Money(seconds * COST_PER_SECOND * num_attendees, 'USD').format('en_US'))
-        time_cost_single_meeting = round(float(num_attendees) * seconds, 2)
+        financial_cost_single_meeting = str(Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US'))
+        time_cost_single_meeting = round(float(num_attendees) * seconds_in_meeting, 2)
+
+        time_cost_total_hours += float(hours_in_meeting / WORK_HOURS_PER_WEEK)
 
         time_cost_total += time_cost_single_meeting
-        financial_cost_total += (seconds * COST_PER_SECOND * num_attendees)
+        financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds)
 
@@ -135,7 +137,8 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
-    return time_cost_total, financial_cost_total
+
+    return time_cost_total, financial_cost_total, time_cost_total_hours
 
 
 def _convert_duration_to_time(duration):
@@ -150,10 +153,8 @@ def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
     return percent_time_in_meeting
 
 
-def _calculate_percentage_time_in_meetings(time_cost_total):
-    hours_in_meetings = time_cost_total / 3600
-    print(hours_in_meetings)
-    percentage_time_in_meetings = round(float(hours_in_meetings) / (WORK_HOURS_PER_WEEK) * 100, ROUND_TO_THIS_MANY_PLACES)
+def _calculate_percentage_time_in_meetings(time_cost_total_hours):
+    percentage_time_in_meetings = time_cost_total_hours * 100
     return percentage_time_in_meetings
 
 
