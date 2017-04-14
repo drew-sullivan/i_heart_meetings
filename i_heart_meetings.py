@@ -110,21 +110,22 @@ def _calculate_cost_totals(meetings):
     if not meetings:
         print('No meetings found.')
     for meeting_number, meeting in enumerate(meetings, 1):
+        meeting_number = meeting_number
+        summary = str(meeting['summary'])
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
-        summary = str(meeting['summary'])
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
-        seconds_in_meeting, hours_in_meeting = _convert_duration_to_time(meeting_duration)
-        meeting_duration = str(meeting_duration)
-        financial_cost_single_meeting = str(Money(seconds_in_meeting * COST_PER_SECOND * num_attendees, 'USD').format('en_US'))
-        time_cost_single_meeting = round(float(num_attendees) * seconds_in_meeting, 2)
+        seconds_in_meeting, hours_in_meeting = _convert_time_object_to_integer(meeting_duration)
+        financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
+        time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
+        days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
 
+        meeting_duration = str(meeting_duration)
         time_cost_total_hours += float(hours_in_meeting / WORK_HOURS_PER_WEEK)
 
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
         #_add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
@@ -137,6 +138,21 @@ def _calculate_cost_totals(meetings):
 
     return time_cost_total, financial_cost_total, time_cost_total_hours
 
+
+def _get_time_cost_single_meeting(seconds_in_meeting, num_attendees):
+    time_cost_single_meeting = float(num_attendees) * seconds_in_meeting
+    time_cost_single_meeting = round(time_cost_single_meeting, ROUND_TO_THIS_MANY_PLACES)
+    return time_cost_single_meeting
+
+
+def _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees):
+    financial_cost_single_meeting = seconds_in_meeting * COST_PER_SECOND * num_attendees
+    financial_cost_single_meeting = Money(financial_cost_single_meeting, 'USD').format('en_US')
+    financial_cost_single_meeting = str(financial_cost_single_meeting)
+    return financial_cost_single_meeting
+
+
+
 def _get_num_attendees(num_attendees):
     if num_attendees == None:
         num_attendees = 1
@@ -145,7 +161,7 @@ def _get_num_attendees(num_attendees):
     return num_attendees
 
 
-def _convert_duration_to_time(duration):
+def _convert_time_object_to_integer(duration):
     seconds = duration.total_seconds()
     hours = seconds / 3600
     return seconds, hours
