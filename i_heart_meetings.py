@@ -91,13 +91,13 @@ def perform_i_heart_meetings_calculations ():
     meetings = google_calendar_data.get('items', [])
 
     # _print_entire_google_calendar_results_as_json(meetings)
-    total_seconds_weekly, financial_cost_total, total_hours_weekly = _calculate_cost_totals(meetings)
+    total_seconds_weekly, financial_cost_total, fractional_time_cost = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(total_seconds_weekly)
     time_cost_yearly = _get_time_cost_yearly(total_seconds_weekly)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
-    percentage_time_in_meetings = _calculate_percentage_time_in_meetings(total_hours_weekly)
+    percentage_time_in_meetings = _calculate_percentage_time_in_meetings(fractional_time_cost)
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
@@ -105,7 +105,7 @@ def perform_i_heart_meetings_calculations ():
 
 
 def _calculate_cost_totals(meetings):
-    total_hours_weekly = 0
+    fractional_time_cost = 0
     total_seconds_weekly = 0
     financial_cost_total = 0
     if not meetings:
@@ -122,8 +122,7 @@ def _calculate_cost_totals(meetings):
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
-
-        total_hours_weekly += float(seconds_in_meeting / WORK_SECONDS_PER_WEEK)
+        fractional_time_cost += float(seconds_in_meeting / WORK_SECONDS_PER_WEEK)
         total_seconds_weekly += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
 
@@ -139,7 +138,7 @@ def _calculate_cost_totals(meetings):
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
 
-    return total_seconds_weekly, financial_cost_total, total_hours_weekly
+    return total_seconds_weekly, financial_cost_total, fractional_time_cost
 
 
 def _get_time_cost_single_meeting(seconds_in_meeting, num_attendees):
@@ -174,8 +173,8 @@ def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
     return percent_time_in_meeting
 
 
-def _calculate_percentage_time_in_meetings(total_hours_weekly):
-    percentage_time_in_meetings = round(total_hours_weekly * 100)
+def _calculate_percentage_time_in_meetings(fractional_time_cost):
+    percentage_time_in_meetings = round(fractional_time_cost * 100)
     return percentage_time_in_meetings
 
 
