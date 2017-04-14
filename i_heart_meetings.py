@@ -47,6 +47,7 @@ WORK_HOURS_PER_YEAR = 2000
 WORK_HOURS_PER_DAY = 8
 WORK_DAYS_PER_WEEK = 5
 WORK_HOURS_PER_WEEK = WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK
+WORK_SECONDS_PER_WEEK = WORK_HOURS_PER_WEEK * 3600
 WORK_WEEKS_PER_YEAR = WORK_HOURS_PER_YEAR / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK)
 WORK_DAYS_PER_YEAR = WORK_WEEKS_PER_YEAR * WORK_DAYS_PER_WEEK
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
@@ -122,7 +123,7 @@ def _calculate_cost_totals(meetings):
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
-        total_hours_weekly += float(hours_in_meeting / WORK_HOURS_PER_WEEK)
+        total_hours_weekly += float(seconds_in_meeting / WORK_SECONDS_PER_WEEK)
         total_seconds_weekly += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
 
