@@ -54,6 +54,7 @@ WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 
 YEARLY_SALARY_USD = 100000
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
+CURRENCY = 'USD'
 
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
@@ -122,6 +123,7 @@ def _calculate_cost_totals(meetings):
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
+
         percent_time_weekly += float(seconds_in_meeting / WORK_SECONDS_PER_WEEK)
         total_seconds_weekly += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
@@ -149,7 +151,7 @@ def _get_time_cost_single_meeting(seconds_in_meeting, num_attendees):
 
 def _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees):
     financial_cost_single_meeting = seconds_in_meeting * COST_PER_SECOND * num_attendees
-    financial_cost_single_meeting = Money(financial_cost_single_meeting, 'USD').format('en_US')
+    financial_cost_single_meeting = Money(financial_cost_single_meeting, CURRENCY).format('en_US')
     financial_cost_single_meeting = str(financial_cost_single_meeting)
     return financial_cost_single_meeting
 
@@ -209,12 +211,12 @@ def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_at
 
 
 def _get_financial_cost_weekly(financial_cost_total):
-    financial_cost_weekly = Money(financial_cost_total, 'USD').format('en_US')
+    financial_cost_weekly = Money(financial_cost_total, CURRENCY).format('en_US')
     return financial_cost_weekly
 
 
 def _get_financial_cost_yearly(financial_cost_total):
-    financial_cost_yearly = Money(financial_cost_total * WORK_WEEKS_PER_YEAR, 'USD').format('en_US')
+    financial_cost_yearly = Money(financial_cost_total * WORK_WEEKS_PER_YEAR, CURRENCY).format('en_US')
     return financial_cost_yearly
 
 
