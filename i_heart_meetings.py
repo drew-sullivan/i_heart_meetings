@@ -127,7 +127,9 @@ def _calculate_cost_totals(meetings):
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
-        #_add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds)
+        #_add_row_to_db(meeting_number, summary, start, end, meeting_duration,
+        #        num_attendees, financial_cost_single_meeting, days, hours,
+        #        minutes, seconds)
 
         days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
 
