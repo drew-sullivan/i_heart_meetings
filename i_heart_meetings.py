@@ -120,18 +120,19 @@ def _calculate_cost_totals(meetings):
         financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
+        percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
-        meeting_duration = str(meeting_duration)
         time_cost_total_weekly += float(hours_in_meeting / WORK_HOURS_PER_WEEK)
         time_cost_total += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
+
+        meeting_duration = str(meeting_duration)
 
         #_add_row_to_db(meeting_number, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
 
-        days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
+        days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
 
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
@@ -151,7 +152,6 @@ def _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees):
     financial_cost_single_meeting = Money(financial_cost_single_meeting, 'USD').format('en_US')
     financial_cost_single_meeting = str(financial_cost_single_meeting)
     return financial_cost_single_meeting
-
 
 
 def _get_num_attendees(num_attendees):
@@ -222,7 +222,7 @@ def _get_financial_cost_yearly(financial_cost_total):
 def _get_time_cost_weekly(total_seconds):
     time_cost_weekly = round(float(total_seconds), ROUND_TO_THIS_MANY_PLACES)
     days, hours, minutes, seconds = _translate_seconds(time_cost_weekly)
-    days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
+    days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
     time_cost_weekly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
     return time_cost_weekly
 
@@ -230,7 +230,7 @@ def _get_time_cost_weekly(total_seconds):
 def _get_time_cost_yearly(total_seconds):
     time_cost_yearly= round(float(total_seconds * WORK_WEEKS_PER_YEAR), ROUND_TO_THIS_MANY_PLACES)
     days, hours, minutes, seconds = _translate_seconds(time_cost_yearly)
-    days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
+    days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
     time_cost_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
     return time_cost_yearly
 
@@ -243,7 +243,7 @@ def _translate_seconds(total_seconds):
     return (int(work_days), int(hours), int(minutes), int(seconds))
 
 
-def _format_time_output(days, hours, minutes, seconds):
+def _make_pretty_for_printing(days, hours, minutes, seconds):
     seconds = "{} second{}".format(int(seconds), "" if seconds == 1 else "s")
     minutes = "{} minute{}".format(int(minutes), "" if minutes == 1 else "s")
     hours = "{} hour{}".format(int(hours), "" if hours == 1 else "s")
