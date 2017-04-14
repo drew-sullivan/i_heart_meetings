@@ -199,7 +199,7 @@ def _get_financial_cost_yearly(financial_cost_total):
 
 
 def _get_time_cost_weekly(total_seconds):
-    time_cost_weekly = round(float(total_seconds), 2)
+    time_cost_weekly = round(float(total_seconds), ROUND_TO_THIS_MANY_PLACES)
     days, hours, minutes, seconds = _translate_seconds(time_cost_weekly)
     days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
     time_cost_weekly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
@@ -207,7 +207,7 @@ def _get_time_cost_weekly(total_seconds):
 
 
 def _get_time_cost_yearly(total_seconds):
-    time_cost_yearly= round(float(total_seconds * WORK_WEEKS_PER_YEAR), 2)
+    time_cost_yearly= round(float(total_seconds * WORK_WEEKS_PER_YEAR), ROUND_TO_THIS_MANY_PLACES)
     days, hours, minutes, seconds = _translate_seconds(time_cost_yearly)
     days, hours, minutes, seconds = _format_time_output(days, hours, minutes, seconds)
     time_cost_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
@@ -218,16 +218,16 @@ def _translate_seconds(total_seconds):
     # divmod returns quotient and remainder
     minutes, seconds = divmod(total_seconds, 60)
     hours, minutes = divmod(minutes, 60)
-    days, hours = divmod(hours, 24)
-    return (int(days), int(hours), int(minutes), int(seconds))
+    work_days, hours = divmod(hours, WORK_HOURS_PER_DAY)
+    return (int(work_days), int(hours), int(minutes), int(seconds))
 
 
 def _format_time_output(days, hours, minutes, seconds):
     seconds = "{} second{}".format(int(seconds), "" if seconds == 1 else "s")
     minutes = "{} minute{}".format(int(minutes), "" if minutes == 1 else "s")
     hours = "{} hour{}".format(int(hours), "" if hours == 1 else "s")
-    days = "{} day{}".format(int(days), "" if days == 1 else "s")
-    return (days, hours, minutes, seconds)
+    work_days = "{} work-day{}".format(int(days), "" if days == 1 else "s")
+    return (work_days, hours, minutes, seconds)
 
 
 def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings):
@@ -277,7 +277,7 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, fi
     At this time next year:
     Yearly cost in time: {2}
     Yearly cost in money: {3}
-   
+
     {4}% of Your Time is Spent in Meetings
     """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings))
 
