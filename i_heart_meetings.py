@@ -117,7 +117,7 @@ def _calculate_cost_totals(meetings):
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
-        seconds_in_meeting = _convert_time_object_to_integer(meeting_duration)
+        seconds_in_meeting = _convert_time_object_to_seconds(meeting_duration)
         financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
@@ -163,7 +163,7 @@ def _get_num_attendees(num_attendees):
     return num_attendees
 
 
-def _convert_time_object_to_integer(duration):
+def _convert_time_object_to_seconds(duration):
     seconds = duration.total_seconds()
     return seconds
 
