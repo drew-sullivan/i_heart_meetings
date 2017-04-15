@@ -98,7 +98,7 @@ def perform_i_heart_meetings_calculations ():
     meetings = google_calendar_data.get('items', [])
 
     # _print_entire_google_calendar_results_as_json(meetings)
-    total_seconds_weekly, financial_cost_total, percent_time_weekly = _calculate_cost_totals(meetings)
+    total_seconds_weekly, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(total_seconds_weekly)
     time_cost_yearly = _get_time_cost_yearly(total_seconds_weekly)
@@ -109,12 +109,14 @@ def perform_i_heart_meetings_calculations ():
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
-    _generate_charts()
+    _generate_charts(list_of_meeting_numbers, list_of_meeting_durations)
 
 def _calculate_cost_totals(meetings):
     percent_time_weekly = 0
     total_seconds_weekly = 0
     financial_cost_total = 0
+    list_of_meeting_numbers = []
+    list_of_meeting_durations = []
     if not meetings:
         print('No meetings found.')
     for meeting_number, meeting in enumerate(meetings, 1):
@@ -133,6 +135,8 @@ def _calculate_cost_totals(meetings):
         percent_time_weekly += float(seconds_in_meeting / WORK_SECONDS_PER_WEEK)
         total_seconds_weekly += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
+        list_of_meeting_numbers.append(meeting_number)
+        list_of_meeting_durations.append(time_cost_single_meeting)
 
         meeting_duration = str(meeting_duration)
 
@@ -145,8 +149,15 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
+    return total_seconds_weekly, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations
 
-    return total_seconds_weekly, financial_cost_total, percent_time_weekly
+
+def _get_list_of_meeting_numbers(list_of_meeting_numbers):
+    return list_of_meeting_numbers
+
+
+def _get_list_of_meeting_durations(list_of_meeting_durations):
+    return list_of_meeting_durations
 
 
 def _get_time_cost_single_meeting(seconds_in_meeting, num_attendees):
@@ -340,14 +351,14 @@ def _get_credentials():
     return credentials
 
 
-def _generate_charts():
+def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
     @app.route("/simple_chart")
     def chart():
-        legend = 'Monthly Data'
-        # X axis
-        labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
-        # Y axis
-        values = [10, 9, 8, 7, 6, 4, 7, 8]
+        legend = 'Meeting Durations'
+        # X axis - list
+        labels = list_of_meeting_numbers
+        # Y axis - list
+        values = list_of_meeting_durations
         return render_template('chart.html', values=values, labels=labels, legend=legend)
 
 

@@ -6,13 +6,12 @@
 </head>
 <body>
     <h1>Simple Line Chart</h1>
-    <!-- bar chart canvas element -->
     <canvas id="myChart" width="600" height="400"></canvas>
     <p id="caption">The chart is displaying a simple line chart.</p>
     <script>
         // Global parameters:
         // do not resize the chart canvas when its container does (keep at 600x400px)
-        Chart.defaults.global.responsive = false;
+        Chart.defaults.global.responsive = true;
          
         // define the chart data
         var chartData = {
