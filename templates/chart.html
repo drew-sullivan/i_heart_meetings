@@ -7,11 +7,11 @@
 <body>
     <h1>Simple Line Chart</h1>
     <canvas id="myChart" width="600" height="400"></canvas>
-    <p id="caption">The chart is displaying a simple line chart.</p>
+    <p id="caption">{{ caption here }}</p>
     <script>
         // Global parameters:
         // do not resize the chart canvas when its container does (keep at 600x400px)
-        Chart.defaults.global.responsive = true;
+        Chart.defaults.global.responsive = false;
          
         // define the chart data
         var chartData = {

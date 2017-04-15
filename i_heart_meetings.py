@@ -126,7 +126,7 @@ def _calculate_cost_totals(meetings):
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
-        seconds_in_meeting = _convert_time_object_to_seconds(meeting_duration)
+        seconds_in_meeting, hours_in_meeting = _convert_time_obj_to_seconds_and_hours(meeting_duration)
         financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
@@ -136,7 +136,7 @@ def _calculate_cost_totals(meetings):
         total_seconds_weekly += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         list_of_meeting_numbers.append(meeting_number)
-        list_of_meeting_durations.append(time_cost_single_meeting)
+        list_of_meeting_durations.append(hours_in_meeting)
 
         meeting_duration = str(meeting_duration)
 
@@ -181,9 +181,10 @@ def _get_num_attendees(num_attendees):
     return num_attendees
 
 
-def _convert_time_object_to_seconds(duration):
+def _convert_time_obj_to_seconds_and_hours(duration):
     seconds = duration.total_seconds()
-    return seconds
+    hours = float(seconds) / 3600
+    return seconds, hours
 
 
 def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
