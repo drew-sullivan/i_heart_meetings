@@ -291,7 +291,9 @@ def _print_entire_google_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
 
 
-def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds, percent_time_meeting_single):
+def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
+        num_attendees, financial_cost_single_meeting, days, hours, minutes,
+        seconds, percent_time_meeting_single):
     print("""
     Meeting {0}: {1}
     ======================================================================
@@ -302,7 +304,9 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration, n
     Cost: {6}
     Cost in Time: {7}, {8}, {9}, {10}
     Percentage of time spent in meeting: {11}%
-    """.format(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, days, hours, minutes, seconds, percent_time_meeting_single))
+    """.format(meeting_number, summary, start, end, meeting_duration,
+        num_attendees, financial_cost_single_meeting, days, hours, minutes,
+        seconds, percent_time_meeting_single))
 
 
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
