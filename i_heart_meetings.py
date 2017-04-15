@@ -168,7 +168,8 @@ def _get_time_cost_single_meeting(seconds_in_meeting, num_attendees):
 
 def _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees):
     financial_cost_single_meeting = seconds_in_meeting * COST_PER_SECOND * num_attendees
-    financial_cost_single_meeting = Money(financial_cost_single_meeting, CURRENCY).format(CURRENCY_FORMAT)
+    financial_cost_single_meeting = Money(financial_cost_single_meeting,
+            CURRENCY).format(CURRENCY_FORMAT)
     financial_cost_single_meeting = str(financial_cost_single_meeting)
     return financial_cost_single_meeting
 
@@ -219,11 +220,20 @@ def _write_db_to_csv():
         csvWriter.writerows(rows)
 
 
-def _add_row_to_db(meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
+def _add_row_to_db(meeting_number, summary, start, end, meeting_duration,
+        num_attendees, financial_cost_single_meeting,
+        time_cost_single_meeting_days, time_cost_single_meeting_hours,
+        time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
     meeting_id = "{0}-{1}".format(start, meeting_number)
     conn = sqlite3.connect(DB_IHM_SQLITE)
     c = conn.cursor()
-    c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(meeting_id, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting_days, time_cost_single_meeting_hours, time_cost_single_meeting_minutes, time_cost_single_meeting_seconds))
+    c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(
+                meeting_id, meeting_number,
+                summary, start, end, meeting_duration, num_attendees,
+                financial_cost_single_meeting, time_cost_single_meeting_days,
+                time_cost_single_meeting_hours,
+                time_cost_single_meeting_minutes,
+                time_cost_single_meeting_seconds))
     conn.commit()
     conn.close()
 
