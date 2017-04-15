@@ -320,14 +320,22 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
 
 
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-        financial_cost_yearly, percentage_time_in_meetings): print("""
-        +++++++++++ + SUMMARY + +++++++++++
+        financial_cost_yearly, percentage_time_in_meetings):
+    print("""
+    +++++++++++
+    + SUMMARY +
+    +++++++++++
 
-    Weekly cost in time: {0} Weekly cost in money: {1}
+    Weekly cost in time: {0}
+    Weekly cost in money: {1}
 
-    At this time next year: Yearly cost in time: {2} Yearly cost in money: {3}
+    At this time next year:
+    Yearly cost in time: {2}
+    Yearly cost in money: {3}
 
-    {4}% of Your Time is Spent in Meetings """.format(time_cost_weekly,
+    {4}% of Your Time is Spent in Meetings
+
+    """.format(time_cost_weekly,
     financial_cost_weekly, time_cost_yearly, financial_cost_yearly,
     percentage_time_in_meetings))
 
