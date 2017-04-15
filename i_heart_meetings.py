@@ -13,8 +13,11 @@ import time
 import urllib2
 
 from apiclient import discovery
+from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
+from flask import Flask
+from flask import render_template
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
@@ -76,6 +79,8 @@ JSON_FIELDS = ('meeting_id', 'meeting_number', 'summary', 'start', 'end',
 CSV_FILE = 'meetings_ihm.csv'
 JSON_FILE = 'meetings_ihm.json'
 
+app = Flask(__name__)
+
 ROUND_TO_THIS_MANY_PLACES = 2
 
 
@@ -103,8 +108,8 @@ def perform_i_heart_meetings_calculations ():
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
-
+#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
+    _generate_charts()
 
 def _calculate_cost_totals(meetings):
     percent_time_weekly = 0
@@ -334,6 +339,18 @@ def _get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
+
+def _generate_charts():
+    @app.route("/simple_chart")
+    def chart():
+        legend = 'Monthly Data'
+        # X axis
+        labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+        # Y axis
+        values = [10, 9, 8, 7, 6, 4, 7, 8]
+        return render_template('chart.html', values=values, labels=labels, legend=legend)
+
+
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
-
+    app.run(debug=False)
