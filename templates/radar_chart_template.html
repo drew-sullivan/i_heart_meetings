@@ -9,10 +9,7 @@
     <canvas id="myChart" width="600" height="400"></canvas>
     <p id="caption">caption here</p>
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        // Chart constructor takes 2 parameters - 1. reference to a canvas or
-        // 2d drawing context 2.Obj literal containing the data for the chart.
-        // Required are 'type' and 'data'
+        var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'radar',
             data: {
@@ -20,15 +17,15 @@
                 datasets: [
                     {
                         label: 'apples',
-                        data: [12, 19, 3, 17, 6, 3, 7],
-                        backgroundColor: 'rgba(153, 255, 51, 0.4)'
-                        borderColor: 'rgba(153, 255, 51, 1)'
+                        backgroundColor: 'rgba(153, 255, 51, 0.4)',
+                        borderColor: 'rgba(153, 255, 51, 1)',
+                        data: [12, 19, 3, 17, 6, 3, 7]
                     },
                     {
                         label: 'oranges',
-                        data: [2, 29, 5, 5, 3, 2, 10],
-                        backgroundColor: 'rgba(255, 153, 0, 0.4)'
-                        borderColor: 'rgba(179, 11, 198, 1)'
+                        backgroundColor: 'rgba(255, 153, 0, 0.4)',
+                        borderColor: 'rgba(179, 11, 198, 1)',
+                        data: [2, 29, 5, 5, 3, 2, 10]
                     }
                 ]
             }

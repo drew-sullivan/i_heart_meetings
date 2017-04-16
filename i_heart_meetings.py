@@ -385,6 +385,21 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
         return render_template('bar_chart_template.html', values=values, labels=labels, legend=legend)
+    @app.route('/radar_chart')
+    def radar_chart():
+        legend = 'Meeting Durations'
+        labels = list_of_meeting_numbers
+        values = list_of_meeting_durations
+        return render_template('radar_chart_template.html', values=values, labels=labels, legend=legend)
+    @app.route('/polar_chart')
+    def polar_chart():
+        legend = 'Meeting Durations'
+        labels = list_of_meeting_numbers
+        values = list_of_meeting_durations
+        return render_template('polar_chart_template.html', values=values, labels=labels, legend=legend)
+
+
+
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
