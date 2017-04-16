@@ -371,14 +371,14 @@ def _get_credentials():
 
 
 def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
-    @app.route("/simple_chart")
+    @app.route("/line_chart")
     def chart():
         legend = 'Meeting Durations'
         # X axis - list
         labels = list_of_meeting_numbers
         # Y axis - list
         values = list_of_meeting_durations
-        return render_template('chart.html', values=values, labels=labels, legend=legend)
+        return render_template('line_chart_template.html', values=values, labels=labels, legend=legend)
     @app.route("/bar_chart")
     def bar_chart():
         legend = 'Meeting Durations'

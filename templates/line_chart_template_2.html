@@ -1,0 +1,35 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Chart.js Example</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js'></script>
+</head>
+
+<body>
+    <h1>Simple Line Chart</h1>
+    <canvas id="myChart" width="600" height="400"></canvas>
+    <p id="caption">caption here</p>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        // Chart constructor takes 2 parameters - 1. reference to a canvas or
+        // 2d drawing context 2.Obj literal containing the data for the chart.
+        // Required are 'type' and 'data'
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['m', 'tu', 'w', 'th', 'f', 'sa', 'su'],
+                datasets: [
+                    {
+                        label: 'apples',
+                        data: [12, 19, 3, 17, 6, 3, 7],
+                        backgroundColor: 'rgba(153, 255, 51, .04)'
+                    },
+                    {
+                        label: 'oranges',
+                        data: [2, 29, 5, 5, 3, 2, 10],
+                        backgroundColor: 'rgba(255, 153, 0, 0.4)'
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
