@@ -379,7 +379,12 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
         # Y axis - list
         values = list_of_meeting_durations
         return render_template('chart.html', values=values, labels=labels, legend=legend)
-
+    @app.route("/bar_chart")
+    def bar_chart():
+        legend = 'Meeting Durations'
+        labels = list_of_meeting_numbers
+        values = list_of_meeting_durations
+        return render_template('bar_chart_template.html', values=values, labels=labels, legend=legend)
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
