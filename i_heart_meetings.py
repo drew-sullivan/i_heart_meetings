@@ -397,7 +397,12 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
         return render_template('polar_chart_template.html', values=values, labels=labels, legend=legend)
-
+    @app.route('/pie_chart')
+    def pie_chart():
+        legend = 'Meeting Durations'
+        labels = list_of_meeting_numbers
+        values = list_of_meeting_durations
+        return render_template('pie_chart_template.html', values=values, labels=labels, legend=legend)
 
 
 
