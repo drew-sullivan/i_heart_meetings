@@ -378,31 +378,38 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
         labels = list_of_meeting_numbers
         # Y axis - list
         values = list_of_meeting_durations
-        return render_template('line_chart_template.html', values=values, labels=labels, legend=legend)
+        return render_template('line.html', values=values, labels=labels, legend=legend)
     @app.route("/bar_chart")
     def bar_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
-        return render_template('bar_chart_template.html', values=values, labels=labels, legend=legend)
+        return render_template('bar.html', values=values, labels=labels, legend=legend)
     @app.route('/radar_chart')
     def radar_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
-        return render_template('radar_chart_template.html', values=values, labels=labels, legend=legend)
+        return render_template('radar.html', values=values, labels=labels, legend=legend)
     @app.route('/polar_chart')
     def polar_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
-        return render_template('polar_chart_template.html', values=values, labels=labels, legend=legend)
+        return render_template('polar.html', values=values, labels=labels, legend=legend)
     @app.route('/pie_chart')
     def pie_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
-        return render_template('pie_chart_template.html', values=values, labels=labels, legend=legend)
+        return render_template('pie.html', values=values, labels=labels, legend=legend)
+    @app.route('/doughnut_chart')
+    def doughnut_chart():
+        legend = 'Meeting Durations'
+        labels = list_of_meeting_numbers
+        values = list_of_meeting_durations
+        return render_template('doughnut.html', values=values, labels=labels, legend=legend)
+
 
 
 
