@@ -373,12 +373,21 @@ def _get_credentials():
 def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
     @app.route("/line_chart")
     def chart():
-        legend = 'Meeting Durations'
+        legend = list_of_meeting_numbers
+        # legend = ['Meeting Durations', 'test_1', 'test_2']
         # X axis - list
         labels = list_of_meeting_numbers
         # Y axis - list
         values = list_of_meeting_durations
         return render_template('line.html', values=values, labels=labels, legend=legend)
+    @app.route("/line_chart_2")
+    def chart_2():
+        legend = 'Meeting Durations'
+        # X axis - list
+        labels = list_of_meeting_numbers
+        # Y axis - list
+        values = list_of_meeting_durations
+        return render_template('line_2.html', values=values, labels=labels, legend=legend)
     @app.route("/bar_chart")
     def bar_chart():
         legend = 'Meeting Durations'
@@ -409,7 +418,9 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations):
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
         return render_template('doughnut.html', values=values, labels=labels, legend=legend)
-
+    @app.route('/timer')
+    def meeting_timer():
+        return render_template('meeting_timer.html')
 
 
 

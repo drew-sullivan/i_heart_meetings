@@ -16,7 +16,10 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['m', 'tu', 'w', 'th', 'f', 'sa', 'su'],
+                // labels: ['m', 'tu', 'w', 'th', 'f', 'sa', 'su'],
+                labels: [{% for item in labels %}
+                        "{{item}}",
+                       {% endfor %}],
                 datasets: [
                     {
                         label: 'apples',
