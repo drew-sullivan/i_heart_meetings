@@ -5,42 +5,52 @@
 </head>
 
 <body>
-    <h1>Simple Line Chart</h1>
+    <h1>Bar Chart</h1>
     <canvas id="myChart" width="600" height="400"></canvas>
     <p id="caption">caption here</p>
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
-        // Chart constructor takes 2 parameters - 1. reference to a canvas or
-        // 2d drawing context 2.Obj literal containing the data for the chart.
-        // Required are 'type' and 'data'
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['m', 'tu', 'w', 'th', 'f', 'sa', 'su'],
+                labels : [{% for item in labels %}
+                        "{{item}}",
+                       {% endfor %}],
                 datasets: [
                     {
-                        label: 'apples',
-                        data: [12, 19, 3, 17, 6, 3, 7],
-                        backgroundColor: 'rgba(153, 255, 51, .04)'
-                    },
-                    {
-                        label: 'oranges',
-                        data: [2, 29, 5, 5, 3, 2, 10],
-                        backgroundColor: 'rgba(255, 153, 0, 0.4)'
+                        label: [
+                            '{{legend}}'
+                        ],
+                        data: [
+                            {% for value in values %}
+                                {{value}},
+                            {% endfor %}
+                        ],
+                        backgroundColor: [
+                            "#2ecc71","#3498db","#95a5a6","#6dc066","#daa520",
+                            "#9b59b6","#f1c40f","#e74c3c","#34495e","#008080",
+                            "#ffc0cb","#d3ffce","#ff7373","#ffa500","#e6e6fa",
+                            "#003366","#20b2aa","#c6e2ff","#008000"
+                        ] 
                     }
                 ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            stacked: false
+                        }
+                    ],   
+                    xAxes: [
+                        {
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }
+                    ]
+                }
             }
-            // for stacked bar charts
-            //,
-            //options: {
-            //    scales: {
-            //        yAxes: [
-            //            {
-            //                stacked: true
-            //            }
-            //        ]   
-            //    }
-            //}
         });
     </script>
 </body>

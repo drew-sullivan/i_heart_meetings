@@ -22,14 +22,16 @@
                        {% endfor %}],
                 datasets: [
                     {
-                        label: 'apples',
-                        data: [12, 19, 3, 17, 6, 3, 7],
-                        backgroundColor: 'rgba(153, 255, 51, .04)'
-                    },
-                    {
-                        label: 'oranges',
-                        data: [2, 29, 5, 5, 3, 2, 10],
-                        backgroundColor: 'rgba(255, 153, 0, 0.4)'
+                        data : [{% for item in values %}
+                                   {{item}},
+                                 {% endfor %}],
+                        backgroundColor: 
+                        [
+                            "#2ecc71","#3498db","#95a5a6","#6dc066","#daa520",
+                            "#9b59b6","#f1c40f","#e74c3c","#34495e","#008080",
+                            "#ffc0cb","#d3ffce","#ff7373","#ffa500","#e6e6fa",
+                            "#003366","#20b2aa","#c6e2ff","#008000"
+                        ] 
                     }
                 ]
             }
