@@ -110,7 +110,7 @@ def perform_i_heart_meetings_calculations ():
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings, average_meeting_cost_time, average_meeting_cost_money)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings)
+#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings, average_meeting_cost_time, average_meeting_cost_money)
     _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries)
 
 def _calculate_cost_totals(meetings):
@@ -300,11 +300,11 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
     return (work_days, hours, minutes, seconds)
 
 
-def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings):
+def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings, average_meeting_cost_time, average_meeting_cost_money):
     data = str(
-            {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\n{4}% of Your Time is Spent in Meetings'.format(
+            {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\n\n{6}% of Your Time is Spent in Meetings'.format(
                 time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-                financial_cost_yearly, percent_time_in_meetings),
+                financial_cost_yearly, average_meeting_cost_time, average_meeting_cost_money, percent_time_in_meetings),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
