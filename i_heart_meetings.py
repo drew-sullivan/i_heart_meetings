@@ -104,11 +104,11 @@ def perform_i_heart_meetings_calculations ():
     time_cost_yearly = _get_time_cost_yearly(total_seconds_weekly)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
-    percentage_time_in_meetings = _calculate_percentage_time_in_meetings(percent_time_weekly)
-    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
+    percent_time_in_meetings = _calculate_percent_time_in_meetings(percent_time_weekly)
+    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings)
+#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings)
     _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries)
 
 def _calculate_cost_totals(meetings):
@@ -196,9 +196,9 @@ def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
     return percent_time_in_meeting
 
 
-def _calculate_percentage_time_in_meetings(percent_time_weekly):
-    percentage_time_in_meetings = round(percent_time_weekly * 100)
-    return percentage_time_in_meetings
+def _calculate_percent_time_in_meetings(percent_time_weekly):
+    percent_time_in_meetings = round(percent_time_weekly * 100)
+    return percent_time_in_meetings
 
 
 def _write_csv_to_json():
@@ -282,9 +282,9 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
     return (work_days, hours, minutes, seconds)
 
 
-def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings):
+def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings):
     data = str(
-            {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}\n\n{4}% of Your Time is Spent in Meetings'.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percentage_time_in_meetings),
+            {'text': 'Weekly Meetings Costs\nTime: {0}\nMoney: {1}\n\nYearly Meetings Costs\nTime: {2}\nMoney: {3}\n\n{4}% of Your Time is Spent in Meetings'.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
@@ -322,7 +322,7 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
 
 
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-        financial_cost_yearly, percentage_time_in_meetings):
+        financial_cost_yearly, percent_time_in_meetings):
     print("""
     +++++++++++
     + SUMMARY +
@@ -339,7 +339,7 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
 
     """.format(time_cost_weekly,
     financial_cost_weekly, time_cost_yearly, financial_cost_yearly,
-    percentage_time_in_meetings))
+    percent_time_in_meetings))
 
 
 def _get_credentials():
