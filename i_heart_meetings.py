@@ -98,14 +98,16 @@ def perform_i_heart_meetings_calculations ():
     meetings = google_calendar_data.get('items', [])
 
     # _print_entire_google_calendar_results_as_json(meetings)
-    total_seconds_weekly, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries = _calculate_cost_totals(meetings)
+    total_seconds_weekly, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(total_seconds_weekly)
     time_cost_yearly = _get_time_cost_yearly(total_seconds_weekly)
     financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
     financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
     percent_time_in_meetings = _calculate_percent_time_in_meetings(percent_time_weekly)
-    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings)
+    average_meeting_cost_time = _get_average_meeting_length(num_meetings, total_seconds_weekly)
+    average_meeting_cost_money = _get_average_meeting_cost(num_meetings, financial_cost_total)
+    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings, average_meeting_cost_time, average_meeting_cost_money)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, percent_time_in_meetings)
@@ -118,6 +120,7 @@ def _calculate_cost_totals(meetings):
     list_of_meeting_numbers = []
     list_of_meeting_durations = []
     list_of_meeting_summaries = []
+    num_meetings = 0
     if not meetings:
         print('No meetings found.')
     for meeting_number, meeting in enumerate(meetings, 1):
@@ -139,6 +142,7 @@ def _calculate_cost_totals(meetings):
         list_of_meeting_numbers.append(meeting_number)
         list_of_meeting_durations.append(hours_in_meeting)
         list_of_meeting_summaries.append(summary)
+        num_meetings = meeting_number
 
         meeting_duration = str(meeting_duration)
 
@@ -151,7 +155,21 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
-    return total_seconds_weekly, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries
+    return total_seconds_weekly, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings
+
+
+def _get_average_meeting_length(num_meetings, total_seconds_weekly):
+    average_meeting_length = float(total_seconds_weekly) / num_meetings
+    days, hours, minutes, seconds = _translate_seconds(average_meeting_length)
+    days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
+    average_meeting_length = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
+    return average_meeting_length
+
+
+def _get_average_meeting_cost(num_meetings, financial_cost_total):
+    average_meeting_cost = float(financial_cost_total) / num_meetings
+    average_meeting_cost = Money(average_meeting_cost, CURRENCY).format(CURRENCY_FORMAT)
+    return average_meeting_cost
 
 
 def _get_list_of_meeting_numbers(list_of_meeting_numbers):
@@ -322,7 +340,8 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
 
 
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-        financial_cost_yearly, percent_time_in_meetings):
+        financial_cost_yearly, percent_time_in_meetings,
+        average_meeting_cost_time, average_meeting_cost_money):
     print("""
     +++++++++++
     + SUMMARY +
@@ -336,10 +355,11 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
     Yearly cost in money: {3}
 
     {4}% of Your Time is Spent in Meetings
-
+    Average time cost: {5}
+    Average financial cost: {6}
     """.format(time_cost_weekly,
     financial_cost_weekly, time_cost_yearly, financial_cost_yearly,
-    percent_time_in_meetings))
+    percent_time_in_meetings, average_meeting_cost_time, average_meeting_cost_money))
 
 
 def _get_credentials():
