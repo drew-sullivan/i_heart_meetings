@@ -356,12 +356,14 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
     Yearly cost in time: {2}
     Yearly cost in money: {3}
 
-    {4}% of Your Time is Spent in Meetings
-    Average time cost: {5}
-    Average financial cost: {6}
+    Average time cost: {4}
+    Average financial cost: {5}
+
+    {6}% of Your Time is Spent in Meetings
     """.format(time_cost_weekly,
     financial_cost_weekly, time_cost_yearly, financial_cost_yearly,
-    percent_time_in_meetings, average_meeting_cost_time, average_meeting_cost_money))
+    average_meeting_cost_time, average_meeting_cost_money,
+    percent_time_in_meetings))
 
 
 def _get_credentials():
