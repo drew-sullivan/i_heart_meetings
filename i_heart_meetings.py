@@ -121,22 +121,31 @@ def perform_i_heart_meetings_calculations ():
     time_recovered_yearly = _calculate_time_recovered_yearly(percent_time_in_meetings)
     money_recovered_weekly = _calculate_money_recovered_weekly(percent_time_in_meetings)
     money_recovered_yearly = _calculate_money_recovered_yearly(percent_time_in_meetings)
+    ideal_time_yearly = _calculate_ideal_time_yearly()
+    ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
             avg_meeting_cost_money, avg_meeting_duration,
             percent_time_in_meetings, time_recovered_weekly,
             money_recovered_weekly, time_recovered_yearly,
-            money_recovered_yearly)
+            money_recovered_yearly, ideal_time_yearly,
+            ideal_financial_cost_yearly)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
 #            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
 #            avg_meeting_duration, percent_time_in_meetings,
 #            time_recovered_weekly, money_recovered_weekly,
-#            time_recovered_yearly, money_recovered_yearly)
-    _generate_charts(list_of_meeting_numbers, list_of_meeting_durations,
-            list_of_meeting_summaries, percent_time_in_meetings)
+#            time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
+#            ideal_financial_cost_yearly)
+    _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+            financial_cost_yearly, avg_meeting_cost_time,
+            avg_meeting_cost_money, avg_meeting_duration,
+            percent_time_in_meetings, time_recovered_weekly,
+            money_recovered_weekly, time_recovered_yearly,
+            money_recovered_yearly, ideal_time_yearly,
+            ideal_financial_cost_yearly)
 
 
 def _calculate_cost_totals(meetings):
@@ -193,6 +202,25 @@ def _calculate_cost_totals(meetings):
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration)
+
+
+def _calculate_ideal_time_yearly():
+    ideal_time_yearly = float(IDEAL_PERCENT_TIME_IN_MEETINGS)
+    ideal_time_yearly /= 100
+    ideal_time_yearly *= PERSON_SECONDS_PER_WEEK
+    days, hours, minutes, seconds = _translate_seconds(ideal_time_yearly)
+    days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
+    ideal_time_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
+    return ideal_time_yearly
+
+
+def _calculate_ideal_financial_cost_yearly():
+    ideal_financial_cost_yearly = float(IDEAL_PERCENT_TIME_IN_MEETINGS)
+    ideal_financial_cost_yearly /= 100
+    ideal_financial_cost_yearly *= COST_PER_SECOND
+    ideal_financial_cost_yearly *= PERSON_SECONDS_PER_YEAR
+    ideal_financial_cost_yearly = Money(ideal_financial_cost_yearly, CURRENCY).format(CURRENCY_FORMAT)
+    return ideal_financial_cost_yearly
 
 
 def _calculate_time_recovered_weekly(percent_time_in_meetings):
@@ -384,15 +412,20 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
     return (work_days, hours, minutes, seconds)
 
 
-def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money, avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly):
+def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+        financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
+        avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly,
+        money_recovered_weekly, time_recovered_yearly, money_recovered_yearly,
+        ideal_time_yearly, ideal_financial_cost_yearly):
     data = str(
-            {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
+        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
                 time_cost_weekly, financial_cost_weekly, time_cost_yearly,
                 financial_cost_yearly, avg_meeting_cost_time,
                 avg_meeting_cost_money, avg_meeting_duration,
                 percent_time_in_meetings, time_recovered_weekly,
                 money_recovered_weekly, time_recovered_yearly,
-                money_recovered_yearly),
+                money_recovered_yearly, ideal_time_yearly,
+                ideal_financial_cost_yearly),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
@@ -432,7 +465,9 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         financial_cost_yearly, avg_meeting_cost_time,
         avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly):
+        percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly,
+        time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
+        ideal_financial_cost_yearly):
     print("""
     +++++++++++
     + SUMMARY +
@@ -451,6 +486,9 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
 
     {7}% of Your Time is Spent in Meetings
 
+    Your ideal yearly costs:
+    {13} and {12}
+
     Using I Heart Meetings could save you:
     {9} and {8} per week
     {11} and {10} per year
@@ -458,7 +496,8 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         financial_cost_yearly, avg_meeting_cost_time,
         avg_meeting_cost_money, avg_meeting_duration,
         percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly,
-        time_recovered_yearly, money_recovered_yearly))
+        time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
+        ideal_financial_cost_yearly))
 
 
 def _get_credentials():
@@ -491,7 +530,12 @@ def _get_credentials():
     return credentials
 
 
-def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, percent_time_in_meetings):
+def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+    financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
+    avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly,
+    money_recovered_weekly, time_recovered_yearly, money_recovered_yearly,
+    ideal_time_yearly, ideal_financial_cost_yearly):
+
     @app.route("/line_chart")
     def chart():
         legend = list_of_meeting_numbers
@@ -500,6 +544,7 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of
         # Y axis - list
         values = list_of_meeting_durations
         return render_template('line.html', values=values, labels=labels, legend=legend)
+
     @app.route("/line_chart_2")
     def chart_2():
         legend = 'Meeting Durations'
@@ -508,6 +553,7 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of
         # Y axis - list
         values = list_of_meeting_durations
         return render_template('line_2.html', values=values, labels=labels, legend=legend)
+
     @app.route("/bar_chart")
     def bar_chart():
         legend = 'Meeting Durations'
@@ -515,6 +561,7 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of
         labels = list_of_meeting_summaries
         values = list_of_meeting_durations
         return render_template('bar.html', values=values, labels=labels, legend=legend)
+
     @app.route('/radar_chart')
     def radar_chart():
         legend = 'Meeting Durations'
@@ -522,30 +569,55 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of
         labels = list_of_meeting_summaries
         values = list_of_meeting_durations
         return render_template('radar.html', values=values, labels=labels, legend=legend)
+
     @app.route('/polar_chart')
     def polar_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
         return render_template('polar.html', values=values, labels=labels, legend=legend)
+
     @app.route('/pie_chart')
     def pie_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
         return render_template('pie.html', values=values, labels=labels, legend=legend)
+
     @app.route('/percent_pie')
     def percent_pie():
+        current_costs = 'Current Costs: {0} and {1} yearly'.format(
+            financial_cost_yearly,time_cost_yearly
+        )
+        ideal_meeting_investment = 'Ideal Meeting Investment: {0} and {1}'.format(
+            ideal_financial_cost_yearly, ideal_time_yearly
+        )
+        potential_savings = 'Potential Savings: {0} and {1}'.format(
+            money_recovered_yearly, time_recovered_yearly
+        )
+
         legend = 'Percentage of Time Spent in Meetings'
-        labels = ['Percentage of Time Spent in Meetings', 'Priorities', 'Ideal amount of time spent in meetings']
-        values = [percent_time_in_meetings, (100 - percent_time_in_meetings), IDEAL_PERCENT_TIME_IN_MEETINGS]
+        labels = [
+            current_costs,
+            'Non-Meetings',
+            ideal_meeting_investment,
+            potential_savings
+        ]
+        values = [
+            percent_time_in_meetings,
+            (100 - percent_time_in_meetings),
+            IDEAL_PERCENT_TIME_IN_MEETINGS,
+            (percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+        ]
         return render_template('pie.html', values=values, labels=labels, legend=legend)
+
     @app.route('/doughnut_chart')
     def doughnut_chart():
         legend = 'Meeting Durations'
         labels = list_of_meeting_numbers
         values = list_of_meeting_durations
         return render_template('doughnut.html', values=values, labels=labels, legend=legend)
+
     @app.route('/timer')
     def meeting_timer():
         return render_template('meeting_timer.html')
