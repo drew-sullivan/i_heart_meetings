@@ -55,6 +55,9 @@ WORK_WEEKS_PER_YEAR = WORK_HOURS_PER_YEAR / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_
 WORK_DAYS_PER_YEAR = WORK_WEEKS_PER_YEAR * WORK_DAYS_PER_WEEK
 WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 
+IDEAL_PERCENT_TIME_IN_MEETINGS = 5
+IDEAL_PERCENT_TIME_IN_MEETINGS_DECIMAL = float(IDEAL_PERCENT_TIME_IN_MEETINGS / 100)
+
 YEARLY_SALARY_USD = 100000
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 CURRENCY = 'USD'
@@ -79,9 +82,9 @@ JSON_FIELDS = ('meeting_id', 'meeting_number', 'summary', 'start', 'end',
 CSV_FILE = 'meetings_ihm.csv'
 JSON_FILE = 'meetings_ihm.json'
 
-app = Flask(__name__)
-
 ROUND_TO_THIS_MANY_PLACES = 2
+
+app = Flask(__name__)
 
 
 def perform_i_heart_meetings_calculations ():
@@ -120,7 +123,7 @@ def perform_i_heart_meetings_calculations ():
 #            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
 #            avg_meeting_duration, percent_time_in_meetings)
     _generate_charts(list_of_meeting_numbers, list_of_meeting_durations,
-            list_of_meeting_summaries)
+            list_of_meeting_summaries, percent_time_in_meetings)
 
 
 def _calculate_cost_totals(meetings):
@@ -170,6 +173,15 @@ def _calculate_cost_totals(meetings):
     return(total_seconds_weekly, financial_cost_total, percent_time_weekly,
             list_of_meeting_numbers, list_of_meeting_durations,
             list_of_meeting_summaries, num_meetings, avg_meeting_duration)
+
+
+def _calculate_time_recovered(percent_time_weekly):
+    time_recovered = IDEAL_PERCENT_TIME_IN_MEETINGS_DECIMAL / percent_time_weekly
+    return time_recovered
+
+
+def _calculate_money_recovered():
+
 
 
 def _get_avg_meeting_duration(num_meetings, seconds_in_meeting):
@@ -422,7 +434,7 @@ def _get_credentials():
     return credentials
 
 
-def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries):
+def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, percent_time_in_meetings):
     @app.route("/line_chart")
     def chart():
         legend = list_of_meeting_numbers
@@ -462,9 +474,14 @@ def _generate_charts(list_of_meeting_numbers, list_of_meeting_durations, list_of
     @app.route('/pie_chart')
     def pie_chart():
         legend = 'Meeting Durations'
-#        labels = list_of_meeting_numbers
-        labels = list_of_meeting_summaries
+        labels = list_of_meeting_numbers
         values = list_of_meeting_durations
+        return render_template('pie.html', values=values, labels=labels, legend=legend)
+    @app.route('/percent_pie')
+    def percent_pie():
+        legend = 'Percentage of Time Spent in Meetings'
+        labels = ['Percentage of Time Spent in Meetings', 'Priorities', 'Ideal amount of time spent in meetings']
+        values = [percent_time_in_meetings, (100 - percent_time_in_meetings), IDEAL_PERCENT_TIME_IN_MEETINGS]
         return render_template('pie.html', values=values, labels=labels, legend=legend)
     @app.route('/doughnut_chart')
     def doughnut_chart():
