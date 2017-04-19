@@ -268,6 +268,8 @@ def _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees):
 def _get_num_attendees(num_attendees):
     if num_attendees == None:
         num_attendees = 1
+    # if sharing multiple calendars, uncomment below
+    #num_attendees = 1
     else:
         num_attendees = len(num_attendees)
     return num_attendees
