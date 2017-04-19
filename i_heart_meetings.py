@@ -128,9 +128,9 @@ def perform_i_heart_meetings_calculations ():
             percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-            avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
+#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+#            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
+#            avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
     _generate_charts(list_of_meeting_numbers, list_of_meeting_durations,
             list_of_meeting_summaries, percent_time_in_meetings)
 
