@@ -268,7 +268,7 @@ def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
 
 
 def _calculate_percent_time_in_meetings(percent_time_weekly):
-    percent_time_in_meetings = round(percent_time_weekly * 100)
+    percent_time_in_meetings = round(percent_time_weekly * 100, ROUND_TO_THIS_MANY_PLACES)
     return percent_time_in_meetings
 
 
