@@ -66,6 +66,7 @@ CURRENCY_FORMAT = 'en_US'
 TEAM_SIZE = 10
 
 PERSON_SECONDS_PER_WEEK = TEAM_SIZE * WORK_SECONDS_PER_WEEK
+PERSON_SECONDS_PER_YEAR = TEAM_SIZE * WORK_SECONDS_PER_YEAR
 
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
@@ -117,17 +118,19 @@ def perform_i_heart_meetings_calculations ():
     avg_meeting_cost_money = _get_avg_meeting_financial_cost(num_meetings, financial_cost_total)
     avg_meeting_duration = _get_avg_meeting_duration(num_meetings, avg_meeting_duration)
     time_recovered_weekly = _calculate_time_recovered_weekly(percent_time_in_meetings)
+    time_recovered_yearly = _calculate_time_recovered_yearly(percent_time_in_meetings)
     money_recovered_weekly = _calculate_money_recovered_weekly(percent_time_in_meetings)
+    money_recovered_yearly = _calculate_money_recovered_yearly(percent_time_in_meetings)
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
             avg_meeting_cost_money, avg_meeting_duration,
-            percent_time_in_meetings)
+            percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-#            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-#            avg_meeting_duration, percent_time_in_meetings)
+    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
+            avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
     _generate_charts(list_of_meeting_numbers, list_of_meeting_durations,
             list_of_meeting_summaries, percent_time_in_meetings)
 
@@ -191,6 +194,16 @@ def _calculate_time_recovered_weekly(percent_time_in_meetings):
     return time_recovered_weekly
 
 
+def _calculate_time_recovered_yearly(percent_time_in_meetings):
+    time_recovered_yearly = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+    time_recovered_yearly /= 100
+    time_recovered_yearly *= PERSON_SECONDS_PER_YEAR
+    days, hours, minutes, seconds = _translate_seconds(time_recovered_yearly)
+    days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
+    time_recovered_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
+    return time_recovered_yearly
+
+
 def _calculate_money_recovered_weekly(percent_time_in_meetings):
     money_recovered_weekly = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
     money_recovered_weekly /= 100
@@ -198,6 +211,15 @@ def _calculate_money_recovered_weekly(percent_time_in_meetings):
     money_recovered_weekly *= PERSON_SECONDS_PER_WEEK
     money_recovered_weekly = Money(money_recovered_weekly, CURRENCY).format(CURRENCY_FORMAT)
     return money_recovered_weekly
+
+
+def _calculate_money_recovered_yearly(percent_time_in_meetings):
+    money_recovered_yearly = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+    money_recovered_yearly /= 100
+    money_recovered_yearly *= COST_PER_SECOND
+    money_recovered_yearly *= PERSON_SECONDS_PER_YEAR
+    money_recovered_yearly = Money(money_recovered_yearly, CURRENCY).format(CURRENCY_FORMAT)
+    return money_recovered_yearly
 
 
 def _get_avg_meeting_duration(num_meetings, seconds_in_meeting):
@@ -349,13 +371,15 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
     return (work_days, hours, minutes, seconds)
 
 
-def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money, avg_meeting_duration, percent_time_in_meetings):
+def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money, avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly):
     data = str(
-            {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings'.format(
+            {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
                 time_cost_weekly, financial_cost_weekly, time_cost_yearly,
                 financial_cost_yearly, avg_meeting_cost_time,
                 avg_meeting_cost_money, avg_meeting_duration,
-                percent_time_in_meetings),
+                percent_time_in_meetings, time_recovered_weekly,
+                money_recovered_weekly, time_recovered_yearly,
+                money_recovered_yearly),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
@@ -395,7 +419,7 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
 def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         financial_cost_yearly, avg_meeting_cost_time,
         avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings):
+        percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly):
     print("""
     +++++++++++
     + SUMMARY +
@@ -413,10 +437,15 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
     Average duration: {6}
 
     {7}% of Your Time is Spent in Meetings
+
+    Using I Heart Meetings could save you:
+    {9} and {8} per week
+    {11} and {10} per year
     """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         financial_cost_yearly, avg_meeting_cost_time,
         avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings))
+        percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly,
+        time_recovered_yearly, money_recovered_yearly))
 
 
 def _get_credentials():
