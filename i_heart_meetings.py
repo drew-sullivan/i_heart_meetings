@@ -117,7 +117,7 @@ def perform_i_heart_meetings_calculations ():
     avg_meeting_cost_money = _get_avg_meeting_financial_cost(num_meetings, financial_cost_total)
     avg_meeting_duration = _get_avg_meeting_duration(num_meetings, avg_meeting_duration)
     time_recovered_weekly = _calculate_time_recovered_weekly(percent_time_in_meetings)
-    money_recovered = _calculate_money_recovered(percent_time_in_meetings)
+    money_recovered_weekly = _calculate_money_recovered_weekly(percent_time_in_meetings)
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
@@ -191,16 +191,13 @@ def _calculate_time_recovered_weekly(percent_time_in_meetings):
     return time_recovered_weekly
 
 
-def _calculate_money_recovered(percent_time_in_meetings):
-    money_recovered = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
-    money_recovered /= 100
-    money_recovered *= COST_PER_SECOND
-    money_recovered *= PERSON_SECONDS_PER_WEEK
-    money_recovered = Money(money_recovered, CURRENCY).format(CURRENCY_FORMAT)
-    print("***************************************************")
-    print(money_recovered)
-    print("**************************************************")
-    return money_recovered
+def _calculate_money_recovered_weekly(percent_time_in_meetings):
+    money_recovered_weekly = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+    money_recovered_weekly /= 100
+    money_recovered_weekly *= COST_PER_SECOND
+    money_recovered_weekly *= PERSON_SECONDS_PER_WEEK
+    money_recovered_weekly = Money(money_recovered_weekly, CURRENCY).format(CURRENCY_FORMAT)
+    return money_recovered_weekly
 
 
 def _get_avg_meeting_duration(num_meetings, seconds_in_meeting):
