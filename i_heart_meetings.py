@@ -587,7 +587,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
     @app.route('/percent_pie')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
-            financial_cost_yearly,time_cost_yearly
+            financial_cost_yearly, time_cost_yearly
         )
         ideal_meeting_investment = 'Ideal Meeting Investment: {0} and {1}'.format(
             ideal_financial_cost_yearly, ideal_time_yearly
@@ -595,7 +595,8 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         potential_savings = 'Potential Savings: {0} and {1}'.format(
             money_recovered_yearly, time_recovered_yearly
         )
-
+        remainder = 100 - percent_time_in_meetings
+        recovered_percent = percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS
         legend = 'Percentage of Time Spent in Meetings'
         labels = [
             current_costs,
@@ -605,9 +606,9 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         ]
         values = [
             percent_time_in_meetings,
-            (100 - percent_time_in_meetings),
+            remainder,
             IDEAL_PERCENT_TIME_IN_MEETINGS,
-            (percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+            recovered_percent
         ]
         return render_template('pie.html', values=values, labels=labels, legend=legend)
 
