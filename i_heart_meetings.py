@@ -195,6 +195,8 @@ def _calculate_money_recovered(percent_time_in_meetings):
     money_recovered = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
     money_recovered /= 100
     money_recovered *= COST_PER_SECOND
+    money_recovered *= PERSON_SECONDS_PER_WEEK
+    money_recovered = Money(money_recovered, CURRENCY).format(CURRENCY_FORMAT)
     print("***************************************************")
     print(money_recovered)
     print("**************************************************")
