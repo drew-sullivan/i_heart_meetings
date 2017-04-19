@@ -125,20 +125,24 @@ def perform_i_heart_meetings_calculations ():
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
             avg_meeting_cost_money, avg_meeting_duration,
-            percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
+            percent_time_in_meetings, time_recovered_weekly,
+            money_recovered_weekly, time_recovered_yearly,
+            money_recovered_yearly)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
 #            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-#            avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly, time_recovered_yearly, money_recovered_yearly)
+#            avg_meeting_duration, percent_time_in_meetings,
+#            time_recovered_weekly, money_recovered_weekly,
+#            time_recovered_yearly, money_recovered_yearly)
     _generate_charts(list_of_meeting_numbers, list_of_meeting_durations,
             list_of_meeting_summaries, percent_time_in_meetings)
 
 
 def _calculate_cost_totals(meetings):
-    percent_time_weekly = 0
     time_cost_weekly_in_seconds = 0
     financial_cost_total = 0
+    percent_time_weekly = 0
     list_of_meeting_numbers = []
     list_of_meeting_durations = []
     list_of_meeting_summaries = []
@@ -147,12 +151,18 @@ def _calculate_cost_totals(meetings):
     if not meetings:
         print('No meetings found.')
     for meeting_number, meeting in enumerate(meetings, 1):
+
+        # For printing meeting info and adding info to database
+
         meeting_number = meeting_number
         summary = str(meeting['summary'])
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
+
+        # For returning
+
         seconds_in_meeting, hours_in_meeting = _convert_time_obj_to_seconds_and_hours(meeting_duration)
         financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
@@ -179,9 +189,10 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
+
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
-            list_of_meeting_numbers, list_of_meeting_durations,
-            list_of_meeting_summaries, num_meetings, avg_meeting_duration)
+        list_of_meeting_numbers, list_of_meeting_durations,
+        list_of_meeting_summaries, num_meetings, avg_meeting_duration)
 
 
 def _calculate_time_recovered_weekly(percent_time_in_meetings):
