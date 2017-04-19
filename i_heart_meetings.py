@@ -58,10 +58,12 @@ WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 IDEAL_PERCENT_TIME_IN_MEETINGS = 5
 IDEAL_PERCENT_TIME_IN_MEETINGS_DECIMAL = float(IDEAL_PERCENT_TIME_IN_MEETINGS / 100)
 
-YEARLY_SALARY_USD = 100000
+YEARLY_SALARY_USD = 75000
 COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
 CURRENCY = 'USD'
 CURRENCY_FORMAT = 'en_US'
+
+TEAM_SIZE = 10
 
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
@@ -112,6 +114,11 @@ def perform_i_heart_meetings_calculations ():
     avg_meeting_cost_time = _get_avg_meeting_time_cost(num_meetings, total_seconds_weekly)
     avg_meeting_cost_money = _get_avg_meeting_financial_cost(num_meetings, financial_cost_total)
     avg_meeting_duration = _get_avg_meeting_duration(num_meetings, avg_meeting_duration)
+    time_recovered = _calculate_time_recovered(percent_time_in_meetings, total_seconds_weekly)
+    money_recovered = _calculate_money_recovered(percent_time_in_meetings)
+
+    print(time_recovered)
+    print(money_recovered)
 
     _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
@@ -150,7 +157,7 @@ def _calculate_cost_totals(meetings):
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
         percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
-        percent_time_weekly += float(seconds_in_meeting / WORK_SECONDS_PER_WEEK)
+        percent_time_weekly += float((seconds_in_meeting * num_attendees) / (TEAM_SIZE * WORK_SECONDS_PER_WEEK))
         total_seconds_weekly += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
         list_of_meeting_numbers.append(meeting_number)
@@ -175,13 +182,21 @@ def _calculate_cost_totals(meetings):
             list_of_meeting_summaries, num_meetings, avg_meeting_duration)
 
 
-def _calculate_time_recovered(percent_time_weekly):
-    time_recovered = IDEAL_PERCENT_TIME_IN_MEETINGS_DECIMAL / percent_time_weekly
+def _calculate_time_recovered(percent_time_in_meetings, total_seconds_weekly):
+    time_recovered = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+    time_recovered /= 100
+    time_recovered *= total_seconds_weekly
+    days, hours, minutes, seconds = _translate_seconds(time_recovered)
+    days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
+    time_recovered = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
     return time_recovered
 
 
-def _calculate_money_recovered():
-
+def _calculate_money_recovered(percent_time_in_meetings):
+    money_recovered = float(percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS)
+    money_recovered /= 100
+    money_recovered *= COST_PER_SECOND
+    return money_recovered
 
 
 def _get_avg_meeting_duration(num_meetings, seconds_in_meeting):
