@@ -11,6 +11,7 @@ import sqlite3
 import textwrap
 import time
 import urllib2
+import webbrowser
 
 from apiclient import discovery
 from datetime import time
@@ -76,7 +77,7 @@ ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
 
 QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
-SLACK_HOOK = 'https://hooks.slack.com/services/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'
+SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
 DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/db_ihm.sqlite'
 
@@ -133,12 +134,12 @@ def perform_i_heart_meetings_calculations ():
             ideal_financial_cost_yearly)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-#            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-#            avg_meeting_duration, percent_time_in_meetings,
-#            time_recovered_weekly, money_recovered_weekly,
-#            time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
-#            ideal_financial_cost_yearly)
+    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
+            avg_meeting_duration, percent_time_in_meetings,
+            time_recovered_weekly, money_recovered_weekly,
+            time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
+            ideal_financial_cost_yearly)
     _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
             avg_meeting_cost_money, avg_meeting_duration,
@@ -146,7 +147,7 @@ def perform_i_heart_meetings_calculations ():
             money_recovered_weekly, time_recovered_yearly,
             money_recovered_yearly, ideal_time_yearly,
             ideal_financial_cost_yearly)
-
+    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
@@ -202,6 +203,9 @@ def _calculate_cost_totals(meetings):
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration)
 
+
+def _open_charts_in_browser():
+    webbrowser.open('http://localhost:5000/percent_pie')
 
 def _get_summary(meeting):
     summary = meeting.get('summary', 'No summary given')
@@ -621,7 +625,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             IDEAL_PERCENT_TIME_IN_MEETINGS,
             recovered_percent
         ]
-        return render_template('pie.html', values=values, labels=labels, legend=legend)
+        return render_template('percent_pie.html', values=values, labels=labels, legend=legend)
 
     @app.route('/doughnut_chart')
     def doughnut_chart():
