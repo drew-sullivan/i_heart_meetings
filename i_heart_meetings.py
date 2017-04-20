@@ -105,7 +105,7 @@ def perform_i_heart_meetings_calculations ():
 
     meetings = google_calendar_data.get('items', [])
 
-    # _print_entire_google_calendar_results_as_json(meetings)
+#    _print_entire_google_calendar_results_as_json(meetings)
 
     time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration = _calculate_cost_totals(meetings)
 
@@ -164,7 +164,7 @@ def _calculate_cost_totals(meetings):
         # For printing meeting info and adding info to database
 
         meeting_number = meeting_number
-        summary = str(meeting['summary'])
+        summary = _get_summary(meeting)
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
         meeting_duration = end - start
@@ -172,7 +172,7 @@ def _calculate_cost_totals(meetings):
 
         # For returning
 
-        seconds_in_meeting, hours_in_meeting = _convert_time_obj_to_seconds_and_hours(meeting_duration)
+        hours_in_meeting, seconds_in_meeting = _convert_time_obj_to_seconds_and_hours(meeting_duration)
         financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
@@ -198,10 +198,14 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
-
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration)
+
+
+def _get_summary(meeting):
+    summary = meeting.get('summary', 'No summary given')
+    return summary
 
 
 def _calculate_ideal_time_yearly():
@@ -317,7 +321,14 @@ def _get_num_attendees(num_attendees):
 def _convert_time_obj_to_seconds_and_hours(duration):
     seconds = duration.total_seconds()
     hours = float(seconds) / 3600
-    return seconds, hours
+    if hours > 8 and hours < 24:
+        hours = WORK_HOURS_PER_DAY
+    if hours >= 24:
+        days, hours = divmod(hours, 24)
+        if hours <= 8:
+            hours += days * WORK_HOURS_PER_DAY
+    seconds = hours * 3600
+    return hours, seconds
 
 
 def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
