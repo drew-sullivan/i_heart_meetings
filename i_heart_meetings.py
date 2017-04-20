@@ -147,7 +147,7 @@ def perform_i_heart_meetings_calculations ():
             money_recovered_weekly, time_recovered_yearly,
             money_recovered_yearly, ideal_time_yearly,
             ideal_financial_cost_yearly)
-    _open_charts_in_browser()
+#    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
