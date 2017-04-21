@@ -6,6 +6,7 @@ import dateutil # used to get meeting_duration by subtracting datetime objects
 import httplib2 # used to perform the get request to the Google API
 import json
 import os
+import pdb
 import requests
 import sqlite3
 import textwrap
@@ -90,6 +91,8 @@ JSON_FILE = 'meetings_ihm.json'
 
 ROUND_TO_THIS_MANY_PLACES = 2
 
+STOP = pdb.set_trace()
+
 app = Flask(__name__)
 
 
@@ -132,7 +135,6 @@ def perform_i_heart_meetings_calculations ():
         money_recovered_weekly, time_recovered_yearly,
         money_recovered_yearly, ideal_time_yearly,
         ideal_financial_cost_yearly)
-
     _print_summary(*all_the_variables)
 
 #    _write_db_to_csv()
