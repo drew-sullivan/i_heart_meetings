@@ -125,28 +125,20 @@ def perform_i_heart_meetings_calculations ():
     ideal_time_yearly = _calculate_ideal_time_yearly()
     ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
 
-    _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
+    all_the_variables = (time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             financial_cost_yearly, avg_meeting_cost_time,
             avg_meeting_cost_money, avg_meeting_duration,
             percent_time_in_meetings, time_recovered_weekly,
             money_recovered_weekly, time_recovered_yearly,
             money_recovered_yearly, ideal_time_yearly,
             ideal_financial_cost_yearly)
+
+    _print_summary(*all_the_variables)
+
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-            financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-            avg_meeting_duration, percent_time_in_meetings,
-            time_recovered_weekly, money_recovered_weekly,
-            time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
-            ideal_financial_cost_yearly)
-    _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-            financial_cost_yearly, avg_meeting_cost_time,
-            avg_meeting_cost_money, avg_meeting_duration,
-            percent_time_in_meetings, time_recovered_weekly,
-            money_recovered_weekly, time_recovered_yearly,
-            money_recovered_yearly, ideal_time_yearly,
-            ideal_financial_cost_yearly)
+    _post_to_slack(*all_the_variables)
+    _generate_charts(*all_the_variables)
 #    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
@@ -427,20 +419,10 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
     return (work_days, hours, minutes, seconds)
 
 
-def _post_to_slack(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-        financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-        avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly,
-        money_recovered_weekly, time_recovered_yearly, money_recovered_yearly,
-        ideal_time_yearly, ideal_financial_cost_yearly):
+def _post_to_slack(*all_the_variables):
     data = str(
         {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
-                time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-                financial_cost_yearly, avg_meeting_cost_time,
-                avg_meeting_cost_money, avg_meeting_duration,
-                percent_time_in_meetings, time_recovered_weekly,
-                money_recovered_weekly, time_recovered_yearly,
-                money_recovered_yearly, ideal_time_yearly,
-                ideal_financial_cost_yearly),
+                *all_the_variables),
             'attachments': [
                 {
                     'title': 'Please click here to take a 3-question poll about this meetings report',
@@ -477,12 +459,7 @@ def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
         seconds, percent_time_meeting_single))
 
 
-def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-        financial_cost_yearly, avg_meeting_cost_time,
-        avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly,
-        time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
-        ideal_financial_cost_yearly):
+def _print_summary(*all_the_variables):
     print("""
     +++++++++++
     + SUMMARY +
@@ -507,12 +484,7 @@ def _print_summary(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
     Using I Heart Meetings could save you:
     {9} and {8} per week
     {11} and {10} per year
-    """.format(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-        financial_cost_yearly, avg_meeting_cost_time,
-        avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings, time_recovered_weekly, money_recovered_weekly,
-        time_recovered_yearly, money_recovered_yearly, ideal_time_yearly,
-        ideal_financial_cost_yearly))
+    """.format(*all_the_variables))
 
 
 def _get_credentials():
@@ -546,10 +518,12 @@ def _get_credentials():
 
 
 def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-    financial_cost_yearly, avg_meeting_cost_time, avg_meeting_cost_money,
-    avg_meeting_duration, percent_time_in_meetings, time_recovered_weekly,
-    money_recovered_weekly, time_recovered_yearly, money_recovered_yearly,
-    ideal_time_yearly, ideal_financial_cost_yearly):
+            financial_cost_yearly, avg_meeting_cost_time,
+            avg_meeting_cost_money, avg_meeting_duration,
+            percent_time_in_meetings, time_recovered_weekly,
+            money_recovered_weekly, time_recovered_yearly,
+            money_recovered_yearly, ideal_time_yearly,
+            ideal_financial_cost_yearly):
 
     @app.route("/line_chart")
     def chart():
@@ -626,6 +600,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             recovered_percent
         ]
         return render_template('percent_pie.html', values=values, labels=labels, legend=legend)
+
 
     @app.route('/doughnut_chart')
     def doughnut_chart():
