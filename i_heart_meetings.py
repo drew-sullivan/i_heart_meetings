@@ -91,8 +91,6 @@ JSON_FILE = 'meetings_ihm.json'
 
 ROUND_TO_THIS_MANY_PLACES = 2
 
-STOP = pdb.set_trace()
-
 app = Flask(__name__)
 
 
@@ -141,7 +139,7 @@ def perform_i_heart_meetings_calculations ():
 #    _write_csv_to_json()
 #    _post_to_slack(*all_the_variables)
     _generate_charts(*all_the_variables)
-#    _open_charts_in_browser()
+    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
