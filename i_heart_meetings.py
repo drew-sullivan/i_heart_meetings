@@ -125,13 +125,13 @@ def perform_i_heart_meetings_calculations ():
     ideal_time_yearly = _calculate_ideal_time_yearly()
     ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
 
-    all_the_variables = (time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-            financial_cost_yearly, avg_meeting_cost_time,
-            avg_meeting_cost_money, avg_meeting_duration,
-            percent_time_in_meetings, time_recovered_weekly,
-            money_recovered_weekly, time_recovered_yearly,
-            money_recovered_yearly, ideal_time_yearly,
-            ideal_financial_cost_yearly)
+    all_the_variables = (time_cost_weekly, financial_cost_weekly,
+        time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
+        avg_meeting_cost_money, avg_meeting_duration,
+        percent_time_in_meetings, time_recovered_weekly,
+        money_recovered_weekly, time_recovered_yearly,
+        money_recovered_yearly, ideal_time_yearly,
+        ideal_financial_cost_yearly)
 
     _print_summary(*all_the_variables)
 
@@ -158,8 +158,13 @@ def _calculate_cost_totals(meetings):
 
         meeting_number = meeting_number
         summary = _get_summary(meeting)
+        start = meeting['start'].get('dateTime', meeting['start'].get('date'))
+        print(start)
+        print(type(start))
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
+        print(start)
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
+        print(end)
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
 
@@ -330,6 +335,7 @@ def _convert_time_obj_to_seconds_and_hours(duration):
 def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
     hours_in_meeting = seconds_in_meeting / 3600
     percent_time_in_meeting = (float(hours_in_meeting) / WORK_HOURS_PER_DAY) * 100
+    percent_time_in_meeting = round(percent_time_in_meeting, ROUND_TO_THIS_MANY_PLACES)
     return percent_time_in_meeting
 
 
