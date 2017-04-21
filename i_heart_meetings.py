@@ -137,7 +137,7 @@ def perform_i_heart_meetings_calculations ():
 
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    _post_to_slack(*all_the_variables)
+#    _post_to_slack(*all_the_variables)
     _generate_charts(*all_the_variables)
 #    _open_charts_in_browser()
 
