@@ -1,6 +1,7 @@
 #!/isr/bin/env python
 
 import csv
+import collections
 import datetime
 import dateutil # used to get meeting_duration by subtracting datetime objects
 import httplib2 # used to perform the get request to the Google API
@@ -109,7 +110,7 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration = _calculate_cost_totals(meetings)
+    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_weekly_in_seconds)
     time_cost_yearly = _get_time_cost_yearly(time_cost_weekly_in_seconds)
@@ -132,14 +133,14 @@ def perform_i_heart_meetings_calculations ():
         percent_time_in_meetings, time_recovered_weekly,
         money_recovered_weekly, time_recovered_yearly,
         money_recovered_yearly, ideal_time_yearly,
-        ideal_financial_cost_yearly)
-    _print_summary(*all_the_variables)
+        ideal_financial_cost_yearly, meeting_frequency)
 
+    _print_summary(*all_the_variables)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(*all_the_variables)
     _generate_charts(*all_the_variables)
-    _open_charts_in_browser()
+#    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
@@ -150,6 +151,7 @@ def _calculate_cost_totals(meetings):
     list_of_meeting_summaries = []
     num_meetings = 0
     avg_meeting_duration = 0
+    meeting_frequency = {}
     if not meetings:
         print('No meetings found.')
     for meeting_number, meeting in enumerate(meetings, 1):
@@ -158,13 +160,8 @@ def _calculate_cost_totals(meetings):
 
         meeting_number = meeting_number
         summary = _get_summary(meeting)
-        start = meeting['start'].get('dateTime', meeting['start'].get('date'))
-        print(start)
-        print(type(start))
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
-        print(start)
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
-        print(end)
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
 
@@ -185,6 +182,16 @@ def _calculate_cost_totals(meetings):
         num_meetings = meeting_number
         avg_meeting_duration += seconds_in_meeting
 
+        #calculate_meeting_frequency(start, end, meeting_frequency)
+        meeting_frequency_start = start
+        # pdb.set_trace()
+        while meeting_frequency_start < end:
+            if str(meeting_frequency_start) in meeting_frequency:
+                meeting_frequency[str(meeting_frequency_start)] += 1
+            else:
+                meeting_frequency[str(meeting_frequency_start)] = 1
+            meeting_frequency_start += datetime.timedelta(minutes=10)
+
         meeting_duration = str(meeting_duration)
 
         #_add_row_to_db(meeting_number, summary, start, end, meeting_duration,
@@ -196,13 +203,25 @@ def _calculate_cost_totals(meetings):
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
+    
+    meeting_frequency = _order_meeting_frequency(meeting_frequency)
+
+    print(len(list(meeting_frequency.values())))
+    print(len(list(meeting_frequency.keys())))
+    
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
-        list_of_meeting_summaries, num_meetings, avg_meeting_duration)
+        list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency)
+
+
+def _order_meeting_frequency(meeting_frequency):
+    sorted_meeting_frequency = collections.OrderedDict(sorted(meeting_frequency.items()))
+    return sorted_meeting_frequency
 
 
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_pie')
+
 
 def _get_summary(meeting):
     summary = meeting.get('summary', 'No summary given')
@@ -529,15 +548,15 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             percent_time_in_meetings, time_recovered_weekly,
             money_recovered_weekly, time_recovered_yearly,
             money_recovered_yearly, ideal_time_yearly,
-            ideal_financial_cost_yearly):
+            ideal_financial_cost_yearly, meeting_frequency):
 
     @app.route("/line_chart")
     def chart():
-        legend = list_of_meeting_numbers
+        legend = 'test'
         # X axis - list
-        labels = list_of_meeting_numbers
+        labels = list(meeting_frequency.keys())
         # Y axis - list
-        values = list_of_meeting_durations
+        values = list(meeting_frequency.values())
         return render_template('line.html', values=values, labels=labels, legend=legend)
 
     @app.route("/line_chart_2")
