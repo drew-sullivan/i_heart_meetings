@@ -182,9 +182,7 @@ def _calculate_cost_totals(meetings):
         num_meetings = meeting_number
         avg_meeting_duration += seconds_in_meeting
 
-        #calculate_meeting_frequency(start, end, meeting_frequency)
         meeting_frequency_start = start
-        # pdb.set_trace()
         while meeting_frequency_start < end:
             if str(meeting_frequency_start) in meeting_frequency:
                 meeting_frequency[str(meeting_frequency_start)] += 1
@@ -208,7 +206,7 @@ def _calculate_cost_totals(meetings):
                 days, hours, minutes, seconds, percent_time_meeting_single)
 
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
-    max_meeting_frequencies = _get_max_meeting_frequencies(meeting_frequency)
+    max_meeting_frequencies = _get_top_meeting_times(meeting_frequency)
 
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
@@ -216,26 +214,25 @@ def _calculate_cost_totals(meetings):
         meeting_frequency, max_meeting_frequencies)
 
 def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
-    if isinstance(dt_obj_or_str, datetime.datetime):
-        print('{} is a datetime.datetime obj'.format(dt_obj_or_str))
-    elif isinstance(dt_obj_or_str, basestring):
-        print('{} is a string'.format(dt_obj_or_str))
+    if isinstance(dt_obj_or_str, str):
         dt_obj_or_str = dt_obj_or_str[:19]
         dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, '%Y-%m-%d %H:%M:%S')
-    else:
-        print('Please input a datetime.datetime obj or a time string in the format: 2017-04-20 10:00:00-04:00')
     pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, '%A, %I:%M - %b %d, %Y')
     return pretty_printed_str
 
 
-def _get_max_meeting_frequencies(meeting_frequency):
-    max_meeting_list = []
-    max_meeting_values = max(meeting_frequency.values())
-    for key, value in meeting_frequency.iteritems():
-        if value == max_meeting_values:
-            key = _make_dt_or_time_str_pretty_for_printing(key)
-            max_meeting_list.append(key)
-    return max_meeting_list
+def _get_top_meeting_times(meeting_frequency):
+    top_meeting_times = []
+    num_meeting_times = len(meeting_frequency.values())
+    if num_meeting_times < 3:
+        unpretty_meeting_times = sorted(meeting_frequency, key=meeting_frequency.get, reverse=True)[:num_meeting_times]
+    else:
+        unpretty_meeting_times = sorted(meeting_frequency, key=meeting_frequency.get, reverse=True)[:3]
+    for meeting_time in unpretty_meeting_times:
+        meeting_time = _make_dt_or_time_str_pretty_for_printing(meeting_time)
+        top_meeting_times.append(meeting_time)
+    print(top_meeting_times)
+    return top_meeting_times
 
 def _sort_meeting_frequency(meeting_frequency):
     sorted_meeting_frequency = collections.OrderedDict(sorted(meeting_frequency.items()))
@@ -524,7 +521,8 @@ def _print_summary(*all_the_variables):
     Average financial cost: {5}
     Average duration: {6}
 
-    You meet most at: {15}
+    Top 3 Meeting Times:
+    {15},
 
     {7}% of Your Time is Spent in Meetings
 
