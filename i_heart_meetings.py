@@ -92,6 +92,8 @@ JSON_FILE = 'meetings_ihm.json'
 
 ROUND_TO_THIS_MANY_PLACES = 2
 
+NUM_TOP_MEETING_TIMES = 3
+
 app = Flask(__name__)
 
 
@@ -110,7 +112,7 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, max_meeting_frequencies = _calculate_cost_totals(meetings)
+    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_weekly_in_seconds)
     time_cost_yearly = _get_time_cost_yearly(time_cost_weekly_in_seconds)
@@ -134,7 +136,7 @@ def perform_i_heart_meetings_calculations ():
         money_recovered_weekly, time_recovered_yearly,
         money_recovered_yearly, ideal_time_yearly,
         ideal_financial_cost_yearly, meeting_frequency,
-        max_meeting_frequencies)
+        top_meeting_times)
 
     _print_summary(*all_the_variables)
 #    _write_db_to_csv()
@@ -206,32 +208,32 @@ def _calculate_cost_totals(meetings):
                 days, hours, minutes, seconds, percent_time_meeting_single)
 
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
-    max_meeting_frequencies = _get_top_meeting_times(meeting_frequency)
+    top_meeting_times = _get_top_meeting_times(meeting_frequency)
 
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
-        meeting_frequency, max_meeting_frequencies)
+        meeting_frequency, top_meeting_times)
+
 
 def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
     if isinstance(dt_obj_or_str, str):
         dt_obj_or_str = dt_obj_or_str[:19]
         dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, '%Y-%m-%d %H:%M:%S')
-    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, '%A, %I:%M - %b %d, %Y')
+    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, '%A, %b %d, %Y - %I:%M')
     return pretty_printed_str
 
 
 def _get_top_meeting_times(meeting_frequency):
     top_meeting_times = []
     num_meeting_times = len(meeting_frequency.values())
-    if num_meeting_times < 3:
+    if num_meeting_times < NUM_TOP_MEETING_TIMES:
         unpretty_meeting_times = sorted(meeting_frequency, key=meeting_frequency.get, reverse=True)[:num_meeting_times]
     else:
-        unpretty_meeting_times = sorted(meeting_frequency, key=meeting_frequency.get, reverse=True)[:3]
+        unpretty_meeting_times = sorted(meeting_frequency, key=meeting_frequency.get, reverse=True)[:NUM_TOP_MEETING_TIMES]
     for meeting_time in unpretty_meeting_times:
         meeting_time = _make_dt_or_time_str_pretty_for_printing(meeting_time)
         top_meeting_times.append(meeting_time)
-    print(top_meeting_times)
     return top_meeting_times
 
 def _sort_meeting_frequency(meeting_frequency):
