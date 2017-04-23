@@ -91,6 +91,8 @@ CSV_FILE = 'meetings_ihm.csv'
 JSON_FILE = 'meetings_ihm.json'
 
 ROUND_TO_THIS_MANY_PLACES = 2
+FORMAT_DATETIME_OBJ_TO_STR = '%Y-%m-%d %H:%M:%S'
+FORMAT_STR_TO_DATETIME_OBJ = '%A, %b %d, %Y - %I:%M'
 
 NUM_TOP_MEETING_TIMES = 3
 
@@ -142,7 +144,7 @@ def perform_i_heart_meetings_calculations ():
     _print_summary(*all_the_variables)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _post_to_slack(*all_the_variables)
+    _post_to_slack(*all_the_variables)
     _generate_charts(*all_the_variables)
 #    _open_charts_in_browser()
 
@@ -210,11 +212,13 @@ def _calculate_cost_totals(meetings):
 
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
     top_meeting_times = _get_top_meeting_times(meeting_frequency)
-
+    #meeting_frequency = _make_dict_keys_pretty_for_printing(meeting_frequency)
+    
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
         meeting_frequency, top_meeting_times)
+
 
 def  _get_top_three_meeting_times(top_meeting_times):
     top_meeting_times_length = len(top_meeting_times)
@@ -234,11 +238,12 @@ def  _get_top_three_meeting_times(top_meeting_times):
         top_meeting_time_3 = top_meeting_times[2]
     return top_meeting_time_1, top_meeting_time_2, top_meeting_time_3
 
+
 def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
     if isinstance(dt_obj_or_str, str):
         dt_obj_or_str = dt_obj_or_str[:19]
-        dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, '%Y-%m-%d %H:%M:%S')
-    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, '%A, %b %d, %Y - %I:%M')
+        dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, FORMAT_DATETIME_OBJ_TO_STR)
+    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, FORMAT_STR_TO_DATETIME_OBJ)
     return pretty_printed_str
 
 
@@ -253,6 +258,7 @@ def _get_top_meeting_times(meeting_frequency):
         meeting_time = _make_dt_or_time_str_pretty_for_printing(meeting_time)
         top_meeting_times.append(meeting_time)
     return top_meeting_times
+
 
 def _sort_meeting_frequency(meeting_frequency):
     sorted_meeting_frequency = collections.OrderedDict(sorted(meeting_frequency.items()))
@@ -486,7 +492,7 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
 
 def _post_to_slack(*all_the_variables):
     data = str(
-        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\nYou Meet Most at: {15}\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
+        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Top Three Meeting Times:\n{15}\n{16}\n{17}\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
                 *all_the_variables),
             'attachments': [
                 {
