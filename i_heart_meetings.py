@@ -128,6 +128,7 @@ def perform_i_heart_meetings_calculations ():
     money_recovered_yearly = _calculate_money_recovered_yearly(percent_time_in_meetings)
     ideal_time_yearly = _calculate_ideal_time_yearly()
     ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
+    top_meeting_time_1, top_meeting_time_2, top_meeting_time_3 = _get_top_three_meeting_times(top_meeting_times)
 
     all_the_variables = (time_cost_weekly, financial_cost_weekly,
         time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
@@ -136,7 +137,7 @@ def perform_i_heart_meetings_calculations ():
         money_recovered_weekly, time_recovered_yearly,
         money_recovered_yearly, ideal_time_yearly,
         ideal_financial_cost_yearly, meeting_frequency,
-        top_meeting_times)
+        top_meeting_time_1, top_meeting_time_2, top_meeting_time_3)
 
     _print_summary(*all_the_variables)
 #    _write_db_to_csv()
@@ -215,6 +216,23 @@ def _calculate_cost_totals(meetings):
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
         meeting_frequency, top_meeting_times)
 
+def  _get_top_three_meeting_times(top_meeting_times):
+    top_meeting_times_length = len(top_meeting_times)
+    if not top_meeting_times:
+        return "Calendar empty","Calendar empty","Calendar empty"
+    elif top_meeting_times_length == 1:
+        top_meeting_time_1 = top_meeting_times[0]
+        top_meeting_time_2 = "Calendar empty"
+        top_meeting_time_3 = "Calendar empty"
+    elif top_meeting_times_length == 2:
+        top_meeting_time_1 = top_meeting_times[0]
+        top_meeting_time_2 = top_meeting_times[1]
+        top_meeting_time_3 = "Calendar empty"
+    else:
+        top_meeting_time_1 = top_meeting_times[0]
+        top_meeting_time_2 = top_meeting_times[1]
+        top_meeting_time_3 = top_meeting_times[2]
+    return top_meeting_time_1, top_meeting_time_2, top_meeting_time_3
 
 def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
     if isinstance(dt_obj_or_str, str):
@@ -525,6 +543,8 @@ def _print_summary(*all_the_variables):
 
     Top 3 Meeting Times:
     {15},
+    {16},
+    {17}
 
     {7}% of Your Time is Spent in Meetings
 
@@ -567,13 +587,14 @@ def _get_credentials():
     return credentials
 
 
-def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
-            financial_cost_yearly, avg_meeting_cost_time,
-            avg_meeting_cost_money, avg_meeting_duration,
-            percent_time_in_meetings, time_recovered_weekly,
-            money_recovered_weekly, time_recovered_yearly,
-            money_recovered_yearly, ideal_time_yearly,
-            ideal_financial_cost_yearly, meeting_frequency, max_meeting_frequencies):
+def _generate_charts(time_cost_weekly, financial_cost_weekly,
+        time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
+        avg_meeting_cost_money, avg_meeting_duration,
+        percent_time_in_meetings, time_recovered_weekly,
+        money_recovered_weekly, time_recovered_yearly,
+        money_recovered_yearly, ideal_time_yearly,
+        ideal_financial_cost_yearly, meeting_frequency,
+        top_meeting_time_1, top_meeting_time_2, top_meeting_time_3):
 
     @app.route("/line_chart")
     def chart():
