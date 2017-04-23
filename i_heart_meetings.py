@@ -110,7 +110,7 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency = _calculate_cost_totals(meetings)
+    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, max_meeting_frequencies = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_weekly_in_seconds)
     time_cost_yearly = _get_time_cost_yearly(time_cost_weekly_in_seconds)
@@ -133,7 +133,8 @@ def perform_i_heart_meetings_calculations ():
         percent_time_in_meetings, time_recovered_weekly,
         money_recovered_weekly, time_recovered_yearly,
         money_recovered_yearly, ideal_time_yearly,
-        ideal_financial_cost_yearly, meeting_frequency)
+        ideal_financial_cost_yearly, meeting_frequency,
+        max_meeting_frequencies)
 
     _print_summary(*all_the_variables)
 #    _write_db_to_csv()
@@ -164,7 +165,6 @@ def _calculate_cost_totals(meetings):
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
-
         # For returning
 
         hours_in_meeting, seconds_in_meeting = _convert_time_obj_to_seconds_and_hours(meeting_duration)
@@ -190,7 +190,7 @@ def _calculate_cost_totals(meetings):
                 meeting_frequency[str(meeting_frequency_start)] += 1
             else:
                 meeting_frequency[str(meeting_frequency_start)] = 1
-            meeting_frequency_start += datetime.timedelta(minutes=10)
+            meeting_frequency_start += datetime.timedelta(minutes=30)
 
         meeting_duration = str(meeting_duration)
 
@@ -200,21 +200,44 @@ def _calculate_cost_totals(meetings):
 
         days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
 
+        start = _make_dt_or_time_str_pretty_for_printing(start)
+        end = _make_dt_or_time_str_pretty_for_printing(end)
+
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
                 days, hours, minutes, seconds, percent_time_meeting_single)
-    
-    meeting_frequency = _order_meeting_frequency(meeting_frequency)
 
-    print(len(list(meeting_frequency.values())))
-    print(len(list(meeting_frequency.keys())))
-    
+    meeting_frequency = _sort_meeting_frequency(meeting_frequency)
+    max_meeting_frequencies = _get_max_meeting_frequencies(meeting_frequency)
+
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
-        list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency)
+        list_of_meeting_summaries, num_meetings, avg_meeting_duration,
+        meeting_frequency, max_meeting_frequencies)
+
+def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
+    if isinstance(dt_obj_or_str, datetime.datetime):
+        print('{} is a datetime.datetime obj'.format(dt_obj_or_str))
+    elif isinstance(dt_obj_or_str, basestring):
+        print('{} is a string'.format(dt_obj_or_str))
+        dt_obj_or_str = dt_obj_or_str[:19]
+        dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, '%Y-%m-%d %H:%M:%S')
+    else:
+        print('Please input a datetime.datetime obj or a time string in the format: 2017-04-20 10:00:00-04:00')
+    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, '%A, %I:%M - %b %d, %Y')
+    return pretty_printed_str
 
 
-def _order_meeting_frequency(meeting_frequency):
+def _get_max_meeting_frequencies(meeting_frequency):
+    max_meeting_list = []
+    max_meeting_values = max(meeting_frequency.values())
+    for key, value in meeting_frequency.iteritems():
+        if value == max_meeting_values:
+            key = _make_dt_or_time_str_pretty_for_printing(key)
+            max_meeting_list.append(key)
+    return max_meeting_list
+
+def _sort_meeting_frequency(meeting_frequency):
     sorted_meeting_frequency = collections.OrderedDict(sorted(meeting_frequency.items()))
     return sorted_meeting_frequency
 
@@ -446,7 +469,7 @@ def _make_pretty_for_printing(days, hours, minutes, seconds):
 
 def _post_to_slack(*all_the_variables):
     data = str(
-        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
+        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\nYou Meet Most at: {15}\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
                 *all_the_variables),
             'attachments': [
                 {
@@ -501,6 +524,8 @@ def _print_summary(*all_the_variables):
     Average financial cost: {5}
     Average duration: {6}
 
+    You meet most at: {15}
+
     {7}% of Your Time is Spent in Meetings
 
     Your ideal yearly costs:
@@ -548,7 +573,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
             percent_time_in_meetings, time_recovered_weekly,
             money_recovered_weekly, time_recovered_yearly,
             money_recovered_yearly, ideal_time_yearly,
-            ideal_financial_cost_yearly, meeting_frequency):
+            ideal_financial_cost_yearly, meeting_frequency, max_meeting_frequencies):
 
     @app.route("/line_chart")
     def chart():
@@ -557,7 +582,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         labels = list(meeting_frequency.keys())
         # Y axis - list
         values = list(meeting_frequency.values())
-        return render_template('line.html', values=values, labels=labels, legend=legend)
+        return render_template('line_2.html', values=values, labels=labels, legend=legend)
 
     @app.route("/line_chart_2")
     def chart_2():
@@ -566,7 +591,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly, time_cost_yearly,
         labels = list_of_meeting_summaries
         # Y axis - list
         values = list_of_meeting_durations
-        return render_template('line_2.html', values=values, labels=labels, legend=legend)
+        return render_template('line.html', values=values, labels=labels, legend=legend)
 
     @app.route("/bar_chart")
     def bar_chart():

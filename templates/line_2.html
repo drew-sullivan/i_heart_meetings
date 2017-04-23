@@ -31,6 +31,23 @@
                         ] 
                     }
                 ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            stacked: false
+                        }
+                    ],   
+                    xAxes: [
+                        {
+                            ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: 20
+                            }
+                        }
+                    ]
+                }
             }
         });
     </script>
