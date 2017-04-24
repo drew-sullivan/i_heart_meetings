@@ -190,8 +190,6 @@ def _calculate_cost_totals(meetings):
         meeting_frequency_start = start
         while meeting_frequency_start < end:
             start_str = str(meeting_frequency_start)
-            print(start_str)
-        #    start_str = _make_dt_or_time_str_pretty_for_printing(start_str)
             if start_str in meeting_frequency:
                 meeting_frequency[start_str] += 1
             else:
@@ -221,6 +219,9 @@ def _calculate_cost_totals(meetings):
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
         meeting_frequency, top_meeting_times)
+def _make_dict_pretty_printable(meeting_frequency):
+
+
 
 
 def  _get_top_three_meeting_times(top_meeting_times):
