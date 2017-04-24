@@ -268,8 +268,8 @@ def _sort_meeting_frequency(meeting_frequency):
 
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_pie')
-    webbrowser.open('http://localhost:5000/line_chart')
-    
+    webbrowser.open('http://localhost:5000/meeting_frequency_line')
+
 
 def _get_summary(meeting):
     summary = meeting.get('summary', 'No summary given')
@@ -614,7 +614,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
         top_meeting_time_1, top_meeting_time_2, top_meeting_time_3):
 
 
-    @app.route("/line_chart")
+    @app.route("/meeting_frequency_line")
     def chart():
         legend = 'test'
         # X axis - list
@@ -622,7 +622,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
         labels = pretty_keys
         # Y axis - list
         values = list(meeting_frequency.values())
-        return render_template('line_2.html', values=values, labels=labels, legend=legend)
+        return render_template('meeting_frequency_line.html', values=values, labels=labels, legend=legend)
 
     @app.route("/line_chart_2")
     def chart_2():
