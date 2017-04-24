@@ -214,17 +214,19 @@ def _calculate_cost_totals(meetings):
 
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
     top_meeting_times = _get_top_meeting_times(meeting_frequency)
-    
+
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
         meeting_frequency, top_meeting_times)
-def _make_dict_pretty_printable(meeting_frequency):
+
+
+#def _make_dict_pretty_printable(meeting_frequency):
+    
 
 
 
-
-def  _get_top_three_meeting_times(top_meeting_times):
+def _get_top_three_meeting_times(top_meeting_times):
     top_meeting_times_length = len(top_meeting_times)
     if not top_meeting_times:
         return "Calendar empty","Calendar empty","Calendar empty"
@@ -598,6 +600,9 @@ def _get_credentials():
     return credentials
 
 
+def _
+
+
 def _generate_charts(time_cost_weekly, financial_cost_weekly,
         time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
         avg_meeting_cost_money, avg_meeting_duration,
@@ -609,9 +614,14 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
 
     @app.route("/line_chart")
     def chart():
+        dates = list(meeting_frequency.keys())
+        pretty_dates = []
+        for date in dates:
+            date = _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str)
+            pretty_dates.append(date)
         legend = 'test'
         # X axis - list
-        labels = list(meeting_frequency.keys())
+        labels = pretty_dates
         # Y axis - list
         values = list(meeting_frequency.values())
         return render_template('line_2.html', values=values, labels=labels, legend=legend)
