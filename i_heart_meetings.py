@@ -267,8 +267,8 @@ def _sort_meeting_frequency(meeting_frequency):
 
 
 def _open_charts_in_browser():
-    webbrowser.open('http://localhost:5000/percent_pie')
-    webbrowser.open('http://localhost:5000/meeting_frequency_line')
+    webbrowser.open('http://localhost:5000/percent_time_in_meetings')
+    webbrowser.open('http://localhost:5000/when_you_meet_most')
 
 
 def _get_summary(meeting):
@@ -614,7 +614,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
         top_meeting_time_1, top_meeting_time_2, top_meeting_time_3):
 
 
-    @app.route("/meeting_frequency_line")
+    @app.route("/when_you_meet_most")
     def chart():
         legend = 'test'
         # X axis - list
@@ -622,7 +622,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
         labels = pretty_keys
         # Y axis - list
         values = list(meeting_frequency.values())
-        return render_template('meeting_frequency_line.html', values=values, labels=labels, legend=legend)
+        return render_template('when_you_meet_most_line.html', values=values, labels=labels, legend=legend)
 
     @app.route("/line_chart_2")
     def chart_2():
@@ -663,7 +663,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
         values = list_of_meeting_durations
         return render_template('pie.html', values=values, labels=labels, legend=legend)
 
-    @app.route('/percent_pie')
+    @app.route('/percent_time_in_meetings')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
             financial_cost_yearly, time_cost_yearly
@@ -689,7 +689,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
             IDEAL_PERCENT_TIME_IN_MEETINGS,
             recovered_percent
         ]
-        return render_template('percent_pie.html', values=values, labels=labels, legend=legend)
+        return render_template('percent_time_in_meetings_pie.html', values=values, labels=labels, legend=legend)
 
 
     @app.route('/doughnut_chart')
