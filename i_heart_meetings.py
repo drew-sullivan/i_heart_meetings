@@ -19,8 +19,6 @@ from apiclient import discovery
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
-from flask import Flask
-from flask import render_template
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
@@ -96,7 +94,11 @@ FORMAT_STR_TO_DATETIME_OBJ = '%A, %b %d, %Y - %I:%M'
 
 NUM_TOP_MEETING_TIMES = 3
 
-app = Flask(__name__)
+# for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
+
+#from flask import Flask
+#from flask import render_template
+#app = Flask(__name__)
 
 
 def perform_i_heart_meetings_calculations ():
@@ -145,8 +147,8 @@ def perform_i_heart_meetings_calculations ():
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(*all_the_variables)
-    _generate_charts(*all_the_variables)
-    _open_charts_in_browser()
+#    _generate_charts(*all_the_variables)
+#    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
@@ -707,4 +709,4 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
-    app.run(debug=False)
+#    app.run(debug=False)
