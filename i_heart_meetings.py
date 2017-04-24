@@ -144,7 +144,7 @@ def perform_i_heart_meetings_calculations ():
     _print_summary(*all_the_variables)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    _post_to_slack(*all_the_variables)
+#    _post_to_slack(*all_the_variables)
     _generate_charts(*all_the_variables)
 #    _open_charts_in_browser()
 
@@ -189,11 +189,15 @@ def _calculate_cost_totals(meetings):
 
         meeting_frequency_start = start
         while meeting_frequency_start < end:
-            if str(meeting_frequency_start) in meeting_frequency:
-                meeting_frequency[str(meeting_frequency_start)] += 1
+            start_str = str(meeting_frequency_start)
+            print(start_str)
+        #    start_str = _make_dt_or_time_str_pretty_for_printing(start_str)
+            if start_str in meeting_frequency:
+                meeting_frequency[start_str] += 1
             else:
-                meeting_frequency[str(meeting_frequency_start)] = 1
+                meeting_frequency[start_str] = 1
             meeting_frequency_start += datetime.timedelta(minutes=30)
+        print(meeting_frequency)
 
         meeting_duration = str(meeting_duration)
 
@@ -203,8 +207,8 @@ def _calculate_cost_totals(meetings):
 
         days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
 
-        start = _make_dt_or_time_str_pretty_for_printing(start)
-        end = _make_dt_or_time_str_pretty_for_printing(end)
+        #start = _make_dt_or_time_str_pretty_for_printing(start)
+        #end = _make_dt_or_time_str_pretty_for_printing(end)
 
         _print_meeting_info(meeting_number, summary, start, end,
                 meeting_duration, num_attendees, financial_cost_single_meeting,
@@ -239,12 +243,15 @@ def  _get_top_three_meeting_times(top_meeting_times):
     return top_meeting_time_1, top_meeting_time_2, top_meeting_time_3
 
 
-def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
-    if isinstance(dt_obj_or_str, str):
-        dt_obj_or_str = dt_obj_or_str[:19]
-        dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, FORMAT_DATETIME_OBJ_TO_STR)
-    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, FORMAT_STR_TO_DATETIME_OBJ)
-    return pretty_printed_str
+#def _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str):
+#    #pdb.set_trace()
+#    print(dt_obj_or_str)
+#    if isinstance(dt_obj_or_str, str):
+#        if dt_obj_or_str[-6] == '-':
+#            dt_obj_or_str = dt_obj_or_str[:19]
+#        dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, FORMAT_DATETIME_OBJ_TO_STR)
+#    pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, FORMAT_STR_TO_DATETIME_OBJ)
+#    return pretty_printed_str
 
 
 def _get_top_meeting_times(meeting_frequency):
@@ -255,7 +262,7 @@ def _get_top_meeting_times(meeting_frequency):
     else:
         unpretty_meeting_times = sorted(meeting_frequency, key=meeting_frequency.get, reverse=True)[:NUM_TOP_MEETING_TIMES]
     for meeting_time in unpretty_meeting_times:
-        meeting_time = _make_dt_or_time_str_pretty_for_printing(meeting_time)
+        #meeting_time = _make_dt_or_time_str_pretty_for_printing(meeting_time)
         top_meeting_times.append(meeting_time)
     return top_meeting_times
 
