@@ -1,0 +1,56 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Chart.js Example</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js'></script>
+</head>
+
+<body>
+    <h1>Bar Chart</h1>
+    <canvas id="myChart" width="600" height="400"></canvas>
+    <p id="caption">caption here</p>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels : [{% for item in labels %}
+                        "{{item}}",
+                       {% endfor %}],
+                datasets: [
+                    {
+                        label: [
+                            '{{legend}}'
+                        ],
+                        data: [
+                            {% for value in values %}
+                                {{value}},
+                            {% endfor %}
+                        ],
+                        backgroundColor: [
+                            "#2ecc71","#3498db","#95a5a6","#6dc066","#daa520",
+                            "#9b59b6","#f1c40f","#e74c3c","#34495e","#008080",
+                            "#ffc0cb","#d3ffce","#ff7373","#ffa500","#e6e6fa",
+                            "#003366","#20b2aa","#c6e2ff","#008000"
+                        ] 
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            stacked: false
+                        }
+                    ],   
+                    xAxes: [
+                        {
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+</body>

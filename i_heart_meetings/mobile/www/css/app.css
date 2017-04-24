@@ -1,0 +1,37 @@
+.amounts {
+    text-align: center;
+}
+.amounts label {
+    display: inline-block;
+    min-width: 150px;
+}
+
+.totals {
+    color: #080;
+}
+
+h1, .dollar-sign {
+	font-size: 60px;
+	display: inline-block;
+}
+
+span {
+	font-size: 60px;
+}
+
+.btn {
+	color: red;
+	background-color: red;
+}
+
+
+
+
+@media (min-width: 600px) {
+	h1, .dollar-sign {
+		font-size: 120px;
+		display: inline-block;
+		margin: 0;
+	}
+}
+

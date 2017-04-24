@@ -1,0 +1,45 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Chart.js Example</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js'></script>
+</head>
+
+<body>
+    <h1>Time Spent in Meetings</h1>
+    <canvas id="myChart1" width="600" height="400"></canvas>
+    <canvas id="myChart2" width="600" height="400"></canvas>
+    <script>
+        // do not resize the chart canvas when its container does (keep at
+        // 600x400px)
+        Chart.defaults.global.responsive = false;
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels : [{% for item in labels %}
+                        "{{item}}",
+                       {% endfor %}],
+                datasets: [
+                    {
+                        label: [
+                            {% for label in labels %}
+                                "{{label}}",
+                            {% endfor %}
+                        ],
+                        data: [
+                            {% for value in values %}
+                                {{value}},
+                            {% endfor %}
+                        ],
+                        backgroundColor: [
+                            "#ff0000","#3498db","#2ecc71","#ffff00","#daa520",
+                            "#9b59b6","#f1c40f","#e74c3c","#34495e","#008080",
+                            "#ffc0cb","#d3ffce","#ff7373","#ffa500","#e6e6fa",
+                            "#2ecc71","#20b2aa","#c6e2ff","#008000"
+                        ] 
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
