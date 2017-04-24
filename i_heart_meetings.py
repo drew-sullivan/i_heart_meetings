@@ -146,7 +146,7 @@ def perform_i_heart_meetings_calculations ():
 #    _write_csv_to_json()
 #    _post_to_slack(*all_the_variables)
     _generate_charts(*all_the_variables)
-#    _open_charts_in_browser()
+    _open_charts_in_browser()
 
 def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
@@ -195,7 +195,6 @@ def _calculate_cost_totals(meetings):
             else:
                 meeting_frequency[start_str] = 1
             meeting_frequency_start += datetime.timedelta(minutes=30)
-        print(meeting_frequency)
 
         meeting_duration = str(meeting_duration)
 
@@ -219,11 +218,6 @@ def _calculate_cost_totals(meetings):
         list_of_meeting_numbers, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
         meeting_frequency, top_meeting_times)
-
-
-#def _make_dict_pretty_printable(meeting_frequency):
-    
-
 
 
 def _get_top_three_meeting_times(top_meeting_times):
@@ -274,7 +268,8 @@ def _sort_meeting_frequency(meeting_frequency):
 
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_pie')
-
+    webbrowser.open('http://localhost:5000/line_chart')
+    
 
 def _get_summary(meeting):
     summary = meeting.get('summary', 'No summary given')
@@ -600,7 +595,13 @@ def _get_credentials():
     return credentials
 
 
-def _
+def _make_keys_pretty(meeting_frequency):
+    dates = list(meeting_frequency.keys())
+    pretty_dates = []
+    for date in dates:
+        date = _make_dt_or_time_str_pretty_for_printing(date)
+        pretty_dates.append(date)
+    return pretty_dates
 
 
 def _generate_charts(time_cost_weekly, financial_cost_weekly,
@@ -612,16 +613,13 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
         ideal_financial_cost_yearly, meeting_frequency,
         top_meeting_time_1, top_meeting_time_2, top_meeting_time_3):
 
+
     @app.route("/line_chart")
     def chart():
-        dates = list(meeting_frequency.keys())
-        pretty_dates = []
-        for date in dates:
-            date = _make_dt_or_time_str_pretty_for_printing(dt_obj_or_str)
-            pretty_dates.append(date)
         legend = 'test'
         # X axis - list
-        labels = pretty_dates
+        pretty_keys = _make_keys_pretty(meeting_frequency)
+        labels = pretty_keys
         # Y axis - list
         values = list(meeting_frequency.values())
         return render_template('line_2.html', values=values, labels=labels, legend=legend)
