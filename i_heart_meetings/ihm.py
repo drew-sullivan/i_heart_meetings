@@ -8,7 +8,7 @@ app.config.from_object(__name__)
 
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'ihm.db'),
-    SECRET_KEY='dev key',
+    SECRET_KEY='W2zV9VyDkc%(X%uZc?x.T;7EA8D9xdmeW3LzAGeWgxt2h2bji6;^DmU(&6KkYaYX',
     USERNAME='admin',
     PASSWORD='default'
 ))
