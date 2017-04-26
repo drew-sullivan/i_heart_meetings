@@ -19,7 +19,7 @@ from apiclient import discovery
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
-from Meeting import Meeting
+from model.meeting import Meeting
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
