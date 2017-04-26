@@ -19,7 +19,7 @@ from apiclient import discovery
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
-from Meeting import *
+from Meeting import Meeting
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
@@ -225,6 +225,7 @@ def _calculate_cost_totals(meetings):
 
     for meeting in meeting_list:
         print(meeting.summary)
+        meeting.print_types()
 
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
         list_of_meeting_numbers, list_of_meeting_durations,
