@@ -21,7 +21,7 @@ class Meeting:
     def __init__(self, meeting_num, summary, start, end, duration,
                  num_attendees, financial_cost, days, hours, minutes, seconds,
                  percent_time):
-        self.meeting_num = meeting_num
+        self._meeting_num = meeting_num
         self.summary = summary
         self.start = start
         self.end = end
@@ -34,6 +34,59 @@ class Meeting:
         self.seconds = seconds
         self.percent_time = percent_time
 
+
+    @property
+    def meeting_num(self):
+        return self._meeting_num
+
+    @meeting_num.setter
+    def meeting_num(self, meeting_num):
+        self._meeting_num = meeting_num
+
+
+    @property
+    def summary(self):
+        return self._summary
+
+    @summary.setter
+    def summary(self, summary):
+        self._summary = summary
+
+
+    @property
+    def start(self):
+        return self._start
+
+    @start.setter
+    def start(self, start):
+        self._start = start
+
+
+    @property
+    def end(self):
+        return self._end
+
+    @end.setter
+    def end(self, end):
+        self._end = end
+
+
+    @property
+    def duration(self):
+        return self._duration
+
+    @duration.setter
+    def duration(self, duration):
+        self._duration = duration
+
+
+    @property
+    def num_attendees(self):
+        return self._num_attendees
+
+    @num_attendees.setter
+    def num_attendees(self, num_attendees):
+        self._num_attendees = num_attendees
 
     def print_details(self):
         print("""
@@ -71,3 +124,6 @@ class Meeting:
                    type(self.num_attendees), type(self.financial_cost),
                    type(self.days), type(self.hours), type(self.minutes),
                    type(self.seconds), type(self.percent_time)))
+
+
+
