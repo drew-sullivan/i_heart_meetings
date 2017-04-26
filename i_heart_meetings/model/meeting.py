@@ -22,17 +22,17 @@ class Meeting:
                  num_attendees, financial_cost, days, hours, minutes, seconds,
                  percent_time):
         self._meeting_num = meeting_num
-        self.summary = summary
-        self.start = start
-        self.end = end
-        self.duration = duration
-        self.num_attendees = num_attendees
-        self.financial_cost = financial_cost
-        self.days = days
-        self.hours = hours
-        self.minutes = minutes
-        self.seconds = seconds
-        self.percent_time = percent_time
+        self._summary = summary
+        self._start = start
+        self._end = end
+        self._duration = duration
+        self._num_attendees = num_attendees
+        self._financial_cost = financial_cost
+        self._days = days
+        self._hours = hours
+        self._minutes = minutes
+        self._seconds = seconds
+        self._percent_time = percent_time
 
 
     @property
@@ -87,6 +87,55 @@ class Meeting:
     @num_attendees.setter
     def num_attendees(self, num_attendees):
         self._num_attendees = num_attendees
+        
+
+    @property
+    def financial_cost(self):
+        return self._financial_cost
+
+    @financial_cost.setter(self, financial_cost)
+        self._financial_cost = financial_cost
+
+
+    @property
+    def days(self):
+        return self._days
+
+    @days.setter(self, days)
+        self._days = days
+
+
+    @property
+    def hours(self):
+        return self._hours
+
+    @hours.setter(self, hours)
+        self._hours = hours
+
+
+    @property
+    def minutes(self):
+        return self._minutes
+
+    @minutes.setter(self, minutes)
+        self._minutes = minutes
+
+
+    @property
+    def seconds(self):
+        return self._seconds
+
+    @seconds.setter(self, seconds):
+        self._seconds = seconds
+
+
+    @property
+    def percent_time(self):
+        return self._percent_time
+
+    @percent_time.setter(self, percent_time):
+        self._percent_time = percent_time
+
 
     def print_details(self):
         print("""
