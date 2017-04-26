@@ -1,4 +1,4 @@
-#!/usr/bin/python
+!/usr/bin/python
 
 class Meeting:
     """A meeting extracted from the Google Calendar API
@@ -87,7 +87,7 @@ class Meeting:
     @num_attendees.setter
     def num_attendees(self, num_attendees):
         self._num_attendees = num_attendees
-        
+ 
 
     @property
     def financial_cost(self):
@@ -154,7 +154,7 @@ class Meeting:
                    self.percent_time))
 
 
-    def print_types(self):
+    def print_attribute_types(self):
         print("""
         Meeting-num: {0}
         Summary: {1}
