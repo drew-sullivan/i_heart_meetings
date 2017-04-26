@@ -12,19 +12,19 @@ class Meeting:
         self.start = start
         self.end = end
         self.duration = duration
-        self.num_attendees
-        self.financial_cost
-        self.days
-        self.hours
-        self.minutes
-        self.seconds
-        self.percent_time
+        self.num_attendees = num_attendees
+        self.financial_cost = financial_cost
+        self.days = days
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+        self.percent_time = percent_time
 
 
-    def display_meeting_info(self):
+    def print_details(self):
         print("""
         Meeting {0}: {1}
-        ==========================================================
+        **************************************************
         Start: {2}
         End: {3}
         Duration: {4}
