@@ -11,168 +11,61 @@ class Meeting:
         duration: str - duration of event
         num_attendees: int - number of attendees
         financial_cost: str - human readable, printer friendly Money object
-        days: str - human readable, printer friendly
-        hours: str - human readable, printer friendly
-        minutes: str - human readable, printer friendly
-        seconds: str - human readable, printer friendly
         percent_time: float - percent of team's time spent in meeting
     """
+    WORK_HOURS_PER_DAY = 8
+
 
     def __init__(self, meeting_num, summary, start, end, duration,
-                 num_attendees, financial_cost, days, hours, minutes, seconds,
-                 percent_time):
+                 num_attendees):
         self._meeting_num = meeting_num
         self._summary = summary
         self._start = start
         self._end = end
         self._duration = duration
         self._num_attendees = num_attendees
-        self._financial_cost = financial_cost
-        self._days = days
-        self._hours = hours
-        self._minutes = minutes
-        self._seconds = seconds
-        self._percent_time = percent_time
 
-
-    @property
-    def meeting_num(self):
-        return self._meeting_num
-
-    @meeting_num.setter
-    def meeting_num(self, meeting_num):
-        self._meeting_num = meeting_num
-
-
-    @property
-    def summary(self):
-        return self._summary
-
-    @summary.setter
-    def summary(self, summary):
-        self._summary = summary
-
-
-    @property
-    def start(self):
-        return self._start
-
-    @start.setter
-    def start(self, start):
-        self._start = start
-
-
-    @property
-    def end(self):
-        return self._end
-
-    @end.setter
-    def end(self, end):
-        self._end = end
-
-
-    @property
-    def duration(self):
-        return self._duration
-
-    @duration.setter
-    def duration(self, duration):
-        self._duration = duration
-
-
-    @property
-    def num_attendees(self):
-        return self._num_attendees
-
-    @num_attendees.setter
-    def num_attendees(self, num_attendees):
-        self._num_attendees = num_attendees
- 
-
-    @property
-    def financial_cost(self):
-        return self._financial_cost
-
-    @financial_cost.setter(self, financial_cost)
-        self._financial_cost = financial_cost
-
-
-    @property
-    def days(self):
-        return self._days
-
-    @days.setter(self, days)
-        self._days = days
-
-
-    @property
-    def hours(self):
-        return self._hours
-
-    @hours.setter(self, hours)
-        self._hours = hours
-
-
-    @property
-    def minutes(self):
-        return self._minutes
-
-    @minutes.setter(self, minutes)
-        self._minutes = minutes
-
-
-    @property
-    def seconds(self):
-        return self._seconds
-
-    @seconds.setter(self, seconds):
-        self._seconds = seconds
-
-
-    @property
     def percent_time(self):
-        return self._percent_time
-
-    @percent_time.setter(self, percent_time):
-        self._percent_time = percent_time
-
-
-    def print_details(self):
-        print("""
-        Meeting {0}: {1}
-        **************************************************
-        Start: {2}
-        End: {3}
-        Duration: {4}
-        Number of Attendees: {5}
-        Cost: {6}
-        Cost in Time: {7}, {8}, {9}, {10}
-        Percentage of time spent in meeting: {11}%
-        """.format(self.meeting_num, self.summary, self.start, self.end,
-                   self.duration, self.num_attendees, self.financial_cost,
-                   self.days, self.hours, self.minutes, self.seconds,
-                   self.percent_time))
+        work_seconds = self._duration._in_seconds()
+        work_hours = work_seconds / 3600
+        percent_time = (float(work_hours) / WORK_HOURS_PER_DAY) * 100
+        percent_time = round(percent_time, ROUND_TO_THIS_MANY_PLACES)
+        return percent_time
 
 
-    def print_attribute_types(self):
-        print("""
-        Meeting-num: {0}
-        Summary: {1}
-        Start: {2}
-        End: {3}
-        Duration: {4}
-        Number of Attendees: {5}
-        Financial-Cost: {6}
-        Days: {7} 
-        Hours: {8}
-        Minutes: {9}
-        Seconds: {10}
-        Percent time: {11}
-        """.format(type(self.meeting_num), type(self.summary),
-                   type(self.start), type(self.end), type(self.duration),
-                   type(self.num_attendees), type(self.financial_cost),
-                   type(self.days), type(self.hours), type(self.minutes),
-                   type(self.seconds), type(self.percent_time)))
+    def time_cost(self):
+        work_seconds = self._duration._in_seconds()
+        time_cost = self._num_attendees * work_seconds
+        return time_cost
 
 
+    def financial_cost(self):
+        work_seconds = self._duration._in_seconds()
+        financial_cost = work_seconds * COST_PER_SECOND * self.num_attendees
+        financial_cost = Money(financial_cost, CURRENCY).format(CURRENCY_FORMAT)
+        financial_cost = str(financial_cost)
+        return financial_cost
+
+
+    def _in_seconds(self):
+        seconds = __get_duration_in_seconds(self._duration)
+        seconds = __convert_seconds_to_work_seconds(seconds)
+        return seconds
+
+
+    def __get_duration_in_seconds(self):
+        seconds = self.duration.total_seconds()
+        return seconds
+
+
+    def __convert_seconds_to_work_seconds(seconds)
+        hours = float(seconds) / 3600
+        if hours > WORK_HOURS_PER_DAY and hours < 24:
+            hours = WORK_HOURS_PER_DAY
+        if hours >= 24:
+            days, hours = divmod(hours, 24)
+            if hours <= WORK_HOURS_PER_DAY:
+                hours += days * WORK_HOURS_PER_DAY
+        seconds = hours * 3600
+        return seconds
 

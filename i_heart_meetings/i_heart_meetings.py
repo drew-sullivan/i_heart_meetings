@@ -175,6 +175,7 @@ def _calculate_cost_totals(meetings):
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
         meeting_duration = end - start
         num_attendees = _get_num_attendees(meeting.get('attendees'))
+
         # For returning
 
         hours_in_meeting, seconds_in_meeting = _convert_time_obj_to_seconds_and_hours(meeting_duration)

@@ -7,7 +7,7 @@ class Calculator:
     objects
 
     Attributes:
-        meetings: list - meeting objects
+        google_meetings_blob: blob - meeting info obtained from Google
         time_cost_weekly_in_seconds:
         financial_cost_weekly:
         percent_time_weekly:
@@ -59,9 +59,52 @@ class Calculator:
     @meetings.setter(self, meetings):
         self._meetings = meetings
 
+    def main(meetings):
+        meetings_list = _get_meetings_list()
 
-    def calculate_meeting_costs(meetings):
-        for meeting_number, meeting in enumerate(meetings, 1):
+
+    def _calculate_costs(meetings_list):
+
+        """Takes list of meeting objects and returns:
+            time_cost_weekly_in_seconds - int
+            financial_cost_total - 
+            percent_time_weekly - 
+            list_of_meeting_numbers
+            list_of_meeting_durations - 
+            list_of_meeting_summaries - 
+            num_meetings
+            avg_meeting_duration
+            meeting_frequency - dict(timestamp, int) of how many people are
+                meeting at a given time
+        """
+        
+        time_cost_weekly_in_seconds = 0
+        financial_cost_total = 0
+        percent_time_weekly = 0
+        list_of_meeting_numbers = []
+        list_of_meeting_durations = []
+        list_of_meeting_summaries = []
+        num_meetings = 0
+        avg_meeting_duration = 0
+        meeting_frequency = {}
+
+        for meeting in meetings_list:
+            percent_time_weekly += float(meeting.time_cost_single_meeting) / PERSON_SECONDS_PER_WEEK
+            time_cost_weekly_in_seconds += meeting.time_cost_single_meeting
+            financial_cost_total += (meeting.seconds * COST_PER_SECOND * num_attendees)
+            list_of_meeting_numbers.append(meeting.meeting_number)
+            list_of_meeting_durations.append(meeting.seconds / 3600)
+            list_of_meeting_summaries.append(meeting.summary)
+            num_meetings = meeting_number
+            avg_meeting_duration += meeting.seconds
+
+    def _get_meetings_list(google_meetings_blob):
+
+        """Takes blob from Google and turns it into a list of meeting objects
+        """
+
+        meetings_list = []
+        for meeting_number, meeting in enumerate(google_meetings_blob, 1):
             m = Meeting(
                 m.meeting_number = meeting_number
                 m.summary = _get_summary(meeting)
@@ -69,20 +112,14 @@ class Calculator:
                 m.end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
                 m.duration = _get_duration(m.start, m.end)
                 m.num_attendees = _get_num_attendees(meeting.get('attendees'))
-
-                seconds_in_meeting = _convert_time_obj_to_seconds(m.duration)
-
-                m.financial_cost = _get_financial_cost_single_meeting(seconds_in_meeting, m.num_attendees)
-                m.time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, m.num_attendees)
-
-                days, hours, minutes, seconds = _translate_seconds(m.time_cost_single_meeting)
-
-                m.days = days
-                m.hours = hours
-                m.minutes = minutes
-                m.seconds = seconds
+                m.seconds = _convert_time_obj_to_seconds(m.duration)
+                m.financial_cost = _get_financial_cost_single_meeting(m.seconds, m.num_attendees)
+                m.time_cost = _get_time_cost_single_meeting(m.seconds, m.num_attendees)
                 m.percent_time = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
             )
+            meetings_list.append(m)
+        return meetings_list
+            
 
 
     def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
@@ -160,9 +197,4 @@ class Calculator:
         return summary
 
 
-
-            meetings.append(Meeting(meeting_number, summary, start, end,
-                meeting_duration, num_attendees, financial_cost_single_meeting,
-                days, hours, minutes, seconds, percent_time_meeting_single))
-        for meeting
 
