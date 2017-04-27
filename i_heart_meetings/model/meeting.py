@@ -13,7 +13,7 @@ class Meeting:
     """A meeting extracted from the Google Calendar API
 
     Attributes:
-        meeting_num: int - 1, 2, 3...
+        id: int - 1, 2, 3...
         summary: str - description of meeting
         start: str - human readable start time of meeting
         end: str - human readable end time of meeting
@@ -21,9 +21,9 @@ class Meeting:
         num_attendees: int - number of attendees
 
     Can return:
-        financial_cost_in_dollars: Money object of cost in dollars
+        cost_in_dollars: Money object of cost in dollars
         financial_cost_for_printing: str version of above
-        time_cost_in_seconds: int
+        cost_in_seconds: int
         time_cost_for_printing: str - formatted work_days, hrs, mins, secs
         percent_time: float - percent of team's time spent in the meeting
     """
@@ -56,31 +56,25 @@ class Meeting:
         return percent_time
 
 
-    def time_cost_in_seconds(self):
+    def cost_in_seconds(self):
         work_seconds = self._get_seconds()
-        time_cost_in_seconds = self.num_attendees * work_seconds
-        return time_cost_in_seconds
+        cost_in_seconds = self.num_attendees * work_seconds
+        return cost_in_seconds
 
 
     def time_cost_for_printing(self):
-        seconds = self.time_cost_in_seconds()
+        seconds = self.cost_in_seconds()
         work_days, hours, minutes, seconds = self._translate_seconds(seconds)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
         time_cost = '{}, {}, {}, {}'.format(work_days, hours, minutes, seconds)
         return time_cost
 
 
-    def financial_cost_in_dollars(self):
+    def cost_in_dollars(self):
         work_seconds = self._get_seconds()
-        financial_cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
-        financial_cost_in_dollars = Money(financial_cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
-        return financial_cost_in_dollars
-
-
-    def financial_cost_for_printing(self):
-        financial_cost = self.financial_cost_in_dollars()
-        financial_cost = str(financial_cost)
-        return financial_cost
+        cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
+        cost_in_dollars = Money(cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
+        return cost_in_dollars
 
 
     def _make_pretty_for_printing(self, days, hours, minutes, seconds):
@@ -130,7 +124,7 @@ class Meeting:
         Percentage of time spent in meeting: {8}% """.format(
             self.id, self.summary, self.start, self.end,
             self.duration, self.num_attendees,
-            self.financial_cost_for_printing(),
+            self.cost_in_dollars(),
             self.time_cost_for_printing(),self.percent_time()
             )
         )
