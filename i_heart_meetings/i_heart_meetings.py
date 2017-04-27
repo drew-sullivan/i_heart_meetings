@@ -20,7 +20,7 @@ from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 from model.meeting import Meeting
-#from model.week_of_meetings import Week_Of_Meetings
+from model.week_of_meetings import Week_Of_Meetings
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
@@ -117,11 +117,10 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    #week_of_meetings = []
-    #wom = Week_Of_Meetings()
-    #wom.get_meetings_list(meetings)
-    #for meeting in week_of_meetings:
-    #    meeting.print_meeting_info()
+    wom = Week_Of_Meetings(meetings)
+    week_of_meetings = wom.get_meetings_list(meetings)
+    for meeting in week_of_meetings:
+        meeting.print_meeting_info()
 
 
     time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
@@ -221,8 +220,8 @@ def _calculate_cost_totals(meetings):
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
     top_meeting_times = _get_top_meeting_times(meeting_frequency)
 
-    for meeting in meeting_list:
-        meeting.print_meeting_info()
+#    for meeting in meeting_list:
+#        meeting.print_meeting_info()
 
 
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,

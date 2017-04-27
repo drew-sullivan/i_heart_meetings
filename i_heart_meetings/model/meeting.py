@@ -37,6 +37,8 @@ class Meeting:
     ROUND_TO_THIS_MANY_PLACES = 2
     CURRENCY = 'USD'
     CURRENCY_FORMAT = 'en_US'
+    FORMAT_DATETIME_OBJ_TO_STR = '%Y-%m-%d %H:%M:%S'
+    FORMAT_STR_TO_DATETIME_OBJ = '%A, %b %d, %Y - %I:%M'
 
     def __init__(self, meeting_num, summary, start, end, duration,
                  num_attendees):
@@ -122,9 +124,22 @@ class Meeting:
         Cost: {6}
         Cost in Time: {7}
         Percentage of time spent in meeting: {8}% """.format(
-            self.id, self.summary, self.start, self.end,
+            self.id, 
+            self.summary,
+            self._make_dt_or_time_str_pretty_for_printing(self.start),
+            self._make_dt_or_time_str_pretty_for_printing(self.end),
             self.duration, self.num_attendees,
             self.cost_in_dollars(),
-            self.time_cost_for_printing(),self.percent_time()
+            self.time_cost_for_printing(),
+            self.percent_time()
             )
         )
+
+
+    def _make_dt_or_time_str_pretty_for_printing(self, dt_obj_or_str):
+        if isinstance(dt_obj_or_str, str):
+            if dt_obj_or_str[-6] == '-':
+                dt_obj_or_str = dt_obj_or_str[:19]
+            dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, self.FORMAT_DATETIME_OBJ_TO_STR)
+        pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, self.FORMAT_STR_TO_DATETIME_OBJ)
+        return pretty_printed_str

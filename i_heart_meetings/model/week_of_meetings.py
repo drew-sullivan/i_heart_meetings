@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
+import dateutil
+
 from model.meeting import Meeting 
+from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 
 class Week_Of_Meetings:
     """Calculates the costs of a meetings pull when passed a list of meetings
@@ -48,7 +51,7 @@ class Week_Of_Meetings:
 
 
     def __init__(self, google_meetings_blob):
-        self.meetings = meetings
+        self.google_meetings_blob = google_meetings_blob
 
 
     def main(self, google_meetings_blob):
@@ -159,16 +162,29 @@ class Week_Of_Meetings:
 
     def get_meetings_list(self, google_meetings_blob):
         meetings_list = []
-        for meeting, meeting_id in enumerate(self.google_meetings_blob, 1):
-            m = Meeting(
-                m.id = meeting_id
-                m.summary = meeting.get('summary', 'No summary given')
-                m.start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
-                m.end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
-                m.duration = _get_duration(m.start, m.end)
-                m.num_attendees = _get_num_attendees(meeting.get('attendees'))
-            )
+        for meeting_id, meeting in enumerate(self.google_meetings_blob, 1):
+            meeting_id = meeting_id
+            summary = self._get_summary(meeting)
+            start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
+            end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
+            duration = end - start
+            num_attendees = self._get_num_attendees(meeting.get('attendees'))
+
+            m = Meeting(meeting_id, summary, start, end, duration, num_attendees)
             meetings_list.append(m)
         return meetings_list
 
 
+    def _get_summary(self, meeting):
+        summary = meeting.get('summary', 'No summary given')
+        return summary
+
+
+    def _get_num_attendees(self, num_attendees):
+        if num_attendees == None:
+            num_attendees = 1
+        # if sharing multiple calendars, uncomment below
+        #num_attendees = 1
+        else:
+            num_attendees = len(num_attendees)
+        return num_attendees
