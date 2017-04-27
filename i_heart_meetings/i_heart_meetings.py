@@ -182,7 +182,6 @@ def _calculate_cost_totals(meetings):
         financial_cost_single_meeting = _get_financial_cost_single_meeting(seconds_in_meeting, num_attendees)
         time_cost_single_meeting = _get_time_cost_single_meeting(seconds_in_meeting, num_attendees)
         days, hours, minutes, seconds = _translate_seconds(time_cost_single_meeting)
-        percent_time_meeting_single = _calculate_percentage_time_in_meeting_single(seconds_in_meeting)
 
         percent_time_weekly += float(time_cost_single_meeting) / PERSON_SECONDS_PER_WEEK
         time_cost_weekly_in_seconds += time_cost_single_meeting
@@ -402,13 +401,6 @@ def _convert_time_obj_to_seconds_and_hours(duration):
             hours += days * WORK_HOURS_PER_DAY
     seconds = hours * 3600
     return hours, seconds
-
-
-def _calculate_percentage_time_in_meeting_single(seconds_in_meeting):
-    hours_in_meeting = seconds_in_meeting / 3600
-    percent_time_in_meeting = (float(hours_in_meeting) / WORK_HOURS_PER_DAY) * 100
-    percent_time_in_meeting = round(percent_time_in_meeting, ROUND_TO_THIS_MANY_PLACES)
-    return percent_time_in_meeting
 
 
 def _calculate_percent_time_in_meetings(percent_time_weekly):
