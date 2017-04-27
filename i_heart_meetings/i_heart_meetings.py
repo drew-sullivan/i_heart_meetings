@@ -202,20 +202,12 @@ def _calculate_cost_totals(meetings):
                 meeting_frequency[start_str] = 1
             meeting_frequency_start += datetime.timedelta(minutes=30)
 
-        #meeting_duration = str(meeting_duration)
-
         #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
 
-        days, hours, minutes, seconds = _make_pretty_for_printing(days, hours, minutes, seconds)
-
         start = _make_dt_or_time_str_pretty_for_printing(start)
         end = _make_dt_or_time_str_pretty_for_printing(end)
-
-        #_print_meeting_info(meeting_id, summary, start, end,
-        #        meeting_duration, num_attendees, financial_cost_single_meeting,
-        #        days, hours, minutes, seconds, percent_time_meeting_single)
 
         meeting_list.append(Meeting(meeting_id, summary, start, end,
                 meeting_duration, num_attendees))
@@ -525,24 +517,6 @@ def _post_to_slack(*all_the_variables):
 
 def _print_entire_google_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
-
-
-#def _print_meeting_info(meeting_id, summary, start, end, meeting_duration,
-#        num_attendees, financial_cost_single_meeting, days, hours, minutes,
-#        seconds, percent_time_meeting_single):
-#    print("""
-#    Meeting {0}: {1}
-#    ======================================================================
-#    Start: {2}
-#    End: {3}
-#    Duration: {4}
-#    Number of Attendees: {5}
-#    Cost: {6}
-#    Cost in Time: {7}, {8}, {9}, {10}
-#    Percentage of time spent in meeting: {11}%
-#    """.format(meeting_id, summary, start, end, meeting_duration,
-#        num_attendees, financial_cost_single_meeting, days, hours, minutes,
-#        seconds, percent_time_meeting_single))
 
 
 def _print_summary(*all_the_variables):
