@@ -19,7 +19,7 @@ from apiclient import discovery
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
-#from model.meeting import Meeting
+from model.meeting import Meeting
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
@@ -117,7 +117,7 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_numbers, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
+    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
 
     time_cost_weekly = _get_time_cost_weekly(time_cost_weekly_in_seconds)
     time_cost_yearly = _get_time_cost_yearly(time_cost_weekly_in_seconds)
@@ -157,7 +157,7 @@ def _calculate_cost_totals(meetings):
     time_cost_weekly_in_seconds = 0
     financial_cost_total = 0
     percent_time_weekly = 0
-    list_of_meeting_numbers = []
+    list_of_meeting_ids = []
     list_of_meeting_durations = []
     list_of_meeting_summaries = []
     num_meetings = 0
@@ -165,11 +165,11 @@ def _calculate_cost_totals(meetings):
     meeting_frequency = {}
     if not meetings:
         print('No meetings found.')
-    for meeting_number, meeting in enumerate(meetings, 1):
+    for meeting_id, meeting in enumerate(meetings, 1):
 
         # For printing meeting info and adding info to database
 
-        meeting_number = meeting_number
+        meeting_id = meeting_id
         summary = _get_summary(meeting)
         start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
         end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
@@ -187,10 +187,10 @@ def _calculate_cost_totals(meetings):
         percent_time_weekly += float(time_cost_single_meeting) / PERSON_SECONDS_PER_WEEK
         time_cost_weekly_in_seconds += time_cost_single_meeting
         financial_cost_total += (seconds_in_meeting * COST_PER_SECOND * num_attendees)
-        list_of_meeting_numbers.append(meeting_number)
+        list_of_meeting_ids.append(meeting_id)
         list_of_meeting_durations.append(hours_in_meeting)
         list_of_meeting_summaries.append(summary)
-        num_meetings = meeting_number
+        num_meetings = meeting_id
         avg_meeting_duration += seconds_in_meeting
 
         meeting_frequency_start = start
@@ -202,9 +202,9 @@ def _calculate_cost_totals(meetings):
                 meeting_frequency[start_str] = 1
             meeting_frequency_start += datetime.timedelta(minutes=30)
 
-        meeting_duration = str(meeting_duration)
+        #meeting_duration = str(meeting_duration)
 
-        #_add_row_to_db(meeting_number, summary, start, end, meeting_duration,
+        #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
 
@@ -213,23 +213,22 @@ def _calculate_cost_totals(meetings):
         start = _make_dt_or_time_str_pretty_for_printing(start)
         end = _make_dt_or_time_str_pretty_for_printing(end)
 
-#        meeting_list.append(Meeting(meeting_number, summary, start, end,
-#                meeting_duration, num_attendees, financial_cost_single_meeting,
-#                days, hours, minutes, seconds, percent_time_meeting_single))
+        #_print_meeting_info(meeting_id, summary, start, end,
+        #        meeting_duration, num_attendees, financial_cost_single_meeting,
+        #        days, hours, minutes, seconds, percent_time_meeting_single)
 
-        _print_meeting_info(meeting_number, summary, start, end,
-                meeting_duration, num_attendees, financial_cost_single_meeting,
-                days, hours, minutes, seconds, percent_time_meeting_single)
+        meeting_list.append(Meeting(meeting_id, summary, start, end,
+                meeting_duration, num_attendees))
 
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
     top_meeting_times = _get_top_meeting_times(meeting_frequency)
 
-#    for meeting in meeting_list:
-#        print(meeting.summary)
-#        meeting.print_types()
+    for meeting in meeting_list:
+        meeting.print_meeting_info()
+
 
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
-        list_of_meeting_numbers, list_of_meeting_durations,
+        list_of_meeting_ids, list_of_meeting_durations,
         list_of_meeting_summaries, num_meetings, avg_meeting_duration,
         meeting_frequency, top_meeting_times)
 
@@ -369,8 +368,8 @@ def _get_avg_meeting_financial_cost(num_meetings, financial_cost_total):
     return avg_meeting_cost
 
 
-def _get_list_of_meeting_numbers(list_of_meeting_numbers):
-    return list_of_meeting_numbers
+def _get_list_of_meeting_ids(list_of_meeting_ids):
+    return list_of_meeting_ids
 
 
 def _get_list_of_meeting_durations(list_of_meeting_durations):
@@ -446,15 +445,15 @@ def _write_db_to_csv():
         csvWriter.writerows(rows)
 
 
-def _add_row_to_db(meeting_number, summary, start, end, meeting_duration,
+def _add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         num_attendees, financial_cost_single_meeting,
         time_cost_single_meeting_days, time_cost_single_meeting_hours,
         time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
-    meeting_id = "{0}-{1}".format(start, meeting_number)
+    meeting_id = "{0}-{1}".format(start, meeting_id)
     conn = sqlite3.connect(DB_IHM_SQLITE)
     c = conn.cursor()
     c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(
-                meeting_id, meeting_number,
+                meeting_id, meeting_id,
                 summary, start, end, meeting_duration, num_attendees,
                 financial_cost_single_meeting, time_cost_single_meeting_days,
                 time_cost_single_meeting_hours,
@@ -528,22 +527,22 @@ def _print_entire_google_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
 
 
-def _print_meeting_info(meeting_number, summary, start, end, meeting_duration,
-        num_attendees, financial_cost_single_meeting, days, hours, minutes,
-        seconds, percent_time_meeting_single):
-    print("""
-    Meeting {0}: {1}
-    ======================================================================
-    Start: {2}
-    End: {3}
-    Duration: {4}
-    Number of Attendees: {5}
-    Cost: {6}
-    Cost in Time: {7}, {8}, {9}, {10}
-    Percentage of time spent in meeting: {11}%
-    """.format(meeting_number, summary, start, end, meeting_duration,
-        num_attendees, financial_cost_single_meeting, days, hours, minutes,
-        seconds, percent_time_meeting_single))
+#def _print_meeting_info(meeting_id, summary, start, end, meeting_duration,
+#        num_attendees, financial_cost_single_meeting, days, hours, minutes,
+#        seconds, percent_time_meeting_single):
+#    print("""
+#    Meeting {0}: {1}
+#    ======================================================================
+#    Start: {2}
+#    End: {3}
+#    Duration: {4}
+#    Number of Attendees: {5}
+#    Cost: {6}
+#    Cost in Time: {7}, {8}, {9}, {10}
+#    Percentage of time spent in meeting: {11}%
+#    """.format(meeting_id, summary, start, end, meeting_duration,
+#        num_attendees, financial_cost_single_meeting, days, hours, minutes,
+#        seconds, percent_time_meeting_single))
 
 
 def _print_summary(*all_the_variables):
@@ -650,7 +649,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
     @app.route("/bar_chart")
     def bar_chart():
         legend = 'Meeting Durations'
-        #labels = list_of_meeting_numbers
+        #labels = list_of_meeting_ids
         labels = list_of_meeting_summaries
         values = list_of_meeting_durations
         return render_template('bar.html', values=values, labels=labels, legend=legend)
@@ -658,7 +657,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
     @app.route('/radar_chart')
     def radar_chart():
         legend = 'Meeting Durations'
-        #labels = list_of_meeting_numbers
+        #labels = list_of_meeting_ids
         labels = list_of_meeting_summaries
         values = list_of_meeting_durations
         return render_template('radar.html', values=values, labels=labels, legend=legend)
@@ -666,14 +665,14 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
     @app.route('/polar_chart')
     def polar_chart():
         legend = 'Meeting Durations'
-        labels = list_of_meeting_numbers
+        labels = list_of_meeting_ids
         values = list_of_meeting_durations
         return render_template('polar.html', values=values, labels=labels, legend=legend)
 
     @app.route('/pie_chart')
     def pie_chart():
         legend = 'Meeting Durations'
-        labels = list_of_meeting_numbers
+        labels = list_of_meeting_ids
         values = list_of_meeting_durations
         return render_template('pie.html', values=values, labels=labels, legend=legend)
 
@@ -709,7 +708,7 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
     @app.route('/doughnut_chart')
     def doughnut_chart():
         legend = 'Meeting Durations'
-        labels = list_of_meeting_numbers
+        labels = list_of_meeting_ids
         values = list_of_meeting_durations
         return render_template('doughnut.html', values=values, labels=labels, legend=legend)
 
