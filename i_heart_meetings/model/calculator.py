@@ -52,13 +52,6 @@ class Calculator:
         self.meetings = meetings
 
 
-    @property
-    def meetings(self):
-        return self.meeting_objs
-
-    @meetings.setter(self, meetings):
-        self._meetings = meetings
-
     def main(meetings):
         meetings_list = _get_meetings_list()
 
