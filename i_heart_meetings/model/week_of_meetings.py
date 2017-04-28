@@ -44,68 +44,77 @@ class Week_Of_Meetings:
 
     def __init__(self, google_meetings_blob):
         self.google_meetings_blob = google_meetings_blob
-        self.weekly_cost_in_seconds
+        self.weekly_cost_in_seconds = 0
+        self.weekly_cost_in_dollars = 0
+        self.num_meetings = 0
+        percent_time_spent = 0
+        frequency = {}
+        top_meeting_times = []
+
 
     def main(self, google_meetings_blob):
         meetings_list = self.get_meetings_list(google_meetings_blob)
-        weekly_cost_in_seconds, weekly_cost_in_dollars, num_meetings = self.process_meeting_list(meeting_list)
-        percent_time_spent = self.percent_time_spent(weekly_cost_in_seconds)
-        avg_cost_in_seconds = self.avg_cost_in_seconds(weekly_cost_in_seconds, num_meetings)
-        avg_cost_in_dollars = self.avg_cost_in_dollars(weekly_cost_in_dollars, num_meetings)
-        avg_duration = self.avg_duration(weekly_cost_in_seconds, num_meetings)
-        weekly_potential_time_recovered = weekly_potential_time_recovered(percent_time_spent)
-        weekly_potential_money_recovered = weekly_potential_money_recovered(percent_time_spent)
+        self.process_meeting_list(meeting_list)
 
-
-    #def weekly_cost_in_seconds(self):
-        
-
-
-
-    def weekly_potential_time_recovered(self, percent_time_spent):
-        time_recovered_weekly = float(self.percent_time_spent - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
-        time_recovered_weekly /= 100
-        time_recovered_weekly *= PERSON_SECONDS_PER_WEEK
-        work_days, hours, minutes, seconds = _translate_seconds(time_recovered_weekly)
-        work_days, hours, minutes, seconds = _make_pretty_for_printing(work_days, hours, minutes, seconds)
-        time_recovered_weekly = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-        return time_recovered
-
-
-    def weekly_potential_money_recovered(self, percent_time_spent):
-        weekly_potential_money_recovered = float(percent_time_spent - IDEAL_percent_time_spent)
-        weekly_potential_money_recovered /= 100
-        weekly_potential_money_recovered *= COST_PER_SECOND
-        weekly_potential_money_recovered *= PERSON_SECONDS_PER_WEEK
-        weekly_potential_money_recovered = Money(weekly_potential_money_recovered, CURRENCY).format(CURRENCY_FORMAT)
-        return weekly_potential_money_recovered
 
     def process_meeting_list(self, meeting_list):
-        weekly_cost_in_seconds = 0
-        weekly_cost_in_dollars = 0
-        num_meetings = 0
         for meeting in self.meeting_list:
             weekly_cost_in_seconds += meeting.cost_in_seconds()
             weekly_cost_in_dollars += meeting.cost_in_dollars()
             num_meetings += 1
-        return weekly_cost_in_seconds, weekly_cost_in_dollars, num_meetings
+
+            start = meeting.start
+            end = meeting.end
+            while start < end:
+                start_str = str(start)
+                if start_str in self.frequency:
+                    self.frequency[start_str] += 1
+                else:
+                    self.frequency[start_str] = 1
+                start += datetime.timedelta(minutes=30)
 
 
-    def avg_cost_in_seconds(self, weekly_cost_in_seconds, num_meetings):
-        avg_cost_in_seconds = float(weekly_cost_in_seconds) / num_meetings
+    def weekly_cost_in_seconds(self):
+        return self.weekly_cost_in_seconds
+
+
+    def weekly_cost_in_seconds_pretty_print(self):
+        seconds = self.weekly_cost_in_seconds
+        work_days, hours, minutes, seconds = _translate_seconds(seconds)
+        work_days, hours, minutes, seconds = _make_pretty_for_printing(work_days, hours, minutes, seconds)
+        weekly_cost_in_seconds_pretty_print = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
+        return weekly_cost_in_seconds_pretty_print
+
+
+    def weekly_cost_in_dollars(self):
+        return self.weekly_cost_in_dollars
+
+
+    def num_meetings(self):
+        return self.num_meetings
+
+
+    def percent_time_spent(self):
+        percent_time_spent += (float(self.weekly_cost_in_seconds) / self.PERSON_SECONDS_PER_WEEK)
+        percent_time_spent = round(percent_time_spent * 100, self.ROUND_TO_THIS_MANY_PLACES)
+        return percent_time_spent
+
+
+    def avg_cost_in_seconds(self):
+        avg_cost_in_seconds = float(self.weekly_cost_in_seconds) / self.num_meetings
         work_days, hours, minutes, seconds = self._translate_seconds(avg_cost_in_seconds)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
         avg_cost_in_seconds = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
         return avg_cost_in_seconds
 
 
-    def avg_cost_in_dollars(self, weekly_cost_in_dollars, num_meetings):
+    def avg_cost_in_dollars(self):
         avg_meeting_cost = float(self.weekly_cost_in_dollars) / self.num_meetings
         avg_meeting_cost = Money(avg_meeting_cost, CURRENCY).format(CURRENCY_FORMAT)
         return avg_meeting_cost
 
 
-    def avg_duration(self, weekly_cost_in_seconds, num_meetings):
+    def avg_duration(self):
         avg_duration = self.weekly_cost_in_seconds / self.num_meetings
         work_days, hours, minutes, seconds = self._translate_seconds(avg_duration)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
@@ -113,47 +122,103 @@ class Week_Of_Meetings:
         return avg_duration
 
 
-    def percent_time_spent(self, weekly_cost_in_seconds):
-        percent_time_spent = 0
-        weekly_cost_in_seconds = self.weekly_cost_in_seconds
-        for meeting in meetings:
-            percent_time_spent += (float(weekly_cost_in_seconds) / self.PERSON_SECONDS_PER_WEEK)
-        percent_time_spent_2 = round(percent_time_spent * 100, self.ROUND_TO_THIS_MANY_PLACES)
-        return percent_time_spent
-
-    def time_cost_yearly(self, weekly_cost_in_seconds):
-        time_cost_yearly = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
-        return time_cost_yearly
-
-
-    def weekly_cost_in_seconds_for_printing(self, weekly_cost_in_seconds):
-        seconds = self.cost_in_seconds()
-        work_days, hours, minutes, seconds = self._translate_seconds(seconds)
+    def weekly_potential_time_recovered(self):
+        weekly_potential_time_recovered = float(self.percent_time_spent - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
+        weekly_potential_time_recovered /= 100
+        weekly_potential_time_recovered *= self.PERSON_SECONDS_PER_WEEK
+        work_days, hours, minutes, seconds = self._translate_seconds(weekly_potential_time_recovered)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-        weekly_cost_in_seconds = '{}, {}, {}, {}'.format(work_days, hours, minutes, seconds)
-        return weekly_cost_in_seconds
+        weekly_potential_time_recovered = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
+        return weekly_potential_time_recovered
+
+
+    def weekly_potential_money_recovered(self):
+        weekly_potential_money_recovered = float(self.percent_time_spent - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
+        weekly_potential_money_recovered /= 100
+        weekly_potential_money_recovered *= self.COST_PER_SECOND
+        weekly_potential_money_recovered *= self.PERSON_SECONDS_PER_WEEK
+        weekly_potential_money_recovered = Money(weekly_potential_money_recovered, self.CURRENCY).format(self.CURRENCY_FORMAT)
+        return weekly_potential_money_recovered
+
+
+    def yearly_cost_in_seconds(self):
+        yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
+        return yearly_cost_in_seconds
+
+
+    def yearly_cost_in_dollars(self):
+        yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
+        return yearly_cost_in_dollars
+
+
+    def yearly_time_recovered(self):
+        time_recovered_yearly = float(self.percent_time_in_meetings - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
+        time_recovered_yearly /= 100
+        time_recovered_yearly *= self.PERSON_SECONDS_PER_YEAR
+        days, hours, minutes, seconds = self._translate_seconds(time_recovered_yearly)
+        days, hours, minutes, seconds = self._make_pretty_for_printing(days, hours, minutes, seconds)
+        time_recovered_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
+        return time_recovered_yearly
+
+
+    def yearly_money_recovered(self):
+        money_recovered_yearly = float(self.percent_time_in_meetings - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
+        money_recovered_yearly /= 100
+        money_recovered_yearly *= self.COST_PER_SECOND
+        money_recovered_yearly *= self.PERSON_SECONDS_PER_YEAR
+        money_recovered_yearly = Money(money_recovered_yearly, self.CURRENCY).format(self.CURRENCY_FORMAT)
+        return money_recovered_yearly
 
 
 
-
-    def ideal_time_cost(self, meetings):
-        ideal_time_cost = self.IDEAL_PERCENT_TIME_IN_MEETINGS
-        ideal_time_cost /= 100
-        ideal_time_cost *= self.PERSON_SECONDS_PER_WEEK
-        work_days, hours, minutes, seconds = self._translate_seconds(ideal_time_cost)
+    def yearly_ideal_time_cost(self):
+        yearly_ideal_time_cost = self.IDEAL_PERCENT_TIME_IN_MEETINGS
+        yearly_ideal_time_cost /= 100
+        yearly_ideal_time_cost *= self.PERSON_SECONDS_PER_WEEK
+        work_days, hours, minutes, seconds = self._translate_seconds(yearly_ideal_time_cost)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-        ideal_time_cost = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-        return ideal_time_cost
+        yearly_ideal_time_cost = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
+        return yearly_ideal_time_cost
 
 
-    def ideal_financial_cost(self, meetings):
-        ideal_financial_cost = float(self.IDEAL_PERCENT_TIME_IN_MEETINGS)
-        ideal_financial_cost /= 100
-        ideal_financial_cost *= self.COST_PER_SECOND
-        ideal_financial_cost *= self.PERSON_SECONDS_PER_WEEK
-        ideal_financial_cost = Money(ideal_financial_cost, self.CURRENCY).format(self.CURRENCY_FORMAT)
-        return ideal_financial_cost
+    def yearly_ideal_financial_cost(self):
+        yearly_ideal_financial_cost = float(self.IDEAL_PERCENT_TIME_IN_MEETINGS)
+        yearly_ideal_financial_cost /= 100
+        yearly_ideal_financial_cost *= self.COST_PER_SECOND
+        yearly_ideal_financial_cost *= self.PERSON_SECONDS_PER_WEEK
+        yearly_ideal_financial_cost = Money(yearly_ideal_financial_cost, self.CURRENCY).format(self.CURRENCY_FORMAT)
+        return yearly_ideal_financial_cost
 
+
+    def _get_top_meeting_times(self):
+        num_meeting_times = len(self.frequency.values())
+        if num_meeting_times < self.NUM_TOP_MEETING_TIMES:
+            unpretty_meeting_times = sorted(self.frequency, key=self.frequency.get, reverse=True)[:num_meeting_times]
+        else:
+            unpretty_meeting_times = sorted(self.frequency, key=self.frequency.get, reverse=True)[:NUM_TOP_MEETING_TIMES]
+        for meeting_time in unpretty_meeting_times:
+            meeting_time = self._make_dt_or_time_str_pretty_for_printing(meeting_time)
+            self.top_meeting_times.append(meeting_time)
+        return top_meeting_times
+
+
+    def _get_top_three_meeting_times(top_meeting_times):
+        top_meeting_times_length = len(top_meeting_times)
+        if not top_meeting_times:
+            return "Calendar empty","Calendar empty","Calendar empty"
+        elif top_meeting_times_length == 1:
+            top_meeting_time_1 = top_meeting_times[0]
+            top_meeting_time_2 = "Calendar empty"
+            top_meeting_time_3 = "Calendar empty"
+        elif top_meeting_times_length == 2:
+            top_meeting_time_1 = top_meeting_times[0]
+            top_meeting_time_2 = top_meeting_times[1]
+            top_meeting_time_3 = "Calendar empty"
+        else:
+            top_meeting_time_1 = top_meeting_times[0]
+            top_meeting_time_2 = top_meeting_times[1]
+            top_meeting_time_3 = top_meeting_times[2]
+        return top_meeting_time_1, top_meeting_time_2, top_meeting_time_3
 
 
 

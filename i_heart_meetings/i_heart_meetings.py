@@ -119,10 +119,6 @@ def perform_i_heart_meetings_calculations ():
 
     wom = Week_Of_Meetings(meetings)
     week_of_meetings = wom.get_meetings_list(meetings)
-    for meeting in week_of_meetings:
-        meeting.print_meeting_info()
-    time_cost_weekly = wom.time_cost_weekly(week_of_meetings)
-    print(wom.time_cost_yearly(time_cost_weekly))
 
 
 
@@ -143,6 +139,9 @@ def perform_i_heart_meetings_calculations ():
     ideal_time_yearly = _calculate_ideal_time_yearly()
     ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
     top_meeting_time_1, top_meeting_time_2, top_meeting_time_3 = _get_top_three_meeting_times(top_meeting_times)
+
+
+
 
     all_the_variables = (time_cost_weekly, financial_cost_weekly,
         time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
