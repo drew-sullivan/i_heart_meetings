@@ -51,7 +51,7 @@ class Meeting:
 
 
     def percent_time(self):
-        work_seconds = self._get_seconds()
+        work_seconds = self._get_seconds_from_duration()
         work_hours = work_seconds / 3600
         percent_time = (float(work_hours) / self.WORK_HOURS_PER_DAY) * 100
         percent_time = round(percent_time, self.ROUND_TO_THIS_MANY_PLACES)
@@ -59,7 +59,7 @@ class Meeting:
 
 
     def cost_in_seconds(self):
-        work_seconds = self._get_seconds()
+        work_seconds = self._get_seconds_from_duration()
         cost_in_seconds = self.num_attendees * work_seconds
         return cost_in_seconds
 
@@ -73,7 +73,7 @@ class Meeting:
 
 
     def cost_in_dollars(self):
-        work_seconds = self._get_seconds()
+        work_seconds = self._get_seconds_from_duration()
         cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
         cost_in_dollars = Money(cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
         return cost_in_dollars
@@ -95,7 +95,7 @@ class Meeting:
         return (int(work_days), int(hours), int(minutes), int(seconds))
 
 
-    def _get_seconds(self):
+    def _get_seconds_from_duration(self):
         seconds = self.duration.total_seconds()
         seconds = self.__convert_seconds_to_work_seconds(seconds)
         return seconds

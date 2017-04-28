@@ -119,20 +119,12 @@ def perform_i_heart_meetings_calculations ():
 
     wom = Week_Of_Meetings(meetings)
     week_of_meetings = wom.get_meetings_list(meetings)
-    print(wom.percent_time_spent)
     for meeting in week_of_meetings:
         meeting.print_meeting_info()
-    print(meeting.cost_in_seconds())
-    print(meeting.time_cost_for_printing())
-    print(meeting.cost_in_dollars())
-    print(wom.avg_cost_in_seconds(wom.time_cost, wom.num_meetings))
-    print(wom.num_meetings(week_of_meetings))
-    print(wom.ideal_time_cost(week_of_meetings))
-    print(wom.ideal_financial_cost(week_of_meetings))
-    print(wom.avg_cost_in_dollars(week_of_meetings))
-    print(wom.avg_duration(week_of_meetings))
-    print(wom.time_recovered(week_of_meetings))
-    print(wom.money_recovered(week_of_meetings))
+    time_cost_weekly = wom.time_cost_weekly(week_of_meetings)
+    print(wom.time_cost_yearly(time_cost_weekly))
+
+
 
     time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
 
