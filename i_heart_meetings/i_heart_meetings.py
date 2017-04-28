@@ -119,9 +119,20 @@ def perform_i_heart_meetings_calculations ():
 
     wom = Week_Of_Meetings(meetings)
     week_of_meetings = wom.get_meetings_list(meetings)
+    print(wom.percent_time_spent)
     for meeting in week_of_meetings:
         meeting.print_meeting_info()
-
+    print(meeting.cost_in_seconds())
+    print(meeting.time_cost_for_printing())
+    print(meeting.cost_in_dollars())
+    print(wom.avg_cost_in_seconds(wom.time_cost, wom.num_meetings))
+    print(wom.num_meetings(week_of_meetings))
+    print(wom.ideal_time_cost(week_of_meetings))
+    print(wom.ideal_financial_cost(week_of_meetings))
+    print(wom.avg_cost_in_dollars(week_of_meetings))
+    print(wom.avg_duration(week_of_meetings))
+    print(wom.time_recovered(week_of_meetings))
+    print(wom.money_recovered(week_of_meetings))
 
     time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
 
@@ -211,17 +222,12 @@ def _calculate_cost_totals(meetings):
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
 
-        start = _make_dt_or_time_str_pretty_for_printing(start)
-        end = _make_dt_or_time_str_pretty_for_printing(end)
 
         meeting_list.append(Meeting(meeting_id, summary, start, end,
                 meeting_duration, num_attendees))
 
     meeting_frequency = _sort_meeting_frequency(meeting_frequency)
     top_meeting_times = _get_top_meeting_times(meeting_frequency)
-
-#    for meeting in meeting_list:
-#        meeting.print_meeting_info()
 
 
     return(time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly,
@@ -409,9 +415,9 @@ def _convert_time_obj_to_seconds_and_hours(duration):
     return hours, seconds
 
 
-def _calculate_percent_time_in_meetings(percent_time_weekly):
-    percent_time_in_meetings = round(percent_time_weekly * 100, ROUND_TO_THIS_MANY_PLACES)
-    return percent_time_in_meetings
+#def _calculate_percent_time_in_meetings(percent_time_weekly):
+#    percent_time_in_meetings = ROUND_TO_THIS_MANY_PLACES)
+#    return percent_time_in_meetings
 
 
 def _write_csv_to_json():
