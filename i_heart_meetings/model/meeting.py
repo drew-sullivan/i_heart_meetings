@@ -75,6 +75,13 @@ class Meeting:
     def cost_in_dollars(self):
         work_seconds = self._get_seconds_from_duration()
         cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
+        cost_in_dollars = Money(cost_in_dollars, self.CURRENCY)
+        return cost_in_dollars
+
+
+    def cost_in_dollars_pretty_print(self):
+        work_seconds = self._get_seconds_from_duration()
+        cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
         cost_in_dollars = Money(cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
         return cost_in_dollars
 

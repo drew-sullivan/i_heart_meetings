@@ -118,41 +118,41 @@ def perform_i_heart_meetings_calculations ():
 #    _print_entire_google_calendar_results_as_json(meetings)
 
     wom = Week_Of_Meetings(meetings)
-    week_of_meetings = wom.get_meetings_list(meetings)
+    wom.process_google_blob()
+    print(wom.weekly_cost_in_dollars_pretty_print)
+    print(type(wom.weekly_cost_in_dollars_pretty_print))
+
+    #time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
+
+    #time_cost_weekly = _get_time_cost_weekly(time_cost_weekly_in_seconds)
+    #time_cost_yearly = _get_time_cost_yearly(time_cost_weekly_in_seconds)
+    #financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
+    #financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
+    #percent_time_in_meetings = _calculate_percent_time_in_meetings(percent_time_weekly)
+    #avg_meeting_cost_time = _get_avg_meeting_time_cost(num_meetings, time_cost_weekly_in_seconds)
+    #avg_meeting_cost_money = _get_avg_meeting_financial_cost(num_meetings, financial_cost_total)
+    #avg_meeting_duration = _get_avg_meeting_duration(num_meetings, avg_meeting_duration)
+    #time_recovered_weekly = _calculate_time_recovered_weekly(percent_time_in_meetings)
+    #time_recovered_yearly = _calculate_time_recovered_yearly(percent_time_in_meetings)
+    #money_recovered_weekly = _calculate_money_recovered_weekly(percent_time_in_meetings)
+    #money_recovered_yearly = _calculate_money_recovered_yearly(percent_time_in_meetings)
+    #ideal_time_yearly = _calculate_ideal_time_yearly()
+    #ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
+    #top_meeting_time_1, top_meeting_time_2, top_meeting_time_3 = _get_top_three_meeting_times(top_meeting_times)
 
 
 
-    time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
 
-    time_cost_weekly = _get_time_cost_weekly(time_cost_weekly_in_seconds)
-    time_cost_yearly = _get_time_cost_yearly(time_cost_weekly_in_seconds)
-    financial_cost_weekly = _get_financial_cost_weekly(financial_cost_total)
-    financial_cost_yearly = _get_financial_cost_yearly(financial_cost_total)
-    percent_time_in_meetings = _calculate_percent_time_in_meetings(percent_time_weekly)
-    avg_meeting_cost_time = _get_avg_meeting_time_cost(num_meetings, time_cost_weekly_in_seconds)
-    avg_meeting_cost_money = _get_avg_meeting_financial_cost(num_meetings, financial_cost_total)
-    avg_meeting_duration = _get_avg_meeting_duration(num_meetings, avg_meeting_duration)
-    time_recovered_weekly = _calculate_time_recovered_weekly(percent_time_in_meetings)
-    time_recovered_yearly = _calculate_time_recovered_yearly(percent_time_in_meetings)
-    money_recovered_weekly = _calculate_money_recovered_weekly(percent_time_in_meetings)
-    money_recovered_yearly = _calculate_money_recovered_yearly(percent_time_in_meetings)
-    ideal_time_yearly = _calculate_ideal_time_yearly()
-    ideal_financial_cost_yearly = _calculate_ideal_financial_cost_yearly()
-    top_meeting_time_1, top_meeting_time_2, top_meeting_time_3 = _get_top_three_meeting_times(top_meeting_times)
-
-
-
-
-    all_the_variables = (time_cost_weekly, financial_cost_weekly,
-        time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
-        avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings, time_recovered_weekly,
-        money_recovered_weekly, time_recovered_yearly,
-        money_recovered_yearly, ideal_time_yearly,
-        ideal_financial_cost_yearly, meeting_frequency,
-        top_meeting_time_1, top_meeting_time_2, top_meeting_time_3)
-
-    _print_summary(*all_the_variables)
+#    all_the_variables = (time_cost_weekly, financial_cost_weekly,
+#        time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
+#        avg_meeting_cost_money, avg_meeting_duration,
+#        percent_time_in_meetings, time_recovered_weekly,
+#        money_recovered_weekly, time_recovered_yearly,
+#        money_recovered_yearly, ideal_time_yearly,
+#        ideal_financial_cost_yearly, meeting_frequency,
+#        top_meeting_time_1, top_meeting_time_2, top_meeting_time_3)
+#
+#    _print_summary(*all_the_variables)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(*all_the_variables)

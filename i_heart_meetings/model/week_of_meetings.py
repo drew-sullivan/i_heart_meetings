@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
+import datetime
 import dateutil
 
+from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 from model.meeting import Meeting 
 from money import Money # Currently only supporting USD, but others coming soon!
@@ -44,24 +46,21 @@ class Week_Of_Meetings:
 
     def __init__(self, google_meetings_blob):
         self.google_meetings_blob = google_meetings_blob
+        self.meetings_list = []
         self.weekly_cost_in_seconds = 0
-        self.weekly_cost_in_dollars = 0
+        self.weekly_cost_in_dollars = Money(0, self.CURRENCY)
         self.num_meetings = 0
-        percent_time_spent = 0
-        frequency = {}
-        top_meeting_times = []
+        self.percent_time_spent = 0
+        self.frequency = {}
+        self.top_meeting_times = []
 
 
-    def main(self, google_meetings_blob):
-        meetings_list = self.get_meetings_list(google_meetings_blob)
-        self.process_meeting_list(meeting_list)
-
-
-    def process_meeting_list(self, meeting_list):
-        for meeting in self.meeting_list:
-            weekly_cost_in_seconds += meeting.cost_in_seconds()
-            weekly_cost_in_dollars += meeting.cost_in_dollars()
-            num_meetings += 1
+    def process_google_blob(self):
+        self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
+        for meeting in self.meetings_list:
+            self.weekly_cost_in_seconds += meeting.cost_in_seconds()
+            self.weekly_cost_in_dollars += meeting.cost_in_dollars()
+            self.num_meetings += 1
 
             start = meeting.start
             end = meeting.end
@@ -88,6 +87,10 @@ class Week_Of_Meetings:
 
     def weekly_cost_in_dollars(self):
         return self.weekly_cost_in_dollars
+
+
+    def weekly_cost_in_dollars_pretty_print(self):
+        return self.weekly_cost_in_dollars.format(self.CURRENCY_FORMAT)
 
 
     def num_meetings(self):
