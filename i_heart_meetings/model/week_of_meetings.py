@@ -48,8 +48,14 @@ class Week_Of_Meetings:
         self.google_meetings_blob = google_meetings_blob
         self.meetings_list = []
         self.weekly_cost_in_seconds = 0
+        self.weekly_cost_in_seconds_readable = ''
         self.weekly_cost_in_dollars = Money(0, self.CURRENCY)
+        self.weekly_cost_in_dollars_readable = ''
+        self.weekly_duration = 0
+        self.yearly_cost_in_seconds = None
+        self.yearly_cost_in_dollars = None
         self.num_meetings = 0
+        self.avg_duration = 0
         self.percent_time_spent = 0
         self.frequency = {}
         self.top_meeting_times = []
@@ -61,6 +67,7 @@ class Week_Of_Meetings:
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
             self.weekly_cost_in_dollars += meeting.cost_in_dollars()
             self.num_meetings += 1
+            self.weekly_duration += self._convert_duration_to_work_seconds(meeting.duration)
 
             start = meeting.start
             end = meeting.end
@@ -71,18 +78,22 @@ class Week_Of_Meetings:
                 else:
                     self.frequency[start_str] = 1
                 start += datetime.timedelta(minutes=30)
+        self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
+        self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
+        self.set_weekly_cost_in_seconds_readable()
+        self.set_weekly_cost_in_dollars_readable()
 
 
-    def get_weekly_cost_in_seconds_pretty_print(self):
+    def set_weekly_cost_in_seconds_readable(self):
         seconds = self.weekly_cost_in_seconds
         work_days, hours, minutes, seconds = self._translate_seconds(seconds)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
         weekly_cost_in_seconds_pretty_print = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-        return weekly_cost_in_seconds_pretty_print
+        self.weekly_cost_in_seconds_readable = weekly_cost_in_seconds_pretty_print
 
 
-    def get_weekly_cost_in_dollars_pretty_print(self):
-        return self.weekly_cost_in_dollars.format('en_US')
+    def set_weekly_cost_in_dollars_readable(self):
+        self.weekly_cost_in_dollars_readable = str(self.weekly_cost_in_dollars.format('en_US'))
 
 
     def get_percent_time_spent(self):
@@ -106,7 +117,7 @@ class Week_Of_Meetings:
 
 
     def get_avg_duration(self):
-        avg_duration = self.weekly_cost_in_seconds / self.num_meetings
+        avg_duration = self.weekly_duration / self.num_meetings
         work_days, hours, minutes, seconds = self._translate_seconds(avg_duration)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
         avg_duration = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
@@ -266,3 +277,16 @@ class Week_Of_Meetings:
             dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, self.FORMAT_DATETIME_OBJ_TO_STR)
         pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, self.FORMAT_STR_TO_DATETIME_OBJ)
         return pretty_printed_str
+
+
+    def _convert_duration_to_work_seconds(self, duration):
+        seconds = duration.total_seconds()
+        hours = float(seconds) / 3600
+        if hours > self.WORK_HOURS_PER_DAY and hours < 24:
+            hours = self.WORK_HOURS_PER_DAY
+        if hours >= 24:
+            days, hours = divmod(hours, 24)
+            if hours <= self.WORK_HOURS_PER_DAY:
+                hours += days * self.WORK_HOURS_PER_DAY
+        seconds = hours * 3600
+        return seconds
