@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import collections
 import datetime
 import dateutil
 
@@ -77,7 +78,7 @@ class Week_Of_Meetings:
         self.top_meeting_time_1 = ''
         self.top_meeting_time_2 = ''
         self.top_meeting_time_3 = ''
-
+        self.frequency_keys_readable = []
 
     def process_google_blob(self):
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
@@ -96,6 +97,7 @@ class Week_Of_Meetings:
                 else:
                     self.frequency[start_str] = 1
                 start += datetime.timedelta(minutes=30)
+        self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
         self.set_weekly_cost_in_seconds_readable()
@@ -117,7 +119,7 @@ class Week_Of_Meetings:
         self.set_yearly_ideal_financial_cost_readable()
         self.set_top_meeting_times()
         self.set_top_three_meeting_times()
-
+        self.set_frequency_keys_readable()
 
     def set_weekly_cost_in_seconds_readable(self):
         seconds = self.weekly_cost_in_seconds
@@ -235,6 +237,13 @@ class Week_Of_Meetings:
     def set_yearly_ideal_financial_cost_readable(self):
         yearly_ideal_financial_cost = self.YEARLY_IDEAL_COST_IN_DOLLARS.format(self.CURRENCY_FORMAT)
         self.yearly_ideal_financial_cost_readable =  yearly_ideal_financial_cost
+
+
+    def set_frequency_keys_readable(self):
+        dates = list(self.frequency.keys())
+        for date in dates:
+            date = self._make_dt_or_time_str_pretty_for_printing(date)
+            self.frequency_keys_readable.append(date)
 
 
     def set_top_meeting_times(self):
