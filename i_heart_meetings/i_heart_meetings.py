@@ -119,8 +119,10 @@ def perform_i_heart_meetings_calculations ():
 
     wom = Week_Of_Meetings(meetings)
     wom.process_google_blob()
-    print(wom.weekly_cost_in_seconds_readable)
-    print(wom.weekly_cost_in_dollars_readable)
+    print(wom.top_meeting_times)
+    print(wom.top_meeting_time_1)
+    print(wom.top_meeting_time_2)
+    print(wom.top_meeting_time_3)
 
     #time_cost_weekly_in_seconds, financial_cost_total, percent_time_weekly, list_of_meeting_ids, list_of_meeting_durations, list_of_meeting_summaries, num_meetings, avg_meeting_duration, meeting_frequency, top_meeting_times = _calculate_cost_totals(meetings)
 
