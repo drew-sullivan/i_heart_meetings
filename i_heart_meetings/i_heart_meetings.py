@@ -119,7 +119,6 @@ def perform_i_heart_meetings_calculations ():
 
     wom = Week_Of_Meetings(meetings)
     wom.process_google_blob()
-    print(wom.avg_cost_in_seconds_readable)
     print(wom.summary_printout)
 
 #    _print_summary(*all_the_variables)
@@ -197,39 +196,6 @@ def _post_to_slack(*all_the_variables):
 
 def _print_entire_google_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
-
-
-def _print_summary(*all_the_variables):
-    print("""
-    +++++++++++
-    + SUMMARY +
-    +++++++++++
-
-    Weekly cost in time: {0}
-    Weekly cost in money: {1}
-
-    At this time next year:
-    Yearly cost in time: {2}
-    Yearly cost in money: {3}
-
-    Average time cost: {4}
-    Average financial cost: {5}
-    Average duration: {6}
-
-    Top 3 Meeting Times:
-    {15},
-    {16},
-    {17}
-
-    {7}% of Your Time is Spent in Meetings
-
-    Your ideal yearly costs:
-    {13} and {12}
-
-    Using I Heart Meetings could save you:
-    {9} and {8} per week
-    {11} and {10} per year
-    """.format(*all_the_variables))
 
 
 def _get_credentials():
