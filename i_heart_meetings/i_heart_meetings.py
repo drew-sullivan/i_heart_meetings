@@ -119,6 +119,8 @@ def perform_i_heart_meetings_calculations ():
 
     wom = Week_Of_Meetings(meetings)
     wom.process_google_blob()
+    print(wom.avg_cost_in_seconds_readable)
+    print(wom.summary_printout)
 
 #    _print_summary(*all_the_variables)
 #    _write_db_to_csv()

@@ -40,6 +40,7 @@ class Week_Of_Meetings:
 
     YEARLY_IDEAL_COST_IN_SECONDS = (float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * PERSON_SECONDS_PER_YEAR
     YEARLY_IDEAL_COST_IN_DOLLARS = Money((float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * COST_PER_SECOND * PERSON_SECONDS_PER_YEAR, CURRENCY)
+
     ROUND_TO_THIS_MANY_PLACES = 2
     FORMAT_DATETIME_OBJ_TO_STR = '%Y-%m-%d %H:%M:%S'
     FORMAT_STR_TO_DATETIME_OBJ = '%A, %b %d, %Y - %I:%M'
@@ -55,13 +56,16 @@ class Week_Of_Meetings:
         self.weekly_cost_in_dollars = Money(0, self.CURRENCY)
         self.weekly_cost_in_dollars_readable = ''
         self.weekly_duration = 0
-        self.yearly_cost_in_seconds = None
+        self.yearly_cost_in_seconds = 0
+        self.yearly_cost_in_seconds_readable = ''
         self.yearly_cost_in_dollars = None
         self.num_meetings = 0
         self.weekly_time_recovered_in_seconds = 0
         self.weekly_time_recovered_readable = ''
         self.weekly_money_recovered_in_dollars = 0
         self.weekly_money_recovered_readable = ''
+        self.yearly_money_recovered_in_dollars = 0
+        self.yearly_money_recovered_readable = ''
         self.yearly_time_recovered_in_seconds = 0
         self.yearly_time_recovered_readable = ''
         self.avg_cost_in_seconds = 0
@@ -79,6 +83,8 @@ class Week_Of_Meetings:
         self.top_meeting_time_2 = ''
         self.top_meeting_time_3 = ''
         self.frequency_keys_readable = []
+        self.summary_printout = ''
+
 
     def process_google_blob(self):
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
@@ -104,7 +110,9 @@ class Week_Of_Meetings:
         self.set_weekly_cost_in_dollars_readable()
         self.set_avg_cost_in_seconds_readable()
         self.set_avg_cost_in_dollars()
+        self.set_avg_cost_in_dollars_readable()
         self.set_avg_duration_in_seconds()
+        self.set_avg_duration_in_seconds_readable()
         self.set_yearly_cost_in_seconds_readable()
         self.set_percent_time_spent()
         self.set_percent_time_readable()
@@ -115,11 +123,16 @@ class Week_Of_Meetings:
         self.set_weekly_time_recovered_readable()
         self.set_weekly_money_recovered_in_dollars()
         self.set_weekly_money_recovered_readable()
+        self.set_yearly_money_recovered_in_dollars()
+        self.set_yearly_money_recovered_readable()
         self.set_yearly_ideal_time_cost_readable()
         self.set_yearly_ideal_financial_cost_readable()
         self.set_top_meeting_times()
         self.set_top_three_meeting_times()
         self.set_frequency_keys_readable()
+        self.set_summary()
+
+
 
     def set_weekly_cost_in_seconds_readable(self):
         seconds = self.weekly_cost_in_seconds
@@ -157,12 +170,20 @@ class Week_Of_Meetings:
         self.avg_cost_in_dollars = avg_meeting_cost_in_dollars
 
 
+    def set_avg_cost_in_dollars_readable(self):
+        self.avg_cost_in_dollars_readable = self.avg_cost_in_dollars.format(self.CURRENCY_FORMAT)
+
+
     def set_avg_duration_in_seconds(self):
         avg_duration_in_seconds = self.weekly_duration / self.num_meetings
-        work_days, hours, minutes, seconds = self._translate_seconds(avg_duration_in_seconds)
-        work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-        avg_duration_in_seconds = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
         self.avg_duration_in_seconds = avg_duration_in_seconds
+
+
+    def set_avg_duration_in_seconds_readable(self):
+        avg_duration_in_seconds_readable = self.avg_duration_in_seconds
+        work_days, hours, minutes, seconds = self._translate_seconds(avg_duration_in_seconds_readable)
+        work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
+        self.avg_duration_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
     def set_weekly_time_recovered_in_seconds(self):
@@ -190,6 +211,14 @@ class Week_Of_Meetings:
 
     def set_weekly_money_recovered_readable(self):
         self.weekly_money_recovered_readable = self.weekly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
+
+
+    def set_yearly_money_recovered_in_dollars(self):
+        self.yearly_money_recovered_in_dollars = self.weekly_money_recovered_in_dollars * self.WORK_WEEKS_PER_YEAR
+
+
+    def set_yearly_money_recovered_readable(self):
+        self.yearly_money_recovered_readable = self.yearly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
 
 
     def set_yearly_cost_in_seconds(self):
@@ -288,6 +317,61 @@ class Week_Of_Meetings:
             m = Meeting(meeting_id, summary, start, end, duration, num_attendees)
             meetings_list.append(m)
         return meetings_list
+
+    #def set_test_string(self):
+    #    self.test_string = """
+    #    hello, {}
+    #    """.format(self.percent_time_spent)
+
+    def set_summary(self):
+        self.summary_printout = """
+        +++++++++++
+        + SUMMARY +
+        +++++++++++
+
+        Weekly cost in time: {0}
+        Weekly cost in money: {1}
+
+        At this time next year:
+        Yearly cost in time: {2}
+        Yearly cost in money: {3}
+
+        Average time cost: {4}
+        Average financial cost: {5}
+        Average duration: {6}
+
+        Top 3 Meeting Times:
+        {7},
+        {8},
+        {9}
+
+        {10}% of Your Time is Spent in Meetings
+
+        Your ideal yearly costs:
+        {11} and {12}
+
+        Using I Heart Meetings could save you:
+        {13} and {14} per week
+        {15} and {16} per year
+        """.format(
+            self.weekly_cost_in_seconds_readable,
+            self.weekly_cost_in_dollars_readable,
+            self.yearly_cost_in_seconds_readable,
+            self.yearly_cost_in_dollars,
+            self.avg_cost_in_seconds_readable,
+            self.avg_cost_in_dollars_readable,
+            self.avg_duration_in_seconds_readable,
+            self.top_meeting_time_1,
+            self.top_meeting_time_2,
+            self.top_meeting_time_3,
+            self.percent_time_spent_readable,
+            self.yearly_ideal_time_cost_readable,
+            self.yearly_ideal_financial_cost_readable,
+            self.weekly_money_recovered_readable,
+            self.weekly_time_recovered_readable,
+            self.yearly_money_recovered_readable,
+            self.yearly_time_recovered_readable
+            )
 
 
     def _get_summary(self, meeting):
