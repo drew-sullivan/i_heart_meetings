@@ -145,23 +145,25 @@ class Data_Cruncher:
 
     def set_printable_data(self):
         self.printable_data = (
-            self.weekly_cost_in_seconds_readable,
-            self.weekly_cost_in_dollars_readable,
-            self.yearly_cost_in_seconds_readable,
-            self.yearly_cost_in_dollars,
-            self.avg_cost_in_seconds_readable,
-            self.avg_cost_in_dollars_readable,
-            self.avg_duration_in_seconds_readable,
-            self.top_meeting_time_1,
-            self.top_meeting_time_2,
-            self.top_meeting_time_3,
-            self.percent_time_spent_readable,
-            self.yearly_ideal_time_cost_readable,
-            self.yearly_ideal_financial_cost_readable,
-            self.weekly_money_recovered_readable,
-            self.weekly_time_recovered_readable,
-            self.yearly_money_recovered_readable,
-            self.yearly_time_recovered_readable
+            self.weekly_cost_in_seconds_readable, #0
+            self.weekly_cost_in_dollars_readable, #1
+            self.yearly_cost_in_seconds_readable, #2
+            self.yearly_cost_in_dollars, #3
+            self.avg_cost_in_seconds_readable, #4
+            self.avg_cost_in_dollars_readable, #5
+            self.avg_duration_in_seconds_readable, #6
+            self.top_meeting_time_1, #7
+            self.top_meeting_time_2, #8
+            self.top_meeting_time_3, #9
+            self.percent_time_spent_readable, #10
+            self.yearly_ideal_time_cost_readable, #11
+            self.yearly_ideal_financial_cost_readable, #12
+            self.weekly_money_recovered_readable, #13
+            self.weekly_time_recovered_readable, #14
+            self.yearly_money_recovered_readable, #15
+            self.yearly_time_recovered_readable, #16
+            self.frequency_keys_readable, #17
+            self.frequency #18
         )
 
 

@@ -94,9 +94,9 @@ NUM_TOP_MEETING_TIMES = 3
 
 # for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
-#from flask import Flask
-#from flask import render_template
-#app = Flask(__name__)
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
 
 
 def perform_i_heart_meetings_calculations ():
@@ -116,12 +116,11 @@ def perform_i_heart_meetings_calculations ():
 
     dc = Data_Cruncher(meetings)
     dc.process_google_blob()
-    dc.post_summary_to_slack()
-
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _generate_charts(*all_the_variables)
-#    _open_charts_in_browser()
+    printable_data = dc.printable_data
+    _generate_charts(printable_data)
+    _open_charts_in_browser()
 
         #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
@@ -205,24 +204,15 @@ def _get_credentials():
     return credentials
 
 
-def _generate_charts(time_cost_weekly, financial_cost_weekly,
-        time_cost_yearly, financial_cost_yearly, avg_meeting_cost_time,
-        avg_meeting_cost_money, avg_meeting_duration,
-        percent_time_in_meetings, time_recovered_weekly,
-        money_recovered_weekly, time_recovered_yearly,
-        money_recovered_yearly, ideal_time_yearly,
-        ideal_financial_cost_yearly, meeting_frequency,
-        top_meeting_time_1, top_meeting_time_2, top_meeting_time_3):
-
+def _generate_charts(printable_data):
 
     @app.route("/when_you_meet_most")
     def chart():
         legend = 'test'
         # X axis - list
-        pretty_keys = _make_keys_pretty(meeting_frequency)
-        labels = pretty_keys
+        labels = printable_data[17]
         # Y axis - list
-        values = list(meeting_frequency.values())
+        values = list(printable_data[18].values())
         return render_template('when_you_meet_most_line.html', values=values, labels=labels, legend=legend)
 
     @app.route("/line_chart_2")
@@ -267,16 +257,20 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
     @app.route('/percent_time_in_meetings')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
-            financial_cost_yearly, time_cost_yearly
+            dc.yearly_cost_in_dollars, dc.yearly_cost_in_seconds_readable
+            #dc.yearly_cost_in_dollars, dc.yearly_cost_in_seconds_readable
+            #[3], [2]
         )
         ideal_meeting_investment = 'Ideal Meeting Investment: {0} and {1}'.format(
-            ideal_financial_cost_yearly, ideal_time_yearly
+            dc.yearly_ideal_financial_cost_readable, dc.yearly_ideal_time_cost_readable
+            #[12], [11]
         )
         potential_savings = 'Potential Savings: {0} and {1}'.format(
-            money_recovered_yearly, time_recovered_yearly
+            dc.yearly_money_recovered_readable, dc.yearly_time_recovered_readable
+            [15], [14]
         )
-        remainder = 100 - percent_time_in_meetings
-        recovered_percent = percent_time_in_meetings - IDEAL_PERCENT_TIME_IN_MEETINGS
+        remainder = 100 - dc.percent_time_spent()
+        recovered_percent = dc.percent_time_spent() - dc.IDEAL_PERCENT_TIME_IN_MEETINGS
         legend = 'Percentage of Time Spent in Meetings'
         labels = [
             current_costs,
@@ -308,4 +302,4 @@ def _generate_charts(time_cost_weekly, financial_cost_weekly,
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
-#    app.run(debug=False)
+    app.run(debug=False)
