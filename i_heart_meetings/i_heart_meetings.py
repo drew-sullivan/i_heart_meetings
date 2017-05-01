@@ -215,51 +215,6 @@ def _generate_charts(printable_data):
         values = list(printable_data[18].values())
         return render_template('when_you_meet_most_line.html', values=values, labels=labels, legend=legend)
 
-    @app.route("/line_chart_2")
-    def chart_2():
-        legend = 'Meeting Durations'
-        # X axis - list
-        labels = list_of_meeting_summaries
-        # Y axis - list
-        values = list_of_meeting_durations
-        return render_template('line.html', values=values, labels=labels, legend=legend)
-
-    @app.route("/bar_chart")
-    def bar_chart():
-        legend = 'Meeting Durations'
-        #labels = list_of_meeting_ids
-        labels = list_of_meeting_summaries
-        values = list_of_meeting_durations
-        return render_template('bar.html', values=values, labels=labels, legend=legend)
-
-    @app.route('/radar_chart')
-    def radar_chart():
-        legend = 'Meeting Durations'
-        #labels = list_of_meeting_ids
-        labels = list_of_meeting_summaries
-        values = list_of_meeting_durations
-        return render_template('radar.html', values=values, labels=labels, legend=legend)
-
-    @app.route('/polar_chart')
-    def polar_chart():
-        legend = 'Meeting Durations'
-        labels = list_of_meeting_ids
-        values = list_of_meeting_durations
-        return render_template('polar.html', values=values, labels=labels, legend=legend)
-
-    @app.route('/pie_chart')
-    def pie_chart():
-        current_costs = 'Current Costs: {0} and {1} yearly'.format(
-            printable_data[3], printable_data[2])
-        ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
-            printable_data[12], printable_data[11])
-        savings = 'Potential Savings: {0} and {1}'.format(printable_data[15],
-            printable_data[16])
-        legend = 'Meeting Durations'
-        labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
-        values = [printable_data[19],9,8,15]
-        return render_template('pie.html', values=values, labels=labels, legend=legend)
-
     @app.route('/percent_time_in_meetings')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
@@ -275,18 +230,59 @@ def _generate_charts(printable_data):
         values = [printable_data[19], remainder, printable_data[20], recovered_costs]
         return render_template('percent_time_in_meetings_pie.html', values=values, labels=labels, legend=legend)
 
+    #Plug-and-play templates
 
-    @app.route('/doughnut_chart')
-    def doughnut_chart():
-        legend = 'Meeting Durations'
-        labels = list_of_meeting_ids
-        values = list_of_meeting_durations
-        return render_template('doughnut.html', values=values, labels=labels, legend=legend)
+    #@app.route("/line_chart_2")
+    #def chart_2():
+    #    legend = 'Meeting Durations'
+    #    # X axis - list
+    #    labels = list_of_meeting_summaries
+    #    # Y axis - list
+    #    values = list_of_meeting_durations
+    #    return render_template('line.html', values=values, labels=labels, legend=legend)
 
-    @app.route('/timer')
-    def meeting_timer():
-        return render_template('meeting_timer.html')
+    #@app.route("/bar_chart")
+    #def bar_chart():
+    #    legend = 'Meeting Durations'
+    #    #labels = list_of_meeting_ids
+    #    labels = list_of_meeting_summaries
+    #    values = list_of_meeting_durations
+    #    return render_template('bar.html', values=values, labels=labels, legend=legend)
 
+    #@app.route('/radar_chart')
+    #def radar_chart():
+    #    legend = 'Meeting Durations'
+    #    #labels = list_of_meeting_ids
+    #    labels = list_of_meeting_summaries
+    #    values = list_of_meeting_durations
+    #    return render_template('radar.html', values=values, labels=labels, legend=legend)
+
+    #@app.route('/polar_chart')
+    #def polar_chart():
+    #    legend = 'Meeting Durations'
+    #    labels = list_of_meeting_ids
+    #    values = list_of_meeting_durations
+    #    return render_template('polar.html', values=values, labels=labels, legend=legend)
+
+    #@app.route('/pie_chart')
+    #def pie_chart():
+    #    current_costs = 'Current Costs: {0} and {1} yearly'.format(
+    #        printable_data[3], printable_data[2])
+    #    ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
+    #        printable_data[12], printable_data[11])
+    #    savings = 'Potential Savings: {0} and {1}'.format(printable_data[15],
+    #        printable_data[16])
+    #    legend = 'Meeting Durations'
+    #    labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
+    #    values = [printable_data[19],9,8,15]
+    #    return render_template('pie.html', values=values, labels=labels, legend=legend)
+
+    #@app.route('/doughnut_chart')
+    #def doughnut_chart():
+    #    legend = 'Meeting Durations'
+    #    labels = list_of_meeting_ids
+    #    values = list_of_meeting_durations
+    #    return render_template('doughnut.html', values=values, labels=labels, legend=legend)
 
 
 if __name__ == '__main__':
