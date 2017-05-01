@@ -12,7 +12,7 @@ import requests
 import sqlite3
 import textwrap
 import time
-import urllib2
+#import urllib2
 import webbrowser
 
 from apiclient import discovery
@@ -120,8 +120,7 @@ def perform_i_heart_meetings_calculations ():
 
     dc = Data_Cruncher(meetings)
     dc.process_google_blob()
-    print(dc.summary_printout)
-    print(dc.printable_data)
+    dc.post_summary_to_slack()
 
 #    _write_db_to_csv()
 #    _write_csv_to_json()
@@ -177,22 +176,22 @@ def _add_row_to_db(meeting_id, summary, start, end, meeting_duration,
     conn.close()
 
 
-def _post_to_slack(*all_the_variables):
-    data = str(
-        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Top Three Meeting Times:\n{15}\n{16}\n{17}\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
-                *all_the_variables),
-            'attachments': [
-                {
-                    'title': 'Please click here to take a 3-question poll about this meetings report',
-                    'title_link': QUESTIONNAIRE_LINK
-                }
-            ]
-        }
-    )
-    url = SLACK_HOOK
-    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-    f = urllib2.urlopen(req)
-    f.close()
+#def _post_to_slack(*all_the_variables):
+#    data = str(
+#        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Top Three Meeting Times:\n{15}\n{16}\n{17}\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
+#                *all_the_variables),
+#            'attachments': [
+#                {
+#                    'title': 'Please click here to take a 3-question poll about this meetings report',
+#                    'title_link': QUESTIONNAIRE_LINK
+#                }
+#            ]
+#        }
+#    )
+#    url = SLACK_HOOK
+#    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+#    f = urllib2.urlopen(req)
+#    f.close()
 
 
 def _print_entire_google_calendar_results_as_json(meetings):

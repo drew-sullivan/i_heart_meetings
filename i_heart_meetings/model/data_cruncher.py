@@ -3,6 +3,8 @@
 import collections
 import datetime
 import dateutil
+import urllib2
+import webbrowser
 
 from collections import namedtuple
 from datetime import timedelta
@@ -48,6 +50,8 @@ class Data_Cruncher:
 
     NUM_TOP_MEETING_TIMES = 3
 
+    QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
+    SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
     def __init__(self, google_meetings_blob):
         self.google_meetings_blob = google_meetings_blob
@@ -86,6 +90,8 @@ class Data_Cruncher:
         self.frequency_keys_readable = []
         self.summary_printout = ''
         self.printable_data = None
+        self.print_template = ''
+
 
     def process_google_blob(self):
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
@@ -133,8 +139,9 @@ class Data_Cruncher:
         self.set_frequency_keys_readable()
 
         self.set_printable_data()
+        self.set_print_template()
         self.set_summary()
-
+        #self.post_summary_to_slack()
 
     def set_printable_data(self):
         self.printable_data = (
@@ -158,11 +165,30 @@ class Data_Cruncher:
         )
 
 
+    def post_summary_to_slack(self):
+        data = str(
+            {'text': self.summary_printout,
+                'attachments': [
+                    {
+                        'title': 'Please click here to take a 3-question poll about this meetings report',
+                        'title_link': self.QUESTIONNAIRE_LINK
+                    }
+                ]
+            }
+        )
+        url = self.SLACK_HOOK
+        req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+        f = urllib2.urlopen(req)
+        f.close()
+
+
     def set_summary(self):
-        self.summary_printout = """
-        +++++++++++
-        + SUMMARY +
-        +++++++++++
+        self.summary_printout = self.print_template.format(*self.printable_data)
+
+
+    def set_print_template(self):
+        self.print_template = """
+        Your I Heart Meetings Summary:
 
         Weekly cost in time: {0}
         Weekly cost in money: {1}
@@ -188,7 +214,7 @@ class Data_Cruncher:
         Using I Heart Meetings could save you:
         {13} and {14} per week
         {15} and {16} per year
-        """.format(*self.printable_data)
+        """
 
 
     def set_weekly_cost_in_seconds_readable(self):
