@@ -16,11 +16,12 @@ import urllib2
 import webbrowser
 
 from apiclient import discovery
+from collections import namedtuple
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 from model.meeting import Meeting
-from model.week_of_meetings import Week_Of_Meetings
+from model.data_cruncher import Data_Cruncher
 from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
@@ -117,11 +118,11 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    wom = Week_Of_Meetings(meetings)
-    wom.process_google_blob()
-    print(wom.summary_printout)
+    dc = Data_Cruncher(meetings)
+    dc.process_google_blob()
+    print(dc.summary_printout)
+    print(dc.printable_data)
 
-#    _print_summary(*all_the_variables)
 #    _write_db_to_csv()
 #    _write_csv_to_json()
 #    _post_to_slack(*all_the_variables)
