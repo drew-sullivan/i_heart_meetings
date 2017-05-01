@@ -249,41 +249,30 @@ def _generate_charts(printable_data):
 
     @app.route('/pie_chart')
     def pie_chart():
+        current_costs = 'Current Costs: {0} and {1} yearly'.format(
+            printable_data[3], printable_data[2])
+        ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
+            printable_data[12], printable_data[11])
+        savings = 'Potential Savings: {0} and {1}'.format(printable_data[15],
+            printable_data[16])
         legend = 'Meeting Durations'
-        labels = list_of_meeting_ids
-        values = list_of_meeting_durations
+        labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
+        values = [printable_data[19],9,8,15]
         return render_template('pie.html', values=values, labels=labels, legend=legend)
 
     @app.route('/percent_time_in_meetings')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
-            dc.yearly_cost_in_dollars, dc.yearly_cost_in_seconds_readable
-            #dc.yearly_cost_in_dollars, dc.yearly_cost_in_seconds_readable
-            #[3], [2]
-        )
-        ideal_meeting_investment = 'Ideal Meeting Investment: {0} and {1}'.format(
-            dc.yearly_ideal_financial_cost_readable, dc.yearly_ideal_time_cost_readable
-            #[12], [11]
-        )
-        potential_savings = 'Potential Savings: {0} and {1}'.format(
-            dc.yearly_money_recovered_readable, dc.yearly_time_recovered_readable
-            [15], [14]
-        )
-        remainder = 100 - dc.percent_time_spent()
-        recovered_percent = dc.percent_time_spent() - dc.IDEAL_PERCENT_TIME_IN_MEETINGS
+            printable_data[3], printable_data[2])
+        ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
+            printable_data[12], printable_data[11])
+        savings = 'Potential Savings: {0} and {1}'.format(printable_data[15],
+            printable_data[16])
+        remainder = 100 - printable_data[19]
+        recovered_costs = printable_data[19] - printable_data[20]
         legend = 'Percentage of Time Spent in Meetings'
-        labels = [
-            current_costs,
-            'Non-Meetings',
-            ideal_meeting_investment,
-            potential_savings
-        ]
-        values = [
-            percent_time_in_meetings,
-            remainder,
-            IDEAL_PERCENT_TIME_IN_MEETINGS,
-            recovered_percent
-        ]
+        labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
+        values = [printable_data[19], remainder, printable_data[20], recovered_costs]
         return render_template('percent_time_in_meetings_pie.html', values=values, labels=labels, legend=legend)
 
 

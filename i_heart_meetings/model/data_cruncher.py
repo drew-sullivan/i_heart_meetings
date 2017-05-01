@@ -163,7 +163,9 @@ class Data_Cruncher:
             self.yearly_money_recovered_readable, #15
             self.yearly_time_recovered_readable, #16
             self.frequency_keys_readable, #17
-            self.frequency #18
+            self.frequency, #18
+            self.percent_time_spent, #19
+            self.IDEAL_PERCENT_TIME_IN_MEETINGS #20
         )
 
 
