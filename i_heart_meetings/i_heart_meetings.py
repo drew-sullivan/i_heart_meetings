@@ -12,7 +12,6 @@ import requests
 import sqlite3
 import textwrap
 import time
-#import urllib2
 import webbrowser
 
 from apiclient import discovery
@@ -78,9 +77,6 @@ MAX_NUM_RESULTS = 100
 ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
 
-#QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
-#SLACK_HOOK = 'https://hooks.slack.com/services/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'
-
 DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/db_ihm.sqlite'
 
 JSON_FIELDS = ('meeting_id', 'meeting_number', 'summary', 'start', 'end',
@@ -124,7 +120,6 @@ def perform_i_heart_meetings_calculations ():
 
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-#    _post_to_slack(*all_the_variables)
 #    _generate_charts(*all_the_variables)
 #    _open_charts_in_browser()
 
@@ -174,24 +169,6 @@ def _add_row_to_db(meeting_id, summary, start, end, meeting_duration,
                 time_cost_single_meeting_seconds))
     conn.commit()
     conn.close()
-
-
-#def _post_to_slack(*all_the_variables):
-#    data = str(
-#        {'text':'Weekly Costs:\n{0}, {1}\n\nProjected Yearly Costs:\n{2}, {3}\n\nAverage Time Cost: {4}\nAverage Financial Cost: {5}\nAverage Duration: {6}\n\n{7}% of Your Time is Spent in Meetings\n\nYour Top Three Meeting Times:\n{15}\n{16}\n{17}\n\nYour Ideal Yearly Costs:\n{13} and {12}\n\nUsing I Heart Meetings Could Save You:\n{9} and {8} per week\n{11} and {10} per year'.format(
-#                *all_the_variables),
-#            'attachments': [
-#                {
-#                    'title': 'Please click here to take a 3-question poll about this meetings report',
-#                    'title_link': QUESTIONNAIRE_LINK
-#                }
-#            ]
-#        }
-#    )
-#    url = SLACK_HOOK
-#    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-#    f = urllib2.urlopen(req)
-#    f.close()
 
 
 def _print_entire_google_calendar_results_as_json(meetings):
