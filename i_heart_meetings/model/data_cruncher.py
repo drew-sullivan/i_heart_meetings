@@ -181,7 +181,7 @@ class Data_Cruncher:
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
-#        self.post_summary_to_slack()
+        self.post_summary_to_slack()
 
     def set_printable_data(self):
         self.printable_data = (
@@ -213,9 +213,36 @@ class Data_Cruncher:
         data = str(
             {'text': self.summary_printout,
                 'attachments': [
+                    #{
+                    #    'title': 'Please click here to take a 3-question poll about this meetings report',
+                    #    'title_link': self.QUESTIONNAIRE_LINK
+                    #},
                     {
-                        'title': 'Please click here to take a 3-question poll about this meetings report',
-                        'title_link': self.QUESTIONNAIRE_LINK
+                        "fallback": "Was this a good use of time and money?",
+                        "title": "Was this a good use of time and money?",
+                        "callback_id": "comic_1234_xyz",
+                        "color": "#800080",
+                        "attachment_type": "default",
+                        "actions": [
+                            {
+                                "name": "yes",
+                                "text": "Yes",
+                                "type": "button",
+                                "value": "yes"
+                            },
+                            {
+                                "name": "no",
+                                "text": "No",
+                                "type": "button",
+                                "value": "no"
+                            },
+                            {
+                                "name": "maybe",
+                                "text": "I'm Not Sure",
+                                "type": "button",
+                                "value": "maybe"
+                            }
+                        ]
                     }
                 ]
             }
