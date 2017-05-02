@@ -13,12 +13,51 @@ from model.meeting import Meeting
 from money import Money # Currently only supporting USD, but others coming soon!
 
 class Data_Cruncher:
-    """Calculates the costs of a meetings pull when passed a list of meetings
-    objects
 
-    Attributes:
-        google_meetings_blob: blob - meeting info obtained from Google
-    """
+    help = textwrap.dedent("""
+        -Takes the Google blob, and turns it into a list of Meeting objects
+        -Performs calculations on those objects
+        -Sets the results of those calculations to attributes
+
+        Attributes:
+            google_meetings_blob: list - received from google after query
+            meetings_list: list - list of meeting objects
+            weekly_cost_in_seconds: int - cost of each meeting in a week added together
+            weekly_cost_in_seconds_readable: str - DD, HH, MM, SS version of above
+            weekly_cost_in_dollars: Money - cost of each meeting in a week added together
+            weekly_cost_in_dollars_readable: str - added a dollar sign of above
+            weekly_duration: int - total number of seconds in meetings in a week
+            yearly_cost_in_seconds: int - weekly_cost_in_seconds * 50
+            yearly_cost_in_seconds_readable: str - DD, HH, MM, SS version of above
+            yearly_cost_in_dollars: Money - added dollar sign and * 50 to weekly_cost_in_dollars
+            num_meetings: int - number of meetings in a week
+            weekly_time_recovered_in_seconds: int - difference between ideal and actual
+            weekly_time_recovered_readable: str - DD, HH, MM, SS version of above
+            weekly_money_recovered_in_dollars: int - difference between ideal and actual
+            weekly_money_recovered_readable: str - added dollar sign to above
+            yearly_money_recovered_in_dollars: int - weekly * 50
+            yearly_money_recovered_readable: str - added dollar sign to above
+            yearly_time_recovered_in_seconds: int - difference between ideal and actual
+            yearly_time_recovered_readable: str - DD, HH, MM, SS version of above
+            avg_cost_in_seconds: int - average cost of a meeting in seconds
+            avg_cost_in_seconds_readable: str - DD, HH, MM, SS of above
+            avg_cost_in_dollars: Money - average cost in dollars
+            avg_cost_in_dollars_readable: str - added dollar sign to above
+            avg_duration_in_seconds_readable: str - DD, HH, MM, SS 
+            percent_time_spent: int - percent time spent in meetings
+            percent_time_spent_readable: str - adds % to above
+            yearly_ideal_time_cost_readable: str - DD, HH, MM, SS version of ideal
+            yearly_ideal_financial_cost_readable: str - format $100.00
+            frequency: dict - k: meeting time, v: num people in meetings
+            top_meeting_times: list - top 3 meeting times
+            top_meeting_time_1: str - top meeting time in Tuesday, Apr 25, 2017 - 09:30
+            top_meeting_time_2: str - #2
+            top_meeting_time_3: str - #3
+            frequency_keys_readable: list - all meeting times as Tuesday, Apr 25, 2017 - 09:30
+            summary_printout: str - formatted printout of data for printing
+            printable_data = tuple - all the calculations. Can be passed between classes
+            print_template: str - template for printing info in the same format
+        """)
 
     WORK_HOURS_PER_YEAR = 2000
     WORK_HOURS_PER_DAY = 8
