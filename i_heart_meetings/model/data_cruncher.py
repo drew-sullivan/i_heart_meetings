@@ -181,7 +181,7 @@ class Data_Cruncher:
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
-        #self.post_summary_to_slack()
+#        self.post_summary_to_slack()
 
     def set_printable_data(self):
         self.printable_data = (
@@ -232,30 +232,33 @@ class Data_Cruncher:
 
     def set_print_template(self):
         self.print_template = """
-        Your I Heart Meetings Summary:
+        *Summary*
 
-        Weekly cost in time: {0}
-        Weekly cost in money: {1}
+        *Weekly Costs*
+        {0}
+        {1}
 
-        At this time next year:
-        Yearly cost in time: {2}
-        Yearly cost in money: {3}
+        *Average Per Meeting*
 
-        Average time cost: {4}
-        Average financial cost: {5}
-        Average duration: {6}
+        Time Cost: {4}
+        Financial Cost: {5}
+        Duration: {6}
 
-        Top 3 Meeting Times:
+        *Projected Yearly Costs*
+        {2}
+        {3}
+
+        *Top 3 Meeting Times*
         {7},
         {8},
         {9}
 
-        {10}% of Your Time is Spent in Meetings
+        *{10}* of Your Time is Spent in Meetings
 
-        Your ideal yearly costs:
+        *Ideal Yearly Costs*
         {11} and {12}
 
-        Using I Heart Meetings could save you:
+        *Potential Savings*
         {13} and {14} per week
         {15} and {16} per year
         """
