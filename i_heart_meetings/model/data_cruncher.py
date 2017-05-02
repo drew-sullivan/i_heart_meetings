@@ -3,6 +3,7 @@
 import collections
 import datetime
 import dateutil
+import smtplib
 import textwrap
 import urllib2
 import webbrowser
@@ -10,6 +11,7 @@ import webbrowser
 from collections import namedtuple
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
+from email.mime.text import MIMEText
 from model.meeting import Meeting 
 from money import Money # Currently only supporting USD, but others coming soon!
 
@@ -181,7 +183,8 @@ class Data_Cruncher:
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
-        self.post_summary_to_slack()
+        #self.post_summary_to_slack()
+        self.send_summary_in_email()
 
     def set_printable_data(self):
         self.printable_data = (
@@ -209,18 +212,36 @@ class Data_Cruncher:
         )
 
 
+    def send_summary_in_email(self):
+        fromaddr = 'drew.sullivan.dma@gmail.com'
+        toaddrs  = ['drew.sullivan.dma@gmail.com']
+        msg = '''
+            From: {fromaddr}
+            To: {toaddr}
+            Subject: testin'     
+            This is a test 
+            .
+        '''
+
+        msg = msg.format(fromaddr =fromaddr, toaddr = toaddrs[0])
+        # The actual mail send
+        server = smtplib.SMTP('gmail-smtp-in.l.google.com:25')
+        server.starttls()
+        server.ehlo("example.com")
+        server.mail(fromaddr)
+        server.rcpt(toaddrs[0])
+        server.data(msg)
+        server.quit()
+
+
     def post_summary_to_slack(self):
         data = str(
             {'text': self.summary_printout,
                 'attachments': [
-                    #{
-                    #    'title': 'Please click here to take a 3-question poll about this meetings report',
-                    #    'title_link': self.QUESTIONNAIRE_LINK
-                    #},
                     {
                         "fallback": "Was this a good use of time and money?",
                         "title": "Was this a good use of time and money?",
-                        "callback_id": "comic_1234_xyz",
+                        "callback_id": "meetings_survey",
                         "color": "#800080",
                         "attachment_type": "default",
                         "actions": [

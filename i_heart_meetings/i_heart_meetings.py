@@ -121,7 +121,7 @@ def perform_i_heart_meetings_calculations ():
     data = dc.printable_data
 #    _generate_charts(data)
 #    _open_charts_in_browser()
-    _create_slack_html(data)
+#    _create_slack_html(data)
         #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
