@@ -94,9 +94,9 @@ NUM_TOP_MEETING_TIMES = 3
 
 # for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
-from flask import Flask
-from flask import render_template
-app = Flask(__name__)
+#from flask import Flask
+#from flask import render_template
+#app = Flask(__name__)
 
 
 def perform_i_heart_meetings_calculations ():
@@ -118,13 +118,14 @@ def perform_i_heart_meetings_calculations ():
     dc.process_google_blob()
 #    _write_db_to_csv()
 #    _write_csv_to_json()
-    printable_data = dc.printable_data
-    _generate_charts(printable_data)
-    _open_charts_in_browser()
-
+    data = dc.printable_data
+#    _generate_charts(data)
+#    _open_charts_in_browser()
+    _create_slack_html(data)
         #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
+
 
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_time_in_meetings')
@@ -140,6 +141,52 @@ def _write_csv_to_json():
     for row in reader:
         json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
         json_file.write('\n')
+
+
+def _create_slack_html(data):
+    f = open('helloworld.html','w')
+
+    message = """
+    <!DOCTYPE html>
+    <html>
+    <head></head>
+    <body>
+        <h1>Summary</h1>
+            <h2>Weekly Costs</h2>
+            <p>{0}</p>
+            <p>{1}</p>
+            <h2>Averages</h2>
+            <h3>Costs Per Meeting</h3>
+            <p>{2}</p>
+            <p>{3}</p>
+            <h3>Meeting Duration</h3>
+            <p>{4}</p>
+            <h2>Projected Yearly Costs</h2>
+            <p>{5}</p>
+            <p>{6}</p>
+            <h2>Top Meeting Times</h2>
+            <p>{7}</p>
+            <p>{8}</p>
+            <p>{9}</p>
+            <h2>{10} of Your Time is Spent in Meetings</h2>
+            <h2>Ideal Yearly Costs</h2>
+            <p>{11}</p>
+            <p>{12}</p>
+            <h2>Potential Savings</h2>
+            <h3>Weekly</h3>
+            <p>{13}</p>
+            <p>{14}</p>
+            <h3>Yearly</h3>
+            <p>{15}</p>
+            <p>{16}</p>
+    </body>
+    </html>""".format(data[1],data[0],data[5],data[4],data[6],
+                      data[3],data[2],data[7],data[8],data[9],
+                      data[10],data[12],data[11],data[13],data[14],
+                      data[15],data[16])
+
+    f.write(message)
+    f.close()
 
 
 def _write_db_to_csv():
@@ -204,31 +251,36 @@ def _get_credentials():
     return credentials
 
 
-def _generate_charts(printable_data):
+def _generate_charts(data):
 
     @app.route("/when_you_meet_most")
     def chart():
         legend = 'test'
         # X axis - list
-        labels = printable_data[17]
+        labels = data[17]
         # Y axis - list
-        values = list(printable_data[18].values())
+        values = list(data[18].values())
         return render_template('when_you_meet_most_line.html', values=values, labels=labels, legend=legend)
 
     @app.route('/percent_time_in_meetings')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
-            printable_data[3], printable_data[2])
+            data[3], data[2])
         ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
-            printable_data[12], printable_data[11])
-        savings = 'Potential Savings: {0} and {1}'.format(printable_data[15],
-            printable_data[16])
-        remainder = 100 - printable_data[19]
-        recovered_costs = printable_data[19] - printable_data[20]
+            data[12], data[11])
+        savings = 'Potential Savings: {0} and {1}'.format(data[15],
+            data[16])
+        remainder = 100 - data[19]
+        recovered_costs = data[19] - data[20]
         legend = 'Percentage of Time Spent in Meetings'
         labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
-        values = [printable_data[19], remainder, printable_data[20], recovered_costs]
+        values = [data[19], remainder, data[20], recovered_costs]
         return render_template('percent_time_in_meetings_pie.html', values=values, labels=labels, legend=legend)
+
+    @app.route('/slack_printout_test')
+    def slack_printout_test():
+        weekly_cost_in_seconds_readable = data[0]
+        return render_template('slack_printout_test.html', weekly_cost_in_seconds=weekly_cost_in_seconds)
 
     #Plug-and-play templates
 
@@ -267,14 +319,14 @@ def _generate_charts(printable_data):
     #@app.route('/pie_chart')
     #def pie_chart():
     #    current_costs = 'Current Costs: {0} and {1} yearly'.format(
-    #        printable_data[3], printable_data[2])
+    #        data[3], data[2])
     #    ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
-    #        printable_data[12], printable_data[11])
-    #    savings = 'Potential Savings: {0} and {1}'.format(printable_data[15],
-    #        printable_data[16])
+    #        data[12], data[11])
+    #    savings = 'Potential Savings: {0} and {1}'.format(data[15],
+    #        data[16])
     #    legend = 'Meeting Durations'
     #    labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
-    #    values = [printable_data[19],9,8,15]
+    #    values = [data[19],9,8,15]
     #    return render_template('pie.html', values=values, labels=labels, legend=legend)
 
     #@app.route('/doughnut_chart')
@@ -287,4 +339,4 @@ def _generate_charts(printable_data):
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
-    app.run(debug=False)
+    #app.run(debug=False)
