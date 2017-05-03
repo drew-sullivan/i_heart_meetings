@@ -1,5 +1,0 @@
-graft i_heart_meetings/templates
-graft i_heart_meetings/static
-include i_heart_meetings/schema.sql
-
-from .i_heart_meetings import app

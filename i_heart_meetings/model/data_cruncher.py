@@ -280,35 +280,35 @@ class Data_Cruncher:
 
     def set_print_template(self):
         self.print_template = """
-        *Summary*
+*Summary*
 
-        *Weekly Costs*
-        {0}
-        {1}
+*Weekly Costs*
+{0}
+{1}
 
-        *Average Per Meeting*
+*Average Per Meeting*
 
-        Time Cost: {4}
-        Financial Cost: {5}
-        Duration: {6}
+Time Cost: {4}
+Financial Cost: {5}
+Duration: {6}
 
-        *Projected Yearly Costs*
-        {2}
-        {3}
+*Projected Yearly Costs*
+{2}
+{3}
 
-        *Top 3 Meeting Times*
-        {7},
-        {8},
-        {9}
+*Top 3 Meeting Times*
+{7},
+{8},
+{9}
 
-        *{10}* of Your Time is Spent in Meetings
+*{10}* of Your Time is Spent in Meetings
 
-        *Ideal Yearly Costs*
-        {11} and {12}
+*Ideal Yearly Costs*
+{11} and {12}
 
-        *Potential Savings*
-        {13} and {14} per week
-        {15} and {16} per year
+*Potential Savings*
+{13} and {14} per week
+{15} and {16} per year
         """
 
 
