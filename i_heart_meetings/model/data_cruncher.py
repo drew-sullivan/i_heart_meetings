@@ -12,7 +12,7 @@ from collections import namedtuple
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 from email.mime.text import MIMEText
-from model.meeting import Meeting 
+from model.meeting import Meeting
 from money import Money # Currently only supporting USD, but others coming soon!
 
 class Data_Cruncher:
@@ -73,7 +73,7 @@ class Data_Cruncher:
 
     IDEAL_PERCENT_TIME_IN_MEETINGS = 5
 
-    YEARLY_SALARY_USD = 75000
+    YEARLY_SALARY_USD = 74926
     COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
     CURRENCY = 'USD'
     CURRENCY_FORMAT = 'en_US'
@@ -183,8 +183,8 @@ class Data_Cruncher:
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
-        #self.post_summary_to_slack()
-        self.send_summary_in_email()
+        self.post_summary_to_slack()
+        #self.send_summary_in_email()
 
     def set_printable_data(self):
         self.printable_data = (
@@ -212,26 +212,26 @@ class Data_Cruncher:
         )
 
 
-    def send_summary_in_email(self):
-        fromaddr = 'drew.sullivan.dma@gmail.com'
-        toaddrs  = ['drew.sullivan.dma@gmail.com']
-        msg = '''
-            From: {fromaddr}
-            To: {toaddr}
-            Subject: testin'     
-            This is a test 
-            .
-        '''
-
-        msg = msg.format(fromaddr =fromaddr, toaddr = toaddrs[0])
-        # The actual mail send
-        server = smtplib.SMTP('gmail-smtp-in.l.google.com:25')
-        server.starttls()
-        server.ehlo("example.com")
-        server.mail(fromaddr)
-        server.rcpt(toaddrs[0])
-        server.data(msg)
-        server.quit()
+#    def send_summary_in_email(self):
+#        fromaddr = 'drew.sullivan.dma@gmail.com'
+#        toaddrs  = ['drew.sullivan.dma@gmail.com']
+#        msg = '''
+#            From: {fromaddr}
+#            To: {toaddr}
+#            Subject: testin'     
+#            This is a test 
+#            .
+#        '''
+#
+#        msg = msg.format(fromaddr =fromaddr, toaddr = toaddrs[0])
+#        # The actual mail send
+#        server = smtplib.SMTP('gmail-smtp-in.l.google.com:25')
+#        server.starttls()
+#        server.ehlo("example.com")
+#        server.mail(fromaddr)
+#        server.rcpt(toaddrs[0])
+#        server.data(msg)
+#        server.quit()
 
 
     def post_summary_to_slack(self):

@@ -2,7 +2,6 @@ MANIFEST.in
 README
 i_heart_meetings/__init__.py
 i_heart_meetings/i_heart_meetings.py
-i_heart_meetings/ihm.py
 i_heart_meetings/schema.sql
 i_heart_meetings.egg-info/PKG-INFO
 i_heart_meetings.egg-info/SOURCES.txt

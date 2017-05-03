@@ -19,6 +19,8 @@ from collections import namedtuple
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
+from flask import Flask, request, session, g, redirect, url_for, abort, \
+     render_template, flash
 from model.meeting import Meeting
 from model.data_cruncher import Data_Cruncher
 from money import Money # Currently only supporting USD, but others coming soon!
@@ -104,7 +106,6 @@ def perform_i_heart_meetings_calculations ():
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
 
-    print('\nGetting past week\'s meetings\n')
 
     google_calendar_data = service.events().list(
         calendarId='primary', timeMin=TIMEFRAME_START, timeMax=TIMEFRAME_END, maxResults=MAX_NUM_RESULTS, singleEvents=True,
@@ -125,6 +126,60 @@ def perform_i_heart_meetings_calculations ():
         #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
         #        num_attendees, financial_cost_single_meeting, days, hours,
         #        minutes, seconds)
+
+
+
+
+
+# Flask practice stuff
+app = Flask(__name__) # create the application instance :)
+app.config.from_object(__name__) # load config from this file , flaskr.py
+
+# Load default config and override config from an environment variable
+app.config.update(dict(
+    DATABASE=os.path.join(app.root_path, 'i_heart_meetings.db'),
+    SECRET_KEY='development key',
+    USERNAME='drew',
+    PASSWORD='monkeybusiness'
+))
+app.config.from_envvar('I_HEART_MEETINGS_SETTINGS', silent=True)
+
+
+def connect_db():
+    """Connects to the specific database."""
+    rv = sqlite3.connect(app.config['DATABASE'])
+    rv.row_factory = sqlite3.Row
+    return rv
+
+def init_db():
+    db = get_db()
+    with app.open_resource('schema.sql', mode='r') as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+
+@app.cli.command('initdb')
+def initdb_command():
+    """Initializes the database."""
+    init_db()
+    print('Database Initialized')
+
+def get_db():
+    """Opens a new database connection if there is none yet for the
+    current application context.
+    """
+    if not hasattr(g, 'sqlite_db'):
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
+
+@app.teardown_appcontext
+def close_db(error):
+    """Closes the database again at the end of the request."""
+    if hasattr(g, 'sqlite_db'):
+        g.sqlite_db.close()
+
+
+
+
 
 
 def _open_charts_in_browser():
