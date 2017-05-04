@@ -9,7 +9,6 @@ import json
 import os
 import pdb
 import requests
-import sqlite3
 import textwrap
 import time
 import webbrowser
@@ -123,63 +122,6 @@ def perform_i_heart_meetings_calculations ():
 #    _generate_charts(data)
 #    _open_charts_in_browser()
 #    _create_slack_html(data)
-        #_add_row_to_db(meeting_id, summary, start, end, meeting_duration,
-        #        num_attendees, financial_cost_single_meeting, days, hours,
-        #        minutes, seconds)
-
-
-
-
-
-# Flask practice stuff
-app = Flask(__name__) # create the application instance :)
-app.config.from_object(__name__) # load config from this file , flaskr.py
-
-# Load default config and override config from an environment variable
-app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'i_heart_meetings.db'),
-    SECRET_KEY='development key',
-    USERNAME='drew',
-    PASSWORD='monkeybusiness'
-))
-app.config.from_envvar('I_HEART_MEETINGS_SETTINGS', silent=True)
-
-
-def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['DATABASE'])
-    rv.row_factory = sqlite3.Row
-    return rv
-
-def init_db():
-    db = get_db()
-    with app.open_resource('schema.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
-
-@app.cli.command('initdb')
-def initdb_command():
-    """Initializes the database."""
-    init_db()
-    print('Database Initialized')
-
-def get_db():
-    """Opens a new database connection if there is none yet for the
-    current application context.
-    """
-    if not hasattr(g, 'sqlite_db'):
-        g.sqlite_db = connect_db()
-    return g.sqlite_db
-
-@app.teardown_appcontext
-def close_db(error):
-    """Closes the database again at the end of the request."""
-    if hasattr(g, 'sqlite_db'):
-        g.sqlite_db.close()
-
-
-
-
 
 
 def _open_charts_in_browser():
@@ -252,24 +194,6 @@ def _write_db_to_csv():
 
         rows = c.fetchall()
         csvWriter.writerows(rows)
-
-
-def _add_row_to_db(meeting_id, summary, start, end, meeting_duration,
-        num_attendees, financial_cost_single_meeting,
-        time_cost_single_meeting_days, time_cost_single_meeting_hours,
-        time_cost_single_meeting_minutes, time_cost_single_meeting_seconds):
-    meeting_id = "{0}-{1}".format(start, meeting_id)
-    conn = sqlite3.connect(DB_IHM_SQLITE)
-    c = conn.cursor()
-    c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(
-                meeting_id, meeting_id,
-                summary, start, end, meeting_duration, num_attendees,
-                financial_cost_single_meeting, time_cost_single_meeting_days,
-                time_cost_single_meeting_hours,
-                time_cost_single_meeting_minutes,
-                time_cost_single_meeting_seconds))
-    conn.commit()
-    conn.close()
 
 
 def _print_entire_google_calendar_results_as_json(meetings):
