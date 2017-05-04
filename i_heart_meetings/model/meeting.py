@@ -13,7 +13,7 @@ class Meeting:
     """A meeting extracted from the Google Calendar API
 
     Attributes:
-        id: int - 1, 2, 3...
+        num: int - 1, 2, 3...
         summary: str - description of meeting
         start: str - human readable start time of meeting
         end: str - human readable end time of meeting
@@ -42,7 +42,7 @@ class Meeting:
 
     def __init__(self, meeting_num, summary, start, end, duration,
                  num_attendees):
-        self.id = meeting_num
+        self.num = meeting_num
         self.summary = summary
         self.start = start
         self.end = end
@@ -131,7 +131,7 @@ class Meeting:
         Cost: {6}
         Cost in Time: {7}
         Percentage of time spent in meeting: {8}% """.format(
-            self.id, 
+            self.num, 
             self.summary,
             self._make_dt_or_time_str_pretty_for_printing(self.start),
             self._make_dt_or_time_str_pretty_for_printing(self.end),

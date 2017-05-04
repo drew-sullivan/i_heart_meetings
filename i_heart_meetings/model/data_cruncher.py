@@ -4,6 +4,7 @@ import collections
 import datetime
 import dateutil
 import smtplib
+import sqlite3
 import textwrap
 import urllib2
 import webbrowser
@@ -92,6 +93,8 @@ class Data_Cruncher:
 
     NUM_TOP_MEETING_TIMES = 3
 
+    DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/db_ihm.sqlite'
+
     QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
     SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
@@ -138,6 +141,7 @@ class Data_Cruncher:
     def process_google_blob(self):
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
         for meeting in self.meetings_list:
+            self._add_row_to_db(meeting)
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
             self.weekly_cost_in_dollars += meeting.cost_in_dollars()
             self.num_meetings += 1
@@ -484,18 +488,31 @@ Duration: {6}
 
     def get_meetings_list(self, google_meetings_blob):
         meetings_list = []
-        for meeting_id, meeting in enumerate(self.google_meetings_blob, 1):
-            meeting_id = meeting_id
+        for num, meeting in enumerate(self.google_meetings_blob, 1):
+            num = num
             summary = self._get_summary(meeting)
             start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
             end = parse(meeting['end'].get('dateTime', meeting['end'].get('date')))
             duration = end - start
             num_attendees = self._get_num_attendees(meeting.get('attendees'))
 
-            m = Meeting(meeting_id, summary, start, end, duration, num_attendees)
+            m = Meeting(num, summary, start, end, duration, num_attendees)
             meetings_list.append(m)
         return meetings_list
 
+    def _add_row_to_db(self, meeting):
+        id = str(datetime.datetime.now())
+        start = str(meeting.start)
+        end = str(meeting.end)
+        duration = str(meeting.duration)
+        conn = sqlite3.connect(self.DB_IHM_SQLITE)
+        c = conn.cursor()
+        c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?)',
+                  (id, meeting.num, meeting.summary,
+                   start, end, duration,
+                   meeting.num_attendees))
+        conn.commit()
+        conn.close()
 
     def _get_summary(self, meeting):
         summary = meeting.get('summary', 'No summary given')
