@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
 import collections
+import csv
 import datetime
 import dateutil
+import json
 import smtplib
 import sqlite3
 import textwrap
@@ -94,6 +96,10 @@ class Data_Cruncher:
     NUM_TOP_MEETING_TIMES = 3
 
     DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/db_ihm.sqlite'
+    CSV_FILE = 'meetings_ihm.csv'
+    JSON_FIELDS = ('id', 'num', 'summary', 'start', 'end', 'duration',
+                   'num_attendees')
+    JSON_FILE = 'meetings_ihm.json'
 
     QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
     SLACK_HOOK = 'https://hooks.slack.com/services/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'
@@ -141,7 +147,7 @@ class Data_Cruncher:
     def process_google_blob(self):
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
         for meeting in self.meetings_list:
-            self._add_row_to_db(meeting)
+            #self._add_row_to_db(meeting)
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
             self.weekly_cost_in_dollars += meeting.cost_in_dollars()
             self.num_meetings += 1
@@ -156,6 +162,7 @@ class Data_Cruncher:
                 else:
                     self.frequency[start_str] = 1
                 start += datetime.timedelta(minutes=30)
+
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
@@ -187,8 +194,43 @@ class Data_Cruncher:
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
-        self.post_summary_to_slack()
+        #self.post_summary_to_slack()
         #self.send_summary_in_email()
+        self._write_db_to_csv()
+        self._write_csv_to_json()
+
+    def _write_csv_to_json(self):
+        csv_file = open(self.CSV_FILE, 'r')
+        json_file = open(self.JSON_FILE, 'w')
+
+        field_names = self.JSON_FIELDS
+        reader = csv.DictReader(csv_file, field_names)
+        for row in reader:
+            json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
+            json_file.write('\n')
+
+    def _write_db_to_csv(self):
+        with sqlite3.connect(self.DB_IHM_SQLITE) as conn:
+            csvWriter = csv.writer(open(self.CSV_FILE, 'w'))
+            c = conn.cursor()
+            c.execute('SELECT * from meetings')
+
+            rows = c.fetchall()
+            csvWriter.writerows(rows)
+
+    def _add_row_to_db(self, meeting):
+        id = str(datetime.datetime.now())
+        start = str(meeting.start)
+        end = str(meeting.end)
+        duration = str(meeting.duration)
+        conn = sqlite3.connect(self.DB_IHM_SQLITE)
+        c = conn.cursor()
+        c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?)',
+                  (id, meeting.num, meeting.summary,
+                   start, end, duration,
+                   meeting.num_attendees))
+        conn.commit()
+        conn.close()
 
     def set_printable_data(self):
         self.printable_data = (

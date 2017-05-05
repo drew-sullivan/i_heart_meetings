@@ -1,11 +1,9 @@
 #!/isr/bin/env python
 
-import csv
 import collections
 import datetime
 import dateutil # used to get meeting_duration by subtracting datetime objects
 import httplib2 # used to perform the get request to the Google API
-import json
 import os
 import pdb
 import requests
@@ -18,8 +16,6 @@ from collections import namedtuple
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
-from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
 from model.meeting import Meeting
 from model.data_cruncher import Data_Cruncher
 from money import Money # Currently only supporting USD, but others coming soon!
@@ -50,48 +46,12 @@ SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
-WORK_HOURS_PER_YEAR = 2000
-WORK_HOURS_PER_DAY = 8
-WORK_DAYS_PER_WEEK = 5
-WORK_HOURS_PER_WEEK = WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK
-WORK_SECONDS_PER_WEEK = WORK_HOURS_PER_WEEK * 3600
-WORK_WEEKS_PER_YEAR = WORK_HOURS_PER_YEAR / (WORK_HOURS_PER_DAY * WORK_DAYS_PER_WEEK)
-WORK_DAYS_PER_YEAR = WORK_WEEKS_PER_YEAR * WORK_DAYS_PER_WEEK
-WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
-
-IDEAL_PERCENT_TIME_IN_MEETINGS = 5
-
-YEARLY_SALARY_USD = 75000
-COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
-CURRENCY = 'USD'
-CURRENCY_FORMAT = 'en_US'
-
-TEAM_SIZE = 10
-
-PERSON_SECONDS_PER_WEEK = TEAM_SIZE * WORK_SECONDS_PER_WEEK
-PERSON_SECONDS_PER_YEAR = TEAM_SIZE * WORK_SECONDS_PER_YEAR
-
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
 TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
 MAX_NUM_RESULTS = 100
 ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
-
-DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/db_ihm.sqlite'
-
-JSON_FIELDS = ('meeting_id', 'meeting_number', 'summary', 'start', 'end',
-'meeting_duration', 'num_attendees', 'financial_cost_single_meeting',
-'time_cost_single_meeting_days', 'time_cost_single_meeting_hours',
-'time_cost_single_meeting_minutes', 'time_cost_single_meeting_seconds')
-CSV_FILE = 'meetings_ihm.csv'
-JSON_FILE = 'meetings_ihm.json'
-
-ROUND_TO_THIS_MANY_PLACES = 2
-FORMAT_DATETIME_OBJ_TO_STR = '%Y-%m-%d %H:%M:%S'
-FORMAT_STR_TO_DATETIME_OBJ = '%A, %b %d, %Y - %I:%M'
-
-NUM_TOP_MEETING_TIMES = 3
 
 # for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
@@ -116,8 +76,6 @@ def perform_i_heart_meetings_calculations ():
 
     dc = Data_Cruncher(meetings)
     dc.process_google_blob()
-#    _write_db_to_csv()
-#    _write_csv_to_json()
     data = dc.printable_data
 #    _generate_charts(data)
 #    _open_charts_in_browser()
@@ -127,17 +85,6 @@ def perform_i_heart_meetings_calculations ():
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_time_in_meetings')
     webbrowser.open('http://localhost:5000/when_you_meet_most')
-
-
-def _write_csv_to_json():
-    csv_file = open(CSV_FILE, 'r')
-    json_file = open(JSON_FILE, 'w')
-
-    field_names = JSON_FIELDS
-    reader = csv.DictReader(csv_file, field_names)
-    for row in reader:
-        json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
-        json_file.write('\n')
 
 
 def _create_slack_html(data):
@@ -184,16 +131,6 @@ def _create_slack_html(data):
 
     f.write(message)
     f.close()
-
-
-def _write_db_to_csv():
-    with sqlite3.connect(DB_IHM_SQLITE) as conn:
-        csvWriter = csv.writer(open(CSV_FILE, 'w'))
-        c = conn.cursor()
-        c.execute('SELECT * from meetings')
-
-        rows = c.fetchall()
-        csvWriter.writerows(rows)
 
 
 def _print_entire_google_calendar_results_as_json(meetings):

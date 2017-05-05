@@ -1,168 +1,1305 @@
 {
-    "end": "2017-04-05 10:10:00-04:00",
-    "financial_cost_single_meeting": "$66.67",
-    "meeting_duration": "0:10:00",
-    "meeting_id": "2017-04-05 10:00:00-04:00-1",
-    "meeting_number": "1",
-    "num_attendees": "8",
-    "start": "2017-04-05 10:00:00-04:00",
-    "summary": "Daily Standup",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "20",
-    "time_cost_single_meeting_seconds": "0"
-}
-{
-    "end": "2017-04-05 15:30:00-04:00",
-    "financial_cost_single_meeting": "$150.00",
-    "meeting_duration": "1:00:00",
-    "meeting_id": "2017-04-05 14:30:00-04:00-2",
-    "meeting_number": "2",
-    "num_attendees": "3",
-    "start": "2017-04-05 14:30:00-04:00",
-    "summary": "Bi-Weekly All Hands Meeting",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "3",
-    "time_cost_single_meeting_minutes": "0",
-    "time_cost_single_meeting_seconds": "0"
-}
-{
-    "end": "2017-04-06 10:10:00-04:00",
-    "financial_cost_single_meeting": "$66.67",
-    "meeting_duration": "0:10:00",
-    "meeting_id": "2017-04-06 10:00:00-04:00-3",
-    "meeting_number": "3",
-    "num_attendees": "8",
-    "start": "2017-04-06 10:00:00-04:00",
-    "summary": "Daily Standup",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "20",
-    "time_cost_single_meeting_seconds": "0"
-}
-{
-    "end": "2017-04-07 10:10:00-04:00",
-    "financial_cost_single_meeting": "$66.67",
-    "meeting_duration": "0:10:00",
-    "meeting_id": "2017-04-07 10:00:00-04:00-4",
-    "meeting_number": "4",
-    "num_attendees": "8",
-    "start": "2017-04-07 10:00:00-04:00",
-    "summary": "Daily Standup",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "20",
-    "time_cost_single_meeting_seconds": "0"
-}
-{
-    "end": "2017-04-07 13:30:00-04:00",
-    "financial_cost_single_meeting": "$150.00",
-    "meeting_duration": "1:00:00",
-    "meeting_id": "2017-04-07 12:30:00-04:00-5",
-    "meeting_number": "5",
-    "num_attendees": "3",
-    "start": "2017-04-07 12:30:00-04:00",
-    "summary": "Team Lunch (Weekly Updates, Demo Day)",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "3",
-    "time_cost_single_meeting_minutes": "0",
-    "time_cost_single_meeting_seconds": "0"
-}
-{
-    "end": "2017-04-08 13:00:00-04:00",
-    "financial_cost_single_meeting": "$50.00",
-    "meeting_duration": "1:00:00",
-    "meeting_id": "2017-04-08 12:00:00-04:00-6",
-    "meeting_number": "6",
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 16:29:12.708602",
+    "num": "1",
     "num_attendees": "1",
-    "start": "2017-04-08 12:00:00-04:00",
-    "summary": "Find Cooper place to hide",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "0",
-    "time_cost_single_meeting_seconds": "0"
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
 }
 {
-    "end": "2017-04-10 10:10:00-04:00",
-    "financial_cost_single_meeting": "$66.67",
-    "meeting_duration": "0:10:00",
-    "meeting_id": "2017-04-10 10:00:00-04:00-7",
-    "meeting_number": "7",
-    "num_attendees": "8",
-    "start": "2017-04-10 10:00:00-04:00",
-    "summary": "Daily Standup",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "20",
-    "time_cost_single_meeting_seconds": "0"
+    "duration": "4:00:00",
+    "end": "2017-04-27 13:30:00-04:00",
+    "id": "2017-05-04 16:29:12.712318",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-27 09:30:00-04:00",
+    "summary": "On-Site with Client (local)"
 }
 {
-    "end": "2017-04-10 14:30:00-04:00",
-    "financial_cost_single_meeting": "$50.00",
-    "meeting_duration": "0:30:00",
-    "meeting_id": "2017-04-10 14:00:00-04:00-8",
-    "meeting_number": "8",
-    "num_attendees": "2",
-    "start": "2017-04-10 14:00:00-04:00",
-    "summary": "Drew:Nick - Set up box",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "0",
-    "time_cost_single_meeting_seconds": "0"
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 16:29:12.713232",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
 }
 {
-    "end": "2017-04-11 10:10:00-04:00",
-    "financial_cost_single_meeting": "$66.67",
-    "meeting_duration": "0:10:00",
-    "meeting_id": "2017-04-11 10:00:00-04:00-9",
-    "meeting_number": "9",
-    "num_attendees": "8",
-    "start": "2017-04-11 10:00:00-04:00",
-    "summary": "Daily Standup",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "20",
-    "time_cost_single_meeting_seconds": "0"
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 16:29:12.713899",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
 }
 {
-    "end": "2017-04-11 11:00:00-04:00",
-    "financial_cost_single_meeting": "$150.00",
-    "meeting_duration": "0:30:00",
-    "meeting_id": "2017-04-11 10:30:00-04:00-10",
-    "meeting_number": "10",
-    "num_attendees": "6",
-    "start": "2017-04-11 10:30:00-04:00",
-    "summary": "Estimation Party",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "3",
-    "time_cost_single_meeting_minutes": "0",
-    "time_cost_single_meeting_seconds": "0"
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 16:29:12.714532",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
 }
 {
-    "end": "2017-04-12 10:10:00-04:00",
-    "financial_cost_single_meeting": "$66.67",
-    "meeting_duration": "0:10:00",
-    "meeting_id": "2017-04-12 10:00:00-04:00-11",
-    "meeting_number": "11",
-    "num_attendees": "8",
-    "start": "2017-04-12 10:00:00-04:00",
-    "summary": "Daily Standup",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "1",
-    "time_cost_single_meeting_minutes": "20",
-    "time_cost_single_meeting_seconds": "0"
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 16:29:12.715163",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
 }
 {
-    "end": "2017-04-12 11:00:00-04:00",
-    "financial_cost_single_meeting": "$150.00",
-    "meeting_duration": "0:30:00",
-    "meeting_id": "2017-04-12 10:30:00-04:00-12",
-    "meeting_number": "12",
-    "num_attendees": "6",
-    "start": "2017-04-12 10:30:00-04:00",
-    "summary": "Estimation Party",
-    "time_cost_single_meeting_days": "0",
-    "time_cost_single_meeting_hours": "3",
-    "time_cost_single_meeting_minutes": "0",
-    "time_cost_single_meeting_seconds": "0"
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 16:29:12.715815",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 16:29:12.716458",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 16:29:12.717105",
+    "num": "9",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 16:29:12.717690",
+    "num": "10",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 16:29:12.718180",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 16:29:12.718722",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 16:29:12.719206",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 16:29:12.719808",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 16:29:12.720341",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 16:29:12.720821",
+    "num": "16",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 16:29:12.721301",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 16:29:12.721817",
+    "num": "18",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 16:29:12.722338",
+    "num": "19",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 19:38:36.302103",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 19:38:36.306158",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 19:38:36.307132",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 19:38:36.307870",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 19:38:36.308629",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 19:38:36.309312",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 19:38:36.310139",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 19:38:36.310758",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 19:38:36.311368",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 19:38:36.311981",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 19:38:36.312577",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 19:38:36.313187",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 19:38:36.313725",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 19:38:36.314261",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 19:38:36.314785",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 19:38:36.315309",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 19:38:36.315867",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 19:38:36.316414",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 19:41:36.370183",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 19:41:36.374342",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 19:41:36.375501",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 19:41:36.376547",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 19:41:36.377642",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 19:41:36.378458",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 19:41:36.379341",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 19:41:36.380210",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 19:41:36.381013",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 19:41:36.381826",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 19:41:36.382627",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 19:41:36.383459",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 19:41:36.384210",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 19:41:36.385046",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 19:41:36.385953",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 19:41:36.386786",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 19:41:36.387507",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 19:41:36.388246",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 20:14:08.361938",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 20:14:08.366502",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 20:14:08.367815",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 20:14:08.368861",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 20:14:08.369881",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 20:14:08.370948",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 20:14:08.371874",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 20:14:08.372619",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 20:14:08.373390",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 20:14:08.374075",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 20:14:08.374770",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 20:14:08.375480",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 20:14:08.376210",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 20:14:08.376847",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 20:14:08.377433",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 20:14:08.377968",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 20:14:08.378492",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 20:14:08.379059",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 20:14:50.276134",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 20:14:50.280703",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 20:14:50.281907",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 20:14:50.283072",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 20:14:50.284255",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 20:14:50.285111",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 20:14:50.285969",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 20:14:50.286754",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 20:14:50.287553",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 20:14:50.288343",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 20:14:50.289138",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 20:14:50.289911",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 20:14:50.290612",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 20:14:50.291357",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 20:14:50.292142",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 20:14:50.292815",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 20:14:50.293418",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 20:14:50.293972",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 20:16:00.791611",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 20:16:00.796241",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 20:16:00.797365",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 20:16:00.798164",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 20:16:00.798973",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 20:16:00.799698",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 20:16:00.800492",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 20:16:00.801219",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 20:16:00.801950",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 20:16:00.802717",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 20:16:00.803497",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 20:16:00.804188",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 20:16:00.804865",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 20:16:00.805527",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 20:16:00.806159",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 20:16:00.806850",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 20:16:00.807399",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 20:16:00.807957",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 20:16:31.480810",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 20:16:31.485431",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 20:16:31.486743",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 20:16:31.487920",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 20:16:31.488896",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 20:16:31.489672",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 20:16:31.490480",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 20:16:31.491266",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 20:16:31.492059",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 20:16:31.492793",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 20:16:31.493568",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 20:16:31.494437",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 20:16:31.495272",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 20:16:31.496092",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 20:16:31.496877",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 20:16:31.497727",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 20:16:31.498455",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 20:16:31.499177",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "4 days, 0:00:00",
+    "end": "2017-05-01 00:00:00",
+    "id": "2017-05-04 20:17:50.160525",
+    "num": "1",
+    "num_attendees": "1",
+    "start": "2017-04-27 00:00:00",
+    "summary": "On-Site Client Visit"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-04-28 10:10:00-04:00",
+    "id": "2017-05-04 20:17:50.164554",
+    "num": "2",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-04-28 11:00:00-04:00",
+    "id": "2017-05-04 20:17:50.165559",
+    "num": "3",
+    "num_attendees": "1",
+    "start": "2017-04-28 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-04-28 13:00:00-04:00",
+    "id": "2017-05-04 20:17:50.166377",
+    "num": "4",
+    "num_attendees": "1",
+    "start": "2017-04-28 12:00:00-04:00",
+    "summary": "Dev Show and Tell"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-01 09:20:00-04:00",
+    "id": "2017-05-04 20:17:50.167196",
+    "num": "5",
+    "num_attendees": "1",
+    "start": "2017-05-01 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "5:30:00",
+    "end": "2017-05-01 15:30:00-04:00",
+    "id": "2017-05-04 20:17:50.168080",
+    "num": "6",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Regression Tesing"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-01 10:10:00-04:00",
+    "id": "2017-05-04 20:17:50.168909",
+    "num": "7",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-01 11:00:00-04:00",
+    "id": "2017-05-04 20:17:50.169712",
+    "num": "8",
+    "num_attendees": "1",
+    "start": "2017-05-01 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-01 11:55:00-04:00",
+    "id": "2017-05-04 20:17:50.170494",
+    "num": "9",
+    "num_attendees": "4",
+    "start": "2017-05-01 11:30:00-04:00",
+    "summary": "Call w/Subashini Sridhar"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-01 12:45:00-04:00",
+    "id": "2017-05-04 20:17:50.171272",
+    "num": "10",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Short Call With Client"
+}
+{
+    "duration": "1:00:00",
+    "end": "2017-05-01 13:30:00-04:00",
+    "id": "2017-05-04 20:17:50.171990",
+    "num": "11",
+    "num_attendees": "1",
+    "start": "2017-05-01 12:30:00-04:00",
+    "summary": "Business Lunch"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-02 09:20:00-04:00",
+    "id": "2017-05-04 20:17:50.172718",
+    "num": "12",
+    "num_attendees": "1",
+    "start": "2017-05-02 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:10:00",
+    "end": "2017-05-02 10:10:00-04:00",
+    "id": "2017-05-04 20:17:50.173361",
+    "num": "13",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:00:00-04:00",
+    "summary": "Standup Meeting"
+}
+{
+    "duration": "0:30:00",
+    "end": "2017-05-02 11:00:00-04:00",
+    "id": "2017-05-04 20:17:50.173908",
+    "num": "14",
+    "num_attendees": "1",
+    "start": "2017-05-02 10:30:00-04:00",
+    "summary": "Sprint Planning"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-03 09:20:00-04:00",
+    "id": "2017-05-04 20:17:50.174471",
+    "num": "15",
+    "num_attendees": "1",
+    "start": "2017-05-03 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
+}
+{
+    "duration": "0:15:00",
+    "end": "2017-05-03 11:15:00-04:00",
+    "id": "2017-05-04 20:17:50.175027",
+    "num": "16",
+    "num_attendees": "5",
+    "start": "2017-05-03 11:00:00-04:00",
+    "summary": "Talk about Salesforce as a dev team"
+}
+{
+    "duration": "0:25:00",
+    "end": "2017-05-04 09:40:00-04:00",
+    "id": "2017-05-04 20:17:50.175597",
+    "num": "17",
+    "num_attendees": "5",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "Prod deployment meeting"
+}
+{
+    "duration": "0:05:00",
+    "end": "2017-05-04 09:20:00-04:00",
+    "id": "2017-05-04 20:17:50.176136",
+    "num": "18",
+    "num_attendees": "1",
+    "start": "2017-05-04 09:15:00-04:00",
+    "summary": "UTSA to Lintz"
 }
