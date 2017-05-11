@@ -326,103 +326,57 @@ class Data_Cruncher:
 
 
     def _write_summary_html(self, *printable_data):
-        f = open('templates/summary.html','w')
+#        f = open('templates/report.html','w')
+        f = open('templates/report.html','w')
 
         message = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="/i_heart_meetings/static/style.css">
-    </head>
-    <body>
-        <table id="ihmReport">
-            <caption>Report</caption>
-            <tr> <th>Weekly Costs</th> </tr>
-            <tr> <td>{0}</td> </tr>
-            <tr> <td>{1}</td> </tr>
-            <tr> <th>Averages</th> </tr>
-            <tr> <th>Costs Per Meeting</th> </tr>
-            <tr> <td>{2}</td> </tr>
-            <tr> <td>{3}</td> </tr>
-            <tr> <th>Meeting Duration</th> </tr>
-            <tr> <td>{4}</td> </tr>
-            <tr> <th>Projected Yearly Costs</th> </tr>
-            <tr> <td>{5}</td> </tr>
-            <tr> <td>{6}</td> </tr>
-            <tr> <th>Top Meeting Times</th> </tr>
-            <tr> <td>{7}</td> </tr>
-            <tr> <td>{8}</td> </tr>
-            <tr> <td>{9}</td> </tr>
-            <tr> <th>{10} of Your Time is Spent in Meetings</th> </tr>
-            <tr> <th>Ideal Yearly Costs</th> </tr>
-            <tr> <td>{11}</td> </tr>
-            <tr> <td>{12}</td> </tr>
-            <tr> <th>Potential Savings</th> </tr>
-            <tr> <th>Weekly</th> </tr>
-            <tr> <td>{13}</td> </tr>
-            <tr> <td>{14}</td> </tr>
-            <tr> <th>Weekly Costs</th> </tr>
-            <tr> <td>{15}</td> </tr>
-            <tr> <td>{16}</td> </tr>
-        </table>
-    </body>
-    </html>""".format(self.printable_data[1],self.printable_data[0],
-                      self.printable_data[5],
-                      self.printable_data[4],self.printable_data[6],
-                      self.printable_data[3],self.printable_data[2],
-                      self.printable_data[7],
-                      self.printable_data[8],self.printable_data[9],
-                      self.printable_data[10],self.printable_data[12],
-                      self.printable_data[11],
-                      self.printable_data[13],self.printable_data[14],
-                      self.printable_data[15],self.printable_data[16])
-#
-#        message = """
-#<!DOCTYPE html>
-#<html>
-#<head>
-#    <link rel="stylesheet" type="text/css" href="/i_heart_meetings/static/style.css">
-#</head>
-#<body>
-#    <h1>Summary</h1>
-#    <h2>Weekly Costs</h2>
-#    <p>{0}</p>
-#    <p>{1}</p>
-#    <h2>Averages</h2>
-#    <h3>Costs Per Meeting</h3>
-#    <p>{2}</p>
-#    <p>{3}</p>
-#    <h3>Meeting Duration</h3>
-#    <p>{4}</p>
-#    <h2>Projected Yearly Costs</h2>
-#    <p>{5}</p>
-#    <p>{6}</p>
-#    <h2>Top Meeting Times</h2>
-#    <p>{7}</p>
-#    <p>{8}</p>
-#    <p>{9}</p>
-#    <h2>{10} of Your Time is Spent in Meetings</h2>
-#    <h2>Ideal Yearly Costs</h2>
-#    <p>{11}</p>
-#    <p>{12}</p>
-#    <h2>Potential Savings</h2>
-#    <h3>Weekly</h3>
-#    <p>{13}</p>
-#    <p>{14}</p>
-#    <h3>Yearly</h3>
-#    <p>{15}</p>
-#    <p>{16}</p>
-#</body>
-#</html>""".format(self.printable_data[1],self.printable_data[0],
-#                  self.printable_data[5],
-#                  self.printable_data[4],self.printable_data[6],
-#                  self.printable_data[3],self.printable_data[2],
-#                  self.printable_data[7],
-#                  self.printable_data[8],self.printable_data[9],
-#                  self.printable_data[10],self.printable_data[12],
-#                  self.printable_data[11],
-#                  self.printable_data[13],self.printable_data[14],
-#                  self.printable_data[15],self.printable_data[16])
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+    <table id="ihmReport">
+        <caption>Report</caption>
+        <tr> <th>Weekly Costs</th> </tr>
+        <tr> <td>{0}</td> </tr>
+        <tr> <td>{1}</td> </tr>
+        <tr> <th>Averages</th> </tr>
+        <tr> <th class='sub-category'>Costs Per Meeting</th> </tr>
+        <tr> <td>{2}</td> </tr>
+        <tr> <td>{3}</td> </tr>
+        <tr> <th>Meeting Duration</th> </tr>
+        <tr> <td>{4}</td> </tr>
+        <tr> <th>Projected Yearly Costs</th> </tr>
+        <tr> <td>{5}</td> </tr>
+        <tr> <td>{6}</td> </tr>
+        <tr> <th>Top Meeting Times</th> </tr>
+        <tr> <td>{7}</td> </tr>
+        <tr> <td>{8}</td> </tr>
+        <tr> <td>{9}</td> </tr>
+        <tr> <th class='sub-category'>{10} of Your Time is Spent in Meetings</th> </tr>
+        <tr> <th>Ideal Yearly Costs</th> </tr>
+        <tr> <td>{11}</td> </tr>
+        <tr> <td>{12}</td> </tr>
+        <tr> <th>Potential Savings</th> </tr>
+        <tr> <th class='sub-category'>Weekly</th> </tr>
+        <tr> <td>{13}</td> </tr>
+        <tr> <td>{14}</td> </tr>
+        <tr> <th class='sub-category'>Yearly</th> </tr>
+        <tr> <td>{15}</td> </tr>
+        <tr> <td>{16}</td> </tr>
+    </table>
+</body>
+</html>""".format(self.printable_data[1],self.printable_data[0],
+                  self.printable_data[5],
+                  self.printable_data[4],self.printable_data[6],
+                  self.printable_data[3],self.printable_data[2],
+                  self.printable_data[7],
+                  self.printable_data[8],self.printable_data[9],
+                  self.printable_data[10],self.printable_data[12],
+                  self.printable_data[11],
+                  self.printable_data[13],self.printable_data[14],
+                  self.printable_data[15],self.printable_data[16])
 
         f.write(message)
         f.close()

@@ -1,15 +1,50 @@
-@page { size:8.5in 11in; margin: 2cm }
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
 * {
-    background-color: ;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-h1 {
-    text-align: center;
+caption {
+    font-size: 50px;
 }
 
-.weekly-costs {
-    display: inline-block;
+.sub-category {
+    background-color: #7FC41C !important;
 }
+
+table {
+    width:100%;
+    border-radius: 5px;
+}
+
+table, th, td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    text-align: right;
+}
+
+table#ihmReport tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#ihmReport tr:nth-child(odd) {
+   background-color:#fff;
+}
+
+table#ihmReport th {
+    background-color: #FD9201;
+    color: black;
+}
+7FC41C
+1D98C4
