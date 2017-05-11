@@ -1,0 +1,15 @@
+@page { size:8.5in 11in; margin: 2cm }
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+* {
+    background-color: ;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.weekly-costs {
+    display: inline-block;
+}

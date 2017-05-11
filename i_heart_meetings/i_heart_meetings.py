@@ -1,24 +1,18 @@
 #!/isr/bin/env python
 
-import collections
 import datetime
-import dateutil # used to get meeting_duration by subtracting datetime objects
 import httplib2 # used to perform the get request to the Google API
 import os
 import pdb
-import requests
 import textwrap
 import time
 import webbrowser
 
 from apiclient import discovery
-from collections import namedtuple
 from datetime import time
 from datetime import timedelta
-from dateutil.parser import parse # used to get meeting_duration by subtracting datetime objects
 from model.meeting import Meeting
 from model.data_cruncher import Data_Cruncher
-from money import Money # Currently only supporting USD, but others coming soon!
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
@@ -197,6 +191,11 @@ def _generate_charts(data):
     def slack_printout_test():
         weekly_cost_in_seconds_readable = data[0]
         return render_template('slack_printout_test.html', weekly_cost_in_seconds=weekly_cost_in_seconds)
+
+    @app.route('/summary')
+    def summary():
+        weekly_costs = [data[1], data[0]]
+        return render_template('summary.html', weekly_costs=weekly_costs)
 
     #Plug-and-play templates
 
