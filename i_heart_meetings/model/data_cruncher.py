@@ -336,36 +336,39 @@ class Data_Cruncher:
     <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
 <body>
-    <table id="ihmReport">
-        <caption>Report</caption>
-        <tr> <th>Weekly Costs</th> </tr>
-        <tr> <td>{0}</td> </tr>
-        <tr> <td>{1}</td> </tr>
-        <tr> <th>Averages</th> </tr>
-        <tr> <th class='sub-category'>Costs Per Meeting</th> </tr>
-        <tr> <td>{2}</td> </tr>
-        <tr> <td>{3}</td> </tr>
-        <tr> <th>Meeting Duration</th> </tr>
-        <tr> <td>{4}</td> </tr>
-        <tr> <th>Projected Yearly Costs</th> </tr>
-        <tr> <td>{5}</td> </tr>
-        <tr> <td>{6}</td> </tr>
-        <tr> <th>Top Meeting Times</th> </tr>
-        <tr> <td>{7}</td> </tr>
-        <tr> <td>{8}</td> </tr>
-        <tr> <td>{9}</td> </tr>
-        <tr> <th class='sub-category'>{10} of Your Time is Spent in Meetings</th> </tr>
-        <tr> <th>Ideal Yearly Costs</th> </tr>
-        <tr> <td>{11}</td> </tr>
-        <tr> <td>{12}</td> </tr>
-        <tr> <th>Potential Savings</th> </tr>
-        <tr> <th class='sub-category'>Weekly</th> </tr>
-        <tr> <td>{13}</td> </tr>
-        <tr> <td>{14}</td> </tr>
-        <tr> <th class='sub-category'>Yearly</th> </tr>
-        <tr> <td>{15}</td> </tr>
-        <tr> <td>{16}</td> </tr>
-    </table>
+    <div class='report'>
+        <table id="ihmReport">
+            <caption>Report</caption>
+            <tr> <th>Weekly Costs</th> </tr>
+            <tr> <td>{0}</td> </tr>
+            <tr> <td>{1}</td> </tr>
+            <tr> <th>Averages</th> </tr>
+            <tr> <th class='sub-category'>Costs Per Meeting</th> </tr>
+            <tr> <td>{2}</td> </tr>
+            <tr> <td>{3}</td> </tr>
+            <tr> <th class='sub-category'>Meeting Duration</th> </tr>
+            <tr> <td>{4}</td> </tr>
+            <tr> <th>Projected Yearly Costs</th> </tr>
+            <tr> <td>{5}</td> </tr>
+            <tr> <td>{6}</td> </tr>
+            <tr> <th>Top Meeting Times</th> </tr>
+            <tr> <td>{7}</td> </tr>
+            <tr> <td>{8}</td> </tr>
+            <tr> <td>{9}</td> </tr>
+            <tr> <th>Percent Time Spent in Meetings</th> </tr>
+            <tr> <td>{10}</td> </tr>
+            <tr> <th>Ideal Yearly Costs</th> </tr>
+            <tr> <td>{11}</td> </tr>
+            <tr> <td>{12}</td> </tr>
+            <tr> <th>Potential Savings</th> </tr>
+            <tr> <th class='sub-category'>Weekly</th> </tr>
+            <tr> <td>{13}</td> </tr>
+            <tr> <td>{14}</td> </tr>
+            <tr> <th class='sub-category'>Yearly</th> </tr>
+            <tr> <td>{15}</td> </tr>
+            <tr> <td>{16}</td> </tr>
+        </table>
+    </div>
 </body>
 </html>""".format(self.printable_data[1],self.printable_data[0],
                   self.printable_data[5],
