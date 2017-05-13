@@ -63,6 +63,7 @@ class Data_Cruncher:
             summary_printout: str - formatted printout of data for printing
             printable_data = tuple - all the calculations. Can be passed between classes
             print_template: str - template for printing info in the same format
+            num_start_times: int - number of meeting starting times
         """)
 
     WORK_HOURS_PER_YEAR = 2000
@@ -74,14 +75,14 @@ class Data_Cruncher:
     WORK_DAYS_PER_YEAR = WORK_WEEKS_PER_YEAR * WORK_DAYS_PER_WEEK
     WORK_SECONDS_PER_YEAR = WORK_HOURS_PER_YEAR * 3600
 
-    IDEAL_PERCENT_TIME_IN_MEETINGS = 5
+    IDEAL_PERCENT_TIME_IN_MEETINGS = 7.5
 
     YEARLY_SALARY_USD = 74926
     COST_PER_SECOND = float(YEARLY_SALARY_USD) / WORK_SECONDS_PER_YEAR
     CURRENCY = 'USD'
     CURRENCY_FORMAT = 'en_US'
 
-    TEAM_SIZE = 10
+    TEAM_SIZE = 6
 
     PERSON_SECONDS_PER_WEEK = TEAM_SIZE * WORK_SECONDS_PER_WEEK
     PERSON_SECONDS_PER_YEAR = TEAM_SIZE * WORK_SECONDS_PER_YEAR
@@ -142,6 +143,7 @@ class Data_Cruncher:
         self.summary_printout = ''
         self.printable_data = None
         self.print_template = ''
+        self.num_start_times = 0
 
 
     def process_google_blob(self):
@@ -161,9 +163,12 @@ class Data_Cruncher:
                     self.frequency[start_str] += 1
                 else:
                     self.frequency[start_str] = 1
-                start += datetime.timedelta(minutes=30)
+                start += datetime.timedelta(minutes=15)
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
+        for k, v in self.frequency.iteritems():
+            if v == 2:
+                self.num_start_times += 1
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
         self.set_weekly_cost_in_seconds_readable()
@@ -191,6 +196,8 @@ class Data_Cruncher:
         self.set_top_three_meeting_times()
         self.set_frequency_keys_readable()
 
+
+
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
@@ -199,6 +206,7 @@ class Data_Cruncher:
         #self._write_db_to_csv()
         #self._write_csv_to_json()
         self._write_summary_html()
+
 
     def _write_csv_to_json(self):
         csv_file = open(self.CSV_FILE, 'r')
@@ -443,14 +451,14 @@ Duration: {6}
 
 
     def set_avg_cost_in_seconds_readable(self):
-        avg_cost_in_seconds = float(self.weekly_cost_in_seconds) / self.num_meetings
+        avg_cost_in_seconds = float(self.weekly_cost_in_seconds) / self.num_start_times
         work_days, hours, minutes, seconds = self._translate_seconds(avg_cost_in_seconds)
         work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
         self.avg_cost_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
     def set_avg_cost_in_dollars(self):
-        avg_meeting_cost_in_dollars = float(self.weekly_cost_in_dollars) / self.num_meetings
+        avg_meeting_cost_in_dollars = float(self.weekly_cost_in_dollars) / self.num_start_times
         avg_meeting_cost_in_dollars = Money(avg_meeting_cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
         self.avg_cost_in_dollars = avg_meeting_cost_in_dollars
 
@@ -626,9 +634,9 @@ Duration: {6}
         if num_attendees == None:
             num_attendees = 1
         # if sharing multiple calendars, uncomment below
-        #num_attendees = 1
-        else:
-            num_attendees = len(num_attendees)
+        num_attendees = 1
+        #else:
+        #    num_attendees = len(num_attendees)
         return num_attendees
 
 

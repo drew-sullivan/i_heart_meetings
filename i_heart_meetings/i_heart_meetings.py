@@ -43,15 +43,15 @@ APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
 TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
 TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
-MAX_NUM_RESULTS = 100
+MAX_NUM_RESULTS = 500
 ORDER_BY_JSON_KEY = 'startTime'
 CALENDAR_ID = 'primary'
 
 # for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
-#from flask import Flask
-#from flask import render_template
-#app = Flask(__name__)
+#  from flask import Flask
+#  from flask import render_template
+#  app = Flask(__name__)
 
 
 def perform_i_heart_meetings_calculations ():
@@ -70,9 +70,11 @@ def perform_i_heart_meetings_calculations ():
 
     dc = Data_Cruncher(meetings)
     dc.process_google_blob()
+
     data = dc.printable_data
-#    _generate_charts(data)
-#    _open_charts_in_browser()
+
+    #  _generate_charts(data)
+    #  _open_charts_in_browser()
 #    _create_slack_html(data)
 
 
@@ -254,4 +256,4 @@ def _generate_charts(data):
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
-    #app.run(debug=False)
+    #  app.run(debug=False)
