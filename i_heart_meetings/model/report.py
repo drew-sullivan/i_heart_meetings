@@ -195,18 +195,14 @@ class Report:
         self.set_top_three_meeting_times()
         self.set_frequency_keys_readable()
 
-
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
-        #self.post_summary_to_slack()
-        #self.send_summary_in_email()
-        #self._write_db_to_csv()
-        #self._write_csv_to_json()
-        #  self.write_report_html()
+        #self.write_db_to_csv()
+        #self.write_csv_to_json()
 
 
-    def _write_csv_to_json(self):
+    def write_csv_to_json(self):
         csv_file = open(self.CSV_FILE, 'r')
         json_file = open(self.JSON_FILE, 'w')
 
@@ -216,7 +212,7 @@ class Report:
             json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
             json_file.write('\n')
 
-    def _write_db_to_csv(self):
+    def write_db_to_csv(self):
         with sqlite3.connect(self.DB_IHM_SQLITE) as conn:
             csvWriter = csv.writer(open(self.CSV_FILE, 'w'))
             c = conn.cursor()
@@ -265,29 +261,7 @@ class Report:
         )
 
 
-#    def send_summary_in_email(self):
-#        fromaddr = 'drew.sullivan.dma@gmail.com'
-#        toaddrs  = ['drew.sullivan.dma@gmail.com']
-#        msg = '''
-#            From: {fromaddr}
-#            To: {toaddr}
-#            Subject: testin'     
-#            This is a test 
-#            .
-#        '''
-#
-#        msg = msg.format(fromaddr =fromaddr, toaddr = toaddrs[0])
-#        # The actual mail send
-#        server = smtplib.SMTP('gmail-smtp-in.l.google.com:25')
-#        server.starttls()
-#        server.ehlo("example.com")
-#        server.mail(fromaddr)
-#        server.rcpt(toaddrs[0])
-#        server.data(msg)
-#        server.quit()
-
-
-    def post_summary_to_slack(self):
+    def post_report_to_slack(self):
         data = str(
             {'text': self.summary_printout,
                 'attachments': [
