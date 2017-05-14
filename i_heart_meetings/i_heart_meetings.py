@@ -12,7 +12,7 @@ from apiclient import discovery
 from datetime import time
 from datetime import timedelta
 from model.meeting import Meeting
-from model.data_cruncher import Data_Cruncher
+from model.report import Report
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
@@ -49,9 +49,9 @@ CALENDAR_ID = 'primary'
 
 # for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
-#  from flask import Flask
-#  from flask import render_template
-#  app = Flask(__name__)
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
 
 
 def perform_i_heart_meetings_calculations ():
@@ -68,19 +68,23 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    dc = Data_Cruncher(meetings)
+    dc = Report(meetings)
     dc.process_google_blob()
 
     data = dc.printable_data
 
-    #  _generate_charts(data)
-    #  _open_charts_in_browser()
+# WIP
+
+
+    _generate_charts(data)
+    _open_charts_in_browser()
 #    _create_slack_html(data)
 
 
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_time_in_meetings')
     webbrowser.open('http://localhost:5000/when_you_meet_most')
+    webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/templates/report.html')
 
 
 def _create_slack_html(data):
@@ -256,4 +260,4 @@ def _generate_charts(data):
 
 if __name__ == '__main__':
     perform_i_heart_meetings_calculations()
-    #  app.run(debug=False)
+    app.run(debug=False)

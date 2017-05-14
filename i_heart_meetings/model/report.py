@@ -18,7 +18,7 @@ from email.mime.text import MIMEText
 from model.meeting import Meeting
 from money import Money # Currently only supporting USD, but others coming soon!
 
-class Data_Cruncher:
+class Report:
 
     help = textwrap.dedent("""
         -Takes the Google blob, and turns it into a list of Meeting objects
@@ -197,7 +197,6 @@ class Data_Cruncher:
         self.set_frequency_keys_readable()
 
 
-
         self.set_printable_data()
         self.set_print_template()
         self.set_summary()
@@ -334,7 +333,6 @@ class Data_Cruncher:
 
 
     def _write_summary_html(self, *printable_data):
-#        f = open('templates/report.html','w')
         f = open('templates/report.html','w')
 
         message = """
