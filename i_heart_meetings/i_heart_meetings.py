@@ -68,69 +68,19 @@ def perform_i_heart_meetings_calculations ():
 
 #    _print_entire_google_calendar_results_as_json(meetings)
 
-    dc = Report(meetings)
-    dc.process_google_blob()
+    rep = Report(meetings)
 
-    data = dc.printable_data
-
-# WIP
-
+    data = rep.printable_data
+    rep.write_report_html(data)
 
     _generate_charts(data)
     _open_charts_in_browser()
-#    _create_slack_html(data)
 
 
 def _open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_time_in_meetings')
     webbrowser.open('http://localhost:5000/when_you_meet_most')
     webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/templates/report.html')
-
-
-def _create_slack_html(data):
-    f = open('helloworld.html','w')
-
-    message = """
-    <!DOCTYPE html>
-    <html>
-    <head></head>
-    <body>
-        <h1>Summary</h1>
-            <h2>Weekly Costs</h2>
-            <p>{0}</p>
-            <p>{1}</p>
-            <h2>Averages</h2>
-            <h3>Costs Per Meeting</h3>
-            <p>{2}</p>
-            <p>{3}</p>
-            <h3>Meeting Duration</h3>
-            <p>{4}</p>
-            <h2>Projected Yearly Costs</h2>
-            <p>{5}</p>
-            <p>{6}</p>
-            <h2>Top Meeting Times</h2>
-            <p>{7}</p>
-            <p>{8}</p>
-            <p>{9}</p>
-            <h2>{10} of Your Time is Spent in Meetings</h2>
-            <h2>Ideal Yearly Costs</h2>
-            <p>{11}</p>
-            <p>{12}</p>
-            <h2>Potential Savings</h2>
-            <h3>Weekly</h3>
-            <p>{13}</p>
-            <p>{14}</p>
-            <h3>Yearly</h3>
-            <p>{15}</p>
-            <p>{16}</p>
-    </body>
-    </html>""".format(data[1],data[0],data[5],data[4],data[6],
-                      data[3],data[2],data[7],data[8],data[9],
-                      data[10],data[12],data[11],data[13],data[14],
-                      data[15],data[16])
-
-    f.write(message)
-    f.close()
 
 
 def _print_entire_google_calendar_results_as_json(meetings):

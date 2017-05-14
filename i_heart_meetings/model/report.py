@@ -146,7 +146,6 @@ class Report:
         self.num_start_times = 0
 
 
-    def process_google_blob(self):
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
         for meeting in self.meetings_list:
             #self._add_row_to_db(meeting)
@@ -204,7 +203,7 @@ class Report:
         #self.send_summary_in_email()
         #self._write_db_to_csv()
         #self._write_csv_to_json()
-        self._write_summary_html()
+        #  self.write_report_html()
 
 
     def _write_csv_to_json(self):
@@ -332,7 +331,7 @@ class Report:
         self.summary_printout = self.print_template.format(*self.printable_data)
 
 
-    def _write_summary_html(self, *printable_data):
+    def write_report_html(self, *printable_data):
         f = open('templates/report.html','w')
 
         message = """
