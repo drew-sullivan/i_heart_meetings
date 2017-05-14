@@ -11,6 +11,7 @@ import webbrowser
 from apiclient import discovery
 from datetime import time
 from datetime import timedelta
+from model.google_connection import Google_Connection
 from model.meeting import Meeting
 from model.report import Report
 from oauth2client import client
@@ -27,26 +28,6 @@ help = textwrap.dedent("""
     -Posts the results to Slack
     """ )
 
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
-
-# If modifying these scopes, delete your previously saved credentials
-# at ~/.credentials/calendar-python-quickstart.json
-
-SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Google Calendar API Python Quickstart'
-
-ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
-TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
-MAX_NUM_RESULTS = 500
-ORDER_BY_JSON_KEY = 'startTime'
-CALENDAR_ID = 'primary'
-
 # for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
 #  from flask import Flask
@@ -54,18 +35,9 @@ CALENDAR_ID = 'primary'
 #  app = Flask(__name__)
 
 
-def perform_i_heart_meetings_calculations ():
-    credentials = _get_credentials()
-    http = credentials.authorize(httplib2.Http())
-    service = discovery.build('calendar', 'v3', http=http)
-
-
-    google_calendar_data = service.events().list(
-        calendarId='primary', timeMin=TIMEFRAME_START, timeMax=TIMEFRAME_END, maxResults=MAX_NUM_RESULTS, singleEvents=True,
-        orderBy=ORDER_BY_JSON_KEY).execute()
-
-    meetings = google_calendar_data.get('items', [])
-
+def perform_i_heart_meetings_calculations():
+    gc = Google_Connection()
+    meetings = gc.meetings
 #    _print_entire_google_calendar_results_as_json(meetings)
 
     rep = Report(meetings)
@@ -88,36 +60,6 @@ def open_charts_in_browser():
 
 def _print_entire_google_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
-
-
-def _get_credentials():
-    """Gets valid user credentials from storage.
-
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
-
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
-    credential_path = os.path.join(
-        credential_dir,'calendar-python-quickstart.json'
-    )
-    store = Storage(credential_path)
-    credentials = store.get()
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        if flags:
-            credentials = tools.run_flow(flow, store, flags)
-        else: # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
-    return credentials
 
 
 def generate_charts(data):
