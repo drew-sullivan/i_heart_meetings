@@ -3,6 +3,7 @@
 import argparse
 import datetime
 import httplib2 # used to perform the get request to the Google API
+import json
 import os
 import pdb
 import textwrap
@@ -12,7 +13,7 @@ import webbrowser
 from apiclient import discovery
 from datetime import time
 from datetime import timedelta
-#  from model.google_connection import Google_Connection
+from model.google_connection import Google_Connection
 from model.meeting import Meeting
 from model.report import Report
 from oauth2client import client
@@ -21,43 +22,34 @@ from oauth2client.file import Storage
 
 
 help = textwrap.dedent("""
-    -Gathers all events in the given time frame from Google Calendar.
-    -Parses event duration, meeting_number, summary, start, end, meeting_duration, num_attendees, financial_cost_single_meeting, time_cost_single_meeting.
-    -Adds a row to SQLite database for each event. Each of the above are columns in the table.
-    -Reads from db and prints to csv
-    -Reads from csv and pretty prints to json
-    -Calculates time and financial costs of individual events, the past week's events, and estimates the costs of meetings given the current pattern
-    -Posts the results to Slack
     """ )
 
 #  for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
-#
-#  from flask import Flask
-#  from flask import render_template
-#  app = Flask(__name__)
+
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
 
 
-def get_meeting_report(slack=False):
+def get_meeting_report():
 
-  #    gc = Google_Connection()
-  #    meetings = gc.meetings
-  #  #  _print_entire_google_calendar_results_as_json(meetings)
-  #
-  #    rep = Report(meetings)
-  #
-  #    data = rep.printable_data
-  #    rep.write_report_html(data)
+    gc = Google_Connection()
+    meetings = gc.meetings
+    #  _print_entire_google_calendar_results_as_json(meetings)
+
+    rep = Report(meetings)
+
+    data = rep.printable_data
+    rep.write_report_html(data)
 
 
-    if slack:
-        #  rep.post_report_to_slack()
-        print('posted to slack')
+    rep.post_report_to_slack()
 
-    #  rep.write_db_to_csv()
-    #  rep.write_csv_to_json()
-    #
-    #  generate_charts(data)
-    #  open_charts_in_browser()
+    rep.write_db_to_csv()
+    rep.write_csv_to_json()
+
+    generate_charts(data)
+    open_charts_in_browser()
 
 
 def open_charts_in_browser():
@@ -162,11 +154,5 @@ def generate_charts(data):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--slack', help='post to slack',
-        action='store_true')
-    args = parser.parse_args()
-    args = vars(args)
-    get_meeting_report(**args)
-    #maybe move the app.run() to the main method and give it an argument? 
-    #  app.run(debug=False)
+    get_meeting_report()
+    app.run(debug=False)

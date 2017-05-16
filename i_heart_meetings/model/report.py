@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/isr/bin/env python
 
 import collections
 import csv
@@ -145,7 +145,6 @@ class Report:
         self.print_template = ''
         self.num_start_times = 0
 
-
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
         for meeting in self.meetings_list:
             #self._add_row_to_db(meeting)
@@ -165,9 +164,8 @@ class Report:
                 start += datetime.timedelta(minutes=15)
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
-        for k, v in self.frequency.iteritems():
-            if v == 2:
-                self.num_start_times += 1
+        self.num_start_times = len(self.frequency)
+
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
         self.set_weekly_cost_in_seconds_readable()
