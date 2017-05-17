@@ -143,9 +143,9 @@ class Report:
         self.summary_printout = ''
         self.printable_data = None
         self.print_template = ''
-        self.num_start_times = 0
-
+        self.num_start_times = {}
         self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
+
         for meeting in self.meetings_list:
             #self._add_row_to_db(meeting)
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
@@ -155,6 +155,13 @@ class Report:
 
             start = meeting.start
             end = meeting.end
+            summary = meeting.summary
+
+            start_time = str(start)
+            time_summary = start_time + ' ' + summary
+            if time_summary not in self.num_start_times:
+                self.num_start_times[time_summary] = 1
+
             while start < end:
                 start_str = str(start)
                 if start_str in self.frequency:
@@ -164,8 +171,8 @@ class Report:
                 start += datetime.timedelta(minutes=15)
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
-        self.num_start_times = len(self.frequency)
-
+        self.num_start_times = len(self.num_start_times)
+        print(self.num_start_times)
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
         self.set_weekly_cost_in_seconds_readable()
