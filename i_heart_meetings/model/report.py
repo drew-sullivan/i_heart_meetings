@@ -87,6 +87,9 @@ class Report:
     PERSON_SECONDS_PER_WEEK = TEAM_SIZE * WORK_SECONDS_PER_WEEK
     PERSON_SECONDS_PER_YEAR = TEAM_SIZE * WORK_SECONDS_PER_YEAR
 
+    WEEKLY_IDEAL_COST_IN_SECONDS = (float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * PERSON_SECONDS_PER_WEEK
+    WEEKLY_IDEAL_COST_IN_DOLLARS = Money((float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * COST_PER_SECOND * PERSON_SECONDS_PER_WEEK, CURRENCY)
+
     YEARLY_IDEAL_COST_IN_SECONDS = (float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * PERSON_SECONDS_PER_YEAR
     YEARLY_IDEAL_COST_IN_DOLLARS = Money((float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * COST_PER_SECOND * PERSON_SECONDS_PER_YEAR, CURRENCY)
 
@@ -132,6 +135,8 @@ class Report:
         self.avg_duration_in_seconds_readable = ''
         self.percent_time_spent = 0
         self.percent_time_spent_readable = 0
+        self.weekly_ideal_time_cost_readable = ''
+        self.weekly_ideal_financial_cost_readable = ''
         self.yearly_ideal_time_cost_readable = ''
         self.yearly_ideal_financial_cost_readable = ''
         self.frequency = {}
@@ -150,10 +155,7 @@ class Report:
             #self._add_row_to_db(meeting)
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
             self.weekly_cost_in_dollars += meeting.cost_in_dollars()
-            print 'one meeting --> ', meeting.cost_in_dollars()
-            print 'total ', self.weekly_cost_in_dollars
             self.num_meetings += 1
-            print 'meeting no. ', self.num_meetings
             self.weekly_duration += self._convert_duration_to_work_seconds(meeting.duration)
 
             start = meeting.start
@@ -197,6 +199,8 @@ class Report:
         self.set_weekly_money_recovered_readable()
         self.set_yearly_money_recovered_in_dollars()
         self.set_yearly_money_recovered_readable()
+        self.set_weekly_ideal_time_cost_readable()
+        self.set_weekly_ideal_financial_cost_readable()
         self.set_yearly_ideal_time_cost_readable()
         self.set_yearly_ideal_financial_cost_readable()
         self.set_top_meeting_times()
@@ -265,7 +269,11 @@ class Report:
             self.frequency_keys_readable, #17
             self.frequency, #18
             self.percent_time_spent, #19
-            self.IDEAL_PERCENT_TIME_IN_MEETINGS #20
+            self.IDEAL_PERCENT_TIME_IN_MEETINGS, #20
+            self.num_meetings, #21
+            self.num_start_times, #22
+            self.weekly_ideal_time_cost_readable, #23
+            self.weekly_ideal_financial_cost_readable #24
         )
 
 
@@ -326,6 +334,8 @@ class Report:
     <div class='report'>
         <table id="ihmReport">
             <caption>Report</caption>
+            <tr> <th>Number of Meetings</th> </tr>
+            <tr> <td>{17}</td> </tr>
             <tr> <th>Weekly Costs</th> </tr>
             <tr> <td>{0}</td> </tr>
             <tr> <td>{1}</td> </tr>
@@ -344,6 +354,9 @@ class Report:
             <tr> <td>{9}</td> </tr>
             <tr> <th>Percent Time Spent in Meetings</th> </tr>
             <tr> <td>{10}</td> </tr>
+            <tr> <th>Ideal Weekly Costs</th> </tr>
+            <tr> <td>{19}</td> </tr>
+            <tr> <td>{18}</td> </tr>
             <tr> <th>Ideal Yearly Costs</th> </tr>
             <tr> <td>{11}</td> </tr>
             <tr> <td>{12}</td> </tr>
@@ -366,8 +379,9 @@ class Report:
                   self.printable_data[10],self.printable_data[12],
                   self.printable_data[11],
                   self.printable_data[13],self.printable_data[14],
-                  self.printable_data[15],self.printable_data[16])
-
+                  self.printable_data[15],self.printable_data[16],
+                  self.printable_data[22], self.printable_data[23],
+                  self.printable_data[24])
         f.write(message)
         f.close()
 
@@ -375,6 +389,9 @@ class Report:
     def set_print_template(self):
         self.print_template = """
 *Summary*
+
+*Number of Meetings*
+{22}
 
 *Weekly Costs*
 {0}
@@ -396,6 +413,9 @@ Duration: {6}
 {9}
 
 *{10}* of Your Time is Spent in Meetings
+
+*Ideal Weekly Costs*
+{24} and {23}
 
 *Ideal Yearly Costs*
 {11} and {12}
@@ -437,8 +457,6 @@ Duration: {6}
 
 
     def set_avg_cost_in_dollars(self):
-        print(self.weekly_cost_in_dollars)
-        print(self.num_start_times)
         avg_meeting_cost_in_dollars = float(self.weekly_cost_in_dollars) / self.num_start_times
         avg_meeting_cost_in_dollars = Money(avg_meeting_cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
         self.avg_cost_in_dollars = avg_meeting_cost_in_dollars
@@ -527,6 +545,19 @@ Duration: {6}
         days, hours, minutes, seconds = self._make_pretty_for_printing(days, hours, minutes, seconds)
         time_recovered_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
         self.yearly_time_recovered_readable =  time_recovered_yearly
+
+
+    def set_weekly_ideal_time_cost_readable(self):
+        weekly_ideal_time_cost = self.WEEKLY_IDEAL_COST_IN_SECONDS
+        work_days, hours, minutes, seconds = self._translate_seconds(weekly_ideal_time_cost)
+        work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
+        weekly_ideal_time_cost = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
+        self.weekly_ideal_time_cost_readable = weekly_ideal_time_cost
+
+
+    def set_weekly_ideal_financial_cost_readable(self):
+        weekly_ideal_financial_cost = self.WEEKLY_IDEAL_COST_IN_DOLLARS.format(self.CURRENCY_FORMAT)
+        self.weekly_ideal_financial_cost_readable =  weekly_ideal_financial_cost
 
 
     def set_yearly_ideal_time_cost_readable(self):
