@@ -150,7 +150,10 @@ class Report:
             #self._add_row_to_db(meeting)
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
             self.weekly_cost_in_dollars += meeting.cost_in_dollars()
+            print 'one meeting --> ', meeting.cost_in_dollars()
+            print 'total ', self.weekly_cost_in_dollars
             self.num_meetings += 1
+            print 'meeting no. ', self.num_meetings
             self.weekly_duration += self._convert_duration_to_work_seconds(meeting.duration)
 
             start = meeting.start
@@ -172,9 +175,7 @@ class Report:
                 start += datetime.timedelta(minutes=15)
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
-        print(self.num_start_times)
         self.num_start_times = len(self.num_start_times)
-        print(self.num_start_times)
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
         self.set_weekly_cost_in_seconds_readable()
