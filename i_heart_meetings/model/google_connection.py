@@ -31,7 +31,7 @@ class Google_Connection:
 
     SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
     CLIENT_SECRET_FILE = 'client_secret.json'
-    APPLICATION_NAME = 'Google Calendar API Python Quickstart'
+    APPLICATION_NAME = 'I Heart Meetings'
 
     ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
     TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
@@ -66,7 +66,7 @@ class Google_Connection:
         if not os.path.exists(credential_dir):
             os.makedirs(credential_dir)
         credential_path = os.path.join(
-            credential_dir,'calendar-python-quickstart.json'
+            credential_dir,'google_credentials.json'
         )
         store = Storage(credential_path)
         credentials = store.get()
