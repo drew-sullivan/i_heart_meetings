@@ -26,9 +26,9 @@ help = textwrap.dedent("""
 
 #  for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
 
-#  from flask import Flask
-#  from flask import render_template
-#  app = Flask(__name__)
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
 
 
 def get_meeting_report():
@@ -43,13 +43,13 @@ def get_meeting_report():
     rep.write_report_html(data)
 
 
-    #  rep.post_report_to_slack()
-    #
-    #  rep.write_db_to_csv()
-    #  rep.write_csv_to_json()
-    #
-    #  generate_charts(data)
-    #  open_charts_in_browser()
+    rep.post_report_to_slack()
+
+    rep.write_db_to_csv()
+    rep.write_csv_to_json()
+
+    generate_charts(data)
+    open_charts_in_browser()
 
 
 def open_charts_in_browser():
@@ -155,4 +155,4 @@ def generate_charts(data):
 
 if __name__ == '__main__':
     get_meeting_report()
-    #  app.run(debug=False)
+    app.run(debug=False)

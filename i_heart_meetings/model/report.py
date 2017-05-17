@@ -156,11 +156,12 @@ class Report:
             start = meeting.start
             end = meeting.end
             summary = meeting.summary
+            duration = meeting.duration
 
             start_time = str(start)
-            time_summary = start_time + ' ' + summary
-            if time_summary not in self.num_start_times:
-                self.num_start_times[time_summary] = 1
+            time_summary_duration = str(start) + ' ' + summary + ' ' + str(duration)
+            if time_summary_duration not in self.num_start_times:
+                self.num_start_times[time_summary_duration] = 1
 
             while start < end:
                 start_str = str(start)
@@ -171,6 +172,7 @@ class Report:
                 start += datetime.timedelta(minutes=15)
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
+        print(self.num_start_times)
         self.num_start_times = len(self.num_start_times)
         print(self.num_start_times)
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
@@ -434,6 +436,8 @@ Duration: {6}
 
 
     def set_avg_cost_in_dollars(self):
+        print(self.weekly_cost_in_dollars)
+        print(self.num_start_times)
         avg_meeting_cost_in_dollars = float(self.weekly_cost_in_dollars) / self.num_start_times
         avg_meeting_cost_in_dollars = Money(avg_meeting_cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
         self.avg_cost_in_dollars = avg_meeting_cost_in_dollars
