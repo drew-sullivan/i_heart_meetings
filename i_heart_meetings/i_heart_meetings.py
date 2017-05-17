@@ -6,6 +6,7 @@ import httplib2 # used to perform the get request to the Google API
 import json
 import os
 import pdb
+import sys
 import textwrap
 import time
 import webbrowser
@@ -47,8 +48,8 @@ def get_meeting_report():
     #  rep.write_db_to_csv()
     #  rep.write_csv_to_json()
     #
-    generate_charts(data)
-    open_charts_in_browser()
+    #  generate_charts(data)
+    #  open_charts_in_browser()
 
 
 def open_charts_in_browser():
