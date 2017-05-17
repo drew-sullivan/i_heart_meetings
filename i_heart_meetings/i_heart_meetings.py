@@ -48,12 +48,14 @@ def get_meeting_report():
     #  rep.write_db_to_csv()
     #  rep.write_csv_to_json()
     #
-    #  generate_charts(data)
-    #  open_charts_in_browser()
+    generate_charts(data)
+    open_charts_in_browser()
 
 
 def open_charts_in_browser():
-    webbrowser.open('http://localhost:5000/percent_time_in_meetings')
+    webbrowser.open('http://localhost:5000/percent_pie')
+    webbrowser.open('http://localhost:5000/percent_pie_split_2')
+    webbrowser.open('http://localhost:5000/percent_pie_split_1')
     webbrowser.open('http://localhost:5000/when_you_meet_most')
     webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/templates/report.html')
 
@@ -73,7 +75,7 @@ def generate_charts(data):
         values = list(data[18].values())
         return render_template('when_you_meet_most_line.html', values=values, labels=labels, legend=legend)
 
-    @app.route('/percent_time_in_meetings')
+    @app.route('/percent_pie')
     def percent_pie():
         current_costs = 'Current Costs: {0} and {1} yearly'.format(
             data[3], data[2])
@@ -86,7 +88,37 @@ def generate_charts(data):
         legend = 'Percentage of Time Spent in Meetings'
         labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
         values = [data[19], remainder, data[20], recovered_costs]
-        return render_template('percent_time_in_meetings_pie.html', values=values, labels=labels, legend=legend)
+        return render_template('percent_pie.html', values=values, labels=labels, legend=legend)
+
+    @app.route('/percent_pie_split_1')
+    def percent_pie_split_1():
+        current_costs = 'Current Costs: {0} and {1} yearly'.format(
+            data[3], data[2])
+        ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
+            data[12], data[11])
+        savings = 'Potential Savings: {0} and {1}'.format(data[15],
+            data[16])
+        remainder = 100 - data[19]
+        recovered_costs = data[19] - data[20]
+        legend = 'Percentage of Time Spent in Meetings'
+        labels = [current_costs, 'Non-Meetings']
+        values = [data[19], remainder]
+        return render_template('percent_pie_split_1.html', values=values, labels=labels, legend=legend)
+
+    @app.route('/percent_pie_split_2')
+    def percent_pie_split_2():
+        current_costs = 'Current Costs: {0} and {1} yearly'.format(
+            data[3], data[2])
+        ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
+            data[12], data[11])
+        savings = 'Potential Savings: {0} and {1}'.format(data[15],
+            data[16])
+        remainder = 100 - data[19]
+        recovered_costs = data[19] - data[20]
+        legend = 'Percentage of Time Spent in Meetings'
+        labels = ['Non-Meetings', ideal_costs, savings]
+        values = [remainder, data[20], recovered_costs]
+        return render_template('percent_pie_split_2.html', values=values, labels=labels, legend=legend)
 
     @app.route('/slack_printout_test')
     def slack_printout_test():

@@ -1,0 +1,3331 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:chris.coe@decisiondesk.com
+X-WR-TIMEZONE:America/New_York
+BEGIN:VTIMEZONE
+TZID:America/New_York
+X-LIC-LOCATION:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART:20161028T153000Z
+DTEND:20161028T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20161027T182351Z
+DESCRIPTION:
+LAST-MODIFIED:20161027T182433Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:morning coffee w/Chris
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161027T224500Z
+DTEND:20161027T225500Z
+DTSTAMP:20170517T163818Z
+CREATED:20161027T222625Z
+DESCRIPTION:
+LAST-MODIFIED:20161027T225157Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:test @ 6:45pm
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+ACKNOWLEDGED:20161027T225156Z
+X-APPLE-DEFAULT-ALARM:TRUE
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161104T140000Z
+DTEND:20161104T150000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.cudworth@decisiondesk.com:mailto:evan.cudworth@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=alex.w
+ ittenberg@decisiondesk.com;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisionde
+ sk.com
+CREATED:20161102T161024Z
+DESCRIPTION:We'll take a picture against the orange wall to get your faces 
+ up on the website!\n\nDress however you want\, but a collared shirt might b
+ e nice: http://www.decisiondesk.com/about/
+LAST-MODIFIED:20161104T143015Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:New Employee "Headshots"
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161107T173000Z
+DTEND:20161107T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=michelle.doyle@decisiondesk.com:mailto:michelle.doyle@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ct
+ esta@grad.ucla.edu;X-NUM-GUESTS=0:mailto:ctesta@grad.ucla.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=rmonas
+ terio@grad.ucla.edu;X-NUM-GUESTS=0:mailto:rmonasterio@grad.ucla.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+CREATED:20161104T173207Z
+DESCRIPTION:1.  Please join my meeting\, Nov 7\, 2016 at 12:30 PM EST.\nhtt
+ ps://global.gotomeeting.com/join/648895693\n\n2.  Use your microphone and s
+ peakers (VoIP) - a headset is recommended. Or\, call in using your telephon
+ e.\n\nDial +1 (646) 749-3122\nAccess Code: 648-895-693\nAudio PIN: Shown af
+ ter joining the meeting\n\nMeeting ID: 648-895-693\n\nGoToMeeting®\nOnline 
+ Meetings Made Easy®\n\nNot at your computer? Click the link to join this me
+ eting from your iPhone®\, iPad®\, Android® or Windows Phone® device via the
+  GoToMeeting app.
+LAST-MODIFIED:20161107T172508Z
+LOCATION:https://global.gotomeeting.com/join/648895693
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UCLA Export
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161107T183000Z
+DTEND:20161107T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=michelle.doyle@decisiondesk.com:mailto:michelle.doyle@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ct
+ esta@grad.ucla.edu;X-NUM-GUESTS=0:mailto:ctesta@grad.ucla.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=emanac
+ sa@grad.ucla.edu;X-NUM-GUESTS=0:mailto:emanacsa@grad.ucla.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20161104T173837Z
+DESCRIPTION:1.  Please join my meeting\, Nov 7\, 2016 at 1:30 PM EST.\nhttp
+ s://global.gotomeeting.com/join/110836429\n\n2.  Use your microphone and sp
+ eakers (VoIP) - a headset is recommended. Or\, call in using your telephone
+ .\n\nDial +1 (872) 240-3212\nAccess Code: 110-836-429\nAudio PIN: Shown aft
+ er joining the meeting\n\nMeeting ID: 110-836-429\n\nGoToMeeting®\nOnline M
+ eetings Made Easy®\n\nNot at your computer? Click the link to join this mee
+ ting from your iPhone®\, iPad®\, Android® or Windows Phone® device via the 
+ GoToMeeting app.
+LAST-MODIFIED:20161107T182925Z
+LOCATION:https://global.gotomeeting.com/join/110836429
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Shibboleth UCLA
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161109T145800Z
+DTEND:20161109T152800Z
+DTSTAMP:20170517T163818Z
+CREATED:20161109T141838Z
+DESCRIPTION:
+LAST-MODIFIED:20161109T141838Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:check UCLA prod sftp
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161109T183000Z
+DTEND:20161109T193000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ma
+ tt Hadaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+CREATED:20161109T161908Z
+DESCRIPTION:
+LAST-MODIFIED:20161109T182511Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sprint go no go
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161122T180000Z
+DTEND:20161122T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+CREATED:20161122T162927Z
+DESCRIPTION:
+LAST-MODIFIED:20161122T185541Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sprint planning
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161129T143000Z
+DTEND:20161129T153000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.hadaway@decisiondesk.com:mailto:matt.hadaway@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+CREATED:20161129T142432Z
+DESCRIPTION:We're finally going to learn how to fix broken apps!
+LAST-MODIFIED:20161129T145100Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Script Running Hoe-Down
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161201T140000Z
+DTEND:20161201T150000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+CREATED:20161130T231511Z
+DESCRIPTION:
+LAST-MODIFIED:20161201T140841Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Root Cause Analysis
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161206T173000Z
+DTEND:20161206T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20161206T151419Z
+DESCRIPTION:
+LAST-MODIFIED:20161206T172013Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UCLA checkpoint - Shibboleth & Export progress
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161209T133000Z
+DTEND:20161209T134500Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ni
+ ck Svoboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+CREATED:20161208T220141Z
+DESCRIPTION:
+LAST-MODIFIED:20161209T133933Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Go No/Go Shibboleth deployment to production
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161209T210000Z
+DTEND:20161209T213000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=michelle.doyle@decisiondesk.com:mailto:michelle.doyle@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=De
+ vin McIntyre;X-NUM-GUESTS=0:mailto:dmcintyre@cappex.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=pstead
+ man@cappex.com;X-NUM-GUESTS=0:mailto:psteadman@cappex.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Sp
+ rint Calendar;X-NUM-GUESTS=0:mailto:decisiondesk.com_n88avved06tgof7fv8o21c
+ c1fo@group.calendar.google.com
+CREATED:20161209T203247Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/515858477 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (312) 757-3121 \n\nAccess Code: 515-8
+ 58-477 
+LAST-MODIFIED:20161209T205340Z
+LOCATION:https://global.gotomeeting.com/join/515858477
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Cappex SFTP
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+ACKNOWLEDGED:20161209T205339Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20161103T133000
+DTEND;TZID=America/New_York:20161103T140000
+RRULE:FREQ=WEEKLY;UNTIL=20161201T183000Z;INTERVAL=2;BYDAY=TH
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+CREATED:20161026T163347Z
+DESCRIPTION:
+LAST-MODIFIED:20161212T150423Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chris C 1:1
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20161104T143000
+DTEND;TZID=America/New_York:20161104T150000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20161103T133000
+CREATED:20161026T163347Z
+DESCRIPTION:
+LAST-MODIFIED:20161212T150423Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Chris C 1:1
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161214T160000Z
+DTEND:20161214T170000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.cudworth@decisiondesk.com:mailto:evan.cudworth@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=alex.w
+ ittenberg@decisiondesk.com;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=maggie
+ .mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+CREATED:20161212T163107Z
+DESCRIPTION:We'll take your photos for the website! No need to "dress up\,"
+  wear whatever you're comfortable with. 
+LAST-MODIFIED:20161212T194251Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Headshots for Website take 2
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161212T200000Z
+DTEND:20161212T220000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+CREATED:20161208T173215Z
+DESCRIPTION:Karen is interviewing for our QA position.  I have attached her
+  resume.  I will send out an agenda before Monday.
+LAST-MODIFIED:20161212T195052Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Interview with Karen Long
+TRANSP:OPAQUE
+ATTACH;FILENAME=resume_doc-110720-KarenLongo.docx:https://drive.google.com/
+ a/decisiondesk.com/file/d/0BySDwnSkozVFTFhwblZRVWZsMWs/view?usp=drive_web
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20161004T100000
+DTEND;TZID=America/New_York:20161004T103000
+RRULE:FREQ=WEEKLY;UNTIL=20161101T135959Z;BYDAY=MO,TU,WE,TH,FR
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=jason@
+ decisiondesk.com;X-NUM-GUESTS=0:mailto:jason@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+CREATED:20161002T181516Z
+DESCRIPTION:
+LAST-MODIFIED:20161220T145217Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Daily Scrum
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20161013T100000
+DTEND;TZID=America/New_York:20161013T103000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=jason@
+ decisiondesk.com;X-NUM-GUESTS=0:mailto:jason@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20161013T100000
+CREATED:20161002T181516Z
+DESCRIPTION:
+LAST-MODIFIED:20161220T145217Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Daily Scrum
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20161101T100000
+DTEND;TZID=America/New_York:20161101T103000
+RRULE:FREQ=WEEKLY;UNTIL=20161216T150000Z;BYDAY=MO,TU,WE,TH,FR
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=deepak
+ .aggarwal@toptal.com;X-NUM-GUESTS=0:mailto:deepak.aggarwal@toptal.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=al
+ exandr.shurigin@toptal.com;X-NUM-GUESTS=0:mailto:alexandr.shurigin@toptal.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+CREATED:20161002T181516Z
+DESCRIPTION:1.  Please join my meeting.\nhttps://global.gotomeeting.com/joi
+ n/496095677\n\n2.  Use your microphone and speakers (VoIP) - a headset is r
+ ecommended. Or\, call in using your telephone.\n\nDial +1 (872) 240-3311\nA
+ ccess Code: 496-095-677\nAudio PIN: Shown after joining the meeting\n\nMeet
+ ing ID: 496-095-677\n\nGoToMeeting®\nOnline Meetings Made Easy®\n\nNot at y
+ our computer? Click the link to join this meeting from your iPhone®\, iPad®
+ \, Android® or Windows Phone® device via the GoToMeeting app.
+LAST-MODIFIED:20161220T145217Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Daily Scrum - GTM
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20161124T100000
+DTEND;TZID=America/New_York:20161124T103000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=carol.davis@decisiondesk.com:mailto:carol.davis@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=carol.
+ davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=deepak
+ .aggarwal@toptal.com;X-NUM-GUESTS=0:mailto:deepak.aggarwal@toptal.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=alexa
+ ndr.shurigin@toptal.com;X-NUM-GUESTS=0:mailto:alexandr.shurigin@toptal.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20161124T100000
+CREATED:20161002T181516Z
+DESCRIPTION:1.  Please join my meeting.\nhttps://global.gotomeeting.com/joi
+ n/496095677\n\n2.  Use your microphone and speakers (VoIP) - a headset is r
+ ecommended. Or\, call in using your telephone.\n\nDial +1 (872) 240-3311\nA
+ ccess Code: 496-095-677\nAudio PIN: Shown after joining the meeting\n\nMeet
+ ing ID: 496-095-677\n\nGoToMeeting®\nOnline Meetings Made Easy®\n\nNot at y
+ our computer? Click the link to join this meeting from your iPhone®\, iPad®
+ \, Android® or Windows Phone® device via the GoToMeeting app.
+LAST-MODIFIED:20161220T145223Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Daily Scrum - GTM
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161229T203000Z
+DTEND:20161229T210000Z
+DTSTAMP:20170517T163818Z
+CREATED:20161228T125618Z
+DESCRIPTION:
+LAST-MODIFIED:20161228T125622Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:chris out
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170104T170000Z
+DTEND:20170104T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=kaleb@integritypowersearch.com:mailto:kaleb@integritypowersear
+ ch.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Bryant
+  Schuck;X-NUM-GUESTS=0:mailto:bryantschuck@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Kaleb 
+ Dumot;X-NUM-GUESTS=0:mailto:kaleb@integritypowersearch.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+CREATED:20170103T162747Z
+DESCRIPTION:
+LAST-MODIFIED:20170104T165018Z
+LOCATION:(C) 937-470-4259
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bryant Schuck Phone Interview w/ Decision Desk 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170113T170000Z
+DTEND:20170113T180000Z
+DTSTAMP:20170517T163818Z
+CREATED:20170111T143035Z
+DESCRIPTION:rocky river area
+LAST-MODIFIED:20170111T143055Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:lunch w/vicki
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161010T143000Z
+DTEND:20161010T153000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.cudworth@decisiondesk.com:mailto:evan.cudworth@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+CREATED:20161006T153323Z
+DESCRIPTION:We'll do formal (and informal!) introductions with Chris on his
+  first day.
+LAST-MODIFIED:20170111T143612Z
+LOCATION:Conference Room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Town Hall Welcome w/ Christopher Sheppard
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161025T170000Z
+DTEND:20161025T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.cudworth@decisiondesk.com:mailto:evan.cudworth@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=carol
+ .davis@decisiondesk.com;X-NUM-GUESTS=0:mailto:carol.davis@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=alex.w
+ ittenberg@decisiondesk.com;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=matt.
+ gibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondes
+ k.com
+CREATED:20161021T154938Z
+DESCRIPTION:Dan will run a demo of our current product for new employees. P
+ lus\, Q&A!
+LAST-MODIFIED:20170111T143612Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Concert Product Demo for newcomers
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161019T210000Z
+DTEND:20161019T220000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=jaime.ramos@decisiondesk.com:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=jason@
+ decisiondesk.com;X-NUM-GUESTS=0:mailto:jason@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=jaime.
+ ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20161012T195140Z
+DESCRIPTION:
+LAST-MODIFIED:20170111T143622Z
+LOCATION:Deagan's Kitchen & Bar\, 14810 Detroit Ave\, Lakewood\, OH 44107\,
+  USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chris S.'s Welcome Happy Hour
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20161214T230000Z
+DTEND:20161215T010000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=DecisionDesk Holidays & Important Dates:mailto:decisiondesk.co
+ m_pfumgecdom31citsd318cgfc90@group.calendar.google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20161122T171134Z
+DESCRIPTION:Hi Everyone -\n\nBlocking off this date/time for our holiday pa
+ rty. We will have a LOT to celebrate on this day: in addition to the holida
+ y season\, we will have survived a crazy application deadline window\, and 
+ we will be closing out our A-5 funding round.\n\nHeavy appetizers and an as
+ sortment of beverages will be served\; please let me know if there are any 
+ dietary restrictions I should be aware of. \n\nMore details will follow in 
+ the next few weeks\, but let me know if you have any questions in the inter
+ im.\n\nHappy Holidays\,\n\nAlex
+LAST-MODIFIED:20170111T143703Z
+LOCATION:El Carnicero\, 16918 Detroit Ave\, Lakewood\, OH 44107\, USA
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk Holiday Extravaganza
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170113T133000Z
+DTEND:20170113T143000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=michelle.doyle@decisiondesk.com:mailto:michelle.doyle@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170112T221308Z
+DESCRIPTION:
+LAST-MODIFIED:20170113T133946Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Lorain Follow Up
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170206
+DTEND;VALUE=DATE:20170207
+DTSTAMP:20170517T163818Z
+CREATED:20170124T184220Z
+DESCRIPTION:
+LAST-MODIFIED:20170124T184220Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:LCCC changes deadline
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170703
+DTEND;VALUE=DATE:20170704
+DTSTAMP:20170517T163818Z
+CREATED:20170131T204609Z
+DESCRIPTION:
+LAST-MODIFIED:20170131T204609Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PTO
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170901
+DTEND;VALUE=DATE:20170902
+DTSTAMP:20170517T163818Z
+CREATED:20170131T204625Z
+DESCRIPTION:
+LAST-MODIFIED:20170131T204625Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PTO
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20171124
+DTEND;VALUE=DATE:20171125
+DTSTAMP:20170517T163818Z
+CREATED:20170131T204633Z
+DESCRIPTION:
+LAST-MODIFIED:20170131T204633Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PTO
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170202T160000Z
+DTEND:20170202T170000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.wilson@decisiondesk.com:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+CREATED:20170201T155919Z
+DESCRIPTION:We need to figure out a sprint task estimation strategy.\n\nWe 
+ also need to talk about tracking time spent during sprints.\n\nBring your i
+ deas!  Because I don't have any good ones.
+LAST-MODIFIED:20170202T122049Z
+LOCATION:Big conference room
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Talk about sprint estimation and time tracking
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170203T193000Z
+DTEND:20170203T203000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.wilson@decisiondesk.com:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+CREATED:20170202T172100Z
+DESCRIPTION:
+LAST-MODIFIED:20170203T124855Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Matt Wilson and Chris Coe talk to Rick Blaisdell
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170207T130000Z
+DTEND:20170207T140000Z
+DTSTAMP:20170517T163818Z
+CREATED:20170202T124156Z
+DESCRIPTION:
+LAST-MODIFIED:20170203T125131Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:consolidate repos
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170206T140000Z
+DTEND:20170206T150000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.wilson@decisiondesk.com:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.gibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+CREATED:20170202T150407Z
+DESCRIPTION:
+LAST-MODIFIED:20170204T210241Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sprint review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170207T143000Z
+DTEND:20170207T150000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=michelle.doyle@decisiondesk.com:mailto:michelle.doyle@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+CREATED:20170131T160515Z
+DESCRIPTION:Hey there! We need an internal meeting for how to get LCCC live
+ . M informed me that we need to brainstorm all the things that can go wrong
+  and create a check list of best practices. \n\nWe need all of this stuff p
+ rior to Monday\, February 13. \n\nMatt- you can decide if you want to be th
+ e person in this meeting or if you want someone from your team in addition 
+ or to replace you. 
+LAST-MODIFIED:20170207T142946Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How to get LCCC Live
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170217T190000Z
+DTEND:20170217T203000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.wilson@decisiondesk.com:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+CREATED:20170215T151938Z
+DESCRIPTION:
+LAST-MODIFIED:20170215T180548Z
+LOCATION:Big conference room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Estimate blackbird features to port to V3
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170222T140000Z
+DTEND:20170222T141500Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=michelle.doyle@decisiondesk.com:mailto:michelle.doyle@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+CREATED:20170220T153842Z
+DESCRIPTION:
+LAST-MODIFIED:20170221T142627Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Check in on LCCC next steps and timeline
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170221T171500Z
+DTEND:20170221T180000Z
+DTSTAMP:20170517T163818Z
+CREATED:20170221T161143Z
+DESCRIPTION:
+LAST-MODIFIED:20170221T161213Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:lunch w/vicki
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170224T190000Z
+DTEND:20170224T200000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=De
+ velopment;X-NUM-GUESTS=0:mailto:decisiondesk-development@decisiondesk.com
+CREATED:20170221T151733Z
+DESCRIPTION:Showing off what webpack does and how it can help our front end
+  development and production build process.\n\nI will show off a version of 
+ DecisionDesk's front end code that is built using webpack and updated frame
+ works + libraries. I will go over the webpack build process and explain wha
+ t it does\, why it's awesome\, and how you can use it.\n\nIf you have any q
+ uestions/requests before the meeting please send me a note via slack/email 
+ and I'll make sure I cover that topic during the meeting.
+LAST-MODIFIED:20170227T165743Z
+LOCATION:A meeting room somewhere.
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Welcome to Webpack
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170303T190000Z
+DTEND:20170303T200000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.wilson@decisiondesk.com:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170301T151005Z
+DESCRIPTION:Related JIRA card: https://decisiondesk.atlassian.net/browse/DS
+ -1287\n\nThe goal here is to show the attendees how they can handle blackbi
+ rd issues.\n\nI won't be there\, so somebody else needs to make sure to der
+ ail the conversation.
+LAST-MODIFIED:20170301T162826Z
+LOCATION:Big conference room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Give a man an Adam vs teach a man TO Adam.
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170111T143000
+DTEND;TZID=America/New_York:20170111T153000
+EXDATE;TZID=America/New_York:20170111T143000
+EXDATE;TZID=America/New_York:20170118T143000
+EXDATE;TZID=America/New_York:20170301T143000
+RRULE:FREQ=WEEKLY;UNTIL=20170308T193000Z;BYDAY=WE
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ja
+ ime.ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ ggie.mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+CREATED:20170109T153443Z
+DESCRIPTION:Hi Team -\n\nWe're moving our weekly All Hands meetings to Wedn
+ esdays so we can make be sure that Chris and Marie are able to attend in-pe
+ rson. We'll still order lunch for the office on Fridays\, so feel free to d
+ elete the old event off your calendar or keep it and block off an hour for 
+ watching Michael Stanley Youtube videos.\n\nWe may adjust the exact time in
+  weeks to come but this worked best with everyone's schedules for Wednesday
+ .\n\nAgenda:\nhttps://docs.google.com/document/d/1jWHK6vemnEdvaoc4NgN9R4HxE
+ QFTIobri40Onx9eDLs/edit#heading=h.agx4kxw0srj6\n\nThanks\,\n\nAlex\n───────
+ ───────────────────────────────────\nPlease join my meeting from your compu
+ ter\, tablet or smartphone.\nhttps://global.gotomeeting.com/join/734426381\
+ n\nYou can also dial in using your phone.\nUnited States: +1 (312) 757-3121
+ \n\nAccess Code: 734-426-381\n\nFirst GoToMeeting? Try a test session: http
+ ://help.citrix.com/getready\n──────────────────────────────────────────\n
+LAST-MODIFIED:20170314T162932Z
+LOCATION:https://www.gotomeeting.com/join/734426381
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk All Hands Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170215T143000
+DTEND;TZID=America/New_York:20170215T153000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=heathe
+ r.evans@decisiondesk.com;X-NUM-GUESTS=0:mailto:heather.evans@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ja
+ ime.ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ ggie.mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisi
+ ondesk.com
+RECURRENCE-ID;TZID=America/New_York:20170215T143000
+CREATED:20170109T153443Z
+DESCRIPTION:Hi Team -\n\nWe're moving our weekly All Hands meetings to Wedn
+ esdays so we can make be sure that Chris and Marie are able to attend in-pe
+ rson. We'll still order lunch for the office on Fridays\, so feel free to d
+ elete the old event off your calendar or keep it and block off an hour for 
+ watching Michael Stanley Youtube videos.\n\nWe may adjust the exact time in
+  weeks to come but this worked best with everyone's schedules for Wednesday
+ .\n\nAgenda:\nhttps://docs.google.com/document/d/1jWHK6vemnEdvaoc4NgN9R4HxE
+ QFTIobri40Onx9eDLs/edit#heading=h.agx4kxw0srj6\n\nThanks\,\n\nAlex\n───────
+ ───────────────────────────────────\nPlease join my meeting from your compu
+ ter\, tablet or smartphone.\nhttps://global.gotomeeting.com/join/734426381\
+ n\nYou can also dial in using your phone.\nUnited States: +1 (312) 757-3121
+ \n\nAccess Code: 734-426-381\n\nFirst GoToMeeting? Try a test session: http
+ ://help.citrix.com/getready\n──────────────────────────────────────────\n
+LAST-MODIFIED:20170314T162932Z
+LOCATION:https://www.gotomeeting.com/join/734426381
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk All Hands Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170222T143000
+DTEND;TZID=America/New_York:20170222T153000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ ggie.mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=heathe
+ r.evans@decisiondesk.com;X-NUM-GUESTS=0:mailto:heather.evans@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ja
+ ime.ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20170222T143000
+CREATED:20170109T153443Z
+DESCRIPTION:Hi Team -\n\nWe're moving our weekly All Hands meetings to Wedn
+ esdays so we can make be sure that Chris and Marie are able to attend in-pe
+ rson. We'll still order lunch for the office on Fridays\, so feel free to d
+ elete the old event off your calendar or keep it and block off an hour for 
+ watching Michael Stanley Youtube videos.\n\nWe may adjust the exact time in
+  weeks to come but this worked best with everyone's schedules for Wednesday
+ .\n\nAgenda:\nhttps://docs.google.com/document/d/1jWHK6vemnEdvaoc4NgN9R4HxE
+ QFTIobri40Onx9eDLs/edit#heading=h.agx4kxw0srj6\n\nThanks\,\n\nAlex\n───────
+ ───────────────────────────────────\nPlease join my meeting from your compu
+ ter\, tablet or smartphone.\nhttps://global.gotomeeting.com/join/734426381\
+ n\nYou can also dial in using your phone.\nUnited States: +1 (312) 757-3121
+ \n\nAccess Code: 734-426-381\n\nFirst GoToMeeting? Try a test session: http
+ ://help.citrix.com/getready\n──────────────────────────────────────────\n
+LAST-MODIFIED:20170314T162932Z
+LOCATION:https://www.gotomeeting.com/join/734426381
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk All Hands Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170308T143000
+DTEND;TZID=America/New_York:20170308T153000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ ggie.mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ja
+ ime.ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=he
+ ather.evans@decisiondesk.com;X-NUM-GUESTS=0:mailto:heather.evans@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20170308T143000
+CREATED:20170109T153443Z
+DESCRIPTION:Hi Team -\n\nWe're moving our weekly All Hands meetings to Wedn
+ esdays so we can make be sure that Chris and Marie are able to attend in-pe
+ rson. We'll still order lunch for the office on Fridays\, so feel free to d
+ elete the old event off your calendar or keep it and block off an hour for 
+ watching Michael Stanley Youtube videos.\n\nWe may adjust the exact time in
+  weeks to come but this worked best with everyone's schedules for Wednesday
+ .\n\nAgenda:\nhttps://docs.google.com/document/d/1jWHK6vemnEdvaoc4NgN9R4HxE
+ QFTIobri40Onx9eDLs/edit#heading=h.agx4kxw0srj6\n\nThanks\,\n\nAlex\n───────
+ ───────────────────────────────────\nPlease join my meeting from your compu
+ ter\, tablet or smartphone.\nhttps://global.gotomeeting.com/join/734426381\
+ n\nYou can also dial in using your phone.\nUnited States: +1 (312) 757-3121
+ \n\nAccess Code: 734-426-381\n\nFirst GoToMeeting? Try a test session: http
+ ://help.citrix.com/getready\n──────────────────────────────────────────\n
+LAST-MODIFIED:20170314T162932Z
+LOCATION:https://www.gotomeeting.com/join/734426381
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk All Hands Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170317T193000Z
+DTEND:20170317T203000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=christopher.sheppard@decisiondesk.com:mailto:christopher.shepp
+ ard@decisiondesk.com
+ATTENDEE;CUTYPE=RESOURCE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Big Conf
+ erence;X-NUM-GUESTS=0:mailto:decisiondesk.com_3135353235383338363036@resour
+ ce.calendar.google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.co.uk
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170317T162137Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/802144213\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (571) 317-3112\n\nAccess Code: 802-144-213\n\nFirst GoToMeeting? Try a
+  test session: http://help.citrix.com/getready\n───────────────────────────
+ ───────────────\n
+LAST-MODIFIED:20170317T171658Z
+LOCATION:Big Conference\; https://www.gotomeeting.com/join/802144213
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Quick Pow-wow
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170321T160000Z
+DTEND:20170321T200000Z
+DTSTAMP:20170517T163818Z
+CREATED:20170320T143535Z
+DESCRIPTION:
+LAST-MODIFIED:20170320T143551Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Chris WFH
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170323T130000Z
+DTEND:20170323T133000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=adovci@lorainccc.edu:mailto:adovci@lorainccc.edu
+ 010000000A5321A759404E74FAB9A99C3393635DA
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ni
+ ck Svoboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ma
+ rk Hicks;X-NUM-GUESTS=0:mailto:mhicks@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Su
+ n Jamerson;X-NUM-GUESTS=0:mailto:sjamerso@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=So
+ n Phan;X-NUM-GUESTS=0:mailto:sphan@lorainccc.edu
+CREATED:20170322T202105Z
+DESCRIPTION:For several important reasons LCCC needs to refresh our LCCSTST
+  PeopleSoft Instance.\n\nThis is critical to maintaining our overall system
+ s.\n\nThis call is to discuss temporary impact to the Decision Desk project
+  and help plan around the activity.\n\nAndy\n\n\nAndrew Dovci\, Computer Re
+ source Leader\nLorain County Community College\nInformation Systems & Servi
+ ces\n440.366.4024 | http://www.lorainccc.edu<http://www.lorainccc.edu/>\n\n
+ \n\n\n
+LAST-MODIFIED:20170323T120845Z
+LOCATION:On Site: AT127B\; Call in 1-866-939-8416\, 3212529#
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Refresh of LCCSTST PeopleSoft Instance
+TRANSP:OPAQUE
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-APPT-SEQUENCE:0
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:0
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-OWNERAPPTID:1047934945
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170324T173000Z
+DTEND:20170324T183000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.wilson@decisiondesk.com:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ad
+ am.fishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+CREATED:20170324T135634Z
+DESCRIPTION:
+LAST-MODIFIED:20170324T171513Z
+LOCATION:Big conference room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Matt Wilson walks dev team through UCLA stuff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170322T140000Z
+DTEND:20170322T153000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=marie.demego@decisiondesk.com:mailto:marie.demego@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170314T152905Z
+DESCRIPTION:
+LAST-MODIFIED:20170324T185257Z
+LOCATION:CLE
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Sizing BB's Functional Requirements & Other Things (Blackbird Must 
+ Haves)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170330T141000Z
+DTEND:20170330T150000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170329T182231Z
+DESCRIPTION:
+LAST-MODIFIED:20170329T182449Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Front End build process overview
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170330T133000Z
+DTEND:20170330T135000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170328T183057Z
+DESCRIPTION:
+LAST-MODIFIED:20170330T133746Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Tech Questions for Client Prospect
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170330T190000Z
+DTEND:20170330T193000Z
+DTSTAMP:20170517T163818Z
+CREATED:20170330T144534Z
+DESCRIPTION:
+LAST-MODIFIED:20170330T144550Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:go through cloud assessment questions
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170330T153000Z
+DTEND:20170330T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=adovci@lorainccc.edu:mailto:adovci@lorainccc.edu
+ 0100000000789D6C1D6B0724C9008D0492E1ACC13
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=So
+ n Phan;X-NUM-GUESTS=0:mailto:sphan@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ch
+ ris Malek;X-NUM-GUESTS=0:mailto:chris.r.malek@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=pe
+ ggy2@uakron.edu;X-NUM-GUESTS=0:mailto:peggy2@uakron.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ni
+ ck Svoboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Su
+ n Jamerson;X-NUM-GUESTS=0:mailto:sjamerso@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170330T151546Z
+DESCRIPTION:Nick and Chris\, please also invite technical resource (Chris M
+ alek(?)) as we discussed last week.\n\nAgenda:\nReview status of refresh an
+ d discuss technical issues\n1)      Timing of connection reestablishment\n2
+ )      Re-establishing the connection whether to LCCSDEV or LCCSTST?\n3)   
+    Other technical items for considerations\n\n
+LAST-MODIFIED:20170330T152010Z
+LOCATION:On Site: AT126A\; Off site call in 1-866-939-8416\, 3212529#
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Decision Desk-Refresh of LCCSTST and next steps
+TRANSP:OPAQUE
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-APPT-SEQUENCE:1
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:0
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-OWNERAPPTID:-48416799
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170403T180000Z
+DTEND:20170403T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170331T185237Z
+DESCRIPTION:
+LAST-MODIFIED:20170403T175026Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170407T150000Z
+DTEND:20170407T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170331T185311Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170407T145039Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170410T130000Z
+DTEND:20170410T140000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=devine
+ g@amazon.com;X-NUM-GUESTS=0:mailto:devineg@amazon.com
+CREATED:20170407T134724Z
+DESCRIPTION:Setting this time to talk through DecisionDesk's cloud architec
+ ture and identify a path forward to optimizing the system for security\, re
+ liability\, performance\, and cost.\n\nThanks\,\n\nAlex\n\n────────────────
+ ──────────────────────────\nPlease join my meeting from your computer\, tab
+ let or smartphone.\nhttps://global.gotomeeting.com/join/344475645\n\nYou ca
+ n also dial in using your phone.\nUnited States: +1 (646) 749-3122\n\nAcces
+ s Code: 344-475-645\n\nFirst GoToMeeting? Try a test session: http://help.c
+ itrix.com/getready\n──────────────────────────────────────────\n
+LAST-MODIFIED:20170410T125006Z
+LOCATION:https://www.gotomeeting.com/join/344475645
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:AWS 'Well-Architected' Discovery Call
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170410T150000Z
+DTEND:20170410T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170407T161245Z
+DESCRIPTION:
+LAST-MODIFIED:20170410T182422Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Product Peeps - Post-Submission Checklist
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170413T150000Z
+DTEND:20170413T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170410T194115Z
+DESCRIPTION:
+LAST-MODIFIED:20170413T145003Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170413T180000Z
+DTEND:20170413T183000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ri
+ ck Blaisdell;X-NUM-GUESTS=0:mailto:rick.blaisdell@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Sudeep
+  Unhale;X-NUM-GUESTS=0:mailto:sudeepunhale@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+CREATED:20170411T144118Z
+DESCRIPTION:We'll be going over the project roadmap templates and do a quic
+ k overview of how they will help us plan for projects far into the future -
+ - we will also talk briefly about the current estimates that are in the roa
+ dmap.\nHi there\, \n\nTopic: Project Planning Overview\nTime: Apr 13\, 2017
+  1:30 PM Eastern Time (US and Canada)\n\nJoin from PC\, Mac\, Linux\, iOS o
+ r Android: https://zoom.us/j/392447481\n\nOr iPhone one-tap (US Toll):  +16
+ 465588656\,392447481# or +14086380968\,392447481#\n\nOr Telephone:\n    Dia
+ l: +1 646 558 8656 (US Toll) or +1 408 638 0968 (US Toll)\n    Meeting ID: 
+ 392 447 481\n    International numbers available: https://zoom.us/zoomconfe
+ rence?m=VxuvcWhvE-mL_JdO-NZRmdMmGRj8zSdi\n\n\nUse of the Zoom services is s
+ ubject to Zoom's Terms of Service (https://zoom.us/terms)\nIf I forgot to a
+ dd anyone\, please let me know.\n
+LAST-MODIFIED:20170413T172048Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Meet With Rick and Sudeep to go over templates
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170414T173000Z
+DTEND:20170414T193000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=christopher.sheppard@decisiondesk.com:mailto:christopher.shepp
+ ard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=RESOURCE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Big Conf
+ erence;X-NUM-GUESTS=0:mailto:decisiondesk.com_3135353235383338363036@resour
+ ce.calendar.google.com
+CREATED:20170413T164141Z
+DESCRIPTION:
+LAST-MODIFIED:20170414T172000Z
+LOCATION:Big Conference
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WNCC RFP Technical Section Language
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170320T190000Z
+DTEND:20170320T200000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=christopher.sheppard@decisiondesk.com:mailto:christopher.shepp
+ ard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=RESOURCE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Big Conf
+ erence;X-NUM-GUESTS=0:mailto:decisiondesk.com_3135353235383338363036@resour
+ ce.calendar.google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+CREATED:20170320T122419Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/280206197\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (669) 224-3412\n\nAccess Code: 280-206-197\n\nFirst GoToMeeting? Try a
+  test session: http://help.citrix.com/getready\n───────────────────────────
+ ───────────────\n
+LAST-MODIFIED:20170420T124203Z
+LOCATION:Big Conference\; https://www.gotomeeting.com/join/280206197
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Engineering Team Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170320T203000Z
+DTEND:20170320T210000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=christopher.sheppard@decisiondesk.com:mailto:christopher.shepp
+ ard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=RESOURCE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Big Conf
+ erence;X-NUM-GUESTS=0:mailto:decisiondesk.com_3135353235383338363036@resour
+ ce.calendar.google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+CREATED:20170320T122453Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/650789765\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (312) 757-3121\n\nAccess Code: 650-789-765\n\nFirst GoToMeeting? Try a
+  test session: http://help.citrix.com/getready\n───────────────────────────
+ ───────────────\n
+LAST-MODIFIED:20170420T124203Z
+LOCATION:Big Conference\; https://www.gotomeeting.com/join/650789765
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:All-Hands Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170307T170000Z
+DTEND:20170307T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=christopher.sheppard@decisiondesk.com:mailto:christopher.shepp
+ ard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+ATTENDEE;CUTYPE=RESOURCE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Big Conf
+ erence;X-NUM-GUESTS=0:mailto:decisiondesk.com_3135353235383338363036@resour
+ ce.calendar.google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=chris
+ .coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170301T165510Z
+DESCRIPTION:
+LAST-MODIFIED:20170420T124203Z
+LOCATION:Big Conference
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sheppard / Engineering Team Lunch
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170120T133000Z
+DTEND:20170120T183000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=DecisionDesk Holidays & Important Dates:mailto:decisiondesk.co
+ m_pfumgecdom31citsd318cgfc90@group.calendar.google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ ggie.mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.c
+ udworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ad
+ am.fishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Dan Fa
+ ciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ja
+ ime.ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Matt H
+ adaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+CREATED:20161213T032202Z
+DESCRIPTION:Agenda:\n\nhttps://docs.google.com/spreadsheets/d/1axmfkLB6vLvW
+ EeUmjVbkquLwFrtV-_6u5Xzs5n9aFmw/edit#gid=0
+LAST-MODIFIED:20170420T124204Z
+LOCATION:208 High St\, Fairport Harbor\, OH 44077\, USA
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk Team Off-site [Location / Agenda Included]
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170413T190000Z
+DTEND:20170413T210000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+CREATED:20170404T124742Z
+DESCRIPTION:Hey Everyone -\n\nMaggie's organized a team outing for us at Pu
+ nch Bowl Social in the Flats. We've got a couple of lanes reserved for bowl
+ ing and food/drinks will be provided as well. Our remote employees will be 
+ in town (except Evan :( ) and it will be the Ryans' first day so it should 
+ be fun. \n\nMaggie will send out a message next week to organize carpooling
+  so we don't all need to drive down separately. Please don't hesitate to re
+ ach out to either of us if you have any questions!\n\nThanks\,\n\nAlex "Kin
+ gpin" Wittenberg
+LAST-MODIFIED:20170420T124206Z
+LOCATION:Punch Bowl Social Cleveland\, 1086 W 11th St\, Cleveland\, OH 4411
+ 3\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DD "Actually off-site this time" Off-Site Team Bonding
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170331T200000Z
+DTEND:20170331T210000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+CREATED:20170330T161420Z
+DESCRIPTION:Come out to Happy Dog to celebrate WMW's last day at DD\; hot d
+ ogs and beers will be in abundance. \n\nIf we're lucky we might be able to 
+ talk Matt and Chris S. into a 1-round Ju-Jitsu sparring match. Just saying\
+ , you wouldn't want to NOT show up and risk missing out on that.
+LAST-MODIFIED:20170420T124206Z
+LOCATION:Happy Dog\, 5801 Detroit Ave\, Cleveland\, OH 44102\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Happy Hour for Slick Willie Wilson's Last Day
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170127T164500Z
+DTEND:20170127T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170127T152714Z
+DESCRIPTION:
+LAST-MODIFIED:20170420T124206Z
+LOCATION:Forage Public House\, 14600 Detroit Ave\, Lakewood\, OH 44107\, US
+ A
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Team Lunch @ Forage
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170303T210000Z
+DTEND:20170303T223000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.cudworth@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.cudworth@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=heathe
+ r.evans@decisiondesk.com;X-NUM-GUESTS=0:mailto:heather.evans@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=Matt 
+ Hadaway;X-NUM-GUESTS=0:mailto:matt.hadaway@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=Chris
+ topher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=michel
+ le.doyle@decisiondesk.com;X-NUM-GUESTS=0:mailto:michelle.doyle@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=maggie
+ .mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=chris
+ .coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Da
+ n Faciana;X-NUM-GUESTS=0:mailto:dan.faciana@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ja
+ ime.ramos@decisiondesk.com;X-NUM-GUESTS=0:mailto:jaime.ramos@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170222T195928Z
+DESCRIPTION:Join us to send Michelle off into the orange and yellow sunset.
+   Matt Wilson is buying the first round!
+LAST-MODIFIED:20170420T124208Z
+LOCATION:Wherever the heck Michelle wants to go.
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Happy Hour for Michelle's last day
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170324T140000Z
+DTEND:20170324T143000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.io
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@citizengroove.co
+ m
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .io
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@citizengroove.
+ com
+CREATED:20170323T151749Z
+DESCRIPTION:Just a short meeting (15 minutes or less) outlining how we are 
+ going to try to conduct stand ups. I just want to make sure everyone is on 
+ the same page and there's no confusion.
+LAST-MODIFIED:20170420T124211Z
+LOCATION:A conference room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Quick meeting about how stand ups work.
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170403T190000Z
+DTEND:20170403T193000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+CREATED:20170403T140918Z
+DESCRIPTION:Bring out those estimation cards and look at tasks and make ill
+ nd thus hold sway over the livelihoods of all employees and their families.
+  
+LAST-MODIFIED:20170420T124211Z
+LOCATION:Big Conference Room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sprint Poker
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170417T150000Z
+DTEND:20170417T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+CREATED:20170412T150251Z
+DESCRIPTION:I want to start being a bit more intentional in our code commit
+ s. I've outlined how this should work and sent emails about it. This meetin
+ g will mark an official start to that new world order (minus the tests -- w
+ hich are not integrated yet).
+LAST-MODIFIED:20170420T124211Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:New development process overview.
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170414T150000Z
+DTEND:20170414T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170413T171454Z
+DESCRIPTION:high level Git flow stuff
+LAST-MODIFIED:20170420T124212Z
+LOCATION:big conference room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Git flow
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170322T153000Z
+DTEND:20170322T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170320T140222Z
+DESCRIPTION:needed to update based on another meeting that conflicted with 
+ this time\n\nwe'll be good with 30 min i think here
+LAST-MODIFIED:20170420T124212Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Talk to Chris Coe about SalesForce Training stuff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170322T160000Z
+DTEND:20170322T170000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170320T135938Z
+DESCRIPTION:
+LAST-MODIFIED:20170420T124212Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Docker setup w/Drew
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170216T141500Z
+DTEND:20170216T143000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170215T180924Z
+DESCRIPTION:discuss prod deployment status / reg testing outcome etc.
+LAST-MODIFIED:20170420T124212Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:pre-prod deployment meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170127T190000Z
+DTEND:20170127T200000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170123T152748Z
+DESCRIPTION:Matt Wilson to show logging tricks in python-land to the dev te
+ am.
+LAST-MODIFIED:20170420T124212Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Matt Wilson to show Dev team logging tricks
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170404T131500Z
+DTEND:20170404T134500Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.io
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+CREATED:20170404T112950Z
+DESCRIPTION:Will call Chris S @ 202-355-5877
+LAST-MODIFIED:20170420T124212Z
+LOCATION:small office w/phone in it
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Prod deployment meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170214T141500Z
+DTEND:20170214T143000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@citizengroove.
+ com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170213T184826Z
+DESCRIPTION:meeting to discuss hotfix deployment into PROD\, no one pushes 
+ the blue button except Matt Wilson and not until after this meeting!
+LAST-MODIFIED:20170420T124212Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:pre-Prod Hotfix deployment meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170419T141500Z
+DTEND:20170419T143000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170419T104253Z
+DESCRIPTION:discuss status of deployment and make a go/no go decision
+LAST-MODIFIED:20170420T124212Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:prod deployment meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170221T180000Z
+DTEND:20170221T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=marie.demego@decisiondesk.com:mailto:marie.demego@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .io
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170217T165935Z
+DESCRIPTION:This time is dedicated to Q&A on the BlackBird must-have v. nic
+ e-to-have list of features and functions.  There are most certainly additio
+ nal elements of the migration which require discussion and planning (such a
+ s a plan for data migration) but those should be happening in parallel\, ye
+ t separate from this exercise.\n\nAdditional detailed business requirements
+  will be produced in the coming weeks to provide specific color on each of 
+ the items listed in the F/F sheet\, however this exercise is intended to re
+ sult in a SWAG estimation.
+LAST-MODIFIED:20170420T124213Z
+LOCATION:Cleveland\, OH\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:BB FF Gap Q&A
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170306T141500Z
+DTEND:20170306T143000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=matt.gibberman@decisiondesk.com:mailto:matt.gibberman@decision
+ desk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ma
+ tt.wilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:chris@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+CREATED:20170303T205611Z
+DESCRIPTION:We can discuss any issues pertaining to the current sprint's re
+ adiness for deployment.
+LAST-MODIFIED:20170420T124213Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Prod Deployment Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170421T180000Z
+DTEND:20170421T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=devine
+ g@amazon.com;X-NUM-GUESTS=0:mailto:devineg@amazon.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170417T195142Z
+DESCRIPTION:Hi All -\n\nSetting this time to talk through DecisionDesk's AW
+ S setup and organize the next steps around AWS' Well Architected Diagnostic
+  which is to be performed by Greg's SA associate.\n\nThanks\,\n\nAlex\n\n──
+ ────────────────────────────────────────\nPlease join my meeting from your 
+ computer\, tablet or smartphone.\nhttps://global.gotomeeting.com/join/97366
+ 5877\n\nYou can also dial in using your phone.\nUnited States: +1 (872) 240
+ -3412\n\nAccess Code: 973-665-877\n\nFirst GoToMeeting? Try a test session:
+  http://help.citrix.com/getready\n─────────────────────────────────────────
+ ─\n
+LAST-MODIFIED:20170421T175221Z
+LOCATION:https://www.gotomeeting.com/join/973665877
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:AWS-DD Follow-up
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170424T190000Z
+DTEND:20170424T200000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170424T134643Z
+DESCRIPTION:https://decisiondesk.atlassian.net/browse/DS-1035\nhttps://deci
+ siondesk.atlassian.net/browse/DS-1185\nhttps://decisiondesk.atlassian.net/b
+ rowse/DS-1375
+LAST-MODIFIED:20170424T185630Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170425T150000Z
+DTEND:20170425T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=devine
+ g@amazon.com;X-NUM-GUESTS=0:mailto:devineg@amazon.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170421T190131Z
+DESCRIPTION:\n\n──────────────────────────────────────────\nPlease join my 
+ meeting from your computer\, tablet or smartphone.\nhttps://global.gotomeet
+ ing.com/join/240788469\n\nYou can also dial in using your phone.\nUnited St
+ ates: +1 (646) 749-3112\n\nAccess Code: 240-788-469\n\nFirst GoToMeeting? T
+ ry a test session: http://help.citrix.com/getready\n───────────────────────
+ ───────────────────\n
+LAST-MODIFIED:20170425T145015Z
+LOCATION:https://www.gotomeeting.com/join/240788469
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:AWS-DecisionDesk Diagnostic Pt. 2
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170425T193000Z
+DTEND:20170425T200000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=marie.demego@decisiondesk.com:mailto:marie.demego@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Al
+ ex Wittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170425T140642Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/314932269\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (571) 317-3129\n\nAccess Code: 314-932-269\n\nMore phone numbers\nCana
+ da: +1 (647) 497-9391\nUnited Kingdom: +44 330 221 0086\n\nFirst GoToMeetin
+ g? Try a test session: http://help.citrix.com/getready\n───────────────────
+ ───────────────────────\n
+LAST-MODIFIED:20170425T192900Z
+LOCATION:https://www.gotomeeting.com/join/314932269
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sizing Update: Leadership Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170426T150000Z
+DTEND:20170426T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170424T135209Z
+DESCRIPTION:https://decisiondesk.atlassian.net/browse/DS-1382\nhttps://deci
+ siondesk.atlassian.net/browse/DS-1381
+LAST-MODIFIED:20170426T152009Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT30M
+X-APPLE-DEFAULT-ALARM:TRUE
+ATTACH;VALUE=URI:Basso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170427T073000
+DTEND;TZID=America/New_York:20170427T082000
+RRULE:FREQ=WEEKLY;BYDAY=TH
+DTSTAMP:20170517T163818Z
+CREATED:20170427T125534Z
+DESCRIPTION:
+LAST-MODIFIED:20170427T125628Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:AWS TrustedAdvisor audit
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170519
+DTEND;VALUE=DATE:20170520
+DTSTAMP:20170517T163818Z
+CREATED:20170501T182351Z
+DESCRIPTION:
+LAST-MODIFIED:20170501T182351Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PTO
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170502
+DTEND;VALUE=DATE:20170503
+DTSTAMP:20170517T163818Z
+CREATED:20170501T182356Z
+DESCRIPTION:
+LAST-MODIFIED:20170501T182356Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PTO
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170526
+DTEND;VALUE=DATE:20170527
+DTSTAMP:20170517T163818Z
+CREATED:20170501T182414Z
+DESCRIPTION:
+LAST-MODIFIED:20170501T182414Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PTO
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170327T100000
+DTEND;TZID=America/New_York:20170327T101000
+RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.w
+ ilson@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.wilson@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=maggie
+ .mckeever@decisiondesk.com;X-NUM-GUESTS=0:mailto:maggie.mckeever@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+CREATED:20170327T132635Z
+DESCRIPTION:
+LAST-MODIFIED:20170503T133039Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Daily Standup
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170503T173000Z
+DTEND:20170503T183000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170501T134025Z
+DESCRIPTION:
+LAST-MODIFIED:20170503T172012Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT30M
+X-APPLE-DEFAULT-ALARM:TRUE
+ATTACH;VALUE=URI:Basso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170504T173000Z
+DTEND:20170504T183000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170502T135747Z
+DESCRIPTION:
+LAST-MODIFIED:20170504T172020Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170504T213000Z
+DTEND:20170505T003000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=alex.wittenberg@decisiondesk.com:mailto:alex.wittenberg@decisi
+ ondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=TENTATIVE;CN=adam.
+ fishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.co
+ m
+CREATED:20170502T134950Z
+DESCRIPTION:For details\, link here: https://www.eventbrite.com/e/come-back
+ -to-givebackhack-tickets-34004430166
+LAST-MODIFIED:20170505T002550Z
+LOCATION:Masthead Brewing Co.\, 1261 Superior Ave\, Cleveland\, OH 44114\, 
+ USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Come Back to GiveBackHack!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170508T183000Z
+DTEND:20170508T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=christopher.sheppard@decisiondesk.com:mailto:christopher.shepp
+ ard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=marie.
+ demego@decisiondesk.com;X-NUM-GUESTS=0:mailto:marie.demego@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+CREATED:20170504T141154Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/197617333\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (872) 240-3412\n\nAccess Code: 197-617-333\n\nFirst GoToMeeting? Try a
+  test session: https://care.citrixonline.com/g2m/getready\n────────────────
+ ──────────────────────────\nAgenda: \n\n1. Do we pull Canned Reports all to
+ gether\n2. If 1 then for what purpose: FIX it\, Rebuild IT and/or Fix the P
+ DF feature to make it user-friendly? \n3. Other options? 
+LAST-MODIFIED:20170508T183014Z
+LOCATION:https://www.gotomeeting.com/join/197617333
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Canned Reports 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170512T173000Z
+DTEND:20170512T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=devineg@amazon.com:mailto:devineg@amazon.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN="O
+ meltchenko, Vadim";X-NUM-GUESTS=0:mailto:vadimo@amazon.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ an Stern;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Al
+ ex Wittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+CREATED:20170509T130339Z
+DESCRIPTION:To review the WA results and talk through any questions\n
+LAST-MODIFIED:20170510T124005Z
+LOCATION:https://chime.aws/1539678418
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk-WA Results Review
+TRANSP:OPAQUE
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-APPT-SEQUENCE:1
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:0
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-OWNERAPPTID:2115316279
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170511T180000Z
+DTEND:20170511T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170508T190949Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170511T180407Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Talk through Celery/Canned Reports Options
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170322T143000
+DTEND;TZID=America/New_York:20170322T153000
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=WE
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=drew.sullivan@decisiondesk.com:mailto:drew.sullivan@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+CREATED:20170513T201122Z
+DESCRIPTION:Hi Team -\n\nThese meetings will be bi-weekly going forward.\n\
+ nAgenda:\nhttps://docs.google.com/document/d/1jWHK6vemnEdvaoc4NgN9R4HxEQFTI
+ obri40Onx9eDLs/edit#heading=h.agx4kxw0srj6\n\nThanks\,\n\nAlex\nÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢
+ ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢
+ ÂÂÃ¢ÂÂÃ¢ÂÂ\nPlease join my meeting from your computer\, tablet or sma
+ rtphone.\nhttps://global.gotomeeting.com/join/786618429\n\nYou can also dia
+ l in using your phone.\nUnited States: +1 (224) 501-3412\n\nAccess Code: 78
+ 6-618-429\n\nFirst GoToMeeting? Try a test session: http://help.citrix.com/
+ getready\nÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢
+ ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ\n
+LAST-MODIFIED:20170513T204919Z
+LOCATION:https://www.gotomeeting.com/join/786618429
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bi-Weekly All Hands Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170419T183000Z
+DTEND:20170419T193000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=drew.sullivan@decisiondesk.com:mailto:drew.sullivan@decisionde
+ sk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Ev
+ erybody;X-NUM-GUESTS=0:mailto:everybody@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Alex W
+ ittenberg;X-NUM-GUESTS=0:mailto:alex.wittenberg@decisiondesk.com
+RECURRENCE-ID:20170419T183000Z
+CREATED:20170513T201122Z
+DESCRIPTION:Hi Team -\n\nThese meetings will be bi-weekly going forward.\n\
+ nAgenda:\nhttps://docs.google.com/document/d/1jWHK6vemnEdvaoc4NgN9R4HxEQFTI
+ obri40Onx9eDLs/edit#heading=h.agx4kxw0srj6\n\nThanks\,\n\nAlex\nÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢
+ ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢
+ ÂÂÃ¢ÂÂÃ¢ÂÂ\nPlease join my meeting from your computer\, tablet or sma
+ rtphone.\nhttps://global.gotomeeting.com/join/786618429\n\nYou can also dia
+ l in using your phone.\nUnited States: +1 (224) 501-3412\n\nAccess Code: 78
+ 6-618-429\n\nFirst GoToMeeting? Try a test session: http://help.citrix.com/
+ getready\nÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢
+ ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ\n
+LAST-MODIFIED:20170513T204919Z
+LOCATION:https://www.gotomeeting.com/join/786618429
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bi-Weekly All Hands Meeting
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT30M
+X-APPLE-DEFAULT-ALARM:TRUE
+ATTACH;VALUE=URI:Basso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170505T180000Z
+DTEND:20170505T183000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ch
+ ris.coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170504T181221Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170515T123114Z
+LOCATION:
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Estimation Party/Sprint Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170501T153000Z
+DTEND:20170501T155500Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=ssridh
+ ar@smith.edu;X-NUM-GUESTS=0:mailto:ssridhar@smith.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170501T123829Z
+DESCRIPTION:
+LAST-MODIFIED:20170515T123115Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Call w/Subashini Sridhar
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170504T131500Z
+DTEND:20170504T134000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170501T200835Z
+DESCRIPTION:For those of you remote if you would like to be involved:\n\nPl
+ ease join my meeting from your computer\, tablet or smartphone.\nhttps://gl
+ obal.gotomeeting.com/join/342016261\n\nYou can also dial in using your phon
+ e.\nUnited States: +1 (872) 240-3412\n\nAccess Code: 342-016-261\n\n\n\nGo 
+ / no-go discussion\n\nThis has been delayed a second time - we did the regr
+ ession against old code and did not feel confident deploying today without 
+ regressing against current code.\n\nDelayed until Thursday 5/4/2017\n\n\n
+LAST-MODIFIED:20170515T123115Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Prod deployment meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170421T150000Z
+DTEND:20170421T152500Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+CREATED:20170420T171432Z
+DESCRIPTION:i will demo how I wrote a handful of tests and how I call those
+  tests\, I was thinking we would start shortly after the estimation party.
+LAST-MODIFIED:20170515T123115Z
+LOCATION:big conf room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:pytest general usage
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170424T130000Z
+DTEND:20170424T132500Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+CREATED:20170421T125913Z
+DESCRIPTION:
+LAST-MODIFIED:20170515T123115Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:docker regression
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170510T173000Z
+DTEND:20170510T180000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=mhicks
+ @lorainccc.edu;X-NUM-GUESTS=0:mailto:mhicks@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=sj
+ amerso@lorainccc.edu;X-NUM-GUESTS=0:mailto:sjamerso@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=So
+ n Phan;X-NUM-GUESTS=0:mailto:sphan@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ad
+ ovci@lorainccc.edu;X-NUM-GUESTS=0:mailto:adovci@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=ryan.l
+ intz@decisiondesk.com;X-NUM-GUESTS=0:mailto:ryan.lintz@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170505T195049Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170515T140300Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:LCCC <> DecisionDesk Check-in
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170515T180000Z
+DTEND:20170515T190000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+CREATED:20170512T212706Z
+DESCRIPTION:https://decisiondesk.atlassian.net/browse/DS-1022\nhttps://deci
+ siondesk.atlassian.net/browse/DS-419\nhttps://decisiondesk.atlassian.net/br
+ owse/DS-1390
+LAST-MODIFIED:20170515T175020Z
+LOCATION:
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Product Peeps
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20170516T150000Z
+DTEND:20170516T160000Z
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=evan.stern@decisiondesk.com:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=Th
+ omas Cothran;X-NUM-GUESTS=0:mailto:tmcothran@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170515T192954Z
+DESCRIPTION:Chat with Thomas.
+LAST-MODIFIED:20170515T214536Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DecisionDesk talk with Thomas Corthan
+TRANSP:OPAQUE
+ATTACH;FILENAME=2017 Resume.pdf:https://drive.google.com/a/decisiondesk.com
+ /file/d/0B2XgJhgSzlKlLTBOSTdJU05NaDZYSnBUOVc1aGtaN0VsQ0g4/view?usp=drive_we
+ b
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170516T091500
+DTEND;TZID=America/New_York:20170516T093000
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=TU
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=chris.coe@decisiondesk.com:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=En
+ gineering;X-NUM-GUESTS=0:mailto:eng@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Christ
+ opher Sheppard;X-NUM-GUESTS=0:mailto:christopher.sheppard@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170516T111234Z
+DESCRIPTION:
+LAST-MODIFIED:20170516T133110Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Prod Deployment meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170516T130000
+DTEND;TZID=America/New_York:20170516T140000
+RRULE:FREQ=WEEKLY;UNTIL=20170725T170000Z;BYDAY=TU
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=ryan.lintz@decisiondesk.com:mailto:ryan.lintz@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=mhicks
+ @lorainccc.edu;X-NUM-GUESTS=0:mailto:mhicks@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=So
+ n Phan;X-NUM-GUESTS=0:mailto:sphan@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=ryan.l
+ intz@decisiondesk.com;X-NUM-GUESTS=0:mailto:ryan.lintz@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adovci
+ @lorainccc.edu;X-NUM-GUESTS=0:mailto:adovci@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=sjamer
+ so@lorainccc.edu;X-NUM-GUESTS=0:mailto:sjamerso@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+CREATED:20170510T192208Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/604866365\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (646) 749-3112\n\nAccess Code: 604-866-365\n\nFirst GoToMeeting? Try a
+  test session: https://care.citrixonline.com/g2m/getready\n────────────────
+ ──────────────────────────\n
+LAST-MODIFIED:20170516T153905Z
+LOCATION:https://www.gotomeeting.com/join/604866365
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:LCCC<>DecisionDesk Weekly Project Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170516T130000
+DTEND;TZID=America/New_York:20170516T140000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=ryan.lintz@decisiondesk.com:mailto:ryan.lintz@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=ryan.l
+ intz@decisiondesk.com;X-NUM-GUESTS=0:mailto:ryan.lintz@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=So
+ n Phan;X-NUM-GUESTS=0:mailto:sphan@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=sjamer
+ so@lorainccc.edu;X-NUM-GUESTS=0:mailto:sjamerso@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adovci
+ @lorainccc.edu;X-NUM-GUESTS=0:mailto:adovci@lorainccc.edu
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=mhicks
+ @lorainccc.edu;X-NUM-GUESTS=0:mailto:mhicks@lorainccc.edu
+RECURRENCE-ID;TZID=America/New_York:20170516T130000
+CREATED:20170510T192208Z
+DESCRIPTION:──────────────────────────────────────────\nPlease join my meet
+ ing from your computer\, tablet or smartphone.\nhttps://global.gotomeeting.
+ com/join/604866365\n\nYou can also dial in using your phone.\nUnited States
+ : +1 (646) 749-3112\n\nAccess Code: 604-866-365\n\nFirst GoToMeeting? Try a
+  test session: https://care.citrixonline.com/g2m/getready\n────────────────
+ ──────────────────────────\n
+LAST-MODIFIED:20170516T153905Z
+LOCATION:https://www.gotomeeting.com/join/604866365
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:LCCC<>DecisionDesk Weekly Project Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170411T103000
+DTEND;TZID=America/New_York:20170411T110000
+EXDATE;TZID=America/New_York:20170505T103000
+EXDATE;TZID=America/New_York:20170508T103000
+RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+CREATED:20170410T161722Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170517T142014Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Estimation Party
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170419T113000
+DTEND;TZID=America/New_York:20170419T120000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
+ an.stern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20170419T103000
+CREATED:20170410T161722Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170517T142014Z
+LOCATION:
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Estimation Party
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT30M
+X-APPLE-DEFAULT-ALARM:TRUE
+ATTACH;VALUE=URI:Basso
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170510T103000
+DTEND;TZID=America/New_York:20170510T111500
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=adam.f
+ ishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+RECURRENCE-ID;TZID=America/New_York:20170510T103000
+CREATED:20170410T161722Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170517T142014Z
+LOCATION:
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Estimation Party
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20170512T140000
+DTEND;TZID=America/New_York:20170512T143000
+DTSTAMP:20170517T163818Z
+ORGANIZER;CN=nick.svoboda@decisiondesk.com:mailto:nick.svoboda@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ad
+ am.fishman@decisiondesk.com;X-NUM-GUESTS=0:mailto:adam.fishman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Nick S
+ voboda;X-NUM-GUESTS=0:mailto:nick.svoboda@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=evan.s
+ tern@decisiondesk.com;X-NUM-GUESTS=0:mailto:evan.stern@decisiondesk.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=matt.g
+ ibberman@decisiondesk.com;X-NUM-GUESTS=0:mailto:matt.gibberman@decisiondesk
+ .com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=drew.s
+ ullivan@decisiondesk.com;X-NUM-GUESTS=0:mailto:drew.sullivan@decisiondesk.c
+ om
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=chris.
+ coe@decisiondesk.com;X-NUM-GUESTS=0:mailto:chris.coe@decisiondesk.com
+RECURRENCE-ID;TZID=America/New_York:20170512T103000
+CREATED:20170410T161722Z
+DESCRIPTION:Please join my meeting from your computer\, tablet or smartphon
+ e. \nhttps://global.gotomeeting.com/join/342016261 \n\nYou can also dial in
+  using your phone. \nUnited States +1 (872) 240-3412 \n\nAccess Code: 342-0
+ 16-261 
+LAST-MODIFIED:20170517T142014Z
+LOCATION:
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Estimation Party
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
