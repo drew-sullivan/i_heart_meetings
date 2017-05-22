@@ -333,40 +333,91 @@ class Report:
 <body>
     <div class='report'>
         <table id="ihmReport">
-            <caption>Report</caption>
-            <tr> <th>Number of Meetings</th> </tr>
-            <tr> <td>{17}</td> </tr>
-            <tr> <th>Weekly Costs</th> </tr>
-            <tr> <td>{0}</td> </tr>
-            <tr> <td>{1}</td> </tr>
-            <tr> <th>Averages</th> </tr>
-            <tr> <th class='sub-category'>Costs Per Meeting</th> </tr>
-            <tr> <td>{2}</td> </tr>
-            <tr> <td>{3}</td> </tr>
-            <tr> <th class='sub-category'>Meeting Duration</th> </tr>
-            <tr> <td>{4}</td> </tr>
-            <tr> <th>Projected Yearly Costs</th> </tr>
-            <tr> <td>{5}</td> </tr>
-            <tr> <td>{6}</td> </tr>
-            <tr> <th>Top Meeting Times</th> </tr>
-            <tr> <td>{7}</td> </tr>
-            <tr> <td>{8}</td> </tr>
-            <tr> <td>{9}</td> </tr>
-            <tr> <th>Percent Time Spent in Meetings</th> </tr>
-            <tr> <td>{10}</td> </tr>
-            <tr> <th>Ideal Weekly Costs</th> </tr>
-            <tr> <td>{19}</td> </tr>
-            <tr> <td>{18}</td> </tr>
-            <tr> <th>Ideal Yearly Costs</th> </tr>
-            <tr> <td>{11}</td> </tr>
-            <tr> <td>{12}</td> </tr>
-            <tr> <th>Potential Savings</th> </tr>
-            <tr> <th class='sub-category'>Weekly</th> </tr>
-            <tr> <td>{13}</td> </tr>
-            <tr> <td>{14}</td> </tr>
-            <tr> <th class='sub-category'>Yearly</th> </tr>
-            <tr> <td>{15}</td> </tr>
-            <tr> <td>{16}</td> </tr>
+            <caption>Meetings Report</caption>
+            <tr>
+                <th>Description</td>
+                <th>Value</td>
+            </tr>
+            <tr>
+                <td>Number of Meetings</td>
+                <td>{17}</td>
+            </tr>
+            <tr>
+                <td>Weekly Cost: Financial</td>
+                <td>{0}</td>
+            </tr>
+            <tr>
+                <td>Weekly Cost: Time</td>
+                <td>{1}</td>
+            </tr>
+            <tr>
+                <td>Average Finanical Cost Per Meeting</td>
+                <td>{2}</td>
+            </tr>
+            <tr>
+                <td>Average Time Cost Per Meeting</td>
+                <td>{3}</td>
+            </tr>
+            <tr>
+                <td>Average Duration Per Meeting</td>
+                <td>{4}</td>
+            </tr>
+            <tr>
+                <td>Projected Yearly Cost: Financial</td>
+                <td>{5}</td>
+            </tr>
+            <tr>
+                <td>Projected Yearly Cost: Time</td>
+                <td>{6}</td>
+            </tr>
+            <tr>
+                <td>Top Meeting Time No. 1</td>
+                <td>{7}</td>
+            </tr>
+            <tr>
+                <td>Top Meeting Time No. 2</td>
+                <td>{8}</td>
+            </tr>
+            <tr>
+                <td>Top Meeting Time No. 3</td>
+                <td>{9}</td>
+            </tr>
+            <tr>
+                <td>Percent Time Spent in Meetings</td>
+                <td>{10}</td>
+            </tr>
+            <tr>
+                <td>Ideal Weekly Costs: Financial</td>
+                <td>{19}</td>
+            </tr>
+            <tr>
+                <td>Ideal Weekly Costs: Time</td>
+                <td>{18}</td>
+            </tr>
+            <tr>
+                <td>Ideal Yearly Costs: Financial</td>
+                <td>{11}</td>
+            </tr>
+            <tr>
+                <td>Ideal Yearly Costs: Time</td>
+                <td>{12}</td>
+            </tr>
+            <tr>
+                <td>Weekly Potential Savings: Financial</td>
+                <td>{13}</td>
+            </tr>
+            <tr>
+                <td>Weekly Potential Savings: Time</td>
+                <td>{14}</td>
+            </tr>
+            <tr>
+                <td>Yearly Potential Savings: Financial</td>
+                <td>{15}</td>
+            </tr>
+            <tr>
+                <td>Yearly Potential Savings: Time</td>
+                <td>{16}</td>
+            </tr>
         </table>
     </div>
 </body>

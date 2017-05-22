@@ -13,17 +13,18 @@ caption {
     padding: 2%
 }
 
-.sub-category {
-    background-color: #7FC41C !important;
+td:first-child {
+    text-align: left;
 }
 
 table {
     width: 100%;
 }
 
-table, th, td {
-    border: 1px solid grey;
+table, td {
+    border: 3px solid white;
     border-collapse: collapse;
+    background-color: #e9ecf2;
 }
 
 th, td {
@@ -32,23 +33,10 @@ th, td {
 
 th {
     text-align: left;
+    background-color: #3a3a3c;
+    color: white;
 }
 
 td {
     text-align: right;
 }
-
-/* table#ihmReport tr:nth-child(even) {
-    background-color: #eee;
-}
-
-table#ihmReport tr:nth-child(odd) {
-   background-color:#fff;
-} */
-
-table#ihmReport th {
-    background-color: #FD9201;
-    color: black;
-}
-7FC41C
-1D98C4
