@@ -4,8 +4,13 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.report {
+.report, img {
     margin: 2% 20%;
+}
+
+img {
+    width: 400px;
+    height: auto;
 }
 
 caption {
@@ -32,7 +37,7 @@ th, td {
 }
 
 th {
-    text-align: left;
+    text-align: center;
     background-color: #3a3a3c;
     color: white;
 }

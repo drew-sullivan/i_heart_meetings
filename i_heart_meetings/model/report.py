@@ -331,6 +331,7 @@ class Report:
     <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
 <body>
+    <img src="http://i.imgur.com/zBxQt6J.png" />
     <div class='report'>
         <table id="ihmReport">
             <caption>Meetings Report</caption>
@@ -417,6 +418,10 @@ class Report:
             <tr>
                 <td>Yearly Potential Savings: Time</td>
                 <td>{16}</td>
+            </tr>
+            <tr>
+                <th></td>
+                <th></td>
             </tr>
         </table>
     </div>
