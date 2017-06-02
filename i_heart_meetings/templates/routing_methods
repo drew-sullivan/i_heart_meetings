@@ -1,0 +1,53 @@
+Plug-and-play templates
+
+@app.route("/line_chart_2")
+def chart_2():
+    legend = 'Meeting Durations'
+    # X axis - list
+    labels = list_of_meeting_summaries
+    # Y axis - list
+    values = list_of_meeting_durations
+    return render_template('line.html', values=values, labels=labels, legend=legend)
+
+@app.route("/bar_chart")
+def bar_chart():
+    legend = 'Meeting Durations'
+    #labels = list_of_meeting_ids
+    labels = list_of_meeting_summaries
+    values = list_of_meeting_durations
+    return render_template('bar.html', values=values, labels=labels, legend=legend)
+
+@app.route('/radar_chart')
+def radar_chart():
+    legend = 'Meeting Durations'
+    #labels = list_of_meeting_ids
+    labels = list_of_meeting_summaries
+    values = list_of_meeting_durations
+    return render_template('radar.html', values=values, labels=labels, legend=legend)
+
+@app.route('/polar_chart')
+def polar_chart():
+    legend = 'Meeting Durations'
+    labels = list_of_meeting_ids
+    values = list_of_meeting_durations
+    return render_template('polar.html', values=values, labels=labels, legend=legend)
+
+@app.route('/pie_chart')
+def pie_chart():
+    current_costs = 'Current Costs: {0} and {1} yearly'.format(
+        data[3], data[2])
+    ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
+        data[12], data[11])
+    savings = 'Potential Savings: {0} and {1}'.format(data[15],
+        data[16])
+    legend = 'Meeting Durations'
+    labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
+    values = [data[19],9,8,15]
+    return render_template('pie.html', values=values, labels=labels, legend=legend)
+
+@app.route('/doughnut_chart')
+def doughnut_chart():
+    legend = 'Meeting Durations'
+    labels = list_of_meeting_ids
+    values = list_of_meeting_durations
+    return render_template('doughnut.html', values=values, labels=labels, legend=legend)
