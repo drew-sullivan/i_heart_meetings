@@ -1,5 +1,9 @@
-client_secret.json 
+client_secret.json
 how_to_combine_calendars.txt
 *.pyc
 .DS_Store
+ics_files/
 thoughts.py
+*.csv
+*.json
+*.sqlite
