@@ -45,8 +45,8 @@ def get_meeting_report():
 
     rep.post_report_to_slack()
     #
-    rep.write_db_to_csv()
-    rep.write_csv_to_json()
+    #  rep.write_db_to_csv()
+    #  rep.write_csv_to_json()
     #
     generate_charts(data)
     open_charts_in_browser()
