@@ -2,7 +2,7 @@
 
 import argparse
 import datetime
-import httplib2 # used to perform the get request to the Google API
+import httplib2
 import json
 import os
 import pdb
@@ -25,8 +25,6 @@ from oauth2client.file import Storage
 help = textwrap.dedent("""
     """ )
 
-#  for Flask - MAKE SURE TO TURN ON THE LAST LINE, TOO!
-
 from flask import Flask
 from flask import render_template
 app = Flask(__name__)
@@ -36,7 +34,7 @@ def get_meeting_report():
 
     cc = CalendarConnection()
     meetings = cc.meetings
-    #  _print_entire_google_calendar_results_as_json(meetings)
+    #  _print_calendar_results_as_json(meetings)
 
     rep = Report(meetings)
 
@@ -54,13 +52,13 @@ def get_meeting_report():
 
 def open_charts_in_browser():
     webbrowser.open('http://localhost:5000/percent_pie')
-    webbrowser.open('http://localhost:5000/percent_pie_split_2')
-    webbrowser.open('http://localhost:5000/percent_pie_split_1')
+    #  webbrowser.open('http://localhost:5000/percent_pie_split_2')
+    #  webbrowser.open('http://localhost:5000/percent_pie_split_1')
     webbrowser.open('http://localhost:5000/when_you_meet_most')
     webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/templates/report.html')
 
 
-def _print_entire_google_calendar_results_as_json(meetings):
+def _print_calendar_results_as_json(meetings):
     print(json.dumps(meetings, indent=4, sort_keys=True))
 
 

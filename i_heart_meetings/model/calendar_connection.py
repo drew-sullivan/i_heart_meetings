@@ -16,7 +16,6 @@ from oauth2client import tools
 from oauth2client.file import Storage
 
 
-
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
@@ -24,9 +23,6 @@ except ImportError:
     flags = None
 
 class CalendarConnection:
-
-    # If modifying these scopes, delete your previously saved credentials
-    # at ~/.credentials/calendar-python-quickstart.json
 
     SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
     CLIENT_SECRET_FILE = 'client_secret.json'
@@ -46,7 +42,6 @@ class CalendarConnection:
             calendarId='primary', timeMin=self.TIMEFRAME_START, timeMax=self.TIMEFRAME_END, maxResults=self.MAX_NUM_RESULTS, singleEvents=True,
             orderBy=self.ORDER_BY_JSON_KEY).execute()
         self.meetings = self.calendar_data.get('items', [])
-
 
 
     def _get_credentials(self):
