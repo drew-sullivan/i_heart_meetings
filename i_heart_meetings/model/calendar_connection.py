@@ -1,6 +1,5 @@
-
 import datetime
-import httplib2 # used to perform the get request to the Google API
+import httplib2
 import os
 import pdb
 import textwrap
@@ -24,7 +23,7 @@ try:
 except ImportError:
     flags = None
 
-class Google_Connection:
+class CalendarConnection:
 
     # If modifying these scopes, delete your previously saved credentials
     # at ~/.credentials/calendar-python-quickstart.json
@@ -33,9 +32,8 @@ class Google_Connection:
     CLIENT_SECRET_FILE = 'client_secret.json'
     APPLICATION_NAME = 'I Heart Meetings'
 
-    ARBITRARY_DATE = '2017-01-17T09:00:00Z' # for formatting
     TIMEFRAME_END = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z' # currently 7 days
+    TIMEFRAME_START = str(datetime.datetime.now() - datetime.timedelta(days=7)).replace(' ', 'T') + 'Z'
     MAX_NUM_RESULTS = 500
     ORDER_BY_JSON_KEY = 'startTime'
     CALENDAR_ID = 'primary'
@@ -44,10 +42,10 @@ class Google_Connection:
         self.credentials = self._get_credentials()
         self.http = self.credentials.authorize(httplib2.Http())
         self.service = discovery.build('calendar', 'v3', http=self.http)
-        self.google_calendar_data = self.service.events().list(
+        self.calendar_data = self.service.events().list(
             calendarId='primary', timeMin=self.TIMEFRAME_START, timeMax=self.TIMEFRAME_END, maxResults=self.MAX_NUM_RESULTS, singleEvents=True,
             orderBy=self.ORDER_BY_JSON_KEY).execute()
-        self.meetings = self.google_calendar_data.get('items', [])
+        self.meetings = self.calendar_data.get('items', [])
 
 
 

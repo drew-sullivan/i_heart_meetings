@@ -14,7 +14,7 @@ import webbrowser
 from apiclient import discovery
 from datetime import time
 from datetime import timedelta
-from model.google_connection import Google_Connection
+from model.calendar_connection import CalendarConnection
 from model.meeting import Meeting
 from model.report import Report
 from oauth2client import client
@@ -34,8 +34,8 @@ app = Flask(__name__)
 
 def get_meeting_report():
 
-    gc = Google_Connection()
-    meetings = gc.meetings
+    cc = CalendarConnection()
+    meetings = cc.meetings
     #  _print_entire_google_calendar_results_as_json(meetings)
 
     rep = Report(meetings)
