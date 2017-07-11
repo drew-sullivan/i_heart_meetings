@@ -26,7 +26,7 @@ class Report:
         -Sets the results of those calculations to attributes
 
         Attributes:
-            google_meetings_blob: list - received from google after query
+            raw_calendar_data: list - received from google after query
             meetings_list: list - list of meeting objects
             weekly_cost_in_seconds: int - cost of each meeting in a week added together
             weekly_cost_in_seconds_readable: str - DD, HH, MM, SS version of above
@@ -108,8 +108,8 @@ class Report:
     QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
     SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
-    def __init__(self, google_meetings_blob):
-        self.google_meetings_blob = google_meetings_blob
+    def __init__(self, raw_calendar_data):
+        self.raw_calendar_data = raw_calendar_data
         self.meetings_list = []
         self.weekly_cost_in_seconds = 0
         self.weekly_cost_in_seconds_readable = ''
@@ -149,7 +149,7 @@ class Report:
         self.printable_data = None
         self.print_template = ''
         self.num_start_times = {}
-        self.meetings_list = self.get_meetings_list(self.google_meetings_blob)
+        self.meetings_list = self.get_meetings_list(self.raw_calendar_data)
 
         for meeting in self.meetings_list:
             #self._add_row_to_db(meeting)
@@ -676,9 +676,9 @@ Duration: {6}
             self.top_meeting_time_3 = self.top_meeting_times[2]
 
 
-    def get_meetings_list(self, google_meetings_blob):
+    def get_meetings_list(self, raw_calendar_data):
         meetings_list = []
-        for num, meeting in enumerate(self.google_meetings_blob, 1):
+        for num, meeting in enumerate(self.raw_calendar_data, 1):
             num = num
             summary = self._get_summary(meeting)
             start = parse(meeting['start'].get('dateTime', meeting['start'].get('date')))
