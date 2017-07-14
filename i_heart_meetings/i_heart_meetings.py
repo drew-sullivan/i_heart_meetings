@@ -51,12 +51,12 @@ def get_meeting_report():
 
 
 def open_charts_in_browser():
+    webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/tools/timer.html')
     webbrowser.open('http://localhost:5000/percent_pie')
     #  webbrowser.open('http://localhost:5000/percent_pie_split_2')
     #  webbrowser.open('http://localhost:5000/percent_pie_split_1')
     webbrowser.open('http://localhost:5000/when_you_meet_most')
     webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/templates/report.html')
-    webbrowser.open('file:///Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/tools/timer.html')
 
 
 def _print_calendar_results_as_json(meetings):
