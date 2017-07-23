@@ -6,7 +6,7 @@ import dateutil
 from datetime import time
 from datetime import timedelta
 from dateutil.parser import parse
-from money import Money # Currently only supporting USD, but others coming soon!
+from money import Money
 
 
 class Meeting:
@@ -49,7 +49,6 @@ class Meeting:
         self.duration = duration
         self.num_attendees = num_attendees
 
-
     def percent_time(self):
         work_seconds = self._get_seconds_from_duration()
         work_hours = work_seconds / 3600
@@ -57,12 +56,10 @@ class Meeting:
         percent_time = round(percent_time, self.ROUND_TO_THIS_MANY_PLACES)
         return percent_time
 
-
     def cost_in_seconds(self):
         work_seconds = self._get_seconds_from_duration()
         cost_in_seconds = self.num_attendees * work_seconds
         return cost_in_seconds
-
 
     def time_cost_for_printing(self):
         seconds = self.cost_in_seconds()
@@ -71,20 +68,17 @@ class Meeting:
         time_cost = '{}, {}, {}, {}'.format(work_days, hours, minutes, seconds)
         return time_cost
 
-
     def cost_in_dollars(self):
         work_seconds = self._get_seconds_from_duration()
         cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
         cost_in_dollars = Money(cost_in_dollars, self.CURRENCY)
         return cost_in_dollars
 
-
     def cost_in_dollars_pretty_print(self):
         work_seconds = self._get_seconds_from_duration()
         cost_in_dollars = work_seconds * self.COST_PER_SECOND * self.num_attendees
         cost_in_dollars = Money(cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
         return cost_in_dollars
-
 
     def _make_pretty_for_printing(self, days, hours, minutes, seconds):
         seconds = "{} second{}".format(int(seconds), "" if seconds == 1 else "s")
@@ -93,7 +87,6 @@ class Meeting:
         work_days = "{} work-day{}".format(int(days), "" if days == 1 else "s")
         return work_days, hours, minutes, seconds
 
-
     def _translate_seconds(self, seconds):
         # divmod returns quotient and remainder
         minutes, seconds = divmod(seconds, 60)
@@ -101,12 +94,10 @@ class Meeting:
         work_days, hours = divmod(hours, self.WORK_HOURS_PER_DAY)
         return (int(work_days), int(hours), int(minutes), int(seconds))
 
-
     def _get_seconds_from_duration(self):
         seconds = self.duration.total_seconds()
         seconds = self.__convert_seconds_to_work_seconds(seconds)
         return seconds
-
 
     def __convert_seconds_to_work_seconds(self, seconds):
         hours = float(seconds) / 3600
@@ -119,7 +110,6 @@ class Meeting:
         seconds = hours * 3600
         return seconds
 
-
     def print_meeting_info(self):
         print("""
         Meeting {0}: {1}
@@ -131,7 +121,7 @@ class Meeting:
         Cost: {6}
         Cost in Time: {7}
         Percentage of time spent in meeting: {8}% """.format(
-            self.num, 
+            self.num,
             self.summary,
             self._make_dt_or_time_str_pretty_for_printing(self.start),
             self._make_dt_or_time_str_pretty_for_printing(self.end),
@@ -141,7 +131,6 @@ class Meeting:
             self.percent_time()
             )
         )
-
 
     def _make_dt_or_time_str_pretty_for_printing(self, dt_obj_or_str):
         if isinstance(dt_obj_or_str, str):
