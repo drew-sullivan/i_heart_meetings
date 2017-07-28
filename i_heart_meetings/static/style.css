@@ -4,7 +4,7 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.report, img {
+.report, img, #hello {
     margin: 2% 20%;
 }
 
@@ -44,4 +44,9 @@ th {
 
 td {
     text-align: right;
+}
+
+#hello {
+    font-size: 150px;
+    color: #595959;
 }
