@@ -57,6 +57,8 @@ def open_charts_in_browser():
     when_you_meet_most_path = 'http://localhost:5000/when_you_meet_most'
     report_path = '/Users/Drew/coding_stuff/i_heart_meetings/i_heart_meetings/templates/report.html'
     timer_path = '/Users/Drew/coding_stuff/i_heart_meetings/i_heart_meetings/tools/timer.html'
+    hello_path = '/Users/Drew/coding_stuff/i_heart_meetings/i_heart_meetings/templates/hello_py_ohio.html'
+
     webbrowser.open(percent_pie_path)
     webbrowser.open(when_you_meet_most_path)
     webbrowser.open('file://' + os.path.realpath(timer_path))
