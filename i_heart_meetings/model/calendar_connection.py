@@ -9,8 +9,8 @@ import webbrowser
 from apiclient import discovery
 from datetime import time
 from datetime import timedelta
-from model.meeting import Meeting
-from model.report import Report
+#  from model.meeting import Meeting
+#  from model.report import Report
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage

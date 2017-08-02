@@ -15,6 +15,8 @@ import webbrowser
 from apiclient import discovery
 from datetime import time
 from datetime import timedelta
+from flask import Flask
+from flask import render_template
 from model.calendar_connection import CalendarConnection
 from model.meeting import Meeting
 from model.report import Report
@@ -24,10 +26,8 @@ from oauth2client.file import Storage
 
 
 help = textwrap.dedent("""
-    """ )
+    """)
 
-from flask import Flask
-from flask import render_template
 app = Flask(__name__)
 
 
@@ -56,9 +56,12 @@ def open_charts_in_browser():
     #  webbrowser.open('http://localhost:5000/percent_pie_split_1')
     percent_pie_path = 'http://localhost:5000/percent_pie'
     when_you_meet_most_path = 'http://localhost:5000/when_you_meet_most'
-    report_path = '/Users/Drew/coding_stuff/i_heart_meetings/i_heart_meetings/templates/report.html'
-    timer_path = '/Users/Drew/coding_stuff/i_heart_meetings/i_heart_meetings/tools/timer.html'
-    hello_path = '/Users/Drew/coding_stuff/i_heart_meetings/i_heart_meetings/templates/hello_py_ohio.html'
+    report_path = ('/Users/Drew/coding_stuff/i_heart_meetings/'
+                   'i_heart_meetings/templates/report.html')
+    timer_path = ('/Users/Drew/coding_stuff/i_heart_meetings/'
+                  'i_heart_meetings/tools/timer.html')
+    hello_path = ('/Users/Drew/coding_stuff/i_heart_meetings/'
+                  'i_heart_meetings/templates/hello_py_ohio.html')
 
     webbrowser.open(percent_pie_path)
     webbrowser.open(when_you_meet_most_path)
@@ -79,7 +82,11 @@ def generate_charts(data):
         labels = data[17]
         # Y axis - list
         values = list(data[18].values())
-        return render_template('when_you_meet_most_line.html', values=values, labels=labels, legend=legend)
+        return render_template(
+            'when_you_meet_most_line.html',
+            values=values,
+            labels=labels, legend=legend
+        )
 
     @app.route('/percent_pie')
     def percent_pie():
@@ -87,14 +94,17 @@ def generate_charts(data):
             data[3], data[2])
         ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
             data[12], data[11])
-        savings = 'Potential Savings: {0} and {1}'.format(data[15],
-            data[16])
+        savings = 'Potential Savings: {0} and {1}'.format(data[15], data[16])
         remainder = 100 - data[19]
         recovered_costs = data[19] - data[20]
         legend = 'Percentage of Time Spent in Meetings'
         labels = [current_costs, 'Non-Meetings', ideal_costs, savings]
         values = [data[19], remainder, data[20], recovered_costs]
-        return render_template('percent_pie.html', values=values, labels=labels, legend=legend)
+        return render_template(
+            'percent_pie.html',
+            values=values,
+            labels=labels, legend=legend
+        )
 
     @app.route('/percent_pie_split_1')
     def percent_pie_split_1():
@@ -102,14 +112,17 @@ def generate_charts(data):
             data[3], data[2])
         ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
             data[12], data[11])
-        savings = 'Potential Savings: {0} and {1}'.format(data[15],
-            data[16])
+        savings = 'Potential Savings: {0} and {1}'.format(data[15], data[16])
         remainder = 100 - data[19]
         recovered_costs = data[19] - data[20]
         legend = 'Percentage of Time Spent in Meetings'
         labels = [current_costs, 'Non-Meetings']
         values = [data[19], remainder]
-        return render_template('percent_pie_split_1.html', values=values, labels=labels, legend=legend)
+        return render_template(
+            'percent_pie_split_1.html',
+            values=values,
+            labels=labels, legend=legend
+        )
 
     @app.route('/percent_pie_split_2')
     def percent_pie_split_2():
@@ -117,19 +130,25 @@ def generate_charts(data):
             data[3], data[2])
         ideal_costs = 'Ideal Meeting Investment: {0} and {1}'.format(
             data[12], data[11])
-        savings = 'Potential Savings: {0} and {1}'.format(data[15],
-            data[16])
+        savings = 'Potential Savings: {0} and {1}'.format(data[15], data[16])
         remainder = 100 - data[19]
         recovered_costs = data[19] - data[20]
         legend = 'Percentage of Time Spent in Meetings'
         labels = ['Non-Meetings', ideal_costs, savings]
         values = [remainder, data[20], recovered_costs]
-        return render_template('percent_pie_split_2.html', values=values, labels=labels, legend=legend)
+        return render_template(
+            'percent_pie_split_2.html',
+            values=values,
+            labels=labels, legend=legend
+        )
 
     @app.route('/slack_printout_test')
     def slack_printout_test():
         weekly_cost_in_seconds_readable = data[0]
-        return render_template('slack_printout_test.html', weekly_cost_in_seconds=weekly_cost_in_seconds)
+        return render_template(
+            'slack_printout_test.html',
+            weekly_cost_in_seconds=weekly_cost_in_seconds
+        )
 
     @app.route('/summary')
     def summary():
