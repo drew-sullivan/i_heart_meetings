@@ -247,6 +247,103 @@ class Report:
         conn.commit()
         conn.close()
 
+    #  def set_printable_data(self):
+    #      self.printable_data = (
+    #          self.weekly_cost_in_seconds_readable, #0
+    #          self.weekly_cost_in_dollars_readable, #1
+    #          self.yearly_cost_in_seconds_readable, #2
+    #          self.yearly_cost_in_dollars, #3
+    #          self.avg_cost_in_seconds_readable, #4
+    #          self.avg_cost_in_dollars_readable, #5
+    #          self.avg_duration_in_seconds_readable, #6
+    #          self.top_meeting_time_1, #7
+    #          self.top_meeting_time_2, #8
+    #          self.top_meeting_time_3, #9
+    #          self.percent_time_spent_readable, #10
+    #          self.yearly_ideal_time_cost_readable, #11
+    #          self.yearly_ideal_financial_cost_readable, #12
+    #          self.weekly_money_recovered_readable, #13
+    #          self.weekly_time_recovered_readable, #14
+    #          self.yearly_money_recovered_readable, #15
+    #          self.yearly_time_recovered_readable, #16
+    #          self.frequency_keys_readable, #17
+    #          self.frequency, #18
+    #          self.percent_time_spent, #19
+    #          self.IDEAL_PERCENT_TIME_IN_MEETINGS, #20
+    #          self.num_meetings, #21
+    #          self.num_start_times, #22
+    #          self.weekly_ideal_time_cost_readable, #23
+    #          self.weekly_ideal_financial_cost_readable #24
+    #      )
+
+
+    def set_printable_data(self):
+        Report = namedtuple('Report', [
+            'weekly_cost_in_seconds_readable', ##
+            'weekly_cost_in_dollars_readable', ##
+            'yearly_cost_in_seconds_readable', ##
+            'yearly_cost_in_dollars', ##
+            'avg_cost_in_seconds_readable',
+            'avg_cost_in_dollars_readable',
+            'avg_duration_in_seconds_readable',
+            'top_meeting_time_1',
+            'top_meeting_time_2',
+            'top_meeting_time_3',
+            'percent_time_spent_readable',
+            'yearly_ideal_time_cost_readable', ##
+            'yearly_ideal_financial_cost_readable', ##
+            'weekly_money_recovered_readable',
+            'weekly_time_recovered_readable',
+            'yearly_money_recovered_readable', ##
+            'yearly_time_recovered_readable', ##
+            'frequency_keys_readable', ##
+            'frequency', ##
+            'percent_time_spent', ##
+            'IDEAL_PERCENT_TIME_IN_MEETINGS', ##
+            'num_meetings',
+            'num_start_times',
+            'weekly_ideal_time_cost_readable',
+            'weekly_ideal_financial_cost_readable'
+        ])
+
+        report = Report(
+            self.weekly_cost_in_seconds_readable,
+            self.weekly_cost_in_dollars_readable,
+            self.yearly_cost_in_seconds_readable,
+            self.yearly_cost_in_dollars,
+            self.avg_cost_in_seconds_readable,
+            self.avg_cost_in_dollars_readable,
+            self.avg_duration_in_seconds_readable,
+            self.top_meeting_time_1,
+            self.top_meeting_time_2,
+            self.top_meeting_time_3,
+            self.percent_time_spent_readable,
+            self.yearly_ideal_time_cost_readable,
+            self.yearly_ideal_financial_cost_readable,
+            self.weekly_money_recovered_readable,
+            self.weekly_time_recovered_readable,
+            self.yearly_money_recovered_readable,
+            self.yearly_time_recovered_readable,
+            self.frequency_keys_readable,
+            self.frequency,
+            self.percent_time_spent,
+            self.IDEAL_PERCENT_TIME_IN_MEETINGS,
+            self.num_meetings,
+            self.num_start_times,
+            self.weekly_ideal_time_cost_readable,
+            self.weekly_ideal_financial_cost_readable
+        )
+        return report
+
+
+    def post_report_to_slack(self):
+        data = str(
+            {'text': self.summary_printout}
+        )
+        url = self.SLACK_HOOK
+        req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+        f = urllib2.urlopen(req)
+        f.close()
     def set_printable_data(self):
         self.printable_data = (
             self.weekly_cost_in_seconds_readable, #0
@@ -276,15 +373,6 @@ class Report:
             self.weekly_ideal_financial_cost_readable #24
         )
 
-
-    def post_report_to_slack(self):
-        data = str(
-            {'text': self.summary_printout}
-        )
-        url = self.SLACK_HOOK
-        req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-        f = urllib2.urlopen(req)
-        f.close()
 
     #  TODO:
     #      Add survey implementation
