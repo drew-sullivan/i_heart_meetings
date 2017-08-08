@@ -63,7 +63,7 @@ class Report:
             frequency_keys_readable: list - all meeting times as Tuesday, Apr 25, 2017 - 09:30
             summary_printout: str - formatted printout of data for printing
             printable_data = tuple - all the calculations. Can be passed between classes
-            print_template: str - template for printing info in the same format
+            slack_print_template: str - template for printing info in the same format
             num_start_times: int - number of meeting starting times
         """)
 
@@ -105,7 +105,7 @@ class Report:
     JSON_FILE = 'meetings_ihm.json'
 
     QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
-    SLACK_HOOK = 'https://hooks.slack.com/services/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'
+    #  SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
     def __init__(self, raw_calendar_data):
         self.raw_calendar_data = raw_calendar_data
@@ -145,7 +145,7 @@ class Report:
         self.frequency_keys_readable = []
         self.summary_printout = ''
         self.printable_data = None
-        self.print_template = ''
+        self.slack_print_template = ''
         self.num_start_times = {}
         self.meetings_list = self.get_meetings_list(self.raw_calendar_data)
 
@@ -206,7 +206,7 @@ class Report:
         self.set_frequency_keys_readable()
 
         self.set_printable_data()
-        self.set_print_template()
+        #  self.set_slack_print_template()
         self.set_summary()
         #self.write_db_to_csv()
         #self.write_csv_to_json()
@@ -334,60 +334,18 @@ class Report:
     #      return report
     #
 
-    def post_report_to_slack(self):
-        data = str(
-            {'text': self.summary_printout}
-        )
-        url = self.SLACK_HOOK
-        req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-        f = urllib2.urlopen(req)
-        f.close()
-
-
-    #  TODO:
-    #      Add survey implementation
     #  def post_report_to_slack(self):
     #      data = str(
-    #          {'text': self.summary_printout,
-    #              'attachments': [
-    #                  {
-    #                      "fallback": "Was this a good use of time and money?",
-    #                      "title": "Was this a good use of time and money?",
-    #                      "callback_id": "meetings_survey",
-    #                      "color": "#800080",
-    #                      "attachment_type": "default",
-    #                      "actions": [
-    #                          {
-    #                              "name": "yes",
-    #                              "text": "Yes",
-    #                              "type": "button",
-    #                              "value": "yes"
-    #                          },
-    #                          {
-    #                              "name": "no",
-    #                              "text": "No",
-    #                              "type": "button",
-    #                              "value": "no"
-    #                          },
-    #                          {
-    #                              "name": "maybe",
-    #                              "text": "I'm Not Sure",
-    #                              "type": "button",
-    #                              "value": "maybe"
-    #                          }
-    #                      ]
-    #                  }
-    #              ]
-    #          }
+    #          {'text': self.summary_printout}
     #      )
     #      url = self.SLACK_HOOK
     #      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     #      f = urllib2.urlopen(req)
     #      f.close()
-    #
+
 
     def set_summary(self):
-        self.summary_printout = self.print_template.format(*self.printable_data)
+        self.summary_printout = self.slack_print_template.format(*self.printable_data)
 
 
     def write_report_html(self, *printable_data):
@@ -511,44 +469,44 @@ class Report:
         f.close()
 
 
-    def set_print_template(self):
-        self.print_template = """
-*Summary*
-
-*Number of Meetings*
-{22}
-
-*Weekly Costs*
-{0}
-{1}
-
-*Average Per Meeting*
-
-Time Cost: {4}
-Financial Cost: {5}
-Duration: {6}
-
-*Projected Yearly Costs*
-{2}
-{3}
-
-*Top 3 Meeting Times*
-{7},
-{8},
-{9}
-
-*{10}* of Your Time is Spent in Meetings
-
-*Ideal Weekly Costs*
-{24} and {23}
-
-*Ideal Yearly Costs*
-{11} and {12}
-
-*Potential Savings*
-{13} and {14} per week
-{15} and {16} per year
-        """
+#      def set_slack_print_template(self):
+#          self.slack_print_template = """
+#  *Summary*
+#
+#  *Number of Meetings*
+#  {22}
+#
+#  *Weekly Costs*
+#  {0}
+#  {1}
+#
+#  *Average Per Meeting*
+#
+#  Time Cost: {4}
+#  Financial Cost: {5}
+#  Duration: {6}
+#
+#  *Projected Yearly Costs*
+#  {2}
+#  {3}
+#
+#  *Top 3 Meeting Times*
+#  {7},
+#  {8},
+#  {9}
+#
+#  *{10}* of Your Time is Spent in Meetings
+#
+#  *Ideal Weekly Costs*
+#  {24} and {23}
+#
+#  *Ideal Yearly Costs*
+#  {11} and {12}
+#
+#  *Potential Savings*
+#  {13} and {14} per week
+#  {15} and {16} per year
+#          """
 
 
     def set_weekly_cost_in_seconds_readable(self):
