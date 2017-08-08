@@ -1,58 +1,30 @@
+import urllib2
+
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
-def post_report_to_slack(self):
+#  def post_report_to_slack():
+#      data = str(
+#          {'text': summary_printout}
+#      )
+#      url = SLACK_HOOK
+#      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+#      f = urllib2.urlopen(req)
+#      f.close()
+def post_report_to_slack(*args):
     data = str(
-        {'text': self.summary_printout}
+        {'text': slack_print_template.format(*args)}
     )
-    url = self.SLACK_HOOK
+    url = SLACK_HOOK
     req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
     f = urllib2.urlopen(req)
     f.close()
 
-#  TODO:
-#      Add survey implementation
-#  def post_report_to_slack(self):
-#      data = str(
-#          {'text': self.summary_printout,
-#              'attachments': [
-#                  {
-#                      "fallback": "Was this a good use of time and money?",
-#                      "title": "Was this a good use of time and money?",
-#                      "callback_id": "meetings_survey",
-#                      "color": "#800080",
-#                      "attachment_type": "default",
-#                      "actions": [
-#                          {
-#                              "name": "yes",
-#                              "text": "Yes",
-#                              "type": "button",
-#                              "value": "yes"
-#                          },
-#                          {
-#                              "name": "no",
-#                              "text": "No",
-#                              "type": "button",
-#                              "value": "no"
-#                          },
-#                          {
-#                              "name": "maybe",
-#                              "text": "I'm Not Sure",
-#                              "type": "button",
-#                              "value": "maybe"
-#                          }
-#                      ]
-#                  }
-#              ]
-#          }
-#      )
-#      url = self.SLACK_HOOK
-#      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-#      f = urllib2.urlopen(req)
-#      f.close()
+#  def set_summary():
+#      summary_printout = slack_print_template.format(*printable_data)
 
 
-def set_slack_print_template(self):
-    self.print_template = """
+def set_slack_print_template():
+    print_template = """
 *Summary*
 
 *Number of Meetings*
@@ -89,3 +61,44 @@ Duration: {6}
 {13} and {14} per week
 {15} and {16} per year
     """
+
+#  TODO:
+#      Add survey implementation
+#  def post_report_to_slack():
+#      data = str(
+#          {'text': summary_printout,
+#              'attachments': [
+#                  {
+#                      "fallback": "Was this a good use of time and money?",
+#                      "title": "Was this a good use of time and money?",
+#                      "callback_id": "meetings_survey",
+#                      "color": "#800080",
+#                      "attachment_type": "default",
+#                      "actions": [
+#                          {
+#                              "name": "yes",
+#                              "text": "Yes",
+#                              "type": "button",
+#                              "value": "yes"
+#                          },
+#                          {
+#                              "name": "no",
+#                              "text": "No",
+#                              "type": "button",
+#                              "value": "no"
+#                          },
+#                          {
+#                              "name": "maybe",
+#                              "text": "I'm Not Sure",
+#                              "type": "button",
+#                              "value": "maybe"
+#                          }
+#                      ]
+#                  }
+#              ]
+#          }
+#      )
+#      url = SLACK_HOOK
+#      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+#      f = urllib2.urlopen(req)
+#      f.close()

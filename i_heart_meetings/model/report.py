@@ -5,6 +5,7 @@ import csv
 import datetime
 import dateutil
 import ihm_time
+import ihm_slack
 import json
 import smtplib
 import sqlite3
@@ -50,7 +51,7 @@ class Report:
             avg_cost_in_seconds_readable: str - DD, HH, MM, SS of above
             avg_cost_in_dollars: Money - average cost in dollars
             avg_cost_in_dollars_readable: str - added dollar sign to above
-            avg_duration_in_seconds_readable: str - DD, HH, MM, SS 
+            avg_duration_in_seconds_readable: str - DD, HH, MM, SS
             percent_time_spent: int - percent time spent in meetings
             percent_time_spent_readable: str - adds % to above
             yearly_ideal_time_cost_readable: str - DD, HH, MM, SS version of ideal
@@ -143,9 +144,9 @@ class Report:
         self.top_meeting_time_2 = ''
         self.top_meeting_time_3 = ''
         self.frequency_keys_readable = []
-        self.summary_printout = ''
+        #  self.summary_printout = ''
         self.printable_data = None
-        self.slack_print_template = ''
+        #  self.slack_print_template = ''
         self.num_start_times = {}
         self.meetings_list = self.get_meetings_list(self.raw_calendar_data)
 
@@ -207,9 +208,10 @@ class Report:
 
         self.set_printable_data()
         #  self.set_slack_print_template()
-        self.set_summary()
+        #  self.set_summary()
         #self.write_db_to_csv()
         #self.write_csv_to_json()
+        ihm_slack.post_report_to_slack(self.printable_data)
 
 
     def write_csv_to_json(self):
@@ -344,8 +346,8 @@ class Report:
     #      f.close()
 
 
-    def set_summary(self):
-        self.summary_printout = self.slack_print_template.format(*self.printable_data)
+    #  def set_summary(self):
+    #      self.summary_printout = self.slack_print_template.format(*self.printable_data)
 
 
     def write_report_html(self, *printable_data):
