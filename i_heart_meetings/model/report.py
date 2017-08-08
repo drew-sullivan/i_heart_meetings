@@ -95,8 +95,6 @@ class Report:
     YEARLY_IDEAL_COST_IN_DOLLARS = Money((float(IDEAL_PERCENT_TIME_IN_MEETINGS) / 100) * COST_PER_SECOND * PERSON_SECONDS_PER_YEAR, CURRENCY)
 
     ROUND_TO_THIS_MANY_PLACES = 2
-    #  FORMAT_DATETIME_OBJ_TO_STR = '%Y-%m-%d %H:%M:%S'
-    #  FORMAT_STR_TO_DATETIME_OBJ = '%A, %b %d, %Y - %I:%M'
 
     NUM_TOP_MEETING_TIMES = 3
 
@@ -150,13 +148,6 @@ class Report:
         self.print_template = ''
         self.num_start_times = {}
         self.meetings_list = self.get_meetings_list(self.raw_calendar_data)
-
-        #  for meeting in self.meetings_list:
-        #      #self._add_row_to_db(meeting)
-        #      self.weekly_cost_in_seconds += meeting.cost_in_seconds()
-        #      self.weekly_cost_in_dollars += meeting.cost_in_dollars()
-        #      self.num_meetings += 1
-        #      self.weekly_duration += self._convert_duration_to_work_seconds(meeting.duration)
 
         for meeting in self.meetings_list:
             #self._add_row_to_db(meeting)
@@ -560,13 +551,6 @@ Duration: {6}
         """
 
 
-    #  def set_weekly_cost_in_seconds_readable(self):
-    #      seconds = self.weekly_cost_in_seconds
-    #      work_days, hours, minutes, seconds = self._translate_seconds(seconds)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      weekly_cost_in_seconds_pretty_print = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-    #      self.weekly_cost_in_seconds_readable = weekly_cost_in_seconds_pretty_print
-
     def set_weekly_cost_in_seconds_readable(self):
         seconds = self.weekly_cost_in_seconds
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(seconds)
@@ -588,13 +572,6 @@ Duration: {6}
         self.percent_time_spent_readable += (float(self.weekly_cost_in_seconds) / self.PERSON_SECONDS_PER_WEEK)
         self.percent_time_spent_readable = round(self.percent_time_spent_readable * 100, self.ROUND_TO_THIS_MANY_PLACES)
         self.percent_time_spent_readable = str("{}%".format(self.percent_time_spent_readable))
-
-
-    #  def set_avg_cost_in_seconds_readable(self):
-    #      avg_cost_in_seconds = float(self.weekly_cost_in_seconds) / self.num_start_times
-    #      work_days, hours, minutes, seconds = self._translate_seconds(avg_cost_in_seconds)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      self.avg_cost_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
     def set_avg_cost_in_seconds_readable(self):
@@ -619,13 +596,6 @@ Duration: {6}
         self.avg_duration_in_seconds = avg_duration_in_seconds
 
 
-    #  def set_avg_duration_in_seconds_readable(self):
-    #      avg_duration_in_seconds_readable = self.avg_duration_in_seconds
-    #      work_days, hours, minutes, seconds = self._translate_seconds(avg_duration_in_seconds_readable)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      self.avg_duration_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-
-
     def set_avg_duration_in_seconds_readable(self):
         avg_duration_in_seconds_readable = self.avg_duration_in_seconds
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(avg_duration_in_seconds_readable)
@@ -646,14 +616,6 @@ Duration: {6}
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         weekly_time_recovered_in_seconds = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
         self.weekly_time_recovered_readable = weekly_time_recovered_in_seconds
-
-
-    #  def set_weekly_time_recovered_readable(self):
-    #      weekly_time_recovered_in_seconds = self.weekly_time_recovered_in_seconds
-    #      work_days, hours, minutes, seconds = self._translate_seconds(weekly_time_recovered_in_seconds)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      weekly_time_recovered_in_seconds = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-    #      self.weekly_time_recovered_readable = weekly_time_recovered_in_seconds
 
 
     def set_weekly_money_recovered_in_dollars(self):
@@ -680,12 +642,6 @@ Duration: {6}
         yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.yearly_cost_in_seconds = yearly_cost_in_seconds
 
-    #  def set_yearly_cost_in_seconds_readable(self):
-    #      seconds = self.yearly_cost_in_seconds
-    #      work_days, hours, minutes, seconds = self._translate_seconds(seconds)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      yearly_cost_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-    #      self.yearly_cost_in_seconds_readable = yearly_cost_in_seconds_readable
 
     def set_yearly_cost_in_seconds_readable(self):
         seconds = self.yearly_cost_in_seconds
@@ -708,12 +664,6 @@ Duration: {6}
         self.yearly_time_recovered_in_seconds =  time_recovered_yearly
 
 
-    #  def set_yearly_time_recovered_readable(self):
-    #      time_recovered_yearly = self.yearly_time_recovered_in_seconds
-    #      days, hours, minutes, seconds = self._translate_seconds(time_recovered_yearly)
-    #      days, hours, minutes, seconds = self._make_pretty_for_printing(days, hours, minutes, seconds)
-    #      time_recovered_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
-    #      self.yearly_time_recovered_readable =  time_recovered_yearly
     def set_yearly_time_recovered_readable(self):
         time_recovered_yearly = self.yearly_time_recovered_in_seconds
         days, hours, minutes, seconds = ihm_time.translate_seconds(time_recovered_yearly)
@@ -722,12 +672,6 @@ Duration: {6}
         self.yearly_time_recovered_readable =  time_recovered_yearly
 
 
-    #  def set_weekly_ideal_time_cost_readable(self):
-    #      weekly_ideal_time_cost = self.WEEKLY_IDEAL_COST_IN_SECONDS
-    #      work_days, hours, minutes, seconds = self._translate_seconds(weekly_ideal_time_cost)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      weekly_ideal_time_cost = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-    #      self.weekly_ideal_time_cost_readable = weekly_ideal_time_cost
     def set_weekly_ideal_time_cost_readable(self):
         weekly_ideal_time_cost = self.WEEKLY_IDEAL_COST_IN_SECONDS
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(weekly_ideal_time_cost)
@@ -741,12 +685,6 @@ Duration: {6}
         self.weekly_ideal_financial_cost_readable =  weekly_ideal_financial_cost
 
 
-    #  def set_yearly_ideal_time_cost_readable(self):
-    #      yearly_ideal_time_cost = self.YEARLY_IDEAL_COST_IN_SECONDS
-    #      work_days, hours, minutes, seconds = self._translate_seconds(yearly_ideal_time_cost)
-    #      work_days, hours, minutes, seconds = self._make_pretty_for_printing(work_days, hours, minutes, seconds)
-    #      yearly_ideal_time_cost = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-    #      self.yearly_ideal_time_cost_readable = yearly_ideal_time_cost
     def set_yearly_ideal_time_cost_readable(self):
         yearly_ideal_time_cost = self.YEARLY_IDEAL_COST_IN_SECONDS
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(yearly_ideal_time_cost)
@@ -760,11 +698,6 @@ Duration: {6}
         self.yearly_ideal_financial_cost_readable =  yearly_ideal_financial_cost
 
 
-    #  def set_frequency_keys_readable(self):
-    #      dates = list(self.frequency.keys())
-    #      for date in dates:
-    #          date = self._make_dt_or_time_str_pretty_for_printing(date)
-    #          self.frequency_keys_readable.append(date)
     def set_frequency_keys_readable(self):
         dates = list(self.frequency.keys())
         for date in dates:
@@ -772,15 +705,6 @@ Duration: {6}
             self.frequency_keys_readable.append(date)
 
 
-    #  def set_top_meeting_times(self):
-    #      num_meeting_times = len(self.frequency.values())
-    #      if num_meeting_times < self.NUM_TOP_MEETING_TIMES:
-    #          unpretty_meeting_times = sorted(self.frequency, key=self.frequency.get, reverse=True)[:num_meeting_times]
-    #      else:
-    #          unpretty_meeting_times = sorted(self.frequency, key=self.frequency.get, reverse=True)[:self.NUM_TOP_MEETING_TIMES]
-    #      for meeting_time in unpretty_meeting_times:
-    #          meeting_time = self._make_dt_or_time_str_pretty_for_printing(meeting_time)
-    #          self.top_meeting_times.append(meeting_time)
     def set_top_meeting_times(self):
         num_meeting_times = len(self.frequency.values())
         if num_meeting_times < self.NUM_TOP_MEETING_TIMES:
@@ -851,39 +775,3 @@ Duration: {6}
         #else:
         #    num_attendees = len(num_attendees)
         return num_attendees
-
-
-    #  def _translate_seconds(self, total_seconds):
-    #      # divmod returns quotient and remainder
-    #      minutes, seconds = divmod(total_seconds, 60)
-    #      hours, minutes = divmod(minutes, 60)
-    #      work_days, hours = divmod(hours, self.WORK_HOURS_PER_DAY)
-    #      return (int(work_days), int(hours), int(minutes), int(seconds))
-    #
-    #
-    #  def _make_pretty_for_printing(self, work_days, hours, minutes, seconds):
-    #      seconds = "{} second{}".format(int(seconds), "" if seconds == 1 else "s")
-    #      minutes = "{} minute{}".format(int(minutes), "" if minutes == 1 else "s")
-    #      hours = "{} hour{}".format(int(hours), "" if hours == 1 else "s")
-    #      work_days = "{} work-day{}".format(int(work_days), "" if work_days == 1 else "s")
-    #      return (work_days, hours, minutes, seconds)
-    #
-    #  def _make_dt_or_time_str_pretty_for_printing(self, dt_obj_or_str):
-    #      if isinstance(dt_obj_or_str, str):
-    #          if dt_obj_or_str[-6] == '-':
-    #              dt_obj_or_str = dt_obj_or_str[:19]
-    #          dt_obj_or_str = datetime.datetime.strptime(dt_obj_or_str, self.FORMAT_DATETIME_OBJ_TO_STR)
-    #      pretty_printed_str = datetime.datetime.strftime(dt_obj_or_str, self.FORMAT_STR_TO_DATETIME_OBJ)
-    #      return pretty_printed_str
-    #
-    #  def _convert_duration_to_work_seconds(self, duration):
-    #      seconds = duration.total_seconds()
-    #      hours = float(seconds) / 3600
-    #      if hours > self.WORK_HOURS_PER_DAY and hours < 24:
-    #          hours = self.WORK_HOURS_PER_DAY
-    #      if hours >= 24:
-    #          days, hours = divmod(hours, 24)
-    #          if hours <= self.WORK_HOURS_PER_DAY:
-    #              hours += days * self.WORK_HOURS_PER_DAY
-    #      seconds = hours * 3600
-    #      return seconds
