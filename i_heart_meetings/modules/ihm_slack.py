@@ -2,29 +2,7 @@ import urllib2
 
 SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
-#  def post_report_to_slack():
-#      data = str(
-#          {'text': summary_printout}
-#      )
-#      url = SLACK_HOOK
-#      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-#      f = urllib2.urlopen(req)
-#      f.close()
-def post_report_to_slack(*args):
-    data = str(
-        {'text': slack_print_template.format(*args)}
-    )
-    url = SLACK_HOOK
-    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-    f = urllib2.urlopen(req)
-    f.close()
-
-#  def set_summary():
-#      summary_printout = slack_print_template.format(*printable_data)
-
-
-def set_slack_print_template():
-    print_template = """
+slack_print_template = """
 *Summary*
 
 *Number of Meetings*
@@ -60,7 +38,24 @@ Duration: {6}
 *Potential Savings*
 {13} and {14} per week
 {15} and {16} per year
-    """
+"""
+
+#  def post_report_to_slack():
+#      data = str(
+#          {'text': summary_printout}
+#      )
+#      url = SLACK_HOOK
+#      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+#      f = urllib2.urlopen(req)
+#      f.close()
+
+def post_report_to_slack(*args):
+    data = str({'text': slack_print_template.format(*args)})
+    url = SLACK_HOOK
+    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+    f = urllib2.urlopen(req)
+    f.close()
+
 
 #  TODO:
 #      Add survey implementation

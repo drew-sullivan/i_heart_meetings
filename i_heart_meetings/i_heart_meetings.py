@@ -42,7 +42,7 @@ def get_meeting_report():
     data = rep.printable_data
     rep.write_report_html(data)
 
-    rep.post_report_to_slack()
+    #  rep.post_report_to_slack()
     #
     #  rep.write_db_to_csv()
     #  rep.write_csv_to_json()

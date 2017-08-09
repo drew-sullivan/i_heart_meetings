@@ -106,7 +106,6 @@ class Report:
     JSON_FILE = 'meetings_ihm.json'
 
     QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
-    #  SLACK_HOOK = 'https://hooks.slack.com/services/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'
 
     def __init__(self, raw_calendar_data):
         self.raw_calendar_data = raw_calendar_data
@@ -144,9 +143,7 @@ class Report:
         self.top_meeting_time_2 = ''
         self.top_meeting_time_3 = ''
         self.frequency_keys_readable = []
-        #  self.summary_printout = ''
         self.printable_data = None
-        #  self.slack_print_template = ''
         self.num_start_times = {}
         self.meetings_list = self.get_meetings_list(self.raw_calendar_data)
 
@@ -207,11 +204,9 @@ class Report:
         self.set_frequency_keys_readable()
 
         self.set_printable_data()
-        #  self.set_slack_print_template()
-        #  self.set_summary()
         #self.write_db_to_csv()
         #self.write_csv_to_json()
-        ihm_slack.post_report_to_slack(self.printable_data)
+        ihm_slack.post_report_to_slack(*self.printable_data)
 
 
     def write_csv_to_json(self):
@@ -336,20 +331,6 @@ class Report:
     #      return report
     #
 
-    #  def post_report_to_slack(self):
-    #      data = str(
-    #          {'text': self.summary_printout}
-    #      )
-    #      url = self.SLACK_HOOK
-    #      req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-    #      f = urllib2.urlopen(req)
-    #      f.close()
-
-
-    #  def set_summary(self):
-    #      self.summary_printout = self.slack_print_template.format(*self.printable_data)
-
-
     def write_report_html(self, *printable_data):
         f = open('templates/report.html','w')
 
@@ -469,46 +450,6 @@ class Report:
                   self.printable_data[24])
         f.write(message)
         f.close()
-
-
-#      def set_slack_print_template(self):
-#          self.slack_print_template = """
-#  *Summary*
-#
-#  *Number of Meetings*
-#  {22}
-#
-#  *Weekly Costs*
-#  {0}
-#  {1}
-#
-#  *Average Per Meeting*
-#
-#  Time Cost: {4}
-#  Financial Cost: {5}
-#  Duration: {6}
-#
-#  *Projected Yearly Costs*
-#  {2}
-#  {3}
-#
-#  *Top 3 Meeting Times*
-#  {7},
-#  {8},
-#  {9}
-#
-#  *{10}* of Your Time is Spent in Meetings
-#
-#  *Ideal Weekly Costs*
-#  {24} and {23}
-#
-#  *Ideal Yearly Costs*
-#  {11} and {12}
-#
-#  *Potential Savings*
-#  {13} and {14} per week
-#  {15} and {16} per year
-#          """
 
 
     def set_weekly_cost_in_seconds_readable(self):

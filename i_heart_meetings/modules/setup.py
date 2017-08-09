@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='ihm_tools',
-    version='1.3',
+    version='1.4',
     description='Time conversion functions',
     author='Drew Sullivan',
     author_email='drew.sullivan.dma@gmail.com',
