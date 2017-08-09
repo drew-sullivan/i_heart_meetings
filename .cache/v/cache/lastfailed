@@ -1,7 +1,0 @@
-{
-  "i_heart_meetings/i_heart_meetings.py": true, 
-  "i_heart_meetings/model/__init__.py": true, 
-  "i_heart_meetings/model/calendar_connection.py": true, 
-  "i_heart_meetings/model/meeting.py": true, 
-  "i_heart_meetings/model/report.py": true
-}

@@ -7,3 +7,5 @@ thoughts.py
 *.csv
 *.json
 *.sqlite
+.cache/*
+*.swp
