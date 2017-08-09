@@ -110,18 +110,13 @@ class Report:
         self.yearly_cost_in_seconds = 0
         self.num_meetings = 0
         self.weekly_time_recovered_in_seconds = 0
-        self.weekly_time_recovered_readable = ''
         self.weekly_money_recovered_in_dollars = 0
         self.yearly_money_recovered_in_dollars = 0
-        self.yearly_money_recovered_readable = ''
         self.yearly_time_recovered_in_seconds = 0
-        self.yearly_time_recovered_readable = ''
         self.avg_cost_in_seconds = 0
         self.avg_cost_in_dollars = Money(0, self.CURRENCY)
         self.percent_time_spent = 0
         self.percent_time_spent_readable = 0
-        self.weekly_ideal_time_cost_readable = ''
-        self.weekly_ideal_financial_cost_readable = ''
         self.frequency = {}
         self.top_meeting_times = []
         self.frequency_keys_readable = []
@@ -161,14 +156,9 @@ class Report:
         self.set_avg_duration_in_seconds()
         self.set_percent_time_spent()
         self.set_yearly_time_recovered_in_seconds()
-        self.set_yearly_time_recovered_readable()
         self.set_weekly_time_recovered_in_seconds()
-        self.set_weekly_time_recovered_readable()
         self.set_weekly_money_recovered_in_dollars()
         self.set_yearly_money_recovered_in_dollars()
-        self.set_yearly_money_recovered_readable()
-        self.set_weekly_ideal_time_cost_readable()
-        self.set_weekly_ideal_financial_cost_readable()
         self.set_top_meeting_times()
         self.set_frequency_keys_readable()
 
@@ -256,17 +246,17 @@ class Report:
             self.yearly_ideal_time_cost_readable(), #11
             self.yearly_ideal_financial_cost_readable(), #12
             self.weekly_money_recovered_readable(), #13
-            self.weekly_time_recovered_readable, #14
-            self.yearly_money_recovered_readable, #15
-            self.yearly_time_recovered_readable, #16
+            self.weekly_time_recovered_readable(), #14
+            self.yearly_money_recovered_readable(), #15
+            self.yearly_time_recovered_readable(), #16
             self.frequency_keys_readable, #17
             self.frequency, #18
             self.percent_time_spent, #19
             self.IDEAL_PERCENT_TIME_IN_MEETINGS, #20
             self.num_meetings, #21
             self.num_start_times, #22
-            self.weekly_ideal_time_cost_readable, #23
-            self.weekly_ideal_financial_cost_readable #24
+            self.weekly_ideal_time_cost_readable(), #23
+            self.weekly_ideal_financial_cost_readable() #24
         )
 
 
@@ -508,12 +498,12 @@ class Report:
         self.weekly_time_recovered_in_seconds = weekly_time_recovered_in_seconds
 
 
-    def set_weekly_time_recovered_readable(self):
+    def weekly_time_recovered_readable(self):
         weekly_time_recovered_in_seconds = self.weekly_time_recovered_in_seconds
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(weekly_time_recovered_in_seconds)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         weekly_time_recovered_in_seconds = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-        self.weekly_time_recovered_readable = weekly_time_recovered_in_seconds
+        return weekly_time_recovered_in_seconds
 
 
     def set_weekly_money_recovered_in_dollars(self):
@@ -523,8 +513,6 @@ class Report:
         weekly_money_recovered_in_dollars *= self.PERSON_SECONDS_PER_WEEK
         self.weekly_money_recovered_in_dollars = Money(weekly_money_recovered_in_dollars, self.CURRENCY)
 
-    #  def set_weekly_money_recovered_readable(self):
-    #      self.weekly_money_recovered_readable = self.weekly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
 
     def weekly_money_recovered_readable(self):
         self.weekly_money_recovered_readable = self.weekly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
@@ -534,7 +522,7 @@ class Report:
         self.yearly_money_recovered_in_dollars = self.weekly_money_recovered_in_dollars * self.WORK_WEEKS_PER_YEAR
 
 
-    def set_yearly_money_recovered_readable(self):
+    def yearly_money_recovered_readable(self):
         self.yearly_money_recovered_readable = self.yearly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
 
 
@@ -564,25 +552,25 @@ class Report:
         self.yearly_time_recovered_in_seconds =  time_recovered_yearly
 
 
-    def set_yearly_time_recovered_readable(self):
+    def yearly_time_recovered_readable(self):
         time_recovered_yearly = self.yearly_time_recovered_in_seconds
         days, hours, minutes, seconds = ihm_time.translate_seconds(time_recovered_yearly)
         days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(days, hours, minutes, seconds)
         time_recovered_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
-        self.yearly_time_recovered_readable =  time_recovered_yearly
+        return time_recovered_yearly
 
 
-    def set_weekly_ideal_time_cost_readable(self):
+    def weekly_ideal_time_cost_readable(self):
         weekly_ideal_time_cost = self.WEEKLY_IDEAL_COST_IN_SECONDS
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(weekly_ideal_time_cost)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         weekly_ideal_time_cost = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-        self.weekly_ideal_time_cost_readable = weekly_ideal_time_cost
+        return weekly_ideal_time_cost
 
 
-    def set_weekly_ideal_financial_cost_readable(self):
+    def weekly_ideal_financial_cost_readable(self):
         weekly_ideal_financial_cost = self.WEEKLY_IDEAL_COST_IN_DOLLARS.format(self.CURRENCY_FORMAT)
-        self.weekly_ideal_financial_cost_readable =  weekly_ideal_financial_cost
+        return weekly_ideal_financial_cost
 
 
     def yearly_ideal_time_cost_readable(self):
@@ -596,7 +584,6 @@ class Report:
     def yearly_ideal_financial_cost_readable(self):
         yearly_ideal_financial_cost = self.YEARLY_IDEAL_COST_IN_DOLLARS.format(self.CURRENCY_FORMAT)
         return yearly_ideal_financial_cost
-
 
     def set_frequency_keys_readable(self):
         dates = list(self.frequency.keys())
