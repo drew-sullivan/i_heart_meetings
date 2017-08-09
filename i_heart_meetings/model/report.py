@@ -58,9 +58,6 @@ class Report:
             yearly_ideal_financial_cost_readable: str - format $100.00
             frequency: dict - k: meeting time, v: num people in meetings
             top_meeting_times: list - top 3 meeting times
-            top_meeting_time_1: str - top meeting time in Tuesday, Apr 25, 2017 - 09:30
-            top_meeting_time_2: str - #2
-            top_meeting_time_3: str - #3
             frequency_keys_readable: list - all meeting times as Tuesday, Apr 25, 2017 - 09:30
             printable_data = tuple - all the calculations. Can be passed between classes
             num_start_times: int - number of meeting starting times
@@ -109,11 +106,8 @@ class Report:
         self.raw_calendar_data = raw_calendar_data
         self.weekly_cost_in_seconds = 0
         self.weekly_cost_in_dollars = Money(0, self.CURRENCY)
-        self.weekly_cost_in_dollars_readable = ''
         self.weekly_duration = 0
         self.yearly_cost_in_seconds = 0
-        self.yearly_cost_in_seconds_readable = ''
-        self.yearly_cost_in_dollars = None
         self.num_meetings = 0
         self.weekly_time_recovered_in_seconds = 0
         self.weekly_time_recovered_readable = ''
@@ -124,10 +118,7 @@ class Report:
         self.yearly_time_recovered_in_seconds = 0
         self.yearly_time_recovered_readable = ''
         self.avg_cost_in_seconds = 0
-        self.avg_cost_in_seconds_readable = ''
         self.avg_cost_in_dollars = Money(0, self.CURRENCY)
-        self.avg_cost_in_dollars_readable = ''
-        self.avg_duration_in_seconds_readable = ''
         self.percent_time_spent = 0
         self.percent_time_spent_readable = 0
         self.weekly_ideal_time_cost_readable = ''
@@ -136,9 +127,6 @@ class Report:
         self.yearly_ideal_financial_cost_readable = ''
         self.frequency = {}
         self.top_meeting_times = []
-        self.top_meeting_time_1 = ''
-        self.top_meeting_time_2 = ''
-        self.top_meeting_time_3 = ''
         self.frequency_keys_readable = []
         self.printable_data = None
         self.num_start_times = {}
@@ -172,18 +160,10 @@ class Report:
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
         self.num_start_times = len(self.num_start_times)
         self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
-        self.yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
-        #  self.set_weekly_cost_in_seconds_readable()
-        self.set_weekly_cost_in_dollars_readable()
-        self.set_avg_cost_in_seconds_readable()
         self.set_avg_cost_in_dollars()
-        self.set_avg_cost_in_dollars_readable()
         self.set_avg_duration_in_seconds()
-        self.set_avg_duration_in_seconds_readable()
-        self.set_yearly_cost_in_seconds_readable()
         self.set_percent_time_spent()
         self.set_percent_time_readable()
-        self.set_yearly_cost_in_dollars()
         self.set_yearly_time_recovered_in_seconds()
         self.set_yearly_time_recovered_readable()
         self.set_weekly_time_recovered_in_seconds()
@@ -197,7 +177,6 @@ class Report:
         self.set_yearly_ideal_time_cost_readable()
         self.set_yearly_ideal_financial_cost_readable()
         self.set_top_meeting_times()
-        self.set_top_three_meeting_times()
         self.set_frequency_keys_readable()
 
         self.set_printable_data()
@@ -271,15 +250,15 @@ class Report:
     def set_printable_data(self):
         self.printable_data = (
             self.weekly_cost_in_seconds_readable(), #0
-            self.weekly_cost_in_dollars_readable, #1
-            self.yearly_cost_in_seconds_readable, #2
-            self.yearly_cost_in_dollars, #3
-            self.avg_cost_in_seconds_readable, #4
-            self.avg_cost_in_dollars_readable, #5
-            self.avg_duration_in_seconds_readable, #6
-            self.top_meeting_time_1, #7
-            self.top_meeting_time_2, #8
-            self.top_meeting_time_3, #9
+            self.weekly_cost_in_dollars_readable(), #1
+            self.yearly_cost_in_seconds_readable(), #2
+            self.yearly_cost_in_dollars(), #3
+            self.avg_cost_in_seconds_readable(), #4
+            self.avg_cost_in_dollars_readable(), #5
+            self.avg_duration_in_seconds_readable(), #6
+            self.top_meeting_times[0], #7
+            self.top_meeting_times[1], #8
+            self.top_meeting_times[2], #9
             self.percent_time_spent_readable, #10
             self.yearly_ideal_time_cost_readable, #11
             self.yearly_ideal_financial_cost_readable, #12
@@ -486,8 +465,8 @@ class Report:
         return weekly_cost_in_seconds_pretty_print
 
 
-    def set_weekly_cost_in_dollars_readable(self):
-        self.weekly_cost_in_dollars_readable = str(self.weekly_cost_in_dollars.format('en_US'))
+    def weekly_cost_in_dollars_readable(self):
+        return str(self.weekly_cost_in_dollars.format('en_US'))
 
 
     def set_percent_time_spent(self):
@@ -501,11 +480,11 @@ class Report:
         self.percent_time_spent_readable = str("{}%".format(self.percent_time_spent_readable))
 
 
-    def set_avg_cost_in_seconds_readable(self):
+    def avg_cost_in_seconds_readable(self):
         avg_cost_in_seconds = float(self.weekly_cost_in_seconds) / self.num_start_times
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(avg_cost_in_seconds)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
-        self.avg_cost_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
+        return ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
     def set_avg_cost_in_dollars(self):
@@ -514,8 +493,8 @@ class Report:
         self.avg_cost_in_dollars = avg_meeting_cost_in_dollars
 
 
-    def set_avg_cost_in_dollars_readable(self):
-        self.avg_cost_in_dollars_readable = self.avg_cost_in_dollars.format(self.CURRENCY_FORMAT)
+    def avg_cost_in_dollars_readable(self):
+        return self.avg_cost_in_dollars.format(self.CURRENCY_FORMAT)
 
 
     def set_avg_duration_in_seconds(self):
@@ -523,11 +502,11 @@ class Report:
         self.avg_duration_in_seconds = avg_duration_in_seconds
 
 
-    def set_avg_duration_in_seconds_readable(self):
+    def avg_duration_in_seconds_readable(self):
         avg_duration_in_seconds_readable = self.avg_duration_in_seconds
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(avg_duration_in_seconds_readable)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
-        self.avg_duration_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
+        return ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
     def set_weekly_time_recovered_in_seconds(self):
@@ -570,18 +549,18 @@ class Report:
         self.yearly_cost_in_seconds = yearly_cost_in_seconds
 
 
-    def set_yearly_cost_in_seconds_readable(self):
+    def yearly_cost_in_seconds_readable(self):
         seconds = self.yearly_cost_in_seconds
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(seconds)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         yearly_cost_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
-        self.yearly_cost_in_seconds_readable = yearly_cost_in_seconds_readable
+        return yearly_cost_in_seconds_readable
 
 
-    def set_yearly_cost_in_dollars(self):
+    def yearly_cost_in_dollars(self):
         yearly_cost_in_dollars = self.weekly_cost_in_dollars * self.WORK_WEEKS_PER_YEAR
         yearly_cost_in_dollars = yearly_cost_in_dollars.format(self.CURRENCY_FORMAT)
-        self.yearly_cost_in_dollars = yearly_cost_in_dollars
+        return yearly_cost_in_dollars
 
 
     def set_yearly_time_recovered_in_seconds(self):
@@ -641,24 +620,6 @@ class Report:
         for meeting_time in unpretty_meeting_times:
             meeting_time = ihm_time.make_dt_or_time_str_pretty_for_printing(meeting_time)
             self.top_meeting_times.append(meeting_time)
-
-
-    def set_top_three_meeting_times(self):
-        top_meeting_times_length = len(self.top_meeting_times)
-        if not self.top_meeting_times:
-            return "Calendar empty","Calendar empty","Calendar empty"
-        elif top_meeting_times_length == 1:
-            self.top_meeting_time_1 = self.top_meeting_times[0]
-            self.top_meeting_time_2 = "Calendar empty"
-            self.top_meeting_time_3 = "Calendar empty"
-        elif top_meeting_times_length == 2:
-            self.top_meeting_time_1 = self.top_meeting_times[0]
-            self.top_meeting_time_2 = self.top_meeting_times[1]
-            self.top_meeting_time_3 = "Calendar empty"
-        else:
-            self.top_meeting_time_1 = self.top_meeting_times[0]
-            self.top_meeting_time_2 = self.top_meeting_times[1]
-            self.top_meeting_time_3 = self.top_meeting_times[2]
 
 
     def get_meetings_list(self, raw_calendar_data):
