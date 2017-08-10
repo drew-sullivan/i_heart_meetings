@@ -35,13 +35,10 @@ class Report:
             weekly_cost_in_dollars: Money - cost of each meeting in a week added together
             weekly_cost_in_dollars_readable: str - added a dollar sign of above
             weekly_duration: int - total number of seconds in meetings in a week
-            yearly_cost_in_seconds: int - weekly_cost_in_seconds * 50
             yearly_cost_in_seconds_readable: str - DD, HH, MM, SS version of above
             yearly_cost_in_dollars: Money - added dollar sign and * 50 to weekly_cost_in_dollars
             num_meetings: int - number of meetings in a week
-            weekly_time_recovered_in_seconds: int - difference between ideal and actual
             weekly_time_recovered_readable: str - DD, HH, MM, SS version of above
-            weekly_money_recovered_in_dollars: int - difference between ideal and actual
             weekly_money_recovered_readable: str - added dollar sign to above
             yearly_money_recovered_in_dollars: int - weekly * 50
             yearly_money_recovered_readable: str - added dollar sign to above
@@ -107,10 +104,7 @@ class Report:
         self.weekly_cost_in_seconds = 0
         self.weekly_cost_in_dollars = Money(0, self.CURRENCY)
         self.weekly_duration = 0
-        self.yearly_cost_in_seconds = 0
         self.num_meetings = 0
-        self.weekly_time_recovered_in_seconds = 0
-        self.weekly_money_recovered_in_dollars = 0
         self.yearly_money_recovered_in_dollars = 0
         self.yearly_time_recovered_in_seconds = 0
         self.avg_cost_in_seconds = 0
@@ -151,17 +145,13 @@ class Report:
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
         self.num_start_times = len(self.num_start_times)
-        self.yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
         self.set_avg_cost_in_dollars()
         self.set_avg_duration_in_seconds()
         self.set_percent_time_spent()
         self.set_yearly_time_recovered_in_seconds()
-        self.set_weekly_time_recovered_in_seconds()
-        self.set_weekly_money_recovered_in_dollars()
         self.set_yearly_money_recovered_in_dollars()
         self.set_top_meeting_times()
         self.set_frequency_keys_readable()
-
         self.set_printable_data()
         #self.write_db_to_csv()
         #self.write_csv_to_json()
@@ -171,7 +161,6 @@ class Report:
     def write_csv_to_json(self):
         csv_file = open(self.CSV_FILE, 'r')
         json_file = open(self.JSON_FILE, 'w')
-
         field_names = self.JSON_FIELDS
         reader = csv.DictReader(csv_file, field_names)
         for row in reader:
@@ -183,7 +172,6 @@ class Report:
             csvWriter = csv.writer(open(self.CSV_FILE, 'w'))
             c = conn.cursor()
             c.execute('SELECT * from meetings')
-
             rows = c.fetchall()
             csvWriter.writerows(rows)
 
@@ -491,48 +479,48 @@ class Report:
         return ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
-    def set_weekly_time_recovered_in_seconds(self):
+    def weekly_time_recovered_in_seconds(self):
         weekly_time_recovered_in_seconds = float(self.percent_time_spent - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
         weekly_time_recovered_in_seconds /= 100
         weekly_time_recovered_in_seconds *= self.PERSON_SECONDS_PER_WEEK
-        self.weekly_time_recovered_in_seconds = weekly_time_recovered_in_seconds
+        return weekly_time_recovered_in_seconds
 
 
     def weekly_time_recovered_readable(self):
-        weekly_time_recovered_in_seconds = self.weekly_time_recovered_in_seconds
+        weekly_time_recovered_in_seconds = self.weekly_time_recovered_in_seconds()
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(weekly_time_recovered_in_seconds)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         weekly_time_recovered_in_seconds = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
         return weekly_time_recovered_in_seconds
 
 
-    def set_weekly_money_recovered_in_dollars(self):
+    def weekly_money_recovered_in_dollars(self):
         weekly_money_recovered_in_dollars = float(self.percent_time_spent - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
         weekly_money_recovered_in_dollars /= 100
         weekly_money_recovered_in_dollars *= self.COST_PER_SECOND
         weekly_money_recovered_in_dollars *= self.PERSON_SECONDS_PER_WEEK
-        self.weekly_money_recovered_in_dollars = Money(weekly_money_recovered_in_dollars, self.CURRENCY)
+        return Money(weekly_money_recovered_in_dollars, self.CURRENCY)
 
 
     def weekly_money_recovered_readable(self):
-        self.weekly_money_recovered_readable = self.weekly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
+        self.weekly_money_recovered_readable = self.weekly_money_recovered_in_dollars().format(self.CURRENCY_FORMAT)
 
 
     def set_yearly_money_recovered_in_dollars(self):
-        self.yearly_money_recovered_in_dollars = self.weekly_money_recovered_in_dollars * self.WORK_WEEKS_PER_YEAR
+        self.yearly_money_recovered_in_dollars = self.weekly_money_recovered_in_dollars() * self.WORK_WEEKS_PER_YEAR
 
 
     def yearly_money_recovered_readable(self):
         self.yearly_money_recovered_readable = self.yearly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
 
 
-    def set_yearly_cost_in_seconds(self):
+    def yearly_cost_in_seconds(self):
         yearly_cost_in_seconds = self.weekly_cost_in_seconds * self.WORK_WEEKS_PER_YEAR
-        self.yearly_cost_in_seconds = yearly_cost_in_seconds
+        return yearly_cost_in_seconds
 
 
     def yearly_cost_in_seconds_readable(self):
-        seconds = self.yearly_cost_in_seconds
+        seconds = self.yearly_cost_in_seconds()
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(seconds)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         yearly_cost_in_seconds_readable = ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
