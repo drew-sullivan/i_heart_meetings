@@ -49,7 +49,6 @@ class Report:
             yearly_ideal_time_cost_readable: str - DD, HH, MM, SS version of ideal
             yearly_ideal_financial_cost_readable: str - format $100.00
             frequency: dict - k: meeting time, v: num people in meetings
-            top_meeting_times: list - top 3 meeting times
             frequency_keys_readable: list - all meeting times as Tuesday, Apr 25, 2017 - 09:30
             printable_data = tuple - all the calculations. Can be passed between classes
             num_start_times: int - number of meeting starting times
@@ -102,7 +101,6 @@ class Report:
         self.num_meetings = 0
         self.percent_time_spent = 0
         self.frequency = {}
-        self.top_meeting_times = []
         self.frequency_keys_readable = []
         self.printable_data = None
         self.num_start_times = {}
@@ -137,7 +135,6 @@ class Report:
         self.num_start_times = len(self.num_start_times)
         self.set_avg_duration_in_seconds()
         self.set_percent_time_spent()
-        self.set_top_meeting_times()
         self.set_frequency_keys_readable()
         self.set_printable_data()
         #self.write_db_to_csv()
@@ -214,9 +211,9 @@ class Report:
             self.avg_cost_in_seconds_readable(), #4
             self.avg_cost_in_dollars_readable(), #5
             self.avg_duration_in_seconds_readable(), #6
-            self.top_meeting_times[0], #7
-            self.top_meeting_times[1], #8
-            self.top_meeting_times[2], #9
+            self.top_meeting_times()[0], #7
+            self.top_meeting_times()[1], #8
+            self.top_meeting_times()[2], #9
             self.percent_time_spent_readable(), #10
             self.yearly_ideal_time_cost_readable(), #11
             self.yearly_ideal_financial_cost_readable(), #12
@@ -567,7 +564,8 @@ class Report:
             self.frequency_keys_readable.append(date)
 
 
-    def set_top_meeting_times(self):
+    def top_meeting_times(self):
+        top_meeting_times = []
         num_meeting_times = len(self.frequency.values())
         if num_meeting_times < self.NUM_TOP_MEETING_TIMES:
             unpretty_meeting_times = sorted(self.frequency, key=self.frequency.get, reverse=True)[:num_meeting_times]
@@ -575,7 +573,8 @@ class Report:
             unpretty_meeting_times = sorted(self.frequency, key=self.frequency.get, reverse=True)[:self.NUM_TOP_MEETING_TIMES]
         for meeting_time in unpretty_meeting_times:
             meeting_time = ihm_time.make_dt_or_time_str_pretty_for_printing(meeting_time)
-            self.top_meeting_times.append(meeting_time)
+            top_meeting_times.append(meeting_time)
+        return top_meeting_times
 
 
     def get_meetings_list(self, raw_calendar_data):
