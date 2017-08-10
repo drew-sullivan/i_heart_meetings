@@ -9,3 +9,4 @@ thoughts.py
 *.sqlite
 .cache/*
 *.swp
+*.swo

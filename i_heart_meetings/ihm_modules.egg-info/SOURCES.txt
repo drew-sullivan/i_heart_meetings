@@ -1,0 +1,4 @@
+ihm_modules.egg-info/PKG-INFO
+ihm_modules.egg-info/SOURCES.txt
+ihm_modules.egg-info/dependency_links.txt
+ihm_modules.egg-info/top_level.txt

@@ -1,14 +1,10 @@
 #!/isr/bin/env python
 
 import collections
-import csv
 import datetime
 import dateutil
 import ihm_time
-import ihm_slack
-import json
 import smtplib
-import sqlite3
 import textwrap
 import urllib2
 import webbrowser
@@ -49,7 +45,6 @@ class Report:
             yearly_ideal_time_cost_readable: str - DD, HH, MM, SS version of ideal
             yearly_ideal_financial_cost_readable: str - format $100.00
             frequency: dict - k: meeting time, v: num people in meetings
-            frequency_keys_readable: list - all meeting times as Tuesday, Apr 25, 2017 - 09:30
             printable_data = tuple - all the calculations. Can be passed between classes
             num_start_times: int - number of meeting starting times
         """)
@@ -85,12 +80,6 @@ class Report:
 
     NUM_TOP_MEETING_TIMES = 3
 
-    DB_IHM_SQLITE = '/Users/drew-sullivan/codingStuff/i_heart_meetings/i_heart_meetings/db_ihm.sqlite'
-    CSV_FILE = 'meetings_ihm.csv'
-    JSON_FIELDS = ('id', 'num', 'summary', 'start', 'end', 'duration',
-                   'num_attendees')
-    JSON_FILE = 'meetings_ihm.json'
-
     QUESTIONNAIRE_LINK = 'https://docs.google.com/a/decisiondesk.com/forms/d/e/1FAIpQLSfnDgSB9UoAMUtrLlNoBjuo1e8qe25deJD53LjJEWw5vyd-hQ/viewform?usp=sf_link'
 
     def __init__(self, raw_calendar_data):
@@ -101,13 +90,11 @@ class Report:
         self.num_meetings = 0
         self.percent_time_spent = 0
         self.frequency = {}
-        self.frequency_keys_readable = []
         self.printable_data = None
         self.num_start_times = {}
         self.meetings_list = self.get_meetings_list(self.raw_calendar_data)
 
         for meeting in self.meetings_list:
-            #self._add_row_to_db(meeting)
             self.weekly_cost_in_seconds += meeting.cost_in_seconds()
             self.weekly_cost_in_dollars += meeting.cost_in_dollars()
             self.num_meetings += 1
@@ -118,89 +105,24 @@ class Report:
             summary = meeting.summary
             duration = meeting.duration
 
-            start_time = str(start)
-            time_summary_duration = str(start) + ' ' + summary + ' ' + str(duration)
+            start_time = str(meeting.start)
+            time_summary_duration = str(meeting.start) + ' ' + summary + ' ' + str(duration)
             if time_summary_duration not in self.num_start_times:
                 self.num_start_times[time_summary_duration] = 1
 
-            while start < end:
-                start_str = str(start)
+            while meeting.start < end:
+                start_str = str(meeting.start)
                 if start_str in self.frequency:
                     self.frequency[start_str] += 1
                 else:
                     self.frequency[start_str] = 1
-                start += datetime.timedelta(minutes=15)
+                meeting.start += datetime.timedelta(minutes=15)
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
         self.num_start_times = len(self.num_start_times)
-        self.set_avg_duration_in_seconds()
         self.set_percent_time_spent()
-        self.set_frequency_keys_readable()
         self.set_printable_data()
-        #self.write_db_to_csv()
-        #self.write_csv_to_json()
-        ihm_slack.post_report_to_slack(*self.printable_data)
 
-
-    def write_csv_to_json(self):
-        csv_file = open(self.CSV_FILE, 'r')
-        json_file = open(self.JSON_FILE, 'w')
-        field_names = self.JSON_FIELDS
-        reader = csv.DictReader(csv_file, field_names)
-        for row in reader:
-            json.dump(row, json_file, sort_keys=True, indent=4, separators=(',', ': '))
-            json_file.write('\n')
-
-    def write_db_to_csv(self):
-        with sqlite3.connect(self.DB_IHM_SQLITE) as conn:
-            csvWriter = csv.writer(open(self.CSV_FILE, 'w'))
-            c = conn.cursor()
-            c.execute('SELECT * from meetings')
-            rows = c.fetchall()
-            csvWriter.writerows(rows)
-
-    def _add_row_to_db(self, meeting):
-        id = str(datetime.datetime.now())
-        start = str(meeting.start)
-        end = str(meeting.end)
-        duration = str(meeting.duration)
-        conn = sqlite3.connect(self.DB_IHM_SQLITE)
-        c = conn.cursor()
-        c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?)',
-                  (id, meeting.num, meeting.summary,
-                   start, end, duration,
-                   meeting.num_attendees))
-        conn.commit()
-        conn.close()
-
-    #  def set_printable_data(self):
-    #      self.printable_data = (
-    #          self.weekly_cost_in_seconds_readable, #0
-    #          self.weekly_cost_in_dollars_readable, #1
-    #          self.yearly_cost_in_seconds_readable, #2
-    #          self.yearly_cost_in_dollars, #3
-    #          self.avg_cost_in_seconds_readable, #4
-    #          self.avg_cost_in_dollars_readable, #5
-    #          self.avg_duration_in_seconds_readable, #6
-    #          self.top_meeting_time_1, #7
-    #          self.top_meeting_time_2, #8
-    #          self.top_meeting_time_3, #9
-    #          self.percent_time_spent_readable, #10
-    #          self.yearly_ideal_time_cost_readable, #11
-    #          self.yearly_ideal_financial_cost_readable, #12
-    #          self.weekly_money_recovered_readable, #13
-    #          self.weekly_time_recovered_readable, #14
-    #          self.yearly_money_recovered_readable, #15
-    #          self.yearly_time_recovered_readable, #16
-    #          self.frequency_keys_readable, #17
-    #          self.frequency, #18
-    #          self.percent_time_spent, #19
-    #          self.IDEAL_PERCENT_TIME_IN_MEETINGS, #20
-    #          self.num_meetings, #21
-    #          self.num_start_times, #22
-    #          self.weekly_ideal_time_cost_readable, #23
-    #          self.weekly_ideal_financial_cost_readable #24
-    #      )
 
     def set_printable_data(self):
         self.printable_data = (
@@ -221,7 +143,7 @@ class Report:
             self.weekly_time_recovered_readable(), #14
             self.yearly_money_recovered_readable(), #15
             self.yearly_time_recovered_readable(), #16
-            self.frequency_keys_readable, #17
+            self.frequency_keys_readable(), #17
             self.frequency, #18
             self.percent_time_spent, #19
             self.IDEAL_PERCENT_TIME_IN_MEETINGS, #20
@@ -231,65 +153,6 @@ class Report:
             self.weekly_ideal_financial_cost_readable() #24
         )
 
-
-    #  def set_printable_data(self):
-    #      Report = namedtuple('Report', [
-    #          'weekly_cost_in_seconds_readable', ##
-    #          'weekly_cost_in_dollars_readable', ##
-    #          'yearly_cost_in_seconds_readable', ##
-    #          'yearly_cost_in_dollars', ##
-    #          'avg_cost_in_seconds_readable',
-    #          'avg_cost_in_dollars_readable',
-    #          'avg_duration_in_seconds_readable',
-    #          'top_meeting_time_1',
-    #          'top_meeting_time_2',
-    #          'top_meeting_time_3',
-    #          'percent_time_spent_readable',
-    #          'yearly_ideal_time_cost_readable', ##
-    #          'yearly_ideal_financial_cost_readable', ##
-    #          'weekly_money_recovered_readable',
-    #          'weekly_time_recovered_readable',
-    #          'yearly_money_recovered_readable', ##
-    #          'yearly_time_recovered_readable', ##
-    #          'frequency_keys_readable', ##
-    #          'frequency', ##
-    #          'percent_time_spent', ##
-    #          'IDEAL_PERCENT_TIME_IN_MEETINGS', ##
-    #          'num_meetings',
-    #          'num_start_times',
-    #          'weekly_ideal_time_cost_readable',
-    #          'weekly_ideal_financial_cost_readable'
-    #      ])
-    #
-    #      report = Report(
-    #          self.weekly_cost_in_seconds_readable,
-    #          self.weekly_cost_in_dollars_readable,
-    #          self.yearly_cost_in_seconds_readable,
-    #          self.yearly_cost_in_dollars,
-    #          self.avg_cost_in_seconds_readable,
-    #          self.avg_cost_in_dollars_readable,
-    #          self.avg_duration_in_seconds_readable,
-    #          self.top_meeting_time_1,
-    #          self.top_meeting_time_2,
-    #          self.top_meeting_time_3,
-    #          self.percent_time_spent_readable,
-    #          self.yearly_ideal_time_cost_readable,
-    #          self.yearly_ideal_financial_cost_readable,
-    #          self.weekly_money_recovered_readable,
-    #          self.weekly_time_recovered_readable,
-    #          self.yearly_money_recovered_readable,
-    #          self.yearly_time_recovered_readable,
-    #          self.frequency_keys_readable,
-    #          self.frequency,
-    #          self.percent_time_spent,
-    #          self.IDEAL_PERCENT_TIME_IN_MEETINGS,
-    #          self.num_meetings,
-    #          self.num_start_times,
-    #          self.weekly_ideal_time_cost_readable,
-    #          self.weekly_ideal_financial_cost_readable
-    #      )
-    #      return report
-    #
 
     def write_report_html(self, *printable_data):
         f = open('templates/report.html','w')
@@ -451,13 +314,13 @@ class Report:
         return self.avg_cost_in_dollars().format(self.CURRENCY_FORMAT)
 
 
-    def set_avg_duration_in_seconds(self):
+    def avg_duration_in_seconds(self):
         avg_duration_in_seconds = self.weekly_duration / self.num_meetings
-        self.avg_duration_in_seconds = avg_duration_in_seconds
+        return avg_duration_in_seconds
 
 
     def avg_duration_in_seconds_readable(self):
-        avg_duration_in_seconds_readable = self.avg_duration_in_seconds
+        avg_duration_in_seconds_readable = self.avg_duration_in_seconds()
         work_days, hours, minutes, seconds = ihm_time.translate_seconds(avg_duration_in_seconds_readable)
         work_days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(work_days, hours, minutes, seconds)
         return ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
@@ -557,11 +420,13 @@ class Report:
         yearly_ideal_financial_cost = self.YEARLY_IDEAL_COST_IN_DOLLARS.format(self.CURRENCY_FORMAT)
         return yearly_ideal_financial_cost
 
-    def set_frequency_keys_readable(self):
+    def frequency_keys_readable(self):
         dates = list(self.frequency.keys())
+        frequency_keys_readable = []
         for date in dates:
             date = ihm_time.make_dt_or_time_str_pretty_for_printing(date)
-            self.frequency_keys_readable.append(date)
+            frequency_keys_readable.append(date)
+        return frequency_keys_readable
 
 
     def top_meeting_times(self):
@@ -591,19 +456,6 @@ class Report:
             meetings_list.append(m)
         return meetings_list
 
-    def _add_row_to_db(self, meeting):
-        id = str(datetime.datetime.now())
-        start = str(meeting.start)
-        end = str(meeting.end)
-        duration = str(meeting.duration)
-        conn = sqlite3.connect(self.DB_IHM_SQLITE)
-        c = conn.cursor()
-        c.execute('INSERT INTO meetings VALUES(?,?,?,?,?,?,?)',
-                  (id, meeting.num, meeting.summary,
-                   start, end, duration,
-                   meeting.num_attendees))
-        conn.commit()
-        conn.close()
 
     def _get_summary(self, meeting):
         summary = meeting.get('summary', 'No summary given')

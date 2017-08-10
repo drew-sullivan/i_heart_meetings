@@ -1,8 +1,11 @@
 #!/isr/bin/env python
 
 import argparse
+import csv
 import datetime
 import httplib2
+import ihm_db
+import ihm_slack
 import json
 import os
 import pdb
@@ -41,12 +44,13 @@ def get_meeting_report():
 
     data = rep.printable_data
     rep.write_report_html(data)
+    #  ihm_slack.post_report_to_slack(*data)
+    #
+    meetings_list = rep.meetings_list
+    ihm_db._add_row_to_db(meetings_list)
+    ihm_db.write_db_to_csv()
+    ihm_db.write_csv_to_json()
 
-    #  rep.post_report_to_slack()
-    #
-    #  rep.write_db_to_csv()
-    #  rep.write_csv_to_json()
-    #
     generate_charts(data)
     open_charts_in_browser()
 
