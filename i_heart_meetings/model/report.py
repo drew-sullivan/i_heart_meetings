@@ -40,17 +40,12 @@ class Report:
             num_meetings: int - number of meetings in a week
             weekly_time_recovered_readable: str - DD, HH, MM, SS version of above
             weekly_money_recovered_readable: str - added dollar sign to above
-            yearly_money_recovered_in_dollars: int - weekly * 50
             yearly_money_recovered_readable: str - added dollar sign to above
-            yearly_time_recovered_in_seconds: int - difference between ideal and actual
             yearly_time_recovered_readable: str - DD, HH, MM, SS version of above
-            avg_cost_in_seconds: int - average cost of a meeting in seconds
             avg_cost_in_seconds_readable: str - DD, HH, MM, SS of above
-            avg_cost_in_dollars: Money - average cost in dollars
             avg_cost_in_dollars_readable: str - added dollar sign to above
             avg_duration_in_seconds_readable: str - DD, HH, MM, SS
             percent_time_spent: int - percent time spent in meetings
-            percent_time_spent_readable: str - adds % to above
             yearly_ideal_time_cost_readable: str - DD, HH, MM, SS version of ideal
             yearly_ideal_financial_cost_readable: str - format $100.00
             frequency: dict - k: meeting time, v: num people in meetings
@@ -105,12 +100,7 @@ class Report:
         self.weekly_cost_in_dollars = Money(0, self.CURRENCY)
         self.weekly_duration = 0
         self.num_meetings = 0
-        self.yearly_money_recovered_in_dollars = 0
-        self.yearly_time_recovered_in_seconds = 0
-        self.avg_cost_in_seconds = 0
-        self.avg_cost_in_dollars = Money(0, self.CURRENCY)
         self.percent_time_spent = 0
-        self.percent_time_spent_readable = 0
         self.frequency = {}
         self.top_meeting_times = []
         self.frequency_keys_readable = []
@@ -145,11 +135,8 @@ class Report:
 
         self.frequency = collections.OrderedDict(sorted(self.frequency.items()))
         self.num_start_times = len(self.num_start_times)
-        self.set_avg_cost_in_dollars()
         self.set_avg_duration_in_seconds()
         self.set_percent_time_spent()
-        self.set_yearly_time_recovered_in_seconds()
-        self.set_yearly_money_recovered_in_dollars()
         self.set_top_meeting_times()
         self.set_frequency_keys_readable()
         self.set_printable_data()
@@ -230,7 +217,7 @@ class Report:
             self.top_meeting_times[0], #7
             self.top_meeting_times[1], #8
             self.top_meeting_times[2], #9
-            self.percent_time_spent_readable, #10
+            self.percent_time_spent_readable(), #10
             self.yearly_ideal_time_cost_readable(), #11
             self.yearly_ideal_financial_cost_readable(), #12
             self.weekly_money_recovered_readable(), #13
@@ -444,10 +431,10 @@ class Report:
         self.percent_time_spent += (float(self.weekly_cost_in_seconds) / self.PERSON_SECONDS_PER_WEEK)
         self.percent_time_spent = round(self.percent_time_spent * 100, self.ROUND_TO_THIS_MANY_PLACES)
 
-    def set_percent_time_readable(self):
-        self.percent_time_spent_readable += (float(self.weekly_cost_in_seconds) / self.PERSON_SECONDS_PER_WEEK)
-        self.percent_time_spent_readable = round(self.percent_time_spent_readable * 100, self.ROUND_TO_THIS_MANY_PLACES)
-        self.percent_time_spent_readable = str("{}%".format(self.percent_time_spent_readable))
+    def percent_time_spent_readable(self):
+        percent_time_spent_readable = (float(self.weekly_cost_in_seconds) / self.PERSON_SECONDS_PER_WEEK)
+        percent_time_spent_readable = round(percent_time_spent_readable * 100, self.ROUND_TO_THIS_MANY_PLACES)
+        return str("{}%".format(percent_time_spent_readable))
 
 
     def avg_cost_in_seconds_readable(self):
@@ -457,14 +444,14 @@ class Report:
         return ('{0}, {1}, {2}, {3}').format(work_days, hours, minutes, seconds)
 
 
-    def set_avg_cost_in_dollars(self):
+    def avg_cost_in_dollars(self):
         avg_meeting_cost_in_dollars = float(self.weekly_cost_in_dollars) / self.num_start_times
         avg_meeting_cost_in_dollars = Money(avg_meeting_cost_in_dollars, self.CURRENCY).format(self.CURRENCY_FORMAT)
-        self.avg_cost_in_dollars = avg_meeting_cost_in_dollars
+        return avg_meeting_cost_in_dollars
 
 
     def avg_cost_in_dollars_readable(self):
-        return self.avg_cost_in_dollars.format(self.CURRENCY_FORMAT)
+        return self.avg_cost_in_dollars().format(self.CURRENCY_FORMAT)
 
 
     def set_avg_duration_in_seconds(self):
@@ -506,12 +493,12 @@ class Report:
         self.weekly_money_recovered_readable = self.weekly_money_recovered_in_dollars().format(self.CURRENCY_FORMAT)
 
 
-    def set_yearly_money_recovered_in_dollars(self):
-        self.yearly_money_recovered_in_dollars = self.weekly_money_recovered_in_dollars() * self.WORK_WEEKS_PER_YEAR
+    def yearly_money_recovered_in_dollars(self):
+        return self.weekly_money_recovered_in_dollars() * self.WORK_WEEKS_PER_YEAR
 
 
     def yearly_money_recovered_readable(self):
-        self.yearly_money_recovered_readable = self.yearly_money_recovered_in_dollars.format(self.CURRENCY_FORMAT)
+        self.yearly_money_recovered_readable = self.yearly_money_recovered_in_dollars().format(self.CURRENCY_FORMAT)
 
 
     def yearly_cost_in_seconds(self):
@@ -533,15 +520,15 @@ class Report:
         return yearly_cost_in_dollars
 
 
-    def set_yearly_time_recovered_in_seconds(self):
+    def yearly_time_recovered_in_seconds(self):
         time_recovered_yearly = float(self.percent_time_spent - self.IDEAL_PERCENT_TIME_IN_MEETINGS)
         time_recovered_yearly /= 100
         time_recovered_yearly *= self.PERSON_SECONDS_PER_YEAR
-        self.yearly_time_recovered_in_seconds =  time_recovered_yearly
+        return time_recovered_yearly
 
 
     def yearly_time_recovered_readable(self):
-        time_recovered_yearly = self.yearly_time_recovered_in_seconds
+        time_recovered_yearly = self.yearly_time_recovered_in_seconds()
         days, hours, minutes, seconds = ihm_time.translate_seconds(time_recovered_yearly)
         days, hours, minutes, seconds = ihm_time.make_pretty_for_printing(days, hours, minutes, seconds)
         time_recovered_yearly = ('{0}, {1}, {2}, {3}').format(days, hours, minutes, seconds)
