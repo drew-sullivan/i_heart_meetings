@@ -10,3 +10,4 @@ thoughts.py
 .cache/*
 *.swp
 *.swo
+*.egg-info

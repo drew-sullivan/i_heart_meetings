@@ -1,3 +1,0 @@
-ihm_time
-ihm_slack
-ihm_db
