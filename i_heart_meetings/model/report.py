@@ -3,6 +3,7 @@
 import collections
 import datetime
 import dateutil
+import heapq
 import ihm_time
 import smtplib
 import textwrap
@@ -130,15 +131,20 @@ class Report:
     def get_meeting_frequency(self):
         frequency = {}
         for meeting in self.meetings_list:
-
+            start_str = str(meeting.start)
             while meeting.start < meeting.end:
-                start_str = str(start)
-                if start_str in self.frequency:
+                if start_str in frequency:
                     frequency[start_str] += 1
                 else:
                     frequency[start_str] = 1
-                start += datetime.timedelta(minutes=15)
-        return collections.OrderedDict(sorted(frequency.items()))
+                meeting.start += datetime.timedelta(minutes=15)
+        return frequency
+
+
+    def get_most_frequent_meeting_times(self):
+        frequency = self.get_meeting_frequency()
+        most_frequent_meeting_times = heapq.nlargest(n=3, iterable=frequency, key=frequency.get)
+        return most_frequent_meeting_times
 
 
     def set_printable_data(self):
@@ -150,10 +156,10 @@ class Report:
             self.avg_cost_in_seconds_readable(), #4
             self.avg_cost_in_dollars_readable(), #5
             self.avg_duration_in_seconds_readable(), #6
-            self.top_meeting_times()[0], #7
-            self.top_meeting_times()[1], #8
-            self.top_meeting_times()[2], #9
-            self.percent_time_spent_readable(), #10
+            self.get_most_frequent_meeting_times(), #7
+            self.get_most_frequent_meeting_times(), #8
+            self.get_most_frequent_meeting_times(), #9
+            "{0}%".format(self.get_percent_time_spent()), #10
             self.yearly_ideal_time_cost_readable(), #11
             self.yearly_ideal_financial_cost_readable(), #12
             self.weekly_money_recovered_readable(), #13
@@ -304,10 +310,10 @@ class Report:
         return str(self.get_weekly_cost_in_dollars().format('en_US'))
 
 
-    def percent_time_spent_readable(self):
-        percent_time_spent_readable = (float(self.get_weekly_cost_in_seconds()) / self.PERSON_SECONDS_PER_WEEK)
-        percent_time_spent_readable = round(percent_time_spent_readable * 100, self.ROUND_TO_THIS_MANY_PLACES)
-        return str("{}%".format(percent_time_spent_readable))
+    def get_percent_time_spent(self):
+        percent_time_spent = (float(self.get_weekly_cost_in_seconds()) / self.PERSON_SECONDS_PER_WEEK)
+        percent_time_spent = round(percent_time_spent * 100, self.ROUND_TO_THIS_MANY_PLACES)
+        return percent_time_spent
 
 
     def avg_cost_in_seconds_readable(self):
@@ -433,26 +439,14 @@ class Report:
         yearly_ideal_financial_cost = self.YEARLY_IDEAL_COST_IN_DOLLARS.format(self.CURRENCY_FORMAT)
         return yearly_ideal_financial_cost
 
+
     def frequency_keys_readable(self):
-        dates = list(self.get_meeting_frequency().keys())
         frequency_keys_readable = []
+        dates = list(self.get_meeting_frequency().keys())
         for date in dates:
             date = ihm_time.make_dt_or_time_str_pretty_for_printing(date)
             frequency_keys_readable.append(date)
         return frequency_keys_readable
-
-
-    def top_meeting_times(self):
-        top_meeting_times = []
-        num_meeting_times = len(self.get_meeting_frequency().values())
-        if num_meeting_times < self.NUM_TOP_MEETING_TIMES:
-            unpretty_meeting_times = sorted(self.get_meeting_frequency(), key=self.frequency.get, reverse=True)[:num_meeting_times]
-        else:
-            unpretty_meeting_times = sorted(self.get_meeting_frequency(), key=self.frequency.get, reverse=True)[:self.NUM_TOP_MEETING_TIMES]
-        for meeting_time in unpretty_meeting_times:
-            meeting_time = ihm_time.make_dt_or_time_str_pretty_for_printing(meeting_time)
-            top_meeting_times.append(meeting_time)
-        return top_meeting_times
 
 
     def get_meetings_list(self, raw_calendar_data):
